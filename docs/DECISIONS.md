@@ -58,3 +58,9 @@ OBS-004 vérifié localement : le contrat de sélection de « Aujourd’hui » a
 D-013 décidé : Steve autorise la création d’un projet dédié dans l’organisation Supabase `klgwcghsildwhwevzncz`, puis fournit l’URL `https://vnmlomqxhnjucrrhvkmk.supabase.co` comme backend cible avec « connecté ». Ne pas créer de doublon ; poursuivre sur cette référence après vérification.
 
 OBS-005 vérifié : les appels administratifs du connecteur Supabase renvoient désormais `Unknown tool`. Le plugin est observé installé et actif. Cette erreur ne prouve ni absence du projet ni refus d’accès. Le rattachement du projet à l’organisation, son contenu et les permissions restent non vérifiés. Q-006 est partiellement résolue pour le choix du backend ; Auth et persistance restent bloqués par le connecteur, l’hébergement et Expo restant à préparer. Voir le rapport BACKEND et l’issue VAL-001.
+
+## Création dans l’organisation personnelle et quota — 2 octobre 2026
+
+D-014 décidé : Steve autorise explicitement la création de CELESTE OS dans `Steve-Landry-NONO’s Org` (`jmbijvhlwxgoirjffcic`), après annonce du coût 0/mois. Cette décision remplace D-013 pour la cible de création, sans autoriser modification ou suspension d’un autre produit.
+
+OBS-006 vérifié : le connecteur fonctionne ; l’ancienne organisation et l’ancien projet renvoient un refus de permission. Le coût de création annoncé pour l’organisation personnelle est 0/mois, mais la tentative de création est rejetée pour quota de 2 projets gratuits actifs atteint. Les projets actifs visibles sont FamilyRoot et FrequenceGestion. Aucun nouveau projet ni changement des projets existants. Voir le rapport SUPABASE_QUOTA.
