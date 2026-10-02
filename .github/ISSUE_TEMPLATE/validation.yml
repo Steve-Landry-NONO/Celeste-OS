@@ -1,0 +1,35 @@
+name: Validation métier
+description: Demande de décision CELESTE OS
+title: "[VAL] "
+body:
+  - type: input
+    id: request_id
+    attributes:
+      label: Identifiant
+      placeholder: VAL-001
+    validations:
+      required: true
+  - type: textarea
+    id: question
+    attributes:
+      label: Question précise
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Résultat ou version à examiner
+    validations:
+      required: true
+  - type: textarea
+    id: options
+    attributes:
+      label: Options et recommandation
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: Effet sur les tâches
+    validations:
+      required: true

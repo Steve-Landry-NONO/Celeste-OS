@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CELESTE OS memory state",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "updated_at",
+    "timezone",
+    "product_status",
+    "repository",
+    "sprint",
+    "current_issue",
+    "application_tests_executed",
+    "completed",
+    "blockers",
+    "next_action"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": 1
+    },
+    "updated_at": {
+      "type": "string"
+    },
+    "timezone": {
+      "type": "string"
+    },
+    "product_status": {
+      "type": "string"
+    },
+    "repository": {
+      "type": "object",
+      "required": [
+        "url",
+        "synced"
+      ],
+      "properties": {
+        "url": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "synced": {
+          "type": "boolean"
+        }
+      }
+    },
+    "sprint": {
+      "type": "string"
+    },
+    "current_issue": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "application_tests_executed": {
+      "type": "boolean"
+    },
+    "completed": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "scope",
+          "detail"
+        ]
+      }
+    },
+    "next_action": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": true
+}

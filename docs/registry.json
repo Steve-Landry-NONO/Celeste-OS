@@ -1,0 +1,216 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-02",
+  "documents": [
+    {
+      "path": ".github/PULL_REQUEST_TEMPLATE.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "5cc36dc48d6ddc98606d03b85403c1ec6acad6ad88c729488b8934699b8866b5"
+    },
+    {
+      "path": "AGENTS.md",
+      "version": "0.1.1",
+      "status": "proposed",
+      "sha256": "fda07825cc1f11b00cb102cd3ae36c0369cbd835cbf3a790661dc67fc99ee37a"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "435cf29b5a578a992c38e5f156cff8b755288bc38f49f4c5b97e330cd87c7134"
+    },
+    {
+      "path": "README.md",
+      "version": "0.1.1",
+      "status": "proposed",
+      "sha256": "09d325bc1b67fc4d06167c40bb5f4a85dcdc0e5b6982a7b1a99cd9b10c824688"
+    },
+    {
+      "path": "automation/DAILY_BUILD.md",
+      "version": "0.1.1",
+      "status": "proposed",
+      "sha256": "0642330f358e33f9626c508cc8053b9519946b5b3fa6e13fae15d11f513ce632"
+    },
+    {
+      "path": "docs/01_CADRAGE.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "5ee9df7499a6cf4c38c2b113263bf0e40e7a9de5ccce99372bdecd26f85b4af4"
+    },
+    {
+      "path": "docs/02_CAHIER_DES_CHARGES.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "5c5648519742fb385fdb0413872be25b6c64f0b2ec13a0aa630db68c98b71851"
+    },
+    {
+      "path": "docs/03_SPECIFICATIONS_FONCTIONNELLES.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "8e74e70a11e665e68244fbce4111705423f1ac5554516f19eb5992d1b46f3c6a"
+    },
+    {
+      "path": "docs/04_FINANCE.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "d52f82b55dcddf6bdae22757503180194dd610a96050585918226f64374a2403"
+    },
+    {
+      "path": "docs/05_GESTION_DOCUMENTAIRE.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "0859f946bfd0e47974a021ad9433d73d023f856fc67baee3e90871b3811783c6"
+    },
+    {
+      "path": "docs/06_UX_DESIGN.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "2944aebb3a6b5a7e8dc53d12b53ed0fd675d3203f127cf09c652e22a6065819b"
+    },
+    {
+      "path": "docs/07_ARCHITECTURE.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "f2e668d6c2cfc284c90d4d568441998eb3ab95df953bfaf4d6dfde02a32741e7"
+    },
+    {
+      "path": "docs/08_DATA_MODEL.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "0b1fc7058fce6a079545c92cc24ff5254201c06f12c0541cf8677df87505ce93"
+    },
+    {
+      "path": "docs/09_PERMISSIONS.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "b9e5ebb3333f1f0542c98d0b35a9902d3e76fda48c7308009c339e85134d7adf"
+    },
+    {
+      "path": "docs/10_ROADMAP.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "ff7a27344eb051ff41015596ace2b041aa170ffc9e80e7433b612eeaf63eda17"
+    },
+    {
+      "path": "docs/11_RECETTE.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "6818d9b5a1a26799d970a807edd88f3d190d4db44aaeec6595b6eb9ff7b968ff"
+    },
+    {
+      "path": "docs/12_INTEGRATIONS.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "a4ca744c682195a7947c25531b4b3788cb603374e040f5f45eccfb18a653e441"
+    },
+    {
+      "path": "docs/13_EXPLOITATION.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "420e7c72cceb92dc7af9d7f0aa58e16cea1e4f74b75e89dd19b55bf0902af858"
+    },
+    {
+      "path": "docs/14_BOOTSTRAP.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "479e9d16e274f78052f5cc5dd04a19123c5931cda66a223cdd25964c63cd02b0"
+    },
+    {
+      "path": "docs/15_MEMOIRE_ET_GOUVERNANCE.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "8a6a02cc7a5f51320ffd93957a2883893d7f82929645f1a6500021808c73812f"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "version": "0.1.1",
+      "status": "proposed",
+      "sha256": "b163e85a015bc985e0cf5021b32e344921a214e0b4f0a6fd030aa4161bf95f94"
+    },
+    {
+      "path": "docs/SOURCES.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "bbf594ad67de965c70bf35a28fdb902db92c80b7bda98af6c639707d0ae76cf2"
+    },
+    {
+      "path": "docs/adr/001_STACK.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "3b7a520a8f85f5494837bda6a519b16e8e0286495e6ca88451368b8906d571dc"
+    },
+    {
+      "path": "docs/adr/002_FINANCE.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "2912e486393b82b460b0fc51179afb7dd4047b3b6281e486b4a76e1c67fa39c4"
+    },
+    {
+      "path": "docs/adr/003_DOCUMENTS.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "7193112091da02c3489fc608adffb20b4d8d045cca6c00f89897a9be4a6f7f6f"
+    },
+    {
+      "path": "docs/templates/ADR.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "e6fa9bcedec3963f1177df5b355466555ccafddb628bfc5b02f5ab4a0c5ef65c"
+    },
+    {
+      "path": "docs/templates/DOCUMENT.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "e75fdd3e48592c9abc352be356b57b40303e316ba19f39e6a0e0f70bd41b2cd5"
+    },
+    {
+      "path": "memory/CONTEXT.md",
+      "version": "0.1.1",
+      "status": "proposed",
+      "sha256": "cb96fc699c7602c094a998607f7612b888c334cdab6d5faab21b4a64581fe4de"
+    },
+    {
+      "path": "memory/HANDOFF.md",
+      "version": "0.1.1",
+      "status": "proposed",
+      "sha256": "070950935377ac3bcf73d991052041d71fcdefbbe3eceea7dc02504e7fd22c1d"
+    },
+    {
+      "path": "planning/SPRINTS.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "a9657933331b70fdda8143ab8d4d2194c086242151ece190716c692165461fe5"
+    },
+    {
+      "path": "reports/2026-10-02_CADRAGE.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "1004bcf4be1f696545442dd2f905956ea92abd65a815893afd2f16a8d907d712"
+    },
+    {
+      "path": "reports/2026-10-02_INITIALISATION.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "5be1e2e6a05f0291392451b1a263b07b1505af3fa4be2a8f3fa2a99501b14c8b"
+    },
+    {
+      "path": "reports/2026-10-02_VERIFICATION.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "b7ce70f41019c5ac6030770b8de83c02a8107600ac871ce138ce4c00c9bdec04"
+    },
+    {
+      "path": "reports/TEMPLATE.md",
+      "version": "0.1.0",
+      "status": "proposed",
+      "sha256": "59c11c3c8d8dc9c6d56e12f9005666946cfe4774ef651371e5e469bd9c19aa12"
+    },
+    {
+      "path": "validations/README.md",
+      "version": "0.1.1",
+      "status": "proposed",
+      "sha256": "843ff7817ca97d898aea51710019eee8c2dd9f8d72508d4d008982672d7cbe92"
+    }
+  ]
+}

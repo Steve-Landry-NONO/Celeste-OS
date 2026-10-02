@@ -1,0 +1,16 @@
+{
+  "status": "enabled",
+  "automation_id": "6abf7fe8bf008191b14179612894e3f6",
+  "timezone": "Europe/Paris",
+  "timing_mode": "flexible_schedule",
+  "local_hours": [
+    10,
+    14,
+    18
+  ],
+  "first_scheduled_date": "2026-10-02",
+  "last_scheduled_date": "2026-10-15",
+  "first_session": "manual_2026-10-02",
+  "code_dependency": "runtime_and_project_backend",
+  "repository": "Steve-Landry-NONO/Celeste-OS"
+}

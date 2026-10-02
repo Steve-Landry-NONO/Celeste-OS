@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-02",
+  "timezone": "Europe/Paris",
+  "documentation_version": "0.1.1",
+  "product_status": "specification_ready_no_application",
+  "repository": {
+    "owner_verified": "Steve-Landry-NONO",
+    "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
+    "status": "confirmed_read_write",
+    "synced": false
+  },
+  "release_target": "0.1-pilot",
+  "baseline_start": "2026-10-02",
+  "baseline_end": "2026-10-15",
+  "sprint": "S1",
+  "current_issue": "CE-002",
+  "last_verified_code_sha": null,
+  "application_tests_executed": false,
+  "completed": [
+    "requirements_capture",
+    "documentary_structure",
+    "functional_specs",
+    "finance_rules",
+    "document_versioning_specs",
+    "initial_backlog",
+    "repository_access_verified"
+  ],
+  "blockers": [
+    {
+      "id": "Q-006",
+      "scope": "auth_and_persistence",
+      "detail": "Aucun projet backend CELESTE OS identifié parmi les projets visibles"
+    }
+  ],
+  "next_action": "Développer et tester les fondations web et domaine puis connecter le backend dédié après identification.",
+  "reimbursement_regime": "disabled_pending_explicit_policy",
+  "real_finance_data": "not_provided"
+}

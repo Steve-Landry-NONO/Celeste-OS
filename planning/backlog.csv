@@ -1,0 +1,24 @@
+﻿id,priority,sprint_or_version,day,title,dependencies,requirements,acceptance,test_ids,status
+CE-001,P0,S1,J1,Initialiser dépôt et mémoire,,REQ-14,AGENTS et STATE repris depuis clone propre,MEM-01,centralization_prepared
+CE-002,P0,S1,J2,Monorepo Auth organisation et CI,CE-001,REQ-01,Connexion réelle et isolation entre deux organisations,AUTH-01 ACL-01,planned
+CE-003,P0,S1,J2,Rôles et opérations sensibles,CE-002,REQ-01,Refus serveur API fichiers et agrégats,ACL-01 ACL-03,planned
+CE-004,P0,S1,J3,Dépenses catégories et justificatifs,CE-003,REQ-04,Saisie persistée catégorie créée et fichier privé,FIN-01 DOC-03,planned
+CE-005,P0,S1,J4,Contributions caisse et égalisation,CE-004,REQ-05,Exemple financier exact et atomicité,FIN-02 FIN-03 FIN-04,planned
+CE-006,P0,S1,J4,Modèle et verrou du remboursement futur,CE-005,REQ-06,Contribution non remboursable et régime désactivé,FIN-05,planned
+CE-007,P0,S1,J5,Projets phases tâches et Aujourd’hui,CE-003,REQ-02 REQ-03,Responsable unique et compteurs autorisés,TASK-01 TODAY-01,planned
+CE-008,P0,S1,J6,Expo Auth et finance mobile,CE-004 CE-005,REQ-11,Parcours persisté sur téléphone avec preuve,MOB-01,planned
+CE-009,P0,S1,J7,Recette du premier sprint,CE-006 CE-007 CE-008,REQ-14,Tests applicables et décision de revue,FIN-02 ACL-01 MEM-01,planned
+CE-010,P0,S2,J8,Documents catalogue et versions,CE-003,REQ-07,Deux versions figées consultables,DOC-01 DOC-03,planned
+CE-011,P0,S2,J9,Approbation publication et documents mobile,CE-010 CE-008,REQ-07 REQ-11,Approbation sur empreinte et publication unique,DOC-02 MOB-01,planned
+CE-012,P1,S2,J10,Mission prestataire et jalons,CE-007 CE-011,REQ-08,Portail limité et paiements distincts,ACL-02,planned
+CE-013,P1,S2,J11,Réunions décisions et activité,CE-007,REQ-09 REQ-10,Actions liées et notifications autorisées,MEET-01 ACT-01,planned
+CE-014,P0,S2,J12,Exports backups et restauration,CE-005 CE-011,REQ-04 REQ-07,Base et octets restaurés sans fuite,OPS-01 ACL-01,planned
+CE-015,P0,S2,J13,Recette des fondateurs et correctifs,CE-012 CE-013 CE-014,REQ-11,Parcours utilisateurs et contrôles critiques passés,MOB-01 FIN-02 ACL-02 DOC-02,planned
+CE-016,P0,S2,J14,Release pilote guide et passage usage,CE-015,REQ-14,Tag preuves limites et ouverture validée,MEM-01,planned
+CE-017,P1,V0.2,,Activation remboursement et paiements,CE-006,REQ-06,Politique approuvée réserve testée,FIN-06,future_policy_required
+CE-018,P1,V0.2,,Notifications mobiles et parité des parcours,CE-016,REQ-10 REQ-11,Build et notification testés sur appareils,MOB-01 ACT-01,future
+CE-019,P1,V0.3,,Premier connecteur selon usage,CE-016,REQ-12,Consentement révocation et rejouabilité,INT-01,future_provider_selection
+CE-020,P2,V0.4,,Commentaires validations et inspirations,CE-016,REQ-07 REQ-13,Objets liés et droits respectés,ACL-02,future
+CE-021,P2,V0.5,,Messagerie contextualisée,CE-020,REQ-13,Messages liés aux objets et scopes,ACL-01,future
+CE-022,P2,V0.6,,Automatisations et extraction de justificatifs,CE-019,REQ-13,Proposition sans écriture financière implicite,FIN-03,future
+CE-023,P2,V0.7,,Assistant CELESTE et synthèse de réunions,CE-020,REQ-13,Réponses sourcées et propositions contrôlées,AI-01,future
