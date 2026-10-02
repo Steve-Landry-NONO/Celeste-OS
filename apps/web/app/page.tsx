@@ -21,8 +21,8 @@ export default function Home() {
         <div>
           <strong>Le socle est en construction</strong>
           <p>
-            Les données réelles ne sont pas encore connectées. L’accès privé, la
-            sauvegarde et les permissions seront activés avec le backend dédié.
+            Vos comptes et espaces disposent d’un accès privé. Les tâches,
+            documents métier et finances seront connectés progressivement.
           </p>
         </div>
       </section>
@@ -98,17 +98,17 @@ export default function Home() {
         </div>
         <div className="panel warm">
           <p className="eyebrow">PROCHAINE ÉTAPE</p>
-          <h2>Connecter le socle privé.</h2>
+          <h2>Retrouver vos espaces.</h2>
           <p>
-            Un projet dédié est nécessaire pour l’authentification, les données
-            et les pièces justificatives.
+            Connectez-vous pour consulter vos organisations ou créer votre
+            premier espace de travail.
           </p>
-          <a
-            href="https://github.com/Steve-Landry-NONO/Celeste-OS/issues/1"
+          <Link
+            href="/workspace"
             className="text-link"
           >
-            Voir la demande VAL-001 ↗
-          </a>
+            Ouvrir mes espaces →
+          </Link>
         </div>
       </section>
     </>

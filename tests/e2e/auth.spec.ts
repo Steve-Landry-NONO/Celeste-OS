@@ -64,3 +64,42 @@ test("connexion, persistance d’organisation, isolation API et déconnexion", a
     if (cleanup.error || deletions.some(result=>result.error)) throw new Error("Disposable fixtures could not be cleaned up");
   }
 });
+
+
+test("inscription locale sans accès implicite à une organisation", async ({ page }) => {
+  test.skip(process.env.CELESTE_E2E_REAL_AUTH !== "1", "Requires a disposable local Supabase stack");
+  const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
+  if (!["localhost","127.0.0.1"].includes(new URL(url).hostname)) throw new Error("Auth fixtures must run only on local Supabase");
+  const admin = createClient(url,process.env.CELESTE_E2E_LOCAL_ADMIN_KEY!,{auth:{persistSession:false,autoRefreshToken:false}});
+  const email = "signup-"+randomUUID()+"@celeste-test.invalid";
+  const password = randomUUID()+"Aa1!";
+  let userId: string | undefined;
+  try {
+    await page.goto("/register");
+    await page.getByLabel("Nom affiché").fill("Nouvel utilisateur");
+    await page.getByLabel("Adresse email").fill(email);
+    await page.getByLabel("Mot de passe", {exact:true}).fill(password);
+    await page.getByRole("button",{name:"Créer mon compte",exact:true}).click();
+    // Confirmation is disabled only in the disposable local stack.
+    await expect(page).toHaveURL(/\/workspace$/);
+    await expect(page.getByRole("heading",{name:/Nouvel utilisateur/})).toBeVisible();
+    await expect(page.getByText("Vous n’avez aucun espace pour le moment.",{exact:false})).toBeVisible();
+    const publicClient = createClient(url,process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!,{auth:{persistSession:false,autoRefreshToken:false}});
+    const login = await publicClient.auth.signInWithPassword({email,password});
+    if (login.error || !login.data.user) throw new Error("Signup account could not be verified");
+    userId=login.data.user.id;
+    const memberships = await publicClient.from("memberships").select("id");
+    expect(memberships.error).toBeNull();
+    expect(memberships.data).toEqual([]);
+    await page.getByRole("button",{name:"Se déconnecter",exact:true}).click();
+    await expect(page).toHaveURL(/\/login$/);
+  } finally {
+    // Recover the local fixture if the UI assertion failed after account creation.
+    if (!userId) {
+      const users = await admin.auth.admin.listUsers();
+      userId = users.data.users.find(user=>user.email===email)?.id;
+      if (users.error) throw new Error("Could not inspect local signup fixture cleanup");
+    }
+    if (userId && (await admin.auth.admin.deleteUser(userId)).error) throw new Error("Could not delete local signup fixture");
+  }
+});

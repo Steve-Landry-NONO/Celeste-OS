@@ -27,7 +27,7 @@ npm run test:e2e
 
 La CI configure les variables à partir de supabase status via scripts/ci-supabase-env.mjs. Les tests Auth ne s’exécutent que si CELESTE_E2E_REAL_AUTH=1 et refusent toute URL hors loopback ; leur clé administrative sert uniquement à créer et nettoyer des fixtures locales. La confirmation est désactivée dans la seule configuration locale jetable. Les mails et l’onboarding des vrais fondateurs restent une recette distante distincte.
 
-Sans pile locale configurée, les deux parcours Auth sont indiqués skipped ; les quatre tests de démonstration restent exécutables. Un résultat avec skip ne valide pas la connexion réelle. Le rapport AUTH conserve la preuve CI effective.
+Sans pile locale configurée, les quatre parcours Auth sont indiqués skipped ; les quatre tests de démonstration restent exécutables. Un résultat avec skip ne valide pas la connexion réelle. Le rapport AUTH conserve la preuve CI effective.
 
 ## Avis Supabase
 Aucun WARN/ERROR à la dernière inspection. INFO RLS sans policy sur private_celeste.role_permissions est volontaire : table privée, refus client par défaut, lecture par fonctions privées contrôlées. INFO index inutilisés est attendu sur activity_events vide. L’index de sa FK actor_id a été ajouté. Références : [RLS sans policy](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy) et [index inutilisé](https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index).
