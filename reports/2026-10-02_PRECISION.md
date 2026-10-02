@@ -26,3 +26,9 @@ Aucun backend, Auth, contrôle RLS, stockage privé, client Expo ou déploiement
 Vérifier la CI de la tête et traiter les retours dans cette PR. Dès réponse explicite à VAL-001 : configurer Auth et organisations, tester l’isolation de deux organisations, puis persister les dépenses transactionnellement. Sans backend, poursuivre les contrats indépendants et leurs tests dans le même historique.
 
 Baseline maintenue : recette anticipée le 12 octobre et pilote le 15 octobre 2026, sous réserve d’Auth et persistance. Aucun décalage décidé au jour J1 ; si le backend manque encore le 3 octobre, consigner un calendrier révisé explicite conformément à `planning/SPRINTS.md`.
+
+## Preuve distante finale
+
+Code poussé : `5fa79a9d1c2a7f8be4012dac8e5bf7273e45c19e`. Run https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37004528903 entièrement réussi : `npm ci`, types, 18 tests domaine, build, quatre tests Playwright passés en 6,9 s et artifact `browser-evidence` chargé. Les logs du job `110829589001` ont été lus ; les deux profils exécutent le nouveau test de précision et le parcours existant.
+
+Réponse technique ajoutée au thread de revue : https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2#discussion_r4165517225. La mise à jour suivante archive seulement ces résultats et la mémoire ; aucun changement de code. Vérifier les checks de la dernière tête avant une éventuelle fusion. Aucune recette RLS/API/native ni revue visuelle nouvelle n’a été réalisée dans ce cycle. PR #2 ouverte, non fusionnée, non déployée.

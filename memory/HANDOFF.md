@@ -6,7 +6,7 @@ Dépôt privé Steve-Landry-NONO/Celeste-OS. Documentation et validations sur ma
 
 ## Dernière correction de reprise
 
-Le 2 octobre, revue automatique P2 traitée dans la même PR #2 : le formateur EUR partagé conserve le dernier centime à la limite sûre, remplaçant la division flottante dans le simulateur. `npm run check` passe avec 18 tests ; la recette Playwright comprend désormais quatre tests desktop/mobile-web. Le lancement local est bloqué avant interaction par l’absence de Chromium Playwright. Lire le résultat CI de la nouvelle tête et `reports/2026-10-02_PRECISION.md` ; les preuves du socle ci-dessous portent sur les commits précédents. Auth/persistance et Expo restent à réaliser.
+Le 2 octobre, revue automatique P2 traitée dans la même PR #2 : le formateur EUR partagé conserve le dernier centime à la limite sûre, remplaçant la division flottante dans le simulateur. `npm run check` passe avec 18 tests ; les quatre tests desktop/mobile-web passent dans la CI https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37004528903 sur `5fa79a9d1c2a7f8be4012dac8e5bf7273e45c19e`. Le lancement local est bloqué avant interaction par l’absence de Chromium Playwright. Lire `reports/2026-10-02_PRECISION.md` et vérifier les checks de la dernière tête après archivage documentaire ; les preuves du socle ci-dessous portent sur les commits précédents. Auth/persistance et Expo restent à réaliser.
 
 VAL-001 reste pending après vérification des commentaires et de Gmail : l’unique mail trouvé est le message sortant déjà archivé, aucune réponse humaine. Ne pas envoyer de relance ni déduire d’accord. Baseline 12/15 octobre conservée à J1 ; si l’accès manque à J2, établir un calendrier révisé explicite.
 
