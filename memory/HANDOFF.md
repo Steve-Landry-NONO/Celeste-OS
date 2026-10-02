@@ -10,9 +10,11 @@ Le 2 octobre, revue automatique P2 traitée dans la même PR #2 : le formateur E
 
 VAL-001 reste pending après vérification des commentaires et de Gmail : l’unique mail trouvé est le message sortant déjà archivé, aucune réponse humaine. Ne pas envoyer de relance ni déduire d’accord. Baseline 12/15 octobre conservée à J1 ; si l’accès manque à J2, établir un calendrier révisé explicite.
 
-## Incrément Aujourd’hui en attente de CI
+## Incrément Aujourd’hui vérifié en CI
 
-La même PR #2 contient désormais le contrat de tâches et la route `/today`. Le domaine filtre organisation, projet et mission avant de dériver listes, compteurs et progression ; une tâche bloquée exige un motif et les dates civiles impossibles sont refusées. Le scénario web est statique, fictif et signale l’absence de connexion. `npm run check` passe localement avec 24 tests et quatre routes construites. Les quatre routes répondent HTTP 200 ; le navigateur local reste bloqué avant interaction par la restriction de socket déjà connue. Lire `reports/2026-10-02_TODAY.md`, puis vérifier la CI de la tête poussée avant d’actualiser les preuves distantes.
+La même PR #2 contient désormais le contrat de tâches et la route `/today`. Le domaine filtre organisation, projet et mission avant de dériver listes, compteurs et progression ; une tâche bloquée exige un motif et les dates civiles impossibles sont refusées. Le scénario web est statique, fictif et signale l’absence de connexion. `npm run check` passe localement avec 24 tests et quatre routes construites. Les quatre routes répondent HTTP 200 ; le navigateur local reste bloqué avant interaction par la restriction de socket déjà connue.
+
+La CI https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37033072290 passe sur `d78f81745060624c9bcbf6a5b39163cdb59647e5` : installation, types, 24 tests, build et quatre parcours Playwright desktop/mobile. L’artifact `browser-evidence` 11237758163 contient les captures ; les vues `/today` desktop et mobile ont été inspectées sans défaut bloquant observé. Lire `reports/2026-10-02_TODAY.md`. Une actualisation documentaire peut relancer la CI ; vérifier la tête courante avant fusion.
 
 ## Résultat concret
 

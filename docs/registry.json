@@ -192,7 +192,7 @@
       "path": "memory/HANDOFF.md",
       "version": "0.1.2",
       "status": "proposed",
-      "sha256": "260455b888721000e5eda77ac381edaeeef1af43e9a5594120a625935cd395c7"
+      "sha256": "1e1b3e39d3f0803733aaec54a9abcc3c1a5a722bf7934b3fa61e2cf89ac1af26"
     },
     {
       "path": "packages/domain/README.md",
@@ -234,7 +234,7 @@
       "path": "reports/2026-10-02_TODAY.md",
       "version": "0.1.2",
       "status": "evidence",
-      "sha256": "4bf18cc59fc705442f9678ce5e48a80a33ad06cadbac9b7626720735c2b511b1"
+      "sha256": "a7883e0c57113d246d515292415311e5de307df415a5a4af1faaf6551086d272"
     },
     {
       "path": "reports/2026-10-02_VERIFICATION.md",

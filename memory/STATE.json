@@ -15,7 +15,7 @@
   "baseline_end": "2026-10-15",
   "sprint": "S1",
   "current_issue": "CE-002/CE-007-partial",
-  "last_verified_code_sha": "5fa79a9d1c2a7f8be4012dac8e5bf7273e45c19e",
+  "last_verified_code_sha": "d78f81745060624c9bcbf6a5b39163cdb59647e5",
   "application_tests_executed": true,
   "completed": [
     "requirements_capture",
@@ -32,7 +32,8 @@
     "exact_euro_display_regression_18_tests_passed",
     "exact_display_four_browser_tests_ci_passed",
     "today_domain_contract_24_tests_local_passed",
-    "today_demo_four_routes_http_checked"
+    "today_demo_four_routes_http_checked",
+    "today_four_browser_tests_ci_passed_and_visuals_inspected"
   ],
   "blockers": [
     {
@@ -59,14 +60,15 @@
     "browser_ci": {
       "status": "passed",
       "tests": 4,
-      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37004528903",
-      "verified_sha": "5fa79a9d1c2a7f8be4012dac8e5bf7273e45c19e"
+      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37033072290",
+      "verified_sha": "d78f81745060624c9bcbf6a5b39163cdb59647e5",
+      "artifact": "browser-evidence:11237758163"
     },
     "RLS": "not_executed",
     "mobile_native": "not_initialized",
     "deployed": false,
-    "visual_review": "new_today_visual_review_blocked_local_browser_socket_pending_ci_artifact",
-    "ci_chain": "previous_head_passed_npm_ci_types_18_domain_build_4_browser_new_head_pending",
+    "visual_review": "today_desktop_and_mobile_ci_captures_inspected_no_blocking_defect",
+    "ci_chain": "passed_npm_ci_types_24_domain_build_4_browser",
     "browser_ci_previous": {
       "status": "passed",
       "tests": 2,
