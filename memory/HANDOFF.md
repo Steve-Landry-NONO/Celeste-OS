@@ -1,6 +1,18 @@
 # Reprise — fondations du 2 octobre 2026
 
-## Actualisation backend — 2 octobre, 18 h 44 Europe/Paris
+## État courant backend — 2 octobre, 19 h 10 Europe/Paris
+
+Cette section remplace les consignes backend antérieures ci-dessous.
+
+Steve a explicitement autorisé la création de CELESTE OS dans `Steve-Landry-NONO’s Org` (`jmbijvhlwxgoirjffcic`) après annonce du coût 0/mois. Le connecteur fonctionne à nouveau. Le projet ancien `vnmlomqxhnjucrrhvkmk` et l’organisation `klgwcghsildwhwevzncz` restent inaccessibles : refus explicite de permission.
+
+La tentative `create_project` (nom CELESTE OS, région eu-west-3) a été refusée : le membre Steve-Landry-NONO a atteint la limite de 2 projets gratuits actifs. La liste ensuite relue confirme `familyroots-mvp` et `FrequenceGestion` ACTIVE_HEALTHY, et aucun nouveau projet. `tiktok-ai-factory` et `healthcheck` sont déjà INACTIVE ; les mettre en pause ne libérerait pas de place active supplémentaire.
+
+Ne pas retenter la création sans changement vérifié de quota. Aucun projet n’a été suspendu, supprimé, restauré ou passé au payant. Il faut une décision explicite sur un compte avec capacité disponible, une suspension d’un projet nommé, ou un budget payant. Ne pas redemander l’autorisation générale ni l’organisation personnelle déjà décidée.
+
+Le recours au navigateur est autorisé depuis 18 h 53 ; la connexion sécurisée a atteint un CAPTCHA, sans session réussie vérifiée. Le connecteur fonctionnant maintenant, le préférer. Rapport : [SUPABASE_QUOTA](../reports/2026-10-02_SUPABASE_QUOTA.md).
+
+## Historique : actualisation backend — 2 octobre, 18 h 44 Europe/Paris
 
 Cette actualisation remplace les constats antérieurs « aucune réponse humaine / aucun backend identifié » ci-dessous.
 
