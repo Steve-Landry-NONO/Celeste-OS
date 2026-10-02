@@ -21,7 +21,7 @@ Version 0.1.0 · 2 octobre 2026 · Statut proposé pour revue · Responsable de 
 | Installation npm | `npm install --no-fund --no-audit` puis `npm ci` | Lockfile produit ; contrôle propre dans le rapport de cycle |
 | Web local | `npm run dev` | Serveur Next.js sur 127.0.0.1:3000 |
 | Types | `npm run typecheck` | Next typegen + tsc pour web, tsc pour domaine |
-| Domaine | `npm test` | 14 scénarios financiers |
+| Domaine | `npm test` | 18 scénarios financiers, dont la précision de l’affichage |
 | Build web | `npm run build` | Trois routes statiques : accueil, documents, laboratoire |
 | Chaîne locale | `npm run check` | Types → tests domaine → build |
 | Mobile Expo | À renseigner après initialisation | Non exécuté |

@@ -4,6 +4,12 @@
 
 Dépôt privé Steve-Landry-NONO/Celeste-OS. Documentation et validations sur main. Incrément actif dans `feat/ce-002-foundations` ; chercher sa PR ouverte avant de créer une autre branche. Les SHA exacts et l’exécution CI se retrouvent dans la PR. STATE conserve la base précédente sans référence circulaire au commit courant.
 
+## Dernière correction de reprise
+
+Le 2 octobre, revue automatique P2 traitée dans la même PR #2 : le formateur EUR partagé conserve le dernier centime à la limite sûre, remplaçant la division flottante dans le simulateur. `npm run check` passe avec 18 tests ; la recette Playwright comprend désormais quatre tests desktop/mobile-web. Le lancement local est bloqué avant interaction par l’absence de Chromium Playwright. Lire le résultat CI de la nouvelle tête et `reports/2026-10-02_PRECISION.md` ; les preuves du socle ci-dessous portent sur les commits précédents. Auth/persistance et Expo restent à réaliser.
+
+VAL-001 reste pending après vérification des commentaires et de Gmail : l’unique mail trouvé est le message sortant déjà archivé, aucune réponse humaine. Ne pas envoyer de relance ni déduire d’accord. Baseline 12/15 octobre conservée à J1 ; si l’accès manque à J2, établir un calendrier révisé explicite.
+
 ## Résultat concret
 
 Workspaces npm : web Next.js et domaine TypeScript. Accueil et catalogue du cadrage GitHub, simulateur financier isolé, moteur EUR immuable, idempotence en mémoire et 14 tests. Installation propre `npm ci`, types et build passés. Trois routes répondent HTTP 200 avec contenu SSR. Les deux tests Playwright desktop/mobile passent dans le run 36997842066, sur le commit c6b01e7a21cd1f0853316610e2457ee53b352a32. Les captures desktop accueil et mobile laboratoire ont été inspectées.

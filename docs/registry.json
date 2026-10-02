@@ -18,13 +18,13 @@
       "path": "CHANGELOG.md",
       "version": "0.1.1",
       "status": "proposed",
-      "sha256": "4cb6531453af24131bbd1b2e5fb0e3eb8de06a981ad1d8dfc75b5988ac86e9d4"
+      "sha256": "9f3cb7b8db1bf9545954564afdb3a5d9555c48308f3a8feb175b498c4069ee3a"
     },
     {
       "path": "README.md",
       "version": "0.1.1",
       "status": "proposed",
-      "sha256": "d9ac811d6fd1ebf8528539ae96533f414e164280996a2c0920907dfb9a5e905e"
+      "sha256": "6d9af190a110adb4a3d57d97f169917bb7c071bcdf571e73de48d22d5ffd6fe1"
     },
     {
       "path": "apps/mobile/README.md",
@@ -132,7 +132,7 @@
       "path": "docs/14_BOOTSTRAP.md",
       "version": "0.1.1",
       "status": "proposed",
-      "sha256": "b6b3f71b4fd18d56626c79943a791f19b33053b407bc5ed4804875b91c1a9663"
+      "sha256": "2c79c7eaef6bd8eb1db331ee4e1b3bcb2685ea5bc724bba8cc386d1fe82fbe73"
     },
     {
       "path": "docs/15_MEMOIRE_ET_GOUVERNANCE.md",
@@ -144,7 +144,7 @@
       "path": "docs/DECISIONS.md",
       "version": "0.1.1",
       "status": "proposed",
-      "sha256": "b163e85a015bc985e0cf5021b32e344921a214e0b4f0a6fd030aa4161bf95f94"
+      "sha256": "e9a44f3743188aaf5059ec407a85174e7d24e5350745e68c10bdcd3c99e3d4e8"
     },
     {
       "path": "docs/SOURCES.md",
@@ -192,13 +192,13 @@
       "path": "memory/HANDOFF.md",
       "version": "0.1.1",
       "status": "proposed",
-      "sha256": "15170c13c9feb04505577dacdbed687e4f8b60cee79ee6f3f52afc63d5383bf2"
+      "sha256": "2a12ff519f6235da9ac07713eaabb421f3d1bdaeeaa25b1b09b3eb3162d616b5"
     },
     {
       "path": "packages/domain/README.md",
       "version": "0.1.1",
       "status": "proposed",
-      "sha256": "646a570e3ede23500c4aed39931db517b0fff1754b038c62acae072bad4b9e6b"
+      "sha256": "84fd195c5f5d38bae3023025f8aaec75bd7b3fd5ff49c37c6bbfcfd3a0df3bd2"
     },
     {
       "path": "planning/SPRINTS.md",
@@ -223,6 +223,12 @@
       "version": "0.1.0",
       "status": "evidence",
       "sha256": "5be1e2e6a05f0291392451b1a263b07b1505af3fa4be2a8f3fa2a99501b14c8b"
+    },
+    {
+      "path": "reports/2026-10-02_PRECISION.md",
+      "version": "0.1.1",
+      "status": "evidence",
+      "sha256": "a10b804595503d995ab97d49f8401ba273563837b1b42cf161efc4695536b582"
     },
     {
       "path": "reports/2026-10-02_VERIFICATION.md",

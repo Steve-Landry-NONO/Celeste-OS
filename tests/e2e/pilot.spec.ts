@@ -54,3 +54,37 @@ test("navigation et règles financières du laboratoire isolé", async ({
   ).toBe(true);
   expect(errors).toEqual([]);
 });
+
+test("centimes exacts et refus atomique à la limite de calcul", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.goto("/lab");
+  await page.getByLabel("Nature de l’opération").selectOption("deposit");
+  await page.getByLabel("Montant en euros").fill("90071992547409,91");
+  await page.getByRole("button", { name: "Ajouter au simulateur" }).click();
+  const maximum = /90\s?071\s?992\s?547\s?409,91\s?€/;
+  await expect(page.getByTestId("cash")).toHaveText(maximum);
+  await expect(page.locator(".history li")).toHaveCount(1);
+  await expect(page.locator(".history li strong")).toHaveText(maximum);
+  const founderA = page.getByRole("row").filter({ has: page.getByRole("rowheader", { name: "A", exact: true }) });
+  await expect(founderA.getByRole("cell").first()).toHaveText(maximum);
+  const founderB = page.getByRole("row").filter({ has: page.getByRole("rowheader", { name: "B", exact: true }) });
+  await expect(founderB.getByRole("cell").last()).toHaveText(maximum);
+
+  await page.getByLabel("Montant en euros").fill("0,01");
+  await page.getByRole("button", { name: "Ajouter au simulateur" }).click();
+  await expect(page.locator("form").getByRole("alert")).toContainText("capacité de calcul exacte");
+  await expect(page.getByTestId("cash")).toHaveText(maximum);
+  await expect(page.getByTestId("costs")).toHaveText(/0,00\s?€/);
+  await expect(page.locator(".history li")).toHaveCount(1);
+  await expect(founderA.getByRole("cell").first()).toHaveText(maximum);
+
+  await page.getByLabel("Nature de l’opération").selectOption("fund_expense");
+  await page.getByRole("button", { name: "Ajouter au simulateur" }).click();
+  await expect(page.getByTestId("cash")).toHaveText(/90\s?071\s?992\s?547\s?409,90\s?€/);
+  await expect(page.getByTestId("costs")).toHaveText(/0,01\s?€/);
+  await expect(page.locator(".history li")).toHaveCount(2);
+  await expect(founderA.getByRole("cell").first()).toHaveText(maximum);
+  await expect(page.locator("form").getByRole("alert")).toHaveCount(0);
+  expect(errors).toEqual([]);
+});

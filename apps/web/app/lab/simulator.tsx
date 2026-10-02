@@ -5,15 +5,12 @@ import {
   record,
   totals,
   parseEuros,
+  formatEuros as euros,
   LedgerError,
 } from "@celeste/domain";
 import type { Command, Ledger } from "@celeste/domain";
 const founders = ["A", "B", "C"];
 const blank = () => createLedger("simulation-only", founders);
-const euros = (cents: number) =>
-  new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR" }).format(
-    cents / 100,
-  );
 const labels = {
   personal_expense: "Dépense personnelle",
   deposit: "Versement au fonds",

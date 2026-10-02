@@ -50,7 +50,7 @@ npm run check
 npm run dev
 ```
 
-Ouvrir http://127.0.0.1:3000. Les routes disponibles sont `/`, `/documents` (liens vers le cadrage GitHub) et `/lab`. Aucun secret ni backend n’est requis pour ce socle. `npm run check` lance les types, les 14 tests du domaine et le build web. CI GitHub configurée pour PR et main ; ses résultats doivent être vérifiés séparément des contrôles locaux.
+Ouvrir http://127.0.0.1:3000. Les routes disponibles sont `/`, `/documents` (liens vers le cadrage GitHub) et `/lab`. Aucun secret ni backend n’est requis pour ce socle. `npm run check` lance les types, les 18 tests du domaine et le build web. CI GitHub configurée pour PR et main ; ses résultats doivent être vérifiés séparément des contrôles locaux.
 
 Voir [BOOTSTRAP](docs/14_BOOTSTRAP.md), les [limites du domaine](packages/domain/README.md), la [reprise](memory/HANDOFF.md) et le rapport du cycle courant.
 
@@ -60,4 +60,4 @@ Les échanges fournis le 2 octobre 2026 sont la source des exigences. Le documen
 
 ## Recette navigateur
 
-Après `npm run build` : `npx playwright install --with-deps chromium`, puis `npm run test:e2e`. Deux profils Chromium (desktop et mobile web) vérifient navigation, totaux, refus sans écriture, saisie décimale, remise à zéro et effacement au rechargement. Leur exécution locale est bloquée par les sockets Unix de cet environnement ; consulter la CI pour le résultat effectif. Le contrôle HTTP SSR ne remplace pas ces interactions.
+Après `npm run build` : `npx playwright install --with-deps chromium`, puis `npm run test:e2e`. Quatre tests répartis entre deux profils Chromium (desktop et mobile web) vérifient navigation, totaux, refus sans écriture, saisie décimale, précision des grands montants, remise à zéro et effacement au rechargement. Le navigateur Playwright requis est absent de cet environnement ; un lancement antérieur avec un autre exécutable était bloqué par ses sockets Unix. Consulter la CI pour les résultats interactifs réellement exécutés. Le contrôle HTTP SSR ne remplace pas ces interactions.

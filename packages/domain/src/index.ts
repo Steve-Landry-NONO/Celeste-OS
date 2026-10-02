@@ -196,3 +196,22 @@ export function parseEuros(value: string): number {
     fail("INVALID_AMOUNT");
   return Number(cents);
 }
+const euroFormatter = new Intl.NumberFormat("fr-FR", {
+  style: "currency",
+  currency: "EUR",
+});
+/** Display safe integer cents exactly, including the last cent at the boundary. */
+export function formatEuros(cents: number): string {
+  if (!Number.isSafeInteger(cents)) fail("INVALID_AMOUNT");
+  const value = BigInt(cents);
+  const whole = value / 100n;
+  const fraction = (value < 0n ? -value : value) % 100n;
+  // Preserve the sign for negative amounts below one euro without float division.
+  const displayWhole = value < 0n && whole === 0n ? -0 : whole;
+  return euroFormatter
+    .formatToParts(displayWhole)
+    .map((part) =>
+      part.type === "fraction" ? fraction.toString().padStart(2, "0") : part.value,
+    )
+    .join("");
+}

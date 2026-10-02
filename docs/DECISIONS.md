@@ -44,3 +44,7 @@ D-010 décidé : dépôt privé exact Steve-Landry-NONO/Celeste-OS fourni par St
 D-011 décidé : plusieurs cycles de développement quotidiens dès aujourd’hui ; cadence proposée et activée à trois reprises.
 D-012 décidé : demandes à Steve par email si besoin et conservation des demandes et réponses dans GitHub.
 OBS-002 vérifié : GitHub lecture écriture et profil Gmail disponibles ; aucun backend CELESTE OS identifié. Q-001 est résolue, Q-006 reste ouverte pour Auth et persistance.
+
+## Correction de précision — 2 octobre 2026
+
+OBS-003 vérifié : la revue automatique de PR #2 a identifié une perte d’un centime lors de la division flottante pour afficher `90071992547409,91`. La correction applique FIN-R01 jusqu’à l’affichage : partie entière en BigInt et centimes exacts, dans le package partagé. Le périmètre EUR et les règles métier restent ceux du socle. Les tests, preuves et limites sont consignés dans `reports/2026-10-02_PRECISION.md`. Ce constat technique ne constitue aucune validation humaine.

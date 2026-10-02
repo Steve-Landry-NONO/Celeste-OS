@@ -28,7 +28,8 @@
     "web_foundation_written",
     "finance_domain_14_tests_passed",
     "clean_npm_ci_typecheck_build_passed",
-    "http_three_routes_checked"
+    "http_three_routes_checked",
+    "exact_euro_display_regression_18_tests_passed"
   ],
   "blockers": [
     {
@@ -37,32 +38,44 @@
       "detail": "Aucun projet backend CELESTE OS identifié parmi les projets visibles"
     }
   ],
-  "next_action": "Reprendre la PR feat/ce-002-foundations et vérifier sa CI ; connecter Auth/RLS au backend dédié après réponse VAL-001, puis implémenter les dépenses persistées.",
+  "next_action": "Vérifier CI de PR #2 et retours de revue ; après réponse explicite VAL-001, configurer Auth et RLS, puis persister les dépenses. Sans backend, avancer les contrats indépendants ; réviser le calendrier à J2 si accès absent.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
   "active_branch": "feat/ce-002-foundations",
   "validation_issue": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/1",
-  "last_verified_base_sha": "c444e6c765a7bf5db0c14b1e6119721dfbf36a90",
+  "last_verified_base_sha": "378beeccd9f7456e03c1d109d7756567801f7ffc",
   "verification": {
     "domain_tests": {
-      "passed": 14,
+      "passed": 18,
       "failed": 0
     },
     "typecheck": "passed",
     "web_build": "passed",
     "http_ssr": "passed_three_routes",
-    "browser_local": "blocked_unix_socket_permission",
+    "browser_local": "blocked_missing_playwright_chromium_before_interaction",
     "browser_ci": {
-      "status": "passed",
-      "tests": 2,
-      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/36997842066",
-      "verified_sha": "c6b01e7a21cd1f0853316610e2457ee53b352a32"
+      "status": "pending_current_increment",
+      "tests_configured": 4
     },
     "RLS": "not_executed",
     "mobile_native": "not_initialized",
     "deployed": false,
     "visual_review": "desktop_home_and_mobile_lab_inspected",
-    "ci_chain": "passed_npm_ci_types_14_domain_build_2_browser"
+    "ci_chain": "local_types_18_domain_build_passed_current_browser_ci_pending",
+    "browser_ci_previous": {
+      "status": "passed",
+      "tests": 2,
+      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/36997842066",
+      "verified_sha": "c6b01e7a21cd1f0853316610e2457ee53b352a32"
+    }
   },
-  "active_pr": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2"
+  "active_pr": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2",
+  "last_session": {
+    "date": "2026-10-02",
+    "report": "reports/2026-10-02_PRECISION.md",
+    "validation_check": "VAL001_pending_no_new_human_reply",
+    "review_fixed": "discussion_r4165030924",
+    "merged": false,
+    "deployed": false
+  }
 }
