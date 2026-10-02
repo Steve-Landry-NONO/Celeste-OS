@@ -12,6 +12,17 @@ test("navigation et règles financières du laboratoire isolé", async ({
     path: testInfo.outputPath("home.png"),
     fullPage: true,
   });
+  await page.getByRole("link", { name: "Aujourd’hui", exact: true }).click();
+  await expect(
+    page.getByRole("heading", { name: /Bonjour Steve/ }),
+  ).toBeVisible();
+  await expect(page.getByTestId("today-total")).toHaveText("4");
+  await expect(page.getByTestId("today-task")).toHaveCount(4);
+  await expect(page.getByText("Cette tâche ne doit pas apparaître")).toHaveCount(0);
+  await page.screenshot({
+    path: testInfo.outputPath("today.png"),
+    fullPage: true,
+  });
   await page
     .getByRole("link", { name: "Documents", exact: false })
     .first()

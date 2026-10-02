@@ -215,3 +215,212 @@ export function formatEuros(cents: number): string {
     )
     .join("");
 }
+
+export type TaskStatus =
+  | "todo"
+  | "in_progress"
+  | "blocked"
+  | "in_review"
+  | "done"
+  | "cancelled";
+
+export type TaskPriority = "urgent" | "high" | "normal" | "low";
+
+export type WorkTask = Readonly<{
+  id: string;
+  organizationId: string;
+  projectId: string;
+  missionId?: string;
+  assigneeId: string;
+  title: string;
+  status: TaskStatus;
+  priority: TaskPriority;
+  dueDate?: string;
+  createdAt: string;
+  blockedReason?: string;
+}>;
+
+export type TodayScope = Readonly<{
+  organizationId: string;
+  actorId: string;
+  projectIds: readonly string[];
+  missionIds: readonly string[];
+}>;
+
+export type TodayItem = Readonly<{
+  task: WorkTask;
+  timing: "overdue" | "today" | "upcoming" | "unscheduled";
+}>;
+
+export type TodayView = Readonly<{
+  items: readonly TodayItem[];
+  counts: Readonly<{
+    total: number;
+    overdue: number;
+    today: number;
+    blocked: number;
+    inReview: number;
+  }>;
+}>;
+
+export class TaskError extends Error {
+  readonly code: string;
+
+  constructor(code: string) {
+    super(code);
+    this.name = "TaskError";
+    this.code = code;
+  }
+}
+
+const datePattern = /^\d{4}-\d{2}-\d{2}$/;
+const instantPattern = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:\.\d{3})?Z$/;
+
+function isCivilDate(value: string): boolean {
+  if (!datePattern.test(value)) return false;
+  const [year, month, day] = value.split("-").map(Number);
+  const parsed = new Date(Date.UTC(year!, month! - 1, day!));
+  return (
+    parsed.getUTCFullYear() === year &&
+    parsed.getUTCMonth() === month! - 1 &&
+    parsed.getUTCDate() === day
+  );
+}
+
+function failTask(code: string): never {
+  throw new TaskError(code);
+}
+
+export function validateTask(task: WorkTask): WorkTask {
+  if (
+    !task ||
+    typeof task !== "object" ||
+    !nonempty(task.id) ||
+    !nonempty(task.organizationId) ||
+    !nonempty(task.projectId) ||
+    !nonempty(task.assigneeId) ||
+    !nonempty(task.title) ||
+    !["todo", "in_progress", "blocked", "in_review", "done", "cancelled"].includes(
+      task.status,
+    ) ||
+    !["urgent", "high", "normal", "low"].includes(task.priority)
+  )
+    failTask("INVALID_TASK");
+  if (task.missionId !== undefined && !nonempty(task.missionId))
+    failTask("INVALID_TASK");
+  if (task.dueDate !== undefined && !isCivilDate(task.dueDate))
+    failTask("INVALID_DUE_DATE");
+  if (
+    !instantPattern.test(task.createdAt) ||
+    Number.isNaN(Date.parse(task.createdAt))
+  )
+    failTask("INVALID_CREATED_AT");
+  if (task.status === "blocked" && !nonempty(task.blockedReason))
+    failTask("BLOCKED_REASON_REQUIRED");
+  return Object.freeze({ ...task });
+}
+
+function isAccessible(task: WorkTask, scope: TodayScope): boolean {
+  if (task.organizationId !== scope.organizationId) return false;
+  return task.missionId
+    ? scope.missionIds.includes(task.missionId)
+    : scope.projectIds.includes(task.projectId);
+}
+
+function validateScope(scope: TodayScope): void {
+  if (!nonempty(scope.organizationId) || !nonempty(scope.actorId))
+    failTask("INVALID_TODAY_CONTEXT");
+  const projectIds = new Set(scope.projectIds);
+  const missionIds = new Set(scope.missionIds);
+  if (
+    projectIds.size !== scope.projectIds.length ||
+    missionIds.size !== scope.missionIds.length ||
+    [...projectIds, ...missionIds].some((id) => !nonempty(id))
+  )
+    failTask("INVALID_TODAY_CONTEXT");
+}
+
+const priorityRank: Record<TaskPriority, number> = {
+  urgent: 0,
+  high: 1,
+  normal: 2,
+  low: 3,
+};
+
+const timingRank: Record<TodayItem["timing"], number> = {
+  overdue: 0,
+  today: 1,
+  upcoming: 2,
+  unscheduled: 3,
+};
+
+function taskTiming(
+  dueDate: string | undefined,
+  today: string,
+): TodayItem["timing"] {
+  if (!dueDate) return "unscheduled";
+  if (dueDate < today) return "overdue";
+  if (dueDate === today) return "today";
+  return "upcoming";
+}
+
+export function buildTodayView(
+  tasks: readonly WorkTask[],
+  scope: TodayScope,
+  today: string,
+): TodayView {
+  validateScope(scope);
+  if (!isCivilDate(today)) failTask("INVALID_TODAY_CONTEXT");
+
+  const items = tasks
+    .filter(
+      (task) =>
+        task.assigneeId === scope.actorId && isAccessible(task, scope),
+    )
+    .map(validateTask)
+    .filter((task) => !["done", "cancelled"].includes(task.status))
+    .map((task) =>
+      Object.freeze({ task, timing: taskTiming(task.dueDate, today) }),
+    )
+    .sort((a, b) =>
+      priorityRank[a.task.priority] - priorityRank[b.task.priority] ||
+      timingRank[a.timing] - timingRank[b.timing] ||
+      (a.task.dueDate ?? "9999-12-31").localeCompare(
+        b.task.dueDate ?? "9999-12-31",
+      ) ||
+      a.task.createdAt.localeCompare(b.task.createdAt) ||
+      a.task.id.localeCompare(b.task.id),
+    );
+
+  return Object.freeze({
+    items: Object.freeze(items),
+    counts: Object.freeze({
+      total: items.length,
+      overdue: items.filter((item) => item.timing === "overdue").length,
+      today: items.filter((item) => item.timing === "today").length,
+      blocked: items.filter((item) => item.task.status === "blocked").length,
+      inReview: items.filter((item) => item.task.status === "in_review").length,
+    }),
+  });
+}
+
+export function projectProgress(
+  tasks: readonly WorkTask[],
+  scope: TodayScope,
+  projectId: string,
+): number | null {
+  validateScope(scope);
+  if (!nonempty(projectId)) failTask("INVALID_PROJECT_CONTEXT");
+  const eligible = tasks
+    .filter(
+      (task) =>
+        task.projectId === projectId && isAccessible(task, scope),
+    )
+    .map(validateTask)
+    .filter((task) => task.status !== "cancelled");
+  if (eligible.length === 0) return null;
+  return Math.round(
+    (eligible.filter((task) => task.status === "done").length / eligible.length) *
+      100,
+  );
+}

@@ -27,6 +27,19 @@ export default function Home() {
         </div>
       </section>
       <section className="cards" aria-label="Modules">
+        <article className="card featured-card">
+          <span className="card-icon" aria-hidden="true">
+            00
+          </span>
+          <h2>Aujourd’hui</h2>
+          <p>
+            Ce qui demande votre attention maintenant : priorités, retards,
+            validations et progression calculée.
+          </p>
+          <Link href="/today" className="text-link">
+            Ouvrir le scénario fictif →
+          </Link>
+        </article>
         <article className="card">
           <span className="card-icon" aria-hidden="true">
             01

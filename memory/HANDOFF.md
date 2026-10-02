@@ -10,6 +10,10 @@ Le 2 octobre, revue automatique P2 traitée dans la même PR #2 : le formateur E
 
 VAL-001 reste pending après vérification des commentaires et de Gmail : l’unique mail trouvé est le message sortant déjà archivé, aucune réponse humaine. Ne pas envoyer de relance ni déduire d’accord. Baseline 12/15 octobre conservée à J1 ; si l’accès manque à J2, établir un calendrier révisé explicite.
 
+## Incrément Aujourd’hui en attente de CI
+
+La même PR #2 contient désormais le contrat de tâches et la route `/today`. Le domaine filtre organisation, projet et mission avant de dériver listes, compteurs et progression ; une tâche bloquée exige un motif et les dates civiles impossibles sont refusées. Le scénario web est statique, fictif et signale l’absence de connexion. `npm run check` passe localement avec 24 tests et quatre routes construites. Les quatre routes répondent HTTP 200 ; le navigateur local reste bloqué avant interaction par la restriction de socket déjà connue. Lire `reports/2026-10-02_TODAY.md`, puis vérifier la CI de la tête poussée avant d’actualiser les preuves distantes.
+
 ## Résultat concret
 
 Workspaces npm : web Next.js et domaine TypeScript. Accueil et catalogue du cadrage GitHub, simulateur financier isolé, moteur EUR immuable, idempotence en mémoire et 14 tests. Installation propre `npm ci`, types et build passés. Trois routes répondent HTTP 200 avec contenu SSR. Les deux tests Playwright desktop/mobile passent dans le run 36997842066, sur le commit c6b01e7a21cd1f0853316610e2457ee53b352a32. Les captures desktop accueil et mobile laboratoire ont été inspectées.
@@ -24,7 +28,7 @@ Le navigateur local et le daemon agent-browser ont échoué à créer un socket 
 
 ## Prochain incrément
 
-1. Lire PR, CI et réponses VAL-001. Corriger les contrôles en échec avant d’empiler du code.
+1. Lire PR, CI et réponses VAL-001. Vérifier les nouveaux parcours `/today` desktop/mobile et corriger les contrôles en échec avant d’empiler du code.
 2. Après identification du backend : migrations, Auth, organisations et politiques RLS testées sur deux organisations (CE-002/003).
 3. Intégrer dépenses et contributions dans une transaction serveur avec journal, acteur, date et contraintes d’idempotence ; les règles pures sont déjà testées mais ne remplacent pas ces contrôles.
 4. Initialiser le client Expo. `apps/mobile/README.md` ne constitue pas un client exécutable.

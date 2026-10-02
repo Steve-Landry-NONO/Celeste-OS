@@ -48,3 +48,7 @@ OBS-002 vérifié : GitHub lecture écriture et profil Gmail disponibles ; aucun
 ## Correction de précision — 2 octobre 2026
 
 OBS-003 vérifié : la revue automatique de PR #2 a identifié une perte d’un centime lors de la division flottante pour afficher `90071992547409,91`. La correction applique FIN-R01 jusqu’à l’affichage : partie entière en BigInt et centimes exacts, dans le package partagé. Le périmètre EUR et les règles métier restent ceux du socle. Les tests, preuves et limites sont consignés dans `reports/2026-10-02_PRECISION.md`. Ce constat technique ne constitue aucune validation humaine.
+
+## Contrat Aujourd’hui — 2 octobre 2026
+
+OBS-004 vérifié localement : le contrat de sélection de « Aujourd’hui » applique un même périmètre organisation/projet/mission à la liste et aux compteurs, puis limite la liste personnelle au responsable. La progression de projet exclut les tâches annulées et les missions non autorisées ; elle reste non calculée sans tâche éligible. Le résultat web est un scénario fictif, sans preuve d’autorisation serveur ni persistance. Voir `reports/2026-10-02_TODAY.md`.

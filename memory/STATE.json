@@ -3,7 +3,7 @@
   "updated_at": "2026-10-02",
   "timezone": "Europe/Paris",
   "documentation_version": "0.1.1",
-  "product_status": "foundations_reviewable_no_backend",
+  "product_status": "foundations_and_today_demo_reviewable_no_backend",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -14,7 +14,7 @@
   "baseline_start": "2026-10-02",
   "baseline_end": "2026-10-15",
   "sprint": "S1",
-  "current_issue": "CE-002",
+  "current_issue": "CE-002/CE-007-partial",
   "last_verified_code_sha": "5fa79a9d1c2a7f8be4012dac8e5bf7273e45c19e",
   "application_tests_executed": true,
   "completed": [
@@ -30,7 +30,9 @@
     "clean_npm_ci_typecheck_build_passed",
     "http_three_routes_checked",
     "exact_euro_display_regression_18_tests_passed",
-    "exact_display_four_browser_tests_ci_passed"
+    "exact_display_four_browser_tests_ci_passed",
+    "today_domain_contract_24_tests_local_passed",
+    "today_demo_four_routes_http_checked"
   ],
   "blockers": [
     {
@@ -39,7 +41,7 @@
       "detail": "Aucun projet backend CELESTE OS identifié parmi les projets visibles"
     }
   ],
-  "next_action": "Reprendre PR #2 et vérifier les checks de la dernière tête documentaire. Après réponse explicite VAL-001, configurer Auth et RLS puis persister les dépenses. Sans backend, avancer les contrats indépendants ; réviser le calendrier à J2 si accès absent.",
+  "next_action": "Vérifier la CI et les parcours desktop/mobile de la nouvelle tête de PR #2. Après réponse explicite VAL-001, configurer Auth/RLS et remplacer les scénarios par des données persistées autorisées. Réviser le calendrier à J2 si accès absent.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
   "active_branch": "feat/ce-002-foundations",
@@ -47,12 +49,12 @@
   "last_verified_base_sha": "378beeccd9f7456e03c1d109d7756567801f7ffc",
   "verification": {
     "domain_tests": {
-      "passed": 18,
+      "passed": 24,
       "failed": 0
     },
     "typecheck": "passed",
     "web_build": "passed",
-    "http_ssr": "passed_three_routes",
+    "http_ssr": "passed_four_routes_including_today",
     "browser_local": "blocked_missing_playwright_chromium_before_interaction",
     "browser_ci": {
       "status": "passed",
@@ -63,8 +65,8 @@
     "RLS": "not_executed",
     "mobile_native": "not_initialized",
     "deployed": false,
-    "visual_review": "prior_desktop_home_and_mobile_lab_inspected_no_new_visual_review",
-    "ci_chain": "passed_npm_ci_types_18_domain_build_4_browser",
+    "visual_review": "new_today_visual_review_blocked_local_browser_socket_pending_ci_artifact",
+    "ci_chain": "previous_head_passed_npm_ci_types_18_domain_build_4_browser_new_head_pending",
     "browser_ci_previous": {
       "status": "passed",
       "tests": 2,
@@ -75,7 +77,7 @@
   "active_pr": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2",
   "last_session": {
     "date": "2026-10-02",
-    "report": "reports/2026-10-02_PRECISION.md",
+    "report": "reports/2026-10-02_TODAY.md",
     "validation_check": "VAL001_pending_no_new_human_reply",
     "review_fixed": "discussion_r4165030924",
     "merged": false,

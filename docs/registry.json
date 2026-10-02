@@ -16,15 +16,15 @@
     },
     {
       "path": "CHANGELOG.md",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "status": "proposed",
-      "sha256": "9f3cb7b8db1bf9545954564afdb3a5d9555c48308f3a8feb175b498c4069ee3a"
+      "sha256": "398a7613360747d326ad8fdabdb00292eae536bb79f68f6e903da8f9622f7c7b"
     },
     {
       "path": "README.md",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "status": "proposed",
-      "sha256": "6d9af190a110adb4a3d57d97f169917bb7c071bcdf571e73de48d22d5ffd6fe1"
+      "sha256": "8b35bed5ed8b9e73103eec72974578933384bda0b653c574a698b420f1ca50f2"
     },
     {
       "path": "apps/mobile/README.md",
@@ -142,9 +142,9 @@
     },
     {
       "path": "docs/DECISIONS.md",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "status": "proposed",
-      "sha256": "e9a44f3743188aaf5059ec407a85174e7d24e5350745e68c10bdcd3c99e3d4e8"
+      "sha256": "5f1d4e47c6430ea02b2d31244f261d499f5343924cb97ac4e7ecdda6c24f5230"
     },
     {
       "path": "docs/SOURCES.md",
@@ -190,9 +190,9 @@
     },
     {
       "path": "memory/HANDOFF.md",
-      "version": "0.1.1",
+      "version": "0.1.2",
       "status": "proposed",
-      "sha256": "0a8d832164b41fb009dd12f4525f1d8aed0585b3a8ccc8d0f4e0a751118e0c4e"
+      "sha256": "260455b888721000e5eda77ac381edaeeef1af43e9a5594120a625935cd395c7"
     },
     {
       "path": "packages/domain/README.md",
@@ -229,6 +229,12 @@
       "version": "0.1.1",
       "status": "evidence",
       "sha256": "ab6a314da3dbddf0c034d99bd7e1bbed8533940bae5e255ac57dceb094ba66e2"
+    },
+    {
+      "path": "reports/2026-10-02_TODAY.md",
+      "version": "0.1.2",
+      "status": "evidence",
+      "sha256": "4bf18cc59fc705442f9678ce5e48a80a33ad06cadbac9b7626720735c2b511b1"
     },
     {
       "path": "reports/2026-10-02_VERIFICATION.md",
