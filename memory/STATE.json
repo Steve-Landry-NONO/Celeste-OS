@@ -3,7 +3,7 @@
   "updated_at": "2026-10-02",
   "timezone": "Europe/Paris",
   "documentation_version": "0.1.1",
-  "product_status": "foundations_and_today_demo_reviewable_no_backend",
+  "product_status": "foundations_and_today_demo_backend_identified_access_blocked",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -39,10 +39,10 @@
     {
       "id": "Q-006",
       "scope": "auth_and_persistence",
-      "detail": "Aucun projet backend CELESTE OS identifié parmi les projets visibles"
+      "detail": "Projet cible vnmlomqxhnjucrrhvkmk fourni par Steve, organisation klgwcghsildwhwevzncz. Connecteur Supabase installé mais appels administratifs en erreur Unknown tool ; contenu, rattachement et accès non vérifiés."
     }
   ],
-  "next_action": "Vérifier la CI et les parcours desktop/mobile de la nouvelle tête de PR #2. Après réponse explicite VAL-001, configurer Auth/RLS et remplacer les scénarios par des données persistées autorisées. Réviser le calendrier à J2 si accès absent.",
+  "next_action": "Ne pas recréer de projet ni redemander VAL-001 : Steve a fourni le backend. Vérifier get_project(vnmlomqxhnjucrrhvkmk), son organisation klgwcghsildwhwevzncz, les tables et migrations dès le rétablissement du connecteur ; puis réaliser Auth/organisations/RLS et les tests d’isolation. Le navigateur de secours requiert un accord explicite préalable.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
   "active_branch": "feat/ce-002-foundations",
@@ -79,8 +79,8 @@
   "active_pr": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2",
   "last_session": {
     "date": "2026-10-02",
-    "report": "reports/2026-10-02_TODAY.md",
-    "validation_check": "VAL001_pending_no_new_human_reply",
+    "report": "reports/2026-10-02_BACKEND.md",
+    "validation_check": "VAL001_human_project_selection_recorded_access_unverified",
     "review_fixed": "discussion_r4165030924",
     "merged": false,
     "deployed": false
