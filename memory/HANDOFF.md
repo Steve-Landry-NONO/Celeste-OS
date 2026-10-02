@@ -1,9 +1,26 @@
-# Reprise après centralisation
+# Reprise — fondations du 2 octobre 2026
 
-Dépôt confirmé Steve-Landry-NONO/Celeste-OS, privé et accessible. Le cycle est configuré autour de 10 h, 14 h et 18 h Europe/Paris jusqu’au 15 octobre. La première session de code commence aujourd’hui.
+## Où reprendre
 
-Lire la PR de fondations et la reprendre si elle est ouverte. Auth et persistance dépendent du backend dédié non encore identifié. Ne pas utiliser une base d’un autre produit par déduction. Lire les demandes de validations et les issues associées.
+Dépôt privé Steve-Landry-NONO/Celeste-OS. Documentation et validations sur main. Incrément actif dans `feat/ce-002-foundations` ; chercher sa PR ouverte avant de créer une autre branche. Les SHA exacts et l’exécution CI se retrouvent dans la PR. STATE conserve la base précédente sans référence circulaire au commit courant.
 
-## Reprise du cycle courant
+## Résultat concret
 
-Documentation centralisée sur main. Branche active feat/ce-002-foundations créée. VAL-001 ouverte (#1), email envoyé et référencé dans validations/events.jsonl. Ne pas renvoyer cette demande. Continuer les fondations indépendantes du backend.
+Workspaces npm : web Next.js et domaine TypeScript. Accueil et catalogue du cadrage GitHub, simulateur financier isolé, moteur EUR immuable, idempotence en mémoire et 14 tests. Installation propre `npm ci`, types et build passés. Trois routes répondent HTTP 200 avec contenu SSR. Les deux tests Playwright desktop/mobile sont configurés dans la CI, pas encore observés au moment de ce rapport.
+
+Aucun compte ni donnée réelle. Pas de serveur Auth, RLS, pièce privée, transaction SQL, client Expo ou déploiement. Le laboratoire est explicitement fictif et non persistant. Les contrôles d’organisation du domaine ne prouvent pas l’isolation serveur.
+
+## Blocage précis
+
+VAL-001 / issue #1 : identifier le backend dédié. Email envoyé, ID archivé dans validations/events.jsonl ; ne pas renvoyer la demande ni prendre l’email envoyé à soi pour une réponse. L’absence de réponse bloque Auth et persistance, pas les autres tâches prêtes.
+
+Le navigateur local et le daemon agent-browser ont échoué à créer un socket Unix (`Operation not permitted`). Ne pas enregistrer la recette navigateur comme réussie. Vérifier les tests Playwright sur le runner GitHub et corriger le premier échec avec ses logs. La configuration inclut un vrai serveur web dans le même processus de test.
+
+## Prochain incrément
+
+1. Lire PR, CI et réponses VAL-001. Corriger les contrôles en échec avant d’empiler du code.
+2. Après identification du backend : migrations, Auth, organisations et politiques RLS testées sur deux organisations (CE-002/003).
+3. Intégrer dépenses et contributions dans une transaction serveur avec journal, acteur, date et contraintes d’idempotence ; les règles pures sont déjà testées mais ne remplacent pas ces contrôles.
+4. Initialiser le client Expo. `apps/mobile/README.md` ne constitue pas un client exécutable.
+
+Cycle activé autour de 10 h, 14 h et 18 h Europe/Paris du 2 au 15 octobre. Cible pilote le 15, recette anticipée le 12 ; réviser le calendrier explicitement si le backend tarde.

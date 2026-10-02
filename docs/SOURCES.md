@@ -22,3 +22,10 @@ GitHub get_user_login, search_installed_repositories_v2 avec celeste et search_r
 Consultation le 2 octobre 2026. Les docs Supabase établissent que grants et politiques contrôlent conjointement l’accès et que les fichiers privés nécessitent des règles de stockage. La doc Expo distingue les builds de développement de la diffusion en stores. Les choix de stack, dates et politiques CELESTE sont nos propositions de conception, pas des conclusions attribuées à ces fournisseurs.
 
 L’accès à l’index changelog Supabase par le navigateur de recherche n’a pas abouti. Il devra être consulté avec les docs pertinentes avant toute implémentation, comme les versions et tarifs actuels. Aucun SDK, migration ni ressource fournisseur n’a été installé ou modifié dans cette livraison.
+
+## Fondations exécutées le 2 octobre 2026
+
+- Documentation Next.js installation et TypeScript, également lue depuis `node_modules/next/dist/docs` de 16.3.8 : https://nextjs.org/docs/app/getting-started/installation et https://nextjs.org/docs/app/api-reference/config/typescript.
+- Node TypeScript natif : https://nodejs.org/api/typescript.html. Type stripping distinct du typecheck.
+- Versions interrogées dans le registre npm, peerDependencies Next vérifiées, install puis lockfile et build exécutés. Playwright 1.63.0.
+- Releases officielles GitHub vérifiées : actions/checkout v7.0.1, actions/setup-node v7.0.0.

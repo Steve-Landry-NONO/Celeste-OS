@@ -16,15 +16,33 @@
     },
     {
       "path": "CHANGELOG.md",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "status": "proposed",
-      "sha256": "435cf29b5a578a992c38e5f156cff8b755288bc38f49f4c5b97e330cd87c7134"
+      "sha256": "4cb6531453af24131bbd1b2e5fb0e3eb8de06a981ad1d8dfc75b5988ac86e9d4"
     },
     {
       "path": "README.md",
       "version": "0.1.1",
       "status": "proposed",
-      "sha256": "09d325bc1b67fc4d06167c40bb5f4a85dcdc0e5b6982a7b1a99cd9b10c824688"
+      "sha256": "d9ac811d6fd1ebf8528539ae96533f414e164280996a2c0920907dfb9a5e905e"
+    },
+    {
+      "path": "apps/mobile/README.md",
+      "version": "0.1.1",
+      "status": "proposed",
+      "sha256": "8244f5b6a4183cc3e371bc5bf498f87df3e5264875505011f52d69a1b647a299"
+    },
+    {
+      "path": "apps/web/AGENTS.md",
+      "version": "0.1.1",
+      "status": "proposed",
+      "sha256": "63f2c50380ed6303237cce215ce27af1d620d094c215e28d1b1538a3c070e3bb"
+    },
+    {
+      "path": "apps/web/CLAUDE.md",
+      "version": "0.1.1",
+      "status": "proposed",
+      "sha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49"
     },
     {
       "path": "automation/DAILY_BUILD.md",
@@ -112,9 +130,9 @@
     },
     {
       "path": "docs/14_BOOTSTRAP.md",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "status": "proposed",
-      "sha256": "479e9d16e274f78052f5cc5dd04a19123c5931cda66a223cdd25964c63cd02b0"
+      "sha256": "b6b3f71b4fd18d56626c79943a791f19b33053b407bc5ed4804875b91c1a9663"
     },
     {
       "path": "docs/15_MEMOIRE_ET_GOUVERNANCE.md",
@@ -130,9 +148,9 @@
     },
     {
       "path": "docs/SOURCES.md",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "status": "proposed",
-      "sha256": "bbf594ad67de965c70bf35a28fdb902db92c80b7bda98af6c639707d0ae76cf2"
+      "sha256": "501a4ab0d8d296270ed2c7a9985789ce1616d8ff6cf0450b1c823962c6457b60"
     },
     {
       "path": "docs/adr/001_STACK.md",
@@ -174,7 +192,13 @@
       "path": "memory/HANDOFF.md",
       "version": "0.1.1",
       "status": "proposed",
-      "sha256": "070950935377ac3bcf73d991052041d71fcdefbbe3eceea7dc02504e7fd22c1d"
+      "sha256": "fe9b6d389339038a7abe623aa6a21f08f839662b3f2addb18c5b93b0192600a7"
+    },
+    {
+      "path": "packages/domain/README.md",
+      "version": "0.1.1",
+      "status": "proposed",
+      "sha256": "646a570e3ede23500c4aed39931db517b0fff1754b038c62acae072bad4b9e6b"
     },
     {
       "path": "planning/SPRINTS.md",
@@ -185,32 +209,38 @@
     {
       "path": "reports/2026-10-02_CADRAGE.md",
       "version": "0.1.0",
-      "status": "proposed",
+      "status": "evidence",
       "sha256": "1004bcf4be1f696545442dd2f905956ea92abd65a815893afd2f16a8d907d712"
+    },
+    {
+      "path": "reports/2026-10-02_FONDATIONS.md",
+      "version": "0.1.1",
+      "status": "evidence",
+      "sha256": "ba7ebebf758390a019c45763aeab00e75dd091543800edd70a59afad824830f5"
     },
     {
       "path": "reports/2026-10-02_INITIALISATION.md",
       "version": "0.1.0",
-      "status": "proposed",
+      "status": "evidence",
       "sha256": "5be1e2e6a05f0291392451b1a263b07b1505af3fa4be2a8f3fa2a99501b14c8b"
     },
     {
       "path": "reports/2026-10-02_VERIFICATION.md",
       "version": "0.1.0",
-      "status": "proposed",
+      "status": "evidence",
       "sha256": "b7ce70f41019c5ac6030770b8de83c02a8107600ac871ce138ce4c00c9bdec04"
     },
     {
       "path": "reports/TEMPLATE.md",
       "version": "0.1.0",
-      "status": "proposed",
+      "status": "evidence",
       "sha256": "59c11c3c8d8dc9c6d56e12f9005666946cfe4774ef651371e5e469bd9c19aa12"
     },
     {
       "path": "validations/README.md",
       "version": "0.1.1",
       "status": "proposed",
-      "sha256": "843ff7817ca97d898aea51710019eee8c2dd9f8d72508d4d008982672d7cbe92"
+      "sha256": "fdf6545b5e1693ea53bfdc371aba2c3d557d3f5dd744b5a5a1bc6962e17d6c0d"
     }
   ]
 }

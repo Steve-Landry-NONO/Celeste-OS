@@ -10,7 +10,7 @@
   ],
   "first_scheduled_date": "2026-10-02",
   "last_scheduled_date": "2026-10-15",
-  "first_session": "manual_2026-10-02",
-  "code_dependency": "runtime_and_project_backend",
+  "first_session": "manual_2026-10-02_foundations_tested",
+  "code_dependency": "dedicated_backend_for_auth_persistence",
   "repository": "Steve-Landry-NONO/Celeste-OS"
 }
