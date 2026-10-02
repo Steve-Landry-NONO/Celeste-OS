@@ -3,7 +3,7 @@
   "updated_at": "2026-10-02",
   "timezone": "Europe/Paris",
   "documentation_version": "0.1.1",
-  "product_status": "foundations_and_today_demo_backend_identified_access_blocked",
+  "product_status": "foundations_and_today_demo_backend_creation_blocked_free_quota",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -39,10 +39,10 @@
     {
       "id": "Q-006",
       "scope": "auth_and_persistence",
-      "detail": "Projet cible vnmlomqxhnjucrrhvkmk fourni par Steve, organisation klgwcghsildwhwevzncz. Connecteur Supabase installé mais appels administratifs en erreur Unknown tool ; contenu, rattachement et accès non vérifiés."
+      "detail": "Création CELESTE OS autorisée dans jmbijvhlwxgoirjffcic à coût annoncé 0/mois, mais refusée par Supabase : limite de 2 projets gratuits actifs atteinte (familyroots-mvp et FrequenceGestion). Organisation CELESTE antérieure et projet vnmlomqxhnjucrrhvkmk refusés pour permission."
     }
   ],
-  "next_action": "Ne pas recréer de projet ni redemander VAL-001 : Steve a fourni le backend. Vérifier get_project(vnmlomqxhnjucrrhvkmk), son organisation klgwcghsildwhwevzncz, les tables et migrations dès le rétablissement du connecteur ; puis réaliser Auth/organisations/RLS et les tests d’isolation. Le navigateur de secours requiert un accord explicite préalable.",
+  "next_action": "Ne pas retenter create_project tant que le quota ne change pas. Obtenir la décision de Steve sur un compte/organisation avec capacité vérifiée, une suspension explicite d’un projet nommé, ou un budget payant approuvé. Autorisation de créer CELESTE OS dans jmbijvhlwxgoirjffcic déjà acquise ; aucun changement aux autres projets sans instruction. Continuer les travaux indépendants du backend.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
   "active_branch": "feat/ce-002-foundations",
@@ -79,8 +79,8 @@
   "active_pr": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2",
   "last_session": {
     "date": "2026-10-02",
-    "report": "reports/2026-10-02_BACKEND.md",
-    "validation_check": "VAL001_human_project_selection_recorded_access_unverified",
+    "report": "reports/2026-10-02_SUPABASE_QUOTA.md",
+    "validation_check": "VAL001_personal_org_creation_approved_free_quota_blocked",
     "review_fixed": "discussion_r4165030924",
     "merged": false,
     "deployed": false
