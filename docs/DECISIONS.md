@@ -64,3 +64,9 @@ OBS-005 vérifié : les appels administratifs du connecteur Supabase renvoient d
 D-014 décidé : Steve autorise explicitement la création de CELESTE OS dans `Steve-Landry-NONO’s Org` (`jmbijvhlwxgoirjffcic`), après annonce du coût 0/mois. Cette décision remplace D-013 pour la cible de création, sans autoriser modification ou suspension d’un autre produit.
 
 OBS-006 vérifié : le connecteur fonctionne ; l’ancienne organisation et l’ancien projet renvoient un refus de permission. Le coût de création annoncé pour l’organisation personnelle est 0/mois, mais la tentative de création est rejetée pour quota de 2 projets gratuits actifs atteint. Les projets actifs visibles sont FamilyRoot et FrequenceGestion. Aucun nouveau projet ni changement des projets existants. Voir le rapport SUPABASE_QUOTA.
+
+## Backend opérationnel — 2 octobre 2026
+
+D-015 décidé : Steve autorise la mise en pause de FrequenceGestion pour libérer la place gratuite nécessaire à CELESTE OS. Cette pause ne constitue pas une autorisation de suppression, de réinitialisation ou de restauration automatique.
+
+OBS-007 vérifié : FrequenceGestion pncckdmpmrruhqzpfgdo devient INACTIVE. CELESTE OS est créé dans jmbijvhlwxgoirjffcic, région eu-west-3, référence vxdneuoglidyngzdfmjc. État ACTIVE_HEALTHY et requête SQL select 1 vérifiés ; aucune table public ni migration. L’ancien projet vnmlomqxhnjucrrhvkmk n’est plus la cible. VAL-001 est résolue pour identification et accès du backend. Auth et RLS restent à implémenter ; Q-006 reste ouverte uniquement pour les autres environnements, l’hébergement et Expo. Voir SUPABASE_READY.
