@@ -21,12 +21,14 @@ Version 0.1.0 · 2 octobre 2026 · Statut proposé pour revue · Responsable de 
 | Installation npm | `npm install --no-fund --no-audit` puis `npm ci` | Lockfile produit ; contrôle propre dans le rapport de cycle |
 | Web local | `npm run dev` | Serveur Next.js sur 127.0.0.1:3000 |
 | Types | `npm run typecheck` | Next typegen + tsc pour web, tsc pour domaine |
-| Domaine | `npm test` | 18 scénarios financiers, dont la précision de l’affichage |
-| Build web | `npm run build` | Trois routes statiques : accueil, documents, laboratoire |
-| Chaîne locale | `npm run check` | Types → tests domaine → build |
+| Domaine | `npm test` | 24 scénarios domaine + 2 contrôles configuration web |
+| Build web | `npm run build` | Routes démo et Auth ; workspace dynamique |
+| Chaîne locale | `npm run check` | Types → 26 tests unitaires → build |
 | Mobile Expo | À renseigner après initialisation | Non exécuté |
-| Auth/API/RLS | À renseigner après backend dédié | Bloqué par VAL-001 |
+| Auth/API/RLS | Supabase migrations et tests SQL versionnés | 26 assertions distantes passées, fixtures annulées ; recette Auth navigateur en CI |
 
 Versions fixées : Next.js 16.3.8, React 19.3.0, TypeScript 5.9.3. Node 24.19.0 exécute les tests `.mjs` qui importent le domaine `.ts` avec type stripping. Ce mécanisme ne vérifie pas les types ; le contrôle tsc séparé reste obligatoire. Utiliser le lockfile, ne pas installer `latest` à chaque cycle.
 
-La CI n’effectue pas encore de lint, test de base, build Expo, scan de secrets ou audit de dépendances. Ces contrôles doivent être ajoutés avec leurs outils configurés, sans les annoncer comme existants. La couche serveur doit fournir transactions, permissions et journal durable avant toute utilisation financière réelle.
+La CI démarre une pile Supabase locale jetable, rejoue les migrations et teste RLS. Elle n’effectue pas encore de lint, build Expo, scan de secrets ou audit de dépendances. Ces contrôles doivent être ajoutés avec leurs outils configurés, sans les annoncer comme existants. La couche serveur doit fournir transactions, permissions et journal durable avant toute utilisation financière réelle.
+
+Voir [Auth Setup](16_AUTH_SETUP.md) pour les variables, la clé publiable, la confirmation et les tests Auth. La pile CI reçoit un identifiant et des ports libres propres à chaque exécution ; aucun reset de base distante.

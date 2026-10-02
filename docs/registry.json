@@ -24,7 +24,7 @@
       "path": "README.md",
       "version": "0.1.3",
       "status": "proposed",
-      "sha256": "0439bf12069fb4d8a650e3bb7ba16e7009d7cc3ad1e757becb2f5ce04eedbd52"
+      "sha256": "344d67e27169ed172f86ccc81a6ae00e9ae0a6443d2f2d0040cbfdd4c9ec81c4"
     },
     {
       "path": "apps/mobile/README.md",
@@ -130,9 +130,9 @@
     },
     {
       "path": "docs/14_BOOTSTRAP.md",
-      "version": "0.1.1",
+      "version": "0.1.3",
       "status": "proposed",
-      "sha256": "2c79c7eaef6bd8eb1db331ee4e1b3bcb2685ea5bc724bba8cc386d1fe82fbe73"
+      "sha256": "d336a90b9ad708382f294057f802f2fca3ec7c9b820f01d23783feaa61f4332c"
     },
     {
       "path": "docs/15_MEMOIRE_ET_GOUVERNANCE.md",
@@ -144,13 +144,13 @@
       "path": "docs/DECISIONS.md",
       "version": "0.1.3",
       "status": "proposed",
-      "sha256": "3fa433d6ef0f0337c83ebbc5bdc311fa09056889129debc3d7113b463d974078"
+      "sha256": "f9899eaef24f6f6358b0bf947bd3bd3cc759b12d695a5b5d76812e0c5b2ed7ea"
     },
     {
       "path": "docs/SOURCES.md",
-      "version": "0.1.1",
+      "version": "0.1.3",
       "status": "proposed",
-      "sha256": "29b3c61dee5d913162e862b99e2fc37721bc6af48b066a63978528dc90fb0c44"
+      "sha256": "e60f868acb7a5084859c6d1f076088b46ce212627ca92d5417ce1ad10c019caa"
     },
     {
       "path": "docs/adr/001_STACK.md",
@@ -192,7 +192,7 @@
       "path": "memory/HANDOFF.md",
       "version": "0.1.3",
       "status": "proposed",
-      "sha256": "7a2380623837de7b81588b08feb38e9a115ed274485b3c19c01770b5d0615d9f"
+      "sha256": "d512205408875cfdd4832dac79a64a513c4a5a5ed70dcfe9fd4b14a81ae2ab11"
     },
     {
       "path": "packages/domain/README.md",
@@ -264,13 +264,13 @@
       "path": "docs/16_AUTH_SETUP.md",
       "version": "0.1.3",
       "status": "proposed",
-      "sha256": "06a01f9db60e3d6cbe0985d0f4d6b0b7dda3f9ce50f52c9c54541c9e29368fa7"
+      "sha256": "669c5675c5864a1c1f68e5db6889a937b54f2b3f2126a8d6cfd596b1e860219f"
     },
     {
       "path": "reports/2026-10-02_AUTH.md",
       "version": "0.1.3",
       "status": "evidence",
-      "sha256": "be7b253bd3a7695292d1b2e82cfbe16555543428dd6b9e98be3f246ba3270794"
+      "sha256": "3ce44984bcdab3e5a07173850c17cdf1bcfd5f8390713cdae4fd8c6953c94a5f"
     }
   ]
 }

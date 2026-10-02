@@ -75,4 +75,4 @@ OBS-007 vérifié : FrequenceGestion pncckdmpmrruhqzpfgdo devient INACTIVE. CELE
 
 ADR-006 implémentée comme choix technique de l’incrément autorisé : identité Supabase, permissions en base privée, RLS, cookies SSR et RPC atomiques. Les comptes peuvent créer leur propre espace sans accès implicite à CELESTE. Aucun droit réel de fondateur n’a été attribué.
 
-OBS-008 vérifié : deux migrations appliquées sur vxdneuoglidyngzdfmjc, 26 assertions RLS passées, fixtures annulées ; quatre tables publiques et zéro donnée de test résiduelle. Connexion web écrite et build local passé ; recette navigateur complète à vérifier en CI. Voir ADR-006 et rapport AUTH.
+OBS-008 vérifié : deux migrations appliquées sur vxdneuoglidyngzdfmjc, 26 assertions RLS passées, fixtures annulées ; quatre tables publiques et zéro donnée de test résiduelle. Connexion web écrite, build local passé et huit parcours navigateur CI réussis sans skip, captures inspectées. La confirmation email et les comptes réels restent à préparer. Voir ADR-006 et rapport AUTH.

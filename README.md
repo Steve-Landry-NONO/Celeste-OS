@@ -1,6 +1,6 @@
 # CELESTE OS
 
-Version 0.1.1 · 2 octobre 2026 · Statut proposé pour revue · Responsable de validation Steve
+Version 0.1.3 · 2 octobre 2026 · Statut proposé pour revue · Responsable de validation Steve
 
 CELESTE OS centralise le pilotage de CELESTE sur téléphone et sur ordinateur. Ce dépôt prépare un pilote utilisable par Steve, Maeva et Stéphane, puis l’ouverture contrôlée aux collaborateurs et prestataires. Il concerne l’outil interne de pilotage et reste distinct du développement de la marketplace CELESTE.
 
@@ -63,3 +63,5 @@ Les échanges fournis le 2 octobre 2026 sont la source des exigences. Le documen
 Après `npm run build` : `npx playwright install --with-deps chromium`, puis `npm run test:e2e`. Quatre tests de démonstration répartis entre deux profils Chromium (desktop et mobile web) vérifient navigation, périmètre et compteurs de « Aujourd’hui », totaux, refus sans écriture, saisie décimale, précision des grands montants, remise à zéro et effacement au rechargement. Le navigateur Playwright requis est absent de cet environnement ; l’exécutable de secours est bloqué par ses sockets Unix. Consulter la CI pour les résultats interactifs réellement exécutés. Le contrôle HTTP SSR ne remplace pas ces interactions.
 
 La CI ajoute quatre parcours Auth (desktop/mobile) sur Supabase local jetable : refus de connexion, session, création et persistance d’organisation, isolation API, cookies protégés, déconnexion et callback invalide. Hors pile locale configurée, ces quatre tests sont skipped et ne constituent aucune preuve Auth. Voir [rapport AUTH](reports/2026-10-02_AUTH.md).
+
+Recette Auth et démonstrations vérifiée : [CI réussie du code ac0a15f](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37044433038) — huit tests navigateur sans skip, 26 assertions SQL, 26 tests unitaires et build. Captures d’espaces desktop/mobile inspectées ; la confirmation email distante et le déploiement restent à préparer.

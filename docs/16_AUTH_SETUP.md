@@ -16,7 +16,7 @@ Les paramètres Auth distants n’ont pas été modifiés. Avant le pilote, conf
 Aucun compte réel n’a été inscrit pendant cette recette. Les 26 assertions SQL utilisent des identités .invalid dans une transaction annulée ; le contrôle final observe zéro utilisateur, organisation ou membre de test.
 
 ## Reproduction locale et CI
-Prérequis supplémentaires : Docker et psql. npm ci installe Supabase CLI 2.119.0. La CI démarre un Supabase local Postgres 17, rejoue les migrations sur sa base jetable, puis exécute :
+Prérequis supplémentaires : Docker et psql. npm ci installe Supabase CLI 2.119.0. La CI sélectionne des ports libres et un identifiant de pile par exécution, puis démarre un Supabase local Postgres 17, rejoue les migrations sur sa base jetable, puis exécute :
 
 ```bash
 psql postgresql://postgres:postgres@127.0.0.1:54322/postgres -X -v ON_ERROR_STOP=1 -f supabase/tests/auth_organizations.sql
@@ -27,7 +27,7 @@ npm run test:e2e
 
 La CI configure les variables à partir de supabase status via scripts/ci-supabase-env.mjs. Les tests Auth ne s’exécutent que si CELESTE_E2E_REAL_AUTH=1 et refusent toute URL hors loopback ; leur clé administrative sert uniquement à créer et nettoyer des fixtures locales. La confirmation est désactivée dans la seule configuration locale jetable. Les mails et l’onboarding des vrais fondateurs restent une recette distante distincte.
 
-Sans pile locale configurée, les quatre parcours Auth sont indiqués skipped ; les quatre tests de démonstration restent exécutables. Un résultat avec skip ne valide pas la connexion réelle. Le rapport AUTH conserve la preuve CI effective.
+Sans pile locale configurée, les quatre parcours Auth sont indiqués skipped ; les quatre tests de démonstration restent exécutables. Un résultat avec skip ne valide pas la connexion réelle. Le rapport AUTH conserve la preuve CI effective : huit tests passés sans skip sur ac0a15f8c7e7170362580f66b091771195cd1d8a.
 
 ## Avis Supabase
 Aucun WARN/ERROR à la dernière inspection. INFO RLS sans policy sur private_celeste.role_permissions est volontaire : table privée, refus client par défaut, lecture par fonctions privées contrôlées. INFO index inutilisés est attendu sur activity_events vide. L’index de sa FK actor_id a été ajouté. Références : [RLS sans policy](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy) et [index inutilisé](https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index).

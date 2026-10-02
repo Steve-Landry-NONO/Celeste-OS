@@ -31,3 +31,16 @@ L’accès à l’index changelog Supabase par le navigateur de recherche n’a 
 - Releases officielles GitHub vérifiées : actions/checkout v7.0.1, actions/setup-node v7.0.0.
 
 Actions/upload-artifact v7.0.1 vérifié sur la release officielle et exécuté avec succès pour la preuve navigateur.
+
+## Auth et organisations implémentées — 2 octobre 2026
+
+Changelog Supabase HTML consulté avant migrations (l’URL .md n’était pas servie) : https://supabase.com/changelog . PostgreSQL 17.11 observé ; les changements ltree, pgcrypto historiques, btree_gist et opérateurs personnalisés ne concernent pas le schéma de cet incrément.
+
+Références officielles consultées pour l’implémentation :
+- SSR et cookies : https://supabase.com/docs/guides/auth/server-side/nextjs
+- Validation des JWT : https://supabase.com/docs/reference/javascript/auth-getclaims
+- Fonctions SQL : https://supabase.com/docs/guides/database/functions
+- RLS : https://supabase.com/docs/guides/database/postgres/row-level-security
+- Proxy Next.js : https://nextjs.org/docs/app/api-reference/file-conventions/proxy (aussi documentation installée de Next 16.3.8).
+
+Versions interrogées puis installées et verrouillées : @supabase/ssr 0.12.7, @supabase/supabase-js 2.117.2 et CLI 2.119.0. Les tests de base et navigateur portent les preuves d’application, distinctes de ces références.
