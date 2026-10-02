@@ -1,5 +1,17 @@
 # Reprise — fondations du 2 octobre 2026
 
+## Actualisation backend — 2 octobre, 18 h 44 Europe/Paris
+
+Cette actualisation remplace les constats antérieurs « aucune réponse humaine / aucun backend identifié » ci-dessous.
+
+Steve a autorisé la création du projet, fourni l’organisation `klgwcghsildwhwevzncz`, puis fourni `https://vnmlomqxhnjucrrhvkmk.supabase.co` avec « connecté ». C’est désormais le projet cible déclaré pour CELESTE OS. Ne pas en créer un autre, ni redemander son choix ou l’autorisation générale.
+
+Le connecteur Supabase est installé et actif, mais `get_project` et `list_projects` renvoient `Unknown tool` dans cette session. Aucun accès administratif vérifié, aucune migration appliquée, aucune clé récupérée. Le contrôle HTTP depuis scratch échoue au proxy avant d’atteindre le serveur ; il ne prouve pas une panne du projet.
+
+À la reprise : tester le projet exact, vérifier son organisation et son contenu, puis configurer Auth/organisations/RLS avec migrations versionnées et tests d’isolation. Le statut VAL-001 est désormais « sélection humaine reçue, vérification d’accès bloquée ». L’identité du backend est connue ; son contenu et sa disponibilité ne le sont pas. Si le connecteur reste défaillant, le recours au navigateur nécessite l’accord de Steve conformément aux règles de l’outil navigateur.
+
+Rapport : [2026-10-02_BACKEND](../reports/2026-10-02_BACKEND.md).
+
 ## Où reprendre
 
 Dépôt privé Steve-Landry-NONO/Celeste-OS. Documentation et validations sur main. Incrément actif dans `feat/ce-002-foundations` ; chercher sa PR ouverte avant de créer une autre branche. Les SHA exacts et l’exécution CI se retrouvent dans la PR. STATE conserve la base précédente sans référence circulaire au commit courant.
