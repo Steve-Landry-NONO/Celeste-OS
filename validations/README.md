@@ -21,3 +21,7 @@ Une review ou un commentaire peut établir une décision. Un merge technique ne 
 ## Historique et reprise
 
 Ne pas réécrire un événement passé ; une correction ajoute un événement qui le remplace avec raison. L’état courant est dérivé des événements vérifiés. Les emails sont recherchés uniquement pour les demandes déjà envoyées par sujet ou thread précis. Ne pas copier des conversations étrangères au projet. Une validation en attente bloque uniquement les travaux dépendants, les autres avancent.
+
+## Exclusion des messages de l’agent
+
+Un email envoyé à Steve depuis son propre compte peut aussi apparaître dans sa boîte reçue. Les message_id des événements email_sent, les demandes et commentaires écrits par l’agent, et leur texte cité ne constituent jamais une réponse de Steve. Exclure ces messages avant interprétation ; exiger une réponse nouvelle et explicite sur la version concernée. Le seul nom du compte auteur ne suffit pas.

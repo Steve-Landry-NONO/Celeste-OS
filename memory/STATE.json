@@ -8,7 +8,7 @@
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
     "status": "confirmed_read_write",
-    "synced": false
+    "synced": true
   },
   "release_target": "0.1-pilot",
   "baseline_start": "2026-10-02",
@@ -35,5 +35,7 @@
   ],
   "next_action": "Développer et tester les fondations web et domaine puis connecter le backend dédié après identification.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
-  "real_finance_data": "not_provided"
+  "real_finance_data": "not_provided",
+  "active_branch": "feat/ce-002-foundations",
+  "validation_issue": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/1"
 }

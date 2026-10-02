@@ -1,1 +1,3 @@
 {"event_id": "EV-0001", "request_id": null, "occurred_on": "2026-10-02", "actor": "Steve-Landry-NONO", "source": "chat", "type": "authorization_recorded", "decision": "approved", "scope": "repository_recurrent_development_validation_email", "evidence": "Steve fournit le dépôt Celeste-OS, demande plusieurs cycles quotidiens dès aujourd’hui et autorise demandes par email avec historique GitHub."}
+{"event_id": "EV-0002", "request_id": "VAL-001", "type": "requested", "date": "2026-10-02", "source": "agent", "issue_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/1"}
+{"event_id": "EV-0003", "request_id": "VAL-001", "type": "email_sent", "date": "2026-10-02", "source": "agent", "message_id": "1a0fc206ec1ced41", "thread_id": "1a0fc206ec1ced41", "decision": null}
