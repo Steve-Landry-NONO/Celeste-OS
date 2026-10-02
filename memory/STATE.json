@@ -3,7 +3,7 @@
   "updated_at": "2026-10-02",
   "timezone": "Europe/Paris",
   "documentation_version": "0.1.1",
-  "product_status": "foundations_and_today_demo_backend_creation_blocked_free_quota",
+  "product_status": "foundations_and_today_demo_backend_ready_auth_pending",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -33,16 +33,11 @@
     "exact_display_four_browser_tests_ci_passed",
     "today_domain_contract_24_tests_local_passed",
     "today_demo_four_routes_http_checked",
-    "today_four_browser_tests_ci_passed_and_visuals_inspected"
+    "today_four_browser_tests_ci_passed_and_visuals_inspected",
+    "dedicated_supabase_project_created_and_sql_connection_verified"
   ],
-  "blockers": [
-    {
-      "id": "Q-006",
-      "scope": "auth_and_persistence",
-      "detail": "Création CELESTE OS autorisée dans jmbijvhlwxgoirjffcic à coût annoncé 0/mois, mais refusée par Supabase : limite de 2 projets gratuits actifs atteinte (familyroots-mvp et FrequenceGestion). Organisation CELESTE antérieure et projet vnmlomqxhnjucrrhvkmk refusés pour permission."
-    }
-  ],
-  "next_action": "Ne pas retenter create_project tant que le quota ne change pas. Obtenir la décision de Steve sur un compte/organisation avec capacité vérifiée, une suspension explicite d’un projet nommé, ou un budget payant approuvé. Autorisation de créer CELESTE OS dans jmbijvhlwxgoirjffcic déjà acquise ; aucun changement aux autres projets sans instruction. Continuer les travaux indépendants du backend.",
+  "blockers": [],
+  "next_action": "Reprendre PR #2 et implémenter CE-002/CE-003 sur le projet Supabase vxdneuoglidyngzdfmjc dans jmbijvhlwxgoirjffcic : migrations Auth/organisations/profils/membres, RLS et tests interorganisation, puis connexion web réelle. VAL-001 résolue ; aucun nouveau projet nécessaire. FrequenceGestion pncckdmpmrruhqzpfgdo est en pause sur instruction de Steve ; ne pas le restaurer sans décision et vérification du quota.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
   "active_branch": "feat/ce-002-foundations",
@@ -79,10 +74,25 @@
   "active_pr": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2",
   "last_session": {
     "date": "2026-10-02",
-    "report": "reports/2026-10-02_SUPABASE_QUOTA.md",
-    "validation_check": "VAL001_personal_org_creation_approved_free_quota_blocked",
+    "report": "reports/2026-10-02_SUPABASE_READY.md",
+    "validation_check": "VAL001_approved_backend_created_verified",
     "review_fixed": "discussion_r4165030924",
     "merged": false,
     "deployed": false
+  },
+  "backend": {
+    "provider": "supabase",
+    "project_name": "CELESTE OS",
+    "project_ref": "vxdneuoglidyngzdfmjc",
+    "organization_ref": "jmbijvhlwxgoirjffcic",
+    "api_url": "https://vxdneuoglidyngzdfmjc.supabase.co",
+    "region": "eu-west-3",
+    "status_verified": "ACTIVE_HEALTHY",
+    "sql_connection_check": 1,
+    "public_tables": 0,
+    "applied_migrations": 0,
+    "auth_integration": "not_implemented",
+    "purpose": "development_pilot",
+    "announced_creation_cost_per_month": 0
   }
 }
