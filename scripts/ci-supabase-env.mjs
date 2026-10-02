@@ -16,5 +16,7 @@ const values = {
   CELESTE_E2E_LOCAL_DATABASE_URL: databaseUrl,
 };
 if (!process.env.GITHUB_ENV) throw new Error("This helper is intended for GitHub Actions");
+console.log("::add-mask::"+admin);
+console.log("::add-mask::"+databaseUrl);
 appendFileSync(process.env.GITHUB_ENV,Object.entries(values).map(([k,v])=>k+"="+v+"\n").join(""));
 console.log("Local Supabase environment prepared; no credentials printed.");

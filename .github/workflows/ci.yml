@@ -24,7 +24,11 @@ jobs:
       - name: Isolate disposable stack
         run: python scripts/ci-supabase-config.py
       - name: Start disposable Supabase
-        run: npx supabase start -x realtime,storage-api,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor
+        run: |
+          if ! npx supabase start -x realtime,storage-api,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor > "$RUNNER_TEMP/supabase-start.log" 2>&1; then
+            tail -n 80 "$RUNNER_TEMP/supabase-start.log"
+            exit 1
+          fi
       - name: Prepare local authentication environment
         run: |
           npx supabase status -o json > "$RUNNER_TEMP/supabase-status.json"
