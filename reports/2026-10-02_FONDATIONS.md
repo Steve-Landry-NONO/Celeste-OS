@@ -35,3 +35,7 @@ VAL-001 (#1) ouverte et email envoyé à Steve, événements conservés sans dé
 ## Publication vérifiée
 
 Commit de code : `68a0549e89a2bc0022112a207b9dca1508eb8ea2`. PR : https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2. CI lancée : https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/36997354319. Ce lien décrit la première exécution ; la PR donne les checks de la tête courante après actualisation documentaire.
+
+## Premier résultat CI et correction
+
+Le run 36997354319 confirme installation, types, 14 tests domaine et build. Les deux tests navigateur atteignent le contrôle d’insuffisance de caisse, puis échouent sur un sélecteur `alert` ambigu avec l’annonceur de navigation Next.js. L’erreur attendue du formulaire est bien présente dans les logs. Le sélecteur est limité au formulaire ; recette relancée sans retries automatiques. Les rapports et captures seront conservés comme artifacts GitHub pendant 14 jours.

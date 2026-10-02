@@ -52,7 +52,7 @@
     "web_build": "passed",
     "http_ssr": "passed_three_routes",
     "browser_local": "blocked_unix_socket_permission",
-    "browser_ci": "configured_not_yet_observed",
+    "browser_ci": "first_run_failed_ambiguous_alert_selector_fixed_retesting",
     "RLS": "not_executed",
     "mobile_native": "not_initialized",
     "deployed": false
