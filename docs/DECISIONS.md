@@ -52,3 +52,9 @@ OBS-003 vérifié : la revue automatique de PR #2 a identifié une perte d’un 
 ## Contrat Aujourd’hui — 2 octobre 2026
 
 OBS-004 vérifié localement : le contrat de sélection de « Aujourd’hui » applique un même périmètre organisation/projet/mission à la liste et aux compteurs, puis limite la liste personnelle au responsable. La progression de projet exclut les tâches annulées et les missions non autorisées ; elle reste non calculée sans tâche éligible. Le résultat web est un scénario fictif, sans preuve d’autorisation serveur ni persistance. Voir `reports/2026-10-02_TODAY.md`.
+
+## Backend fourni — 2 octobre 2026
+
+D-013 décidé : Steve autorise la création d’un projet dédié dans l’organisation Supabase `klgwcghsildwhwevzncz`, puis fournit l’URL `https://vnmlomqxhnjucrrhvkmk.supabase.co` comme backend cible avec « connecté ». Ne pas créer de doublon ; poursuivre sur cette référence après vérification.
+
+OBS-005 vérifié : les appels administratifs du connecteur Supabase renvoient désormais `Unknown tool`. Le plugin est observé installé et actif. Cette erreur ne prouve ni absence du projet ni refus d’accès. Le rattachement du projet à l’organisation, son contenu et les permissions restent non vérifiés. Q-006 est partiellement résolue pour le choix du backend ; Auth et persistance restent bloqués par le connecteur, l’hébergement et Expo restant à préparer. Voir le rapport BACKEND et l’issue VAL-001.
