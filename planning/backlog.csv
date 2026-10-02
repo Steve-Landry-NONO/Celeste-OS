@@ -1,11 +1,11 @@
 id,priority,sprint_or_version,day,title,dependencies,requirements,acceptance,test_ids,status
 CE-001,P0,S1,J1,Initialiser dépôt et mémoire,,REQ-14,AGENTS et STATE repris depuis clone propre,MEM-01,documentation_delivered
-CE-002,P0,S1,J2,Monorepo Auth organisation et CI,CE-001,REQ-01,Connexion réelle et isolation entre deux organisations,AUTH-01 ACL-01,foundation_ready_backend_selected_connector_blocked
+CE-002,P0,S1,J2,Monorepo Auth organisation et CI,CE-001,REQ-01,Connexion réelle et isolation entre deux organisations,AUTH-01 ACL-01,foundation_ready_backend_creation_blocked_free_quota
 CE-003,P0,S1,J2,Rôles et opérations sensibles,CE-002,REQ-01,Refus serveur API fichiers et agrégats,ACL-01 ACL-03,planned
 CE-004,P0,S1,J3,Dépenses catégories et justificatifs,CE-003,REQ-04,Saisie persistée catégorie créée et fichier privé,FIN-01 DOC-03,planned
 CE-005,P0,S1,J4,Contributions caisse et égalisation,CE-004,REQ-05,Exemple financier exact et atomicité,FIN-02 FIN-03 FIN-04,domain_and_exact_display_tested_persistence_planned
 CE-006,P0,S1,J4,Modèle et verrou du remboursement futur,CE-005,REQ-06,Contribution non remboursable et régime désactivé,FIN-05,disabled_domain_guard_persistence_planned
-CE-007,P0,S1,J5,Projets phases tâches et Aujourd’hui,CE-003,REQ-02 REQ-03,Responsable unique et compteurs autorisés,TASK-01 TODAY-01,domain_contract_and_demo_ready_backend_selected_connector_blocked
+CE-007,P0,S1,J5,Projets phases tâches et Aujourd’hui,CE-003,REQ-02 REQ-03,Responsable unique et compteurs autorisés,TASK-01 TODAY-01,domain_contract_and_demo_ready_backend_creation_blocked_free_quota
 CE-008,P0,S1,J6,Expo Auth et finance mobile,CE-004 CE-005,REQ-11,Parcours persisté sur téléphone avec preuve,MOB-01,planned
 CE-009,P0,S1,J7,Recette du premier sprint,CE-006 CE-007 CE-008,REQ-14,Tests applicables et décision de revue,FIN-02 ACL-01 MEM-01,planned
 CE-010,P0,S2,J8,Documents catalogue et versions,CE-003,REQ-07,Deux versions figées consultables,DOC-01 DOC-03,planned
