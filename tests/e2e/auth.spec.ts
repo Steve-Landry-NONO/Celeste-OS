@@ -23,6 +23,7 @@ test("connexion, persistance d’organisation, isolation API et déconnexion", a
     await page.getByRole("button",{name:"Se connecter",exact:true}).click();
     await expect(page.locator(".auth-form").getByRole("alert")).toContainText("Connexion impossible");
     await expect(page).toHaveURL(/\/login$/);
+    await page.getByLabel("Adresse email").fill(email);
     await page.getByLabel("Mot de passe", {exact:true}).fill(password);
     await page.getByRole("button",{name:"Se connecter",exact:true}).click();
     await expect(page).toHaveURL(/\/workspace$/);
