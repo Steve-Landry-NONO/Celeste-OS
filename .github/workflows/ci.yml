@@ -21,16 +21,18 @@ jobs:
           node-version: "24.19.0"
           cache: npm
       - run: npm ci
+      - name: Isolate disposable stack
+        run: python scripts/ci-supabase-config.py
       - name: Start disposable Supabase
         run: npx supabase start -x realtime,storage-api,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor
-      - name: Apply migrations and verify RLS
-        run: |
-          npx supabase db reset --local --yes
-          psql postgresql://postgres:postgres@127.0.0.1:54322/postgres -X -v ON_ERROR_STOP=1 -f supabase/tests/auth_organizations.sql
       - name: Prepare local authentication environment
         run: |
           npx supabase status -o json > "$RUNNER_TEMP/supabase-status.json"
           node scripts/ci-supabase-env.mjs "$RUNNER_TEMP/supabase-status.json"
+      - name: Apply migrations and verify RLS
+        run: |
+          npx supabase db reset --local --yes
+          psql "$CELESTE_E2E_LOCAL_DATABASE_URL" -X -v ON_ERROR_STOP=1 -f supabase/tests/auth_organizations.sql
       - run: npm run check
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
