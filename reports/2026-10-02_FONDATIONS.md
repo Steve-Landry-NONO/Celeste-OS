@@ -31,3 +31,7 @@ Pages statiques côté serveur ; seul le simulateur est client. État dérivé s
 ## Validation et suite
 
 VAL-001 (#1) ouverte et email envoyé à Steve, événements conservés sans décision déduite. Exclure les messages sortants et leur texte cité des réponses interprétées. Poursuivre après identification du backend dédié : Auth, RLS et persistance transactionnelle. L’idempotence en mémoire n’est pas une preuve d’atomicité SQL.
+
+## Publication vérifiée
+
+Commit de code : `68a0549e89a2bc0022112a207b9dca1508eb8ea2`. PR : https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2. CI lancée : https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/36997354319. Ce lien décrit la première exécution ; la PR donne les checks de la tête courante après actualisation documentaire.

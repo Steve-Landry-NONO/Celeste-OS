@@ -24,3 +24,7 @@ Le navigateur local et le daemon agent-browser ont échoué à créer un socket 
 4. Initialiser le client Expo. `apps/mobile/README.md` ne constitue pas un client exécutable.
 
 Cycle activé autour de 10 h, 14 h et 18 h Europe/Paris du 2 au 15 octobre. Cible pilote le 15, recette anticipée le 12 ; réviser le calendrier explicitement si le backend tarde.
+
+## Références publiées
+
+PR active : https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2. Commit de code testé localement : `68a0549e89a2bc0022112a207b9dca1508eb8ea2`. CI GitHub démarrée ; vérifier sa conclusion pour la tête courante avant fusion.
