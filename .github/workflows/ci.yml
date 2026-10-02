@@ -11,7 +11,7 @@ concurrency:
 jobs:
   check:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 30
     env:
       NEXT_TELEMETRY_DISABLED: "1"
     steps:
@@ -21,6 +21,16 @@ jobs:
           node-version: "24.19.0"
           cache: npm
       - run: npm ci
+      - name: Start disposable Supabase
+        run: npx supabase start -x realtime,storage-api,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor
+      - name: Apply migrations and verify RLS
+        run: |
+          npx supabase db reset --local --yes
+          psql postgresql://postgres:postgres@127.0.0.1:54322/postgres -X -v ON_ERROR_STOP=1 -f supabase/tests/auth_organizations.sql
+      - name: Prepare local authentication environment
+        run: |
+          npx supabase status -o json > "$RUNNER_TEMP/supabase-status.json"
+          node scripts/ci-supabase-env.mjs "$RUNNER_TEMP/supabase-status.json"
       - run: npm run check
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
@@ -32,3 +42,6 @@ jobs:
             playwright-report/
             test-results/
           retention-days: 14
+      - name: Stop disposable Supabase
+        if: always()
+        run: npx supabase stop --no-backup

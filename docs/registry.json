@@ -16,15 +16,15 @@
     },
     {
       "path": "CHANGELOG.md",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "status": "proposed",
-      "sha256": "398a7613360747d326ad8fdabdb00292eae536bb79f68f6e903da8f9622f7c7b"
+      "sha256": "43645b78ec886b2b0098d48e6abe1ec53a56ae536c4a41a4fcd1c43cd111b0ad"
     },
     {
       "path": "README.md",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "status": "proposed",
-      "sha256": "8b35bed5ed8b9e73103eec72974578933384bda0b653c574a698b420f1ca50f2"
+      "sha256": "524cd95601eed28d543d9ea99f4034c1755727dd9bc7e5f06d78cfb7e33be5ed"
     },
     {
       "path": "apps/mobile/README.md",
@@ -142,9 +142,9 @@
     },
     {
       "path": "docs/DECISIONS.md",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "status": "proposed",
-      "sha256": "5f1d4e47c6430ea02b2d31244f261d499f5343924cb97ac4e7ecdda6c24f5230"
+      "sha256": "3fa433d6ef0f0337c83ebbc5bdc311fa09056889129debc3d7113b463d974078"
     },
     {
       "path": "docs/SOURCES.md",
@@ -190,9 +190,9 @@
     },
     {
       "path": "memory/HANDOFF.md",
-      "version": "0.1.2",
+      "version": "0.1.3",
       "status": "proposed",
-      "sha256": "1e1b3e39d3f0803733aaec54a9abcc3c1a5a722bf7934b3fa61e2cf89ac1af26"
+      "sha256": "7a2380623837de7b81588b08feb38e9a115ed274485b3c19c01770b5d0615d9f"
     },
     {
       "path": "packages/domain/README.md",
@@ -253,6 +253,24 @@
       "version": "0.1.1",
       "status": "proposed",
       "sha256": "fdf6545b5e1693ea53bfdc371aba2c3d557d3f5dd744b5a5a1bc6962e17d6c0d"
+    },
+    {
+      "path": "docs/adr/006_AUTH_ORGANIZATIONS.md",
+      "version": "0.1.3",
+      "status": "proposed",
+      "sha256": "bf5d5b5631f37f3741b88d63684d17fb8770aca4bffda470d4a9a2fb0b5ac450"
+    },
+    {
+      "path": "docs/16_AUTH_SETUP.md",
+      "version": "0.1.3",
+      "status": "proposed",
+      "sha256": "c0cd4172d4de7b10e58d72769564c83800b32466d91f477a72ea423e59255881"
+    },
+    {
+      "path": "reports/2026-10-02_AUTH.md",
+      "version": "0.1.3",
+      "status": "evidence",
+      "sha256": "c2dd74a58eac22a0f72dad640db3a39832340fd196ee341be3b7702e96a01b62"
     }
   ]
 }

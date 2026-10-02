@@ -3,7 +3,7 @@
   "updated_at": "2026-10-02",
   "timezone": "Europe/Paris",
   "documentation_version": "0.1.1",
-  "product_status": "foundations_and_today_demo_backend_ready_auth_pending",
+  "product_status": "auth_organizations_written_rls_tested_browser_ci_pending",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -14,7 +14,7 @@
   "baseline_start": "2026-10-02",
   "baseline_end": "2026-10-15",
   "sprint": "S1",
-  "current_issue": "CE-002/CE-007-partial",
+  "current_issue": "CE-002/CE-003-partial",
   "last_verified_code_sha": "d78f81745060624c9bcbf6a5b39163cdb59647e5",
   "application_tests_executed": true,
   "completed": [
@@ -34,15 +34,18 @@
     "today_domain_contract_24_tests_local_passed",
     "today_demo_four_routes_http_checked",
     "today_four_browser_tests_ci_passed_and_visuals_inspected",
-    "dedicated_supabase_project_created_and_sql_connection_verified"
+    "dedicated_supabase_project_created_and_sql_connection_verified",
+    "supabase_auth_organization_migrations_applied",
+    "remote_rls_26_assertions_passed_fixtures_rolled_back",
+    "web_auth_organization_routes_written_local_check_passed"
   ],
   "blockers": [],
-  "next_action": "Reprendre PR #2 et implémenter CE-002/CE-003 sur le projet Supabase vxdneuoglidyngzdfmjc dans jmbijvhlwxgoirjffcic : migrations Auth/organisations/profils/membres, RLS et tests interorganisation, puis connexion web réelle. VAL-001 résolue ; aucun nouveau projet nécessaire. FrequenceGestion pncckdmpmrruhqzpfgdo est en pause sur instruction de Steve ; ne pas le restaurer sans décision et vérification du quota.",
+  "next_action": "Vérifier la CI Auth de PR #2, inspecter les captures desktop/mobile puis poursuivre invitations, scopes projet/mission et finance persistée. FrequenceGestion reste en pause sur instruction de Steve.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
   "active_branch": "feat/ce-002-foundations",
   "validation_issue": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/1",
-  "last_verified_base_sha": "378beeccd9f7456e03c1d109d7756567801f7ffc",
+  "last_verified_base_sha": "17df9247b5523adce9db4dcaa284bd04d8e146f9",
   "verification": {
     "domain_tests": {
       "passed": 24,
@@ -59,7 +62,7 @@
       "verified_sha": "d78f81745060624c9bcbf6a5b39163cdb59647e5",
       "artifact": "browser-evidence:11237758163"
     },
-    "RLS": "not_executed",
+    "RLS": "remote_26_passed_transaction_rolled_back",
     "mobile_native": "not_initialized",
     "deployed": false,
     "visual_review": "today_desktop_and_mobile_ci_captures_inspected_no_blocking_defect",
@@ -69,13 +72,21 @@
       "tests": 2,
       "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/36997842066",
       "verified_sha": "c6b01e7a21cd1f0853316610e2457ee53b352a32"
-    }
+    },
+    "web_configuration_tests": {
+      "passed": 2,
+      "failed": 0
+    },
+    "auth_browser_ci": {
+      "status": "pending"
+    },
+    "advisors": "no_warn_or_error_expected_private_rls_and_unused_indexes_info"
   },
   "active_pr": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2",
   "last_session": {
     "date": "2026-10-02",
-    "report": "reports/2026-10-02_SUPABASE_READY.md",
-    "validation_check": "VAL001_approved_backend_created_verified",
+    "report": "reports/2026-10-02_AUTH.md",
+    "validation_check": "VAL001_resolved_auth_increment_authorized",
     "review_fixed": "discussion_r4165030924",
     "merged": false,
     "deployed": false
@@ -89,9 +100,9 @@
     "region": "eu-west-3",
     "status_verified": "ACTIVE_HEALTHY",
     "sql_connection_check": 1,
-    "public_tables": 0,
-    "applied_migrations": 0,
-    "auth_integration": "not_implemented",
+    "public_tables": 4,
+    "applied_migrations": 2,
+    "auth_integration": "web_written_local_checks_passed_browser_ci_pending",
     "purpose": "development_pilot",
     "announced_creation_cost_per_month": 0
   }

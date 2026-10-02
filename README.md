@@ -40,7 +40,7 @@ GitHub garde les spécifications techniques, décisions, code, migrations, tests
 
 ## Installation et vérification
 
-Le premier incrément contient le client web responsive Next.js, un moteur financier TypeScript partagé et le contrat de sélection de l’écran « Aujourd’hui ». `/today` et `/lab` utilisent uniquement des scénarios fictifs isolés ; aucun parcours réel persistant n’est encore livré. Auth, permissions RLS et client Expo sont les incréments suivants. La gestion des documents métier est spécifiée mais pas encore opérationnelle.
+Le premier incrément contient le client web responsive Next.js, un moteur financier TypeScript partagé et le contrat de sélection de l’écran « Aujourd’hui ». `/today` et `/lab` utilisent uniquement des scénarios fictifs isolés ; les routes Auth et espaces d’organisation apportent la première persistance réelle. Auth et organisations sont maintenant persistés via Supabase ; le client Expo reste à construire. La gestion des documents métier est spécifiée mais pas encore opérationnelle.
 
 Prérequis : Node 24.19.0 et npm 11. Les dépendances sont fixées dans `package-lock.json`.
 
@@ -50,7 +50,7 @@ npm run check
 npm run dev
 ```
 
-Ouvrir http://127.0.0.1:3000. Les routes disponibles sont `/`, `/today`, `/documents` (liens vers le cadrage GitHub) et `/lab`. Aucun secret ni backend n’est requis pour ce socle. `npm run check` lance les types, les 24 tests du domaine et le build web. CI GitHub configurée pour PR et main ; ses résultats doivent être vérifiés séparément des contrôles locaux.
+Ouvrir http://127.0.0.1:3000. Les routes disponibles sont `/`, `/today`, `/documents`, `/lab`, `/login`, `/register`, `/auth/callback` et `/workspace`. Les démonstrations restent accessibles sans backend ; voir [configuration Auth](docs/16_AUTH_SETUP.md) pour les parcours persistés. `npm run check` lance les types, les 24 tests domaine, 2 tests configuration et le build web. CI GitHub configurée pour PR et main ; ses résultats doivent être vérifiés séparément des contrôles locaux.
 
 Voir [BOOTSTRAP](docs/14_BOOTSTRAP.md), les [limites du domaine](packages/domain/README.md), la [reprise](memory/HANDOFF.md) et le rapport du cycle courant.
 
@@ -60,4 +60,6 @@ Les échanges fournis le 2 octobre 2026 sont la source des exigences. Le documen
 
 ## Recette navigateur
 
-Après `npm run build` : `npx playwright install --with-deps chromium`, puis `npm run test:e2e`. Quatre tests répartis entre deux profils Chromium (desktop et mobile web) vérifient navigation, périmètre et compteurs de « Aujourd’hui », totaux, refus sans écriture, saisie décimale, précision des grands montants, remise à zéro et effacement au rechargement. Le navigateur Playwright requis est absent de cet environnement ; l’exécutable de secours est bloqué par ses sockets Unix. Consulter la CI pour les résultats interactifs réellement exécutés. Le contrôle HTTP SSR ne remplace pas ces interactions.
+Après `npm run build` : `npx playwright install --with-deps chromium`, puis `npm run test:e2e`. Quatre tests de démonstration répartis entre deux profils Chromium (desktop et mobile web) vérifient navigation, périmètre et compteurs de « Aujourd’hui », totaux, refus sans écriture, saisie décimale, précision des grands montants, remise à zéro et effacement au rechargement. Le navigateur Playwright requis est absent de cet environnement ; l’exécutable de secours est bloqué par ses sockets Unix. Consulter la CI pour les résultats interactifs réellement exécutés. Le contrôle HTTP SSR ne remplace pas ces interactions.
+
+La CI ajoute deux parcours Auth (desktop/mobile) sur Supabase local jetable : refus de connexion, session, création et persistance d’organisation, isolation API, cookies protégés, déconnexion et callback invalide. Hors pile locale configurée, ces deux tests sont skipped et ne constituent aucune preuve Auth. Voir [rapport AUTH](reports/2026-10-02_AUTH.md).

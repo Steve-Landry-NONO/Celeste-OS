@@ -1,40 +1,20 @@
 # Reprise CELESTE OS — 2 octobre 2026
 
-## État courant
+PR #2 ouverte, branche feat/ce-002-foundations, non fusionnée, non déployée. Auth web et création persistée d’organisations sont écrites ; npm run check passe localement (types, 24 tests domaine + 2 configuration, build). La recette navigateur complète de cet incrément doit encore être vérifiée dans GitHub Actions. Voir reports/2026-10-02_AUTH.md.
 
-PR #2 ouverte, branche `feat/ce-002-foundations`, non fusionnée. Le socle web, le domaine financier et le scénario « Aujourd’hui » sont écrits et testés. Auth, persistance métier, RLS, Expo et déploiement restent à implémenter.
+## Backend et autorisations
+CELESTE OS : vxdneuoglidyngzdfmjc, organisation Steve-Landry-NONO’s Org jmbijvhlwxgoirjffcic, API https://vxdneuoglidyngzdfmjc.supabase.co, Paris eu-west-3, PostgreSQL 17.11. Deux migrations appliquées et alignées sur l’historique distant ; quatre tables publiques avec RLS, aides dans private_celeste. Les 26 assertions SQL ont passé sur le projet distant ; fixtures transactionnelles annulées, zéro compte/organisation/membre après nettoyage.
 
-Le backend dédié **CELESTE OS** est créé et vérifié :
-- organisation : `Steve-Landry-NONO’s Org`, `jmbijvhlwxgoirjffcic` ;
-- projet : `vxdneuoglidyngzdfmjc` ;
-- URL API : https://vxdneuoglidyngzdfmjc.supabase.co ;
-- région : Paris, `eu-west-3` ;
-- état observé : `ACTIVE_HEALTHY` ;
-- accès SQL vérifié : `select 1` renvoie 1 ; PostgreSQL 17.11 ;
-- aucune table public, aucune migration appliquée à cette étape.
+VAL-001 résolue ; aucun nouveau projet nécessaire. FrequenceGestion pncckdmpmrruhqzpfgdo reste INACTIVE sur instruction de Steve. Ne pas restaurer sans instruction et vérification du quota. FamilyRoot intact ; l’ancien projet vnmlomqxhnjucrrhvkmk n’est plus la cible.
 
-Steve a approuvé la création dans cette organisation après annonce de coût 0/mois. VAL-001 est résolue. Ne pas redemander son choix ni créer un autre projet. L’ancien projet `vnmlomqxhnjucrrhvkmk` n’est plus la cible ; il reste inaccessible au compte actuel.
+## Reprise exacte
+1. Vérifier la tête PR #2 et la CI ; ne pas confondre les preuves précédentes de d78f817 avec les parcours Auth actuels.
+2. Lire docs/16_AUTH_SETUP.md et ADR-006. Ne jamais passer une clé administrative au client public. Les paramètres Auth distants et les comptes réels ne sont pas configurés par cet incrément.
+3. Finir la recette desktop/mobile et conserver les captures et conclusions. Docker absent localement ; la pile CI jetable porte les tests Auth complets.
+4. Continuer CE-003 : invitations et gestion des membres, scopes projet/mission et fichiers. La fonction manage_membership et ses refus sont testés en base, son interface n’est pas livrée.
+5. Continuer CE-004/005 : dépenses et finance atomiques persistées, justificatifs privés, puis tâches réelles et Expo. Aujourd’hui et Lab restent fictifs. Aucun remboursement ni import financier réel.
 
-## FrequenceGestion en pause
+Les choix métier définitifs restent dans DECISIONS. La création d’un compte ne confère aucun droit sur un espace existant. Ne pas inventer les comptes de Steve, Maeva ou Stéphane.
 
-Steve a explicitement autorisé la pause de FrequenceGestion pour libérer le quota gratuit. Projet `pncckdmpmrruhqzpfgdo` vérifié `INACTIVE` après `pause_project`. Ne pas le restaurer ou modifier ses données sans nouvelle instruction ; son backend est indisponible pendant cette pause. FamilyRoot n’a pas été modifié.
-
-## Prochain incrément
-
-1. Vérifier la tête et la CI de PR #2, puis lire les specs données/permissions et les instructions proches des fichiers.
-2. Utiliser le connecteur Supabase sur **vxdneuoglidyngzdfmjc**. Vérifier les tables et migrations à nouveau si une autre session a avancé.
-3. Versionner les migrations CE-002/CE-003 et implémenter Auth, organisations, profils et membres. Contrôler les droits en base ; tester au moins deux organisations et les refus d’accès interorganisation. Une base accessible ne prouve pas une application connectée.
-4. Récupérer la clé publiable au moment de configurer le client ; ne jamais exposer service_role/secret dans Next public ou mobile. Aucun secret n’est inclus dans ce dossier.
-5. Brancher la connexion web et vérifier le parcours. Continuer ensuite la finance atomique et les justificatifs privés selon les specs.
-
-## Preuves applicatives antérieures
-
-Le commit de code `d78f81745060624c9bcbf6a5b39163cdb59647e5` passe installation, types, 24 tests domaine, build et quatre parcours Playwright desktop/mobile dans https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37033072290 . Artifact browser-evidence 11237758163 inspecté pour Aujourd’hui desktop/mobile. La tête documentaire `fa77968c1eb2c37048baa137d71dc3ab0b516b14` passe la CI 37033487921. Les ajouts documentaires ultérieurs peuvent relancer la CI ; vérifier la nouvelle tête avant fusion.
-
-Le navigateur local était bloqué avant interaction ; ce résultat reste distinct de la recette CI. Les scénarios web demeurent fictifs et non persistants. Aucune preuve RLS, de build Expo ou de déploiement n’existe à cette étape.
-
-## Historique et cadence
-
-Les erreurs de connexion, le quota puis sa résolution sont conservés dans les rapports BACKEND, SUPABASE_QUOTA et [SUPABASE_READY](../reports/2026-10-02_SUPABASE_READY.md), ainsi que validations/events.jsonl et l’issue #1. Le recours au navigateur est déjà autorisé, mais le connecteur fonctionnel reste prioritaire.
-
-Trois reprises quotidiennes autour de 10 h, 14 h et 18 h Europe/Paris, jusqu’au 15 octobre. Baseline : première recette anticipée le 12, pilote le 15. Déblocage backend le 2 octobre ; livrer maintenant les parcours persistés. Aucune donnée financière réelle importée ; remboursements toujours désactivés.
+## Historique
+Les rapports BACKEND, SUPABASE_QUOTA et SUPABASE_READY conservent la résolution des accès. Les preuves précédentes de Aujourd’hui sont dans la CI 37033072290 (quatre tests, captures inspectées). L’incrément actuel ajoute Auth à ces tests. Cadence existante : trois reprises par jour autour de 10 h, 14 h et 18 h Europe/Paris jusqu’au 15 octobre.

@@ -29,6 +29,8 @@ export default function RootLayout({
             </Link>
             <p className="nav-label">ESPACE DE TRAVAIL</p>
             <nav aria-label="Navigation principale">
+              <Link href="/workspace">Mes espaces <span aria-hidden="true">↗</span></Link>
+              <Link href="/login">Connexion <span aria-hidden="true">↗</span></Link>
               <Link href="/today">
                 Aujourd’hui <span aria-hidden="true">↗</span>
               </Link>

@@ -70,3 +70,9 @@ OBS-006 vérifié : le connecteur fonctionne ; l’ancienne organisation et l’
 D-015 décidé : Steve autorise la mise en pause de FrequenceGestion pour libérer la place gratuite nécessaire à CELESTE OS. Cette pause ne constitue pas une autorisation de suppression, de réinitialisation ou de restauration automatique.
 
 OBS-007 vérifié : FrequenceGestion pncckdmpmrruhqzpfgdo devient INACTIVE. CELESTE OS est créé dans jmbijvhlwxgoirjffcic, région eu-west-3, référence vxdneuoglidyngzdfmjc. État ACTIVE_HEALTHY et requête SQL select 1 vérifiés ; aucune table public ni migration. L’ancien projet vnmlomqxhnjucrrhvkmk n’est plus la cible. VAL-001 est résolue pour identification et accès du backend. Auth et RLS restent à implémenter ; Q-006 reste ouverte uniquement pour les autres environnements, l’hébergement et Expo. Voir SUPABASE_READY.
+
+## Auth et organisations — 2 octobre 2026
+
+ADR-006 implémentée comme choix technique de l’incrément autorisé : identité Supabase, permissions en base privée, RLS, cookies SSR et RPC atomiques. Les comptes peuvent créer leur propre espace sans accès implicite à CELESTE. Aucun droit réel de fondateur n’a été attribué.
+
+OBS-008 vérifié : deux migrations appliquées sur vxdneuoglidyngzdfmjc, 26 assertions RLS passées, fixtures annulées ; quatre tables publiques et zéro donnée de test résiduelle. Connexion web écrite et build local passé ; recette navigateur complète à vérifier en CI. Voir ADR-006 et rapport AUTH.

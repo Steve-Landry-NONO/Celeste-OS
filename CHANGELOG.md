@@ -15,3 +15,7 @@ Fondations web Next.js, domaine financier TypeScript partagé et tests. Simulati
 Correction de revue du 2 octobre : affichage EUR exact jusqu’au dernier centime accepté, formateur partagé et quatre tests de régression supplémentaires (18 tests domaine). Recette navigateur étendue aux grands montants et au refus sans écriture d’un dépassement de capacité. L’état d’exécution distant est consigné dans la PR #2 et le rapport de précision.
 
 Contrat « Aujourd’hui » ajouté dans le même incrément : tâche à responsable unique, motif obligatoire si bloquée, dates civiles contrôlées, tri déterministe, progression calculée et filtrage cohérent par organisation, projet et mission. Nouvelle route `/today` explicitement fictive et mobile-first. Six tests portent le domaine à 24 ; la persistance et les contrôles serveur restent bloqués par VAL-001.
+
+## Incrément Auth/organisations — non publié
+
+Connexion, inscription, confirmation et déconnexion web ; organisations persistées et espace personnel. Deux migrations Supabase appliquées, RLS et RPC atomiques, 26 assertions SQL passées. CI étendue à la pile Supabase locale jetable et aux parcours Auth desktop/mobile. Deux tests de garde des clés et URL portent les tests unitaires à 26. Invitations, scopes mission/projet, fichiers et finance persistée restent à livrer ; voir rapport AUTH.

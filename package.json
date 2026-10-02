@@ -15,11 +15,12 @@
     "build": "npm run build --workspace=@celeste/web",
     "start": "npm run start --workspace=@celeste/web",
     "typecheck": "npm run typecheck --workspaces",
-    "test": "npm run test --workspace=@celeste/domain",
+    "test": "npm run test --workspaces",
     "check": "npm run typecheck && npm test && npm run build",
     "test:e2e": "playwright test"
   },
   "devDependencies": {
-    "@playwright/test": "1.63.0"
+    "@playwright/test": "1.63.0",
+    "supabase": "2.119.0"
   }
 }
