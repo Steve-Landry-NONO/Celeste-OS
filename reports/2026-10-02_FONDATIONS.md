@@ -39,3 +39,9 @@ Commit de code : `68a0549e89a2bc0022112a207b9dca1508eb8ea2`. PR : https://github
 ## Premier résultat CI et correction
 
 Le run 36997354319 confirme installation, types, 14 tests domaine et build. Les deux tests navigateur atteignent le contrôle d’insuffisance de caisse, puis échouent sur un sélecteur `alert` ambigu avec l’annonceur de navigation Next.js. L’erreur attendue du formulaire est bien présente dans les logs. Le sélecteur est limité au formulaire ; recette relancée sans retries automatiques. Les rapports et captures seront conservés comme artifacts GitHub pendant 14 jours.
+
+## Résultat final de recette
+
+Run 36997842066 réussi sur `c6b01e7a21cd1f0853316610e2457ee53b352a32` : installation, types, 14 tests domaine, build et 2 tests navigateur passés (4,8 s pour la recette navigateur). Le défaut du sélecteur est corrigé. Les captures d’accueil desktop et du laboratoire mobile ont été téléchargées et inspectées : contenu lisible, rendu complet et données explicitement fictives. La recette ne vérifie pas les couches API/base absentes.
+
+Preuve : https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/36997842066. Artifact `browser-evidence` ID 11221864974, conservation 14 jours. Les références de run et les logs GitHub restent la preuve d’exécution. L’actualisation finale ne modifie que la documentation et la mémoire. PR #2 reste ouverte, aucune fusion ou publication effectuée. VAL-001 toujours pending ; le thread vérifié ne contient que l’email sortant connu, aucune réponse reçue.

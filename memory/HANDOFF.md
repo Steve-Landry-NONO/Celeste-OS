@@ -6,7 +6,7 @@ Dépôt privé Steve-Landry-NONO/Celeste-OS. Documentation et validations sur ma
 
 ## Résultat concret
 
-Workspaces npm : web Next.js et domaine TypeScript. Accueil et catalogue du cadrage GitHub, simulateur financier isolé, moteur EUR immuable, idempotence en mémoire et 14 tests. Installation propre `npm ci`, types et build passés. Trois routes répondent HTTP 200 avec contenu SSR. Les deux tests Playwright desktop/mobile sont configurés dans la CI, pas encore observés au moment de ce rapport.
+Workspaces npm : web Next.js et domaine TypeScript. Accueil et catalogue du cadrage GitHub, simulateur financier isolé, moteur EUR immuable, idempotence en mémoire et 14 tests. Installation propre `npm ci`, types et build passés. Trois routes répondent HTTP 200 avec contenu SSR. Les deux tests Playwright desktop/mobile passent dans le run 36997842066, sur le commit c6b01e7a21cd1f0853316610e2457ee53b352a32. Les captures desktop accueil et mobile laboratoire ont été inspectées.
 
 Aucun compte ni donnée réelle. Pas de serveur Auth, RLS, pièce privée, transaction SQL, client Expo ou déploiement. Le laboratoire est explicitement fictif et non persistant. Les contrôles d’organisation du domaine ne prouvent pas l’isolation serveur.
 
@@ -27,4 +27,6 @@ Cycle activé autour de 10 h, 14 h et 18 h Europe/Paris du 2 au 15 octobre. Cibl
 
 ## Références publiées
 
-PR active : https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2. Commit de code testé localement : `68a0549e89a2bc0022112a207b9dca1508eb8ea2`. CI GitHub démarrée ; vérifier sa conclusion pour la tête courante avant fusion.
+PR active : https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2. Commit de code testé localement : `68a0549e89a2bc0022112a207b9dca1508eb8ea2`. CI GitHub passée sur le commit de recette c6b01e7a21cd1f0853316610e2457ee53b352a32. Une actualisation documentaire peut relancer la CI ; lire les checks de la tête courante avant fusion.
+
+Preuve finale : https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/36997842066. Artifact `browser-evidence` (captures et rapport), conservé 14 jours. La recette web couvre seulement le socle et la simulation, pas Auth/RLS ni Expo.

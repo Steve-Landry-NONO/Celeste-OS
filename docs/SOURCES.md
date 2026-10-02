@@ -29,3 +29,5 @@ L’accès à l’index changelog Supabase par le navigateur de recherche n’a 
 - Node TypeScript natif : https://nodejs.org/api/typescript.html. Type stripping distinct du typecheck.
 - Versions interrogées dans le registre npm, peerDependencies Next vérifiées, install puis lockfile et build exécutés. Playwright 1.63.0.
 - Releases officielles GitHub vérifiées : actions/checkout v7.0.1, actions/setup-node v7.0.0.
+
+Actions/upload-artifact v7.0.1 vérifié sur la release officielle et exécuté avec succès pour la preuve navigateur.

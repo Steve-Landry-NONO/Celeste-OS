@@ -150,7 +150,7 @@
       "path": "docs/SOURCES.md",
       "version": "0.1.1",
       "status": "proposed",
-      "sha256": "501a4ab0d8d296270ed2c7a9985789ce1616d8ff6cf0450b1c823962c6457b60"
+      "sha256": "29b3c61dee5d913162e862b99e2fc37721bc6af48b066a63978528dc90fb0c44"
     },
     {
       "path": "docs/adr/001_STACK.md",
@@ -192,7 +192,7 @@
       "path": "memory/HANDOFF.md",
       "version": "0.1.1",
       "status": "proposed",
-      "sha256": "b0d0fe91cbcd7bea4c6abd9d2f36f691724c1838838132425f57c64879b5a289"
+      "sha256": "15170c13c9feb04505577dacdbed687e4f8b60cee79ee6f3f52afc63d5383bf2"
     },
     {
       "path": "packages/domain/README.md",
@@ -216,7 +216,7 @@
       "path": "reports/2026-10-02_FONDATIONS.md",
       "version": "0.1.1",
       "status": "evidence",
-      "sha256": "caa672c8ee062aefbf9082812469d560d37b3a2dcd9e7eeb19a6c5fadfb3897e"
+      "sha256": "6c58b6a10bbf61e5f40219c8af005d82fa7e3c4085b41f1ba1de6fbcf44bd26a"
     },
     {
       "path": "reports/2026-10-02_INITIALISATION.md",
