@@ -339,3 +339,4 @@ grant execute on function
   private_celeste.finalize_scope_file(uuid,uuid),
   public.finalize_scope_file(uuid,uuid)
 to service_role;
+grant usage on schema private_celeste to service_role;
