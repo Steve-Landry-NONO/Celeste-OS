@@ -14,6 +14,12 @@ export type Database = {
   }
   public: {
     Tables: {
+      resource_scopes: {
+        Row: { id: string; organization_id: string; kind: string; name: string; parent_project_id: string | null; parent_kind: string | null; created_at: string }
+        Insert: { id?: string; organization_id: string; kind: string; name: string; parent_project_id?: string | null; parent_kind?: never; created_at?: string }
+        Update: { id?: string; organization_id?: string; kind?: string; name?: string; parent_project_id?: string | null; parent_kind?: never; created_at?: string }
+        Relationships: []
+      }
       activity_events: {
         Row: {
           action: string
@@ -137,6 +143,9 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      create_resource_scope: { Args: { p_org: string; p_kind: string; p_name: string; p_parent: string | null }; Returns: string }
+      set_scope_access: { Args: { p_org: string; p_scope: string; p_user: string; p_granted: boolean; p_expected_version: number }; Returns: number }
+      list_scope_access: { Args: { p_org: string }; Returns: { scope_id: string; user_id: string; granted: boolean; row_version: number }[] }
       create_invitation: { Args: { p_org: string; p_email: string; p_role: string }; Returns: { id: string; token: string }[] }
       list_invitations: { Args: { p_org: string }; Returns: { id: string; email: string; role: string; created_at: string; expires_at: string; status: string }[] }
       revoke_invitation: { Args: { p_org: string; p_id: string }; Returns: undefined }

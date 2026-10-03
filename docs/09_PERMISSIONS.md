@@ -38,3 +38,7 @@ L’accès aux objets privés stockage suit les versions et missions. Les URL co
 ## Cas de test obligatoires
 
 Refus entre deux organisations ; prestataire A refusé sur mission B ; membre refusé sur finance ; bénéficiaire refusé sur approbation propre ; utilisateur révoqué refusé sur confirmation ; déplacement d’une tâche refusé vers un projet non autorisé ; document lisible mais version non partagée refusée ; lien expiré inutilisable ; export limité ; agrégats sans fuite de totaux globaux. Les tests portent sur l’API directe, pas seulement les menus masqués.
+
+## Premier contrat implémenté — ADR-009
+
+La lecture projet/mission explicite utilise `private_celeste.can_read_scope`. Aucun héritage; équipe/support par accord, prestataire par mission uniquement, administrateurs/Finance sur organisation. Seul un admin actif crée des périmètres et gère les accords, avec version et audit atomiques. Les droits de fichiers, tâches, écritures financières et publication restent à implémenter et tester séparément. Voir le rapport SCOPES pour la preuve effective.

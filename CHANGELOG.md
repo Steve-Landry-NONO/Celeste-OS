@@ -33,3 +33,7 @@ Noms des membres affichés dans leur espace aux administrateurs actifs, sans él
 Invitations d’organisation persistées, expiration 7 jours, code unique à empreinte privée, révocation et acceptation atomiques. Administration/historique et parcours Rejoindre un espace. Adresse Auth confirmée, rôle existant préservé et refus des comptes suspendus. Tests SQL/API/web desktop/mobile ajoutés ; preuve courante dans rapport INVITATIONS.
 
 Invitations fusionnées en PR #4, code 2582521f2d435e910a790ef0219e5ae78e357c33, CI 37110737675 verte : douze parcours et trois suites SQL. Backend en pause et rétablissement bloqué par quota, demande VAL-002 ouverte ; aucune publication web.
+
+## En cours — CE-003 scopes (3 octobre 2026)
+
+Création projets/missions et gestion de lecture explicite. Types, 26 tests unitaires et build local réussis; contrôles SQL et navigateur CI à vérifier. Non fusionné et non déployé à ce stade.

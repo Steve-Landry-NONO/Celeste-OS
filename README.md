@@ -75,3 +75,5 @@ Annuaire CE-003 en [PR #3](https://github.com/Steve-Landry-NONO/Celeste-OS/pull/
 Invitations : création et révocation dans Gérer les membres, acceptation depuis [Rejoindre un espace](/join). Le code expire après 7 jours ; adresse confirmée obligatoire. PR #4 fusionnée après douze tests navigateur, contrôles SQL et build réussis. Aucun email automatique. Voir [rapport invitations](reports/2026-10-03_INVITATIONS.md) pour la recette effective. Scopes projet/mission toujours à livrer.
 
 Backend distant actuellement en pause : restauration refusée par le quota de deux projets gratuits actifs, tous deux FamilyRoot. Décision [VAL-002](https://github.com/Steve-Landry-NONO/Celeste-OS/issues/5) attendue ; les tests CI utilisent leur propre base jetable.
+
+Projets et missions : nouvel incrément `feat/ce-003-scoped-access`, route `/workspace/scopes`, création et accords individuels de lecture. Contrôle local réussi; recette SQL/navigateur en attente de CI. Backend distant toujours en pause, aucun déploiement. Voir [rapport scopes](reports/2026-10-03_SCOPES.md) et [ADR-009](docs/adr/009_SCOPED_ACCESS.md).
