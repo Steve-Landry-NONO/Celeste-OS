@@ -76,3 +76,7 @@ OBS-007 vérifié : FrequenceGestion pncckdmpmrruhqzpfgdo devient INACTIVE. CELE
 ADR-006 implémentée comme choix technique de l’incrément autorisé : identité Supabase, permissions en base privée, RLS, cookies SSR et RPC atomiques. Les comptes peuvent créer leur propre espace sans accès implicite à CELESTE. Aucun droit réel de fondateur n’a été attribué.
 
 OBS-008 vérifié : deux migrations appliquées sur vxdneuoglidyngzdfmjc, 26 assertions RLS passées, fixtures annulées ; quatre tables publiques et zéro donnée de test résiduelle. Connexion web écrite, build local passé et huit parcours navigateur CI réussis sans skip, captures inspectées. La confirmation email et les comptes réels restent à préparer. Voir ADR-006 et rapport AUTH.
+
+## Administration des membres — 3 octobre 2026
+
+OBS-009 : CE-003 reprend la PR #2 existante. UI des appartenances existantes via manage_membership, sans nouveau privilège ni migration. Chaque soumission relit l’acteur et transmet la version affichée ; RPC vérifie de nouveau les droits, sérialise les écritures et protège le dernier administrateur. Aucune attribution réelle de droits ni validation métier déduite. Choix technique : références de comptes visibles aux seuls administrateurs, sans élargir own_profile_read ; noms et invitations restent une suite nécessaire avant onboarding. Tests navigateur nouveaux en attente de CI au moment de cette écriture.

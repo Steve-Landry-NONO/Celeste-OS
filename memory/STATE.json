@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-02",
+  "updated_at": "2026-10-03",
   "timezone": "Europe/Paris",
   "documentation_version": "0.1.1",
-  "product_status": "auth_organizations_tested_in_review_finance_and_tasks_demo",
+  "product_status": "auth_organizations_tested_members_administration_ci_pending",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -14,7 +14,7 @@
   "baseline_start": "2026-10-02",
   "baseline_end": "2026-10-15",
   "sprint": "S1",
-  "current_issue": "CE-002/CE-003-partial",
+  "current_issue": "CE-003-members-administration",
   "last_verified_code_sha": "ac0a15f8c7e7170362580f66b091771195cd1d8a",
   "application_tests_executed": true,
   "completed": [
@@ -42,12 +42,12 @@
     "workspace_desktop_mobile_visuals_inspected"
   ],
   "blockers": [],
-  "next_action": "Revoir PR #2 puis continuer CE-003 : invitations et gestion des membres, scopes projet/mission et accès aux fichiers. Préparer CE-004/005 pour la finance persistée. Avant pilote : hébergement, URLs/Auth email et onboarding réel des fondateurs. FrequenceGestion reste en pause ; aucun autre projet à créer.",
+  "next_action": "Vérifier la CI de CE-003, inspecter les captures membres desktop/mobile, puis préparer invitations et scopes projet/mission. Finance persistée et fichiers privés suivent ; aucun déploiement effectué.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
   "active_branch": "feat/ce-002-foundations",
   "validation_issue": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/1",
-  "last_verified_base_sha": "17df9247b5523adce9db4dcaa284bd04d8e146f9",
+  "last_verified_base_sha": "639ad59906985b690a832701061f99ab841d527d",
   "verification": {
     "domain_tests": {
       "passed": 24,
@@ -94,19 +94,22 @@
       "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37033072290",
       "verified_sha": "d78f81745060624c9bcbf6a5b39163cdb59647e5",
       "artifact": "browser-evidence:11237758163"
+    },
+    "members_administration": {
+      "local_check": "passed",
+      "browser_ci": "pending",
+      "schema_change": false
     }
   },
   "active_pr": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2",
   "last_session": {
-    "date": "2026-10-02",
-    "report": "reports/2026-10-02_AUTH.md",
-    "validation_check": "VAL001_resolved_auth_increment_authorized",
-    "review_fixed": "discussion_r4165030924",
+    "date": "2026-10-03",
+    "report": "reports/2026-10-03_MEMBERS.md",
+    "validation_check": "VAL-001 resolved; no new human response; outgoing message 1a0fc206ec1ced41 excluded",
     "merged": false,
     "deployed": false,
-    "verified_code_sha": "ac0a15f8c7e7170362580f66b091771195cd1d8a",
-    "ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37044433038",
-    "visual_review": "passed"
+    "local_check": "types_domain24_config2_build_passed",
+    "members_browser_ci": "pending"
   },
   "backend": {
     "provider": "supabase",

@@ -1,3 +1,11 @@
+# Reprise CELESTE OS — 3 octobre 2026
+
+PR #2 conservée, branche feat/ce-002-foundations. Base distante 639ad59906985b690a832701061f99ab841d527d : CI finale réussie, huit tests navigateur sans skip. Aucun autre incrément actif observé. Aucune nouvelle réponse humaine GitHub ; Gmail VAL-001 ne retourne que le mail sortant déjà enregistré, exclu.
+
+CE-003 : interface /workspace/members pour rôles et suspension des appartenances existantes, contrôles serveur et RPC atomique existante, dernier administrateur et conflit de version. npm run check passe localement : types, 24 tests domaine, 2 configuration et build. Nouveau test Playwright desktop/mobile écrit, types vérifiés ; CI à vérifier avant livraison. Docker absent localement. Aucune migration ni configuration distante modifiée.
+
+Reprise : vérifier le résultat CI de la tête, corriger si nécessaire puis inspecter les captures membres. Les comptes sont identifiés par UUID ; invitations et noms autorisés restent à construire, sans exposer les emails ou modifier la politique RLS des profils. Scopes projet/mission et fichiers privés restent requis avant finance et tâches persistées. Aucun compte réel ajouté. Pilote du 15 octobre et recette du 12 conservés ; aucune dépendance nouvelle n’impose un report constaté à ce stade.
+
 # Reprise CELESTE OS — 2 octobre 2026
 
 PR #2 ouverte, branche feat/ce-002-foundations, non fusionnée, non déployée. Auth web et création persistée d’organisations sont écrites ; npm run check passe localement (types, 24 tests domaine + 2 configuration, build). La CI complète passe : 26 assertions SQL, 26 tests unitaires, build et huit tests navigateur sans skip. Captures workspace desktop/mobile et accueil mobile inspectées, sans défaut bloquant. Voir reports/2026-10-02_AUTH.md.
