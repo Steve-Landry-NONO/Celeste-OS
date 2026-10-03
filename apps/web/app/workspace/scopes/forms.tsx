@@ -19,7 +19,7 @@ type Grant={user_id:string;granted:boolean;row_version:number};
 export function GrantScopeForm({organization,scope,members,grants}:{organization:string;scope:string;members:{user_id:string;display_name:string}[];grants:Grant[]}) {
   const [selected,setSelected]=useState("");
   const [state,action,pending]=useActionState(setScopeAccess,{});
-  return <form action={action} className="auth-form" aria-label="Accorder un accès">
+  return <form action={action} className="auth-form" aria-label="Accorder un accès" onReset={()=>setSelected("")}>
     <input type="hidden" name="organization_id" value={organization}/><input type="hidden" name="scope_id" value={scope}/><input type="hidden" name="granted" value="true"/>
     <input type="hidden" name="row_version" value={grants.find(g=>g.user_id===selected)?.row_version??0}/>
     <label>Membre à autoriser<select name="user_id" required value={selected} onChange={e=>setSelected(e.target.value)}><option value="" disabled>Choisir un membre</option>{members.map(m=><option key={m.user_id} value={m.user_id}>{m.display_name} · {m.user_id.slice(0,8)}</option>)}</select></label>

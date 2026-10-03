@@ -50,6 +50,7 @@ test("projets et missions : accès explicites, révocation, concurrence et isole
     await expect(projectCard.locator('[data-scope-user="'+ids[1]+'"]')).toBeVisible();
     await missionCard.getByLabel("Membre à autoriser").selectOption(ids[2]);await missionCard.getByRole("button",{name:"Accorder la lecture",exact:true}).click();
     await expect(missionCard.locator('[data-scope-user="'+ids[2]+'"]')).toBeVisible();
+    await expect(missionCard.getByRole("button",{name:"Accorder la lecture",exact:true})).toBeDisabled();
     const audit=await owner.from("activity_events").select("subject_user_id").eq("organization_id",org).eq("resource_id",mission).eq("action","scope.access_granted");
     expect(audit.error).toBeNull();expect(audit.data).toEqual([{subject_user_id:ids[2]}]);
     expect((await member.from("resource_scopes").select("id,kind")).data).toEqual([{id:project,kind:"project"}]);
