@@ -28,6 +28,7 @@ export type Database = {
           occurred_at: string
           organization_id: string
           resource_id: string
+          subject_user_id: string | null
         }
         Insert: {
           action: string
@@ -36,6 +37,7 @@ export type Database = {
           occurred_at?: string
           organization_id: string
           resource_id: string
+          subject_user_id?: string | null
         }
         Update: {
           action?: string
@@ -44,6 +46,7 @@ export type Database = {
           occurred_at?: string
           organization_id?: string
           resource_id?: string
+          subject_user_id?: string | null
         }
         Relationships: [
           {

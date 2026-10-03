@@ -65,6 +65,7 @@ do $$begin
 end $$;
 select pg_temp.assert_ok((select count(*)=2 from public.list_scope_access(current_setting('test.scope_org')::uuid)),'Failed writes did not add grants');
 select pg_temp.assert_ok((select count(*)=2 from public.activity_events where action='scope.access_granted'),'Failed writes not audited as success');
+select pg_temp.assert_ok(exists(select 1 from public.activity_events where action='scope.access_granted' and resource_id=current_setting('test.scope_mission')::uuid and subject_user_id=current_setting('test.scope_vendor')::uuid),'Audit identifies beneficiary of mission grant');
 select pg_temp.assert_ok(public.set_scope_access(current_setting('test.scope_org')::uuid,current_setting('test.scope_project')::uuid,current_setting('test.scope_member')::uuid,false,1)=2,'Revocation version');
 select set_config('request.jwt.claims',json_build_object('sub',current_setting('test.scope_member'),'role','authenticated')::text,true);
 select pg_temp.assert_ok((select count(*)=0 from public.resource_scopes),'Revocation effective without JWT refresh');

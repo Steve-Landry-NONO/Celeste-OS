@@ -15,7 +15,7 @@
   "baseline_end": "2026-10-15",
   "sprint": "S1",
   "current_issue": "CE-003-project-mission-scopes",
-  "last_verified_code_sha": "2582521f2d435e910a790ef0219e5ae78e357c33",
+  "last_verified_code_sha": "bdfe7d3ddaab1841f151caa3aec65977bcde136f",
   "application_tests_executed": true,
   "completed": [
     "requirements_capture",
@@ -166,13 +166,17 @@
       "local_check": "passed",
       "sql_local": "not_executed_no_psql_or_docker",
       "browser_local": "not_executed_missing_chromium",
-      "ci": "pending",
+      "ci": "pending_audit_beneficiary_addition",
       "expected_browser_total": 14,
       "remote_migration": "not_applied_backend_paused",
-      "deployed": false
+      "deployed": false,
+      "ci_initial": "passed_four_sql_suites_and_browser14",
+      "ci_initial_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37122065223",
+      "verified_initial_sha": "bdfe7d3ddaab1841f151caa3aec65977bcde136f",
+      "visual_review": "pending"
     }
   },
-  "active_pr": null,
+  "active_pr": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/6",
   "last_session": {
     "date": "2026-10-03",
     "report": "reports/2026-10-03_SCOPES.md",

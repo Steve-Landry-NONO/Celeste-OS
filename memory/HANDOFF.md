@@ -1,3 +1,5 @@
+PR active #6 https://github.com/Steve-Landry-NONO/Celeste-OS/pull/6. Première CI 37122065223 verte sur bdfe7d3 (14 parcours, quatre suites SQL, build). Ajout audit bénéficiaire en cours; vérifier la nouvelle tête et inspecter ses captures avant merge. Ne pas traiter la première CI comme preuve de la modification ultérieure.
+
 # Reprise prioritaire — scopes, 3 octobre 2026
 
 Branche feat/ce-003-scoped-access depuis main 407d50d. Création projets/missions, lecture explicite, accord/révocation, version et isolement. npm run check passe localement. SQL et navigateur locaux non exécutés; contrôler quatre suites SQL et quatorze parcours CI sans skip, puis captures desktop/mobile avant merge. ADR-009 et rapport SCOPES. CE-003 reste partiel pour fichiers et permissions d’écriture métier.

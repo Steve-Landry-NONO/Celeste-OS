@@ -44,3 +44,10 @@ Références officielles consultées pour l’implémentation :
 - Proxy Next.js : https://nextjs.org/docs/app/api-reference/file-conventions/proxy (aussi documentation installée de Next 16.3.8).
 
 Versions interrogées puis installées et verrouillées : @supabase/ssr 0.12.7, @supabase/supabase-js 2.117.2 et CLI 2.119.0. Les tests de base et navigateur portent les preuves d’application, distinctes de ces références.
+
+## Vérification scopes du 3 octobre 2026
+
+Supabase changelog.md consulté; avis PostgreSQL 15.19/17.11 relu : aucun ltree, chiffrement PGP legacy, btree_gist float ou opérateur personnalisé introduit par cet incrément.
+- https://supabase.com/changelog/postgres-15-19-17-11-breaking-changes
+- https://supabase.com/docs/guides/database/postgres/row-level-security (grants distincts, RLS, tests de refus)
+- Documentation Next.js 16.3.8 installée : data-security et server-actions, identité et autorisation côté serveur avant chaque mutation.

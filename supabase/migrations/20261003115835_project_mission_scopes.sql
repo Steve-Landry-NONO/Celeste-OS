@@ -1,5 +1,7 @@
 -- CE-003: explicit read scopes. No inheritance from a mission to its project,
 -- or from a project to its missions. Future writes require separate capabilities.
+alter table public.activity_events add column subject_user_id uuid references auth.users(id) on delete set null;
+create index activity_events_subject on public.activity_events(subject_user_id) where subject_user_id is not null;
 create table public.resource_scopes (
   id uuid primary key default gen_random_uuid(),
   organization_id uuid not null references public.organizations(id) on delete cascade,
@@ -108,8 +110,8 @@ begin
  values(p_org,p_scope,p_user,p_granted,1)
  on conflict (scope_id,user_id) do update set granted=excluded.granted,row_version=scope_grants.row_version+1
  returning row_version into v_version;
- insert into public.activity_events(organization_id,actor_id,action,resource_id)
- values(p_org,auth.uid(),case when p_granted then 'scope.access_granted' else 'scope.access_revoked' end,p_scope);
+ insert into public.activity_events(organization_id,actor_id,action,resource_id,subject_user_id)
+ values(p_org,auth.uid(),case when p_granted then 'scope.access_granted' else 'scope.access_revoked' end,p_scope,p_user);
  return v_version;
 end;
 $$;
