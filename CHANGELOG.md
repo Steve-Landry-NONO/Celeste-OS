@@ -23,3 +23,7 @@ Connexion, inscription, confirmation et déconnexion web ; organisations persist
 ## Incrément membres — 3 octobre 2026, non publié
 
 Administration web des appartenances existantes : rôle, suspension et réactivation. Refus serveur/base, dernier administrateur, version attendue et audit atomique. Dix tests navigateur desktop/mobile sans skip, 26 assertions SQL et 26 tests unitaires passent. Invitations et scopes projet/mission restent à réaliser ; aucune release publiée.
+
+## Annuaire administratif — 3 octobre 2026, non publié
+
+Noms des membres affichés dans leur espace aux administrateurs actifs, sans élargir la lecture des profils et sans contact exposé. Refus SQL en base/CI, rendu texte des noms et retour à la ligne sur mobile vérifiés. Dix parcours navigateur sans skip, 26 tests unitaires et build passent sur 61da027 ; preuves dans le rapport DIRECTORY. Fonction distante déjà appliquée, migration versionnée alignée ; PR #3 non fusionnée et non déployée.
