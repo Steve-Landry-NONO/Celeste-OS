@@ -3,7 +3,7 @@
   "updated_at": "2026-10-03",
   "timezone": "Europe/Paris",
   "documentation_version": "0.1.1",
-  "product_status": "auth_members_names_invitations_merged_backend_paused",
+  "product_status": "scoped_access_written_ci_pending_backend_paused",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -15,7 +15,7 @@
   "baseline_end": "2026-10-15",
   "sprint": "S1",
   "current_issue": "CE-003-project-mission-scopes",
-  "last_verified_code_sha": "2582521f2d435e910a790ef0219e5ae78e357c33",
+  "last_verified_code_sha": "bdfe7d3ddaab1841f151caa3aec65977bcde136f",
   "application_tests_executed": true,
   "completed": [
     "requirements_capture",
@@ -52,12 +52,12 @@
       "detail": "CELESTE OS INACTIVE ; restore refusé, quota occupé par familyroots-mvp et FamilyROOT Test. Décision nécessaire avant pause de ces projets."
     }
   ],
-  "next_action": "Implémenter les droits projet/mission avec RLS et UI sur pile jetable, puis fichiers privés et finance persistée. VAL-002 attend la décision de Steve pour réactiver le backend ; ne pas suspendre FamilyRoot sans accord.",
+  "next_action": "Vérifier la CI et les captures scopes; corriger puis fusionner si vert. Fichiers privés et finance ensuite. VAL-002 ne bloque que backend distant/onboarding.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
-  "active_branch": "main",
+  "active_branch": "feat/ce-003-scoped-access",
   "validation_issue": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/5",
-  "last_verified_base_sha": "49b5f1ffb62b4ab37368704b980bb0087c0fc2eb",
+  "last_verified_base_sha": "407d50d4c80f81b17fc81ce0b4b2439b353c1c1f",
   "verification": {
     "domain_tests": {
       "passed": 24,
@@ -161,19 +161,28 @@
       "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37109445474",
       "verified_sha": "61da0272cf62ea8ef0b559f3d75a9fccb8f6cc1d",
       "artifact": "browser-evidence:11268929223"
+    },
+    "scoped_access": {
+      "local_check": "passed",
+      "sql_local": "not_executed_no_psql_or_docker",
+      "browser_local": "not_executed_missing_chromium",
+      "ci": "pending_audit_beneficiary_addition",
+      "expected_browser_total": 14,
+      "remote_migration": "not_applied_backend_paused",
+      "deployed": false,
+      "ci_initial": "passed_four_sql_suites_and_browser14",
+      "ci_initial_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37122065223",
+      "verified_initial_sha": "bdfe7d3ddaab1841f151caa3aec65977bcde136f",
+      "visual_review": "pending"
     }
   },
-  "active_pr": null,
+  "active_pr": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/6",
   "last_session": {
     "date": "2026-10-03",
-    "report": "reports/2026-10-03_INVITATIONS.md",
-    "merged": true,
-    "merge_sha": "49b5f1ffb62b4ab37368704b980bb0087c0fc2eb",
+    "report": "reports/2026-10-03_SCOPES.md",
+    "merged": false,
     "deployed": false,
-    "verified_code_sha": "2582521f2d435e910a790ef0219e5ae78e357c33",
-    "ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37110737675",
-    "visual_review": "passed",
-    "backend": "INACTIVE_restore_denied_VAL002"
+    "backend": "INACTIVE_VAL002"
   },
   "backend": {
     "provider": "supabase",
@@ -218,5 +227,13 @@
       "number": 4,
       "sha": "49b5f1ffb62b4ab37368704b980bb0087c0fc2eb"
     }
-  ]
+  ],
+  "revised_calendar": {
+    "observed_on": "2026-10-03",
+    "technical_recipe_target": "2026-10-12",
+    "user_recipe_forecast": "2026-10-13",
+    "pilot_forecast": "2026-10-16",
+    "condition": "Backend réactivé au plus tard le 4 octobre; recalculer sinon",
+    "status": "conditional_forecast_not_release_commitment"
+  }
 }

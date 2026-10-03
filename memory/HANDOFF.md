@@ -1,3 +1,13 @@
+PR active #6 https://github.com/Steve-Landry-NONO/Celeste-OS/pull/6. Première CI 37122065223 verte sur bdfe7d3 (14 parcours, quatre suites SQL, build). Ajout audit bénéficiaire en cours; vérifier la nouvelle tête et inspecter ses captures avant merge. Ne pas traiter la première CI comme preuve de la modification ultérieure.
+
+# Reprise prioritaire — scopes, 3 octobre 2026
+
+Branche feat/ce-003-scoped-access depuis main 407d50d. Création projets/missions, lecture explicite, accord/révocation, version et isolement. npm run check passe localement. SQL et navigateur locaux non exécutés; contrôler quatre suites SQL et quatorze parcours CI sans skip, puis captures desktop/mobile avant merge. ADR-009 et rapport SCOPES. CE-003 reste partiel pour fichiers et permissions d’écriture métier.
+
+Aucune nouvelle réponse humaine; email_sent VAL-001 exclu. VAL-002 toujours pending, CELESTE OS INACTIVE et deux FamilyRoot actifs; ne pas mettre FamilyRoot en pause. Pas de migration distante ni déploiement. Prévision conditionnelle révisée recette utilisateurs 13 octobre et pilote 16, si backend disponible le 4; baseline 12/15 conservée, recette technique visée 12. Recalculer après déblocage sinon. Le développement indépendant continue.
+
+## Historique précédent
+
 # État final — invitations fusionnées, 3 octobre 2026
 
 PR #2, #3 et #4 fusionnées après leurs contrôles. Code invitations 2582521f2d435e910a790ef0219e5ae78e357c33, CI 37110737675 : douze parcours sans skip, trois suites SQL, types, 26 tests unitaires et build passés. Captures desktop/mobile inspectées. Merge #4 49b5f1ffb62b4ab37368704b980bb0087c0fc2eb. Aucune PR de code restante.

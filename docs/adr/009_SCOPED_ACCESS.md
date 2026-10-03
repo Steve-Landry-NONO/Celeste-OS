@@ -1,0 +1,17 @@
+# ADR-009 — Lecture explicite par projet et mission
+
+3 octobre 2026 · CE-003 · Choix technique dans le périmètre déjà autorisé
+
+`resource_scopes` porte les projets et les missions, avec organisation et parent projet immuables pour les clients. Une clé étrangère composite garantit qu’une mission appartient à un projet de la même organisation et jamais à une autre mission. Création par administrateur actif, via RPC atomique et événement d’activité. Les détails métier (phases, tâches, budget, livrables) suivront.
+
+Les rôles administrateur et Finance lisent tous les périmètres de leur organisation conformément à la matrice existante. Les membres Équipe et Support ne lisent que les objets explicitement accordés. Un prestataire ne peut recevoir ni utiliser un droit de projet ; une mission accordée ne révèle ni le nom du projet parent ni les missions voisines. Le parent UUID est une relation opaque en base, pas un droit de lecture. Pas d’héritage entre projet et mission : le partage volontaire des deux reste possible pour l’équipe. Cette option minimise l’ouverture avant que les documents et tâches aient leurs propres capacités.
+
+`scope_grants` est privée, protégée par RLS et sans privilège de table pour les clients. La fonction booléenne de lecture relit l’appartenance active et le rôle en base, sans faire confiance aux metadata utilisateur ou à un ancien JWT. Une suspension rend les lectures futures impossibles ; le déclassement en prestataire rend inutilisable un ancien accord de projet. Une réactivation d’appartenance restaure ses accords explicites conservés. Pour retirer durablement un accord, le révoquer.
+
+Création, accord et révocation verrouillent l’organisation dans le même ordre que `manage_membership`. Contrôle de version obligatoire (0 pour le premier accord), statut révoqué conservé pour détecter les requêtes anciennes. Une décision et son événement d’activité réussissent ensemble ; un refus n’écrit rien. L’événement identifie l’acteur, le périmètre et le membre visé (subject_user_id), pas seulement une action générique. Ce dernier identifiant devient nul lors de la suppression du compte. RPC publiques SECURITY INVOKER, fonctions privilégiées privées avec search_path vide et droits EXECUTE retirés à PUBLIC/anon. Aucun privilège INSERT/UPDATE/DELETE direct sur les périmètres. L’annuaire et la liste des accords restent administratifs.
+
+L’UI `/workspace/scopes?organization=<id>` ne transmet les noms des membres et accords qu’aux administrateurs. Les autres comptes reçoivent uniquement leurs objets visibles ; aucun total global, liste de permissions ou contrôle d’administration. Les formulaires et paramètres cachés sont non fiables et revérifiés côté serveur/base. La révocation d’un accord explicite ne retire pas un accès global apporté par un rôle Finance/admin, indiqué dans l’écran.
+
+Alternative écartée : héritage automatique des projets aux missions ou exposition de tous les objets à tous les membres. L’écriture de tâches, finance, fichiers et publication documentaire garde des capacités distinctes ; la lecture d’un périmètre ne les attribue pas. Les règles financières initiales, caisse, remboursements désactivés et documents publiés immuables restent applicables.
+
+Preuves : `supabase/tests/scoped_access.sql` et `tests/e2e/scoped-access.spec.ts`. Résultats réellement exécutés, version et limites dans `reports/2026-10-03_SCOPES.md` ; aucune migration distante tant que VAL-002 bloque le backend.
