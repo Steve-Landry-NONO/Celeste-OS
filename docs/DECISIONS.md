@@ -102,3 +102,5 @@ ADR-009 : périmètres projet/mission, lecture explicite sans héritage, prestat
 ## Fichiers privés — 3 octobre 2026
 
 ADR-010 : bucket privé, métadonnées par périmètre, dépôt serveur validé et téléchargement signé court. L'écriture de fichier est distincte de la lecture et ne s'hérite pas entre projet et mission. Les clients authentifiés ne peuvent ni injecter directement un objet, ni finaliser une réservation ; la finalisation serveur partage le verrou des révocations et relit les droits. Ce choix répond aux deux retours de revue de PR #7 sans modifier les règles financières ou documentaires. Backend distant inchangé tant que VAL-002 reste pending.
+
+OBS-013 : tête `3e9473d2` vérifiée par CI 37137848450 : six migrations, cinq suites SQL avec rollback, security advisors sans alerte, 24 tests domaine + 3 configuration, build et 16 parcours desktop/mobile sans skip. Captures lecture après révocation du dépôt inspectées. PR #7 fusionnée en `45a701b9`. Les réponses et résolutions de revue ont été écrites par l'agent et ne valent pas validation métier humaine.
