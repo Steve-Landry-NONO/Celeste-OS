@@ -44,3 +44,41 @@ D-010 décidé : dépôt privé exact Steve-Landry-NONO/Celeste-OS fourni par St
 D-011 décidé : plusieurs cycles de développement quotidiens dès aujourd’hui ; cadence proposée et activée à trois reprises.
 D-012 décidé : demandes à Steve par email si besoin et conservation des demandes et réponses dans GitHub.
 OBS-002 vérifié : GitHub lecture écriture et profil Gmail disponibles ; aucun backend CELESTE OS identifié. Q-001 est résolue, Q-006 reste ouverte pour Auth et persistance.
+
+## Correction de précision — 2 octobre 2026
+
+OBS-003 vérifié : la revue automatique de PR #2 a identifié une perte d’un centime lors de la division flottante pour afficher `90071992547409,91`. La correction applique FIN-R01 jusqu’à l’affichage : partie entière en BigInt et centimes exacts, dans le package partagé. Le périmètre EUR et les règles métier restent ceux du socle. Les tests, preuves et limites sont consignés dans `reports/2026-10-02_PRECISION.md`. Ce constat technique ne constitue aucune validation humaine.
+
+## Contrat Aujourd’hui — 2 octobre 2026
+
+OBS-004 vérifié localement : le contrat de sélection de « Aujourd’hui » applique un même périmètre organisation/projet/mission à la liste et aux compteurs, puis limite la liste personnelle au responsable. La progression de projet exclut les tâches annulées et les missions non autorisées ; elle reste non calculée sans tâche éligible. Le résultat web est un scénario fictif, sans preuve d’autorisation serveur ni persistance. Voir `reports/2026-10-02_TODAY.md`.
+
+## Backend fourni — 2 octobre 2026
+
+D-013 décidé : Steve autorise la création d’un projet dédié dans l’organisation Supabase `klgwcghsildwhwevzncz`, puis fournit l’URL `https://vnmlomqxhnjucrrhvkmk.supabase.co` comme backend cible avec « connecté ». Ne pas créer de doublon ; poursuivre sur cette référence après vérification.
+
+OBS-005 vérifié : les appels administratifs du connecteur Supabase renvoient désormais `Unknown tool`. Le plugin est observé installé et actif. Cette erreur ne prouve ni absence du projet ni refus d’accès. Le rattachement du projet à l’organisation, son contenu et les permissions restent non vérifiés. Q-006 est partiellement résolue pour le choix du backend ; Auth et persistance restent bloqués par le connecteur, l’hébergement et Expo restant à préparer. Voir le rapport BACKEND et l’issue VAL-001.
+
+## Création dans l’organisation personnelle et quota — 2 octobre 2026
+
+D-014 décidé : Steve autorise explicitement la création de CELESTE OS dans `Steve-Landry-NONO’s Org` (`jmbijvhlwxgoirjffcic`), après annonce du coût 0/mois. Cette décision remplace D-013 pour la cible de création, sans autoriser modification ou suspension d’un autre produit.
+
+OBS-006 vérifié : le connecteur fonctionne ; l’ancienne organisation et l’ancien projet renvoient un refus de permission. Le coût de création annoncé pour l’organisation personnelle est 0/mois, mais la tentative de création est rejetée pour quota de 2 projets gratuits actifs atteint. Les projets actifs visibles sont FamilyRoot et FrequenceGestion. Aucun nouveau projet ni changement des projets existants. Voir le rapport SUPABASE_QUOTA.
+
+## Backend opérationnel — 2 octobre 2026
+
+D-015 décidé : Steve autorise la mise en pause de FrequenceGestion pour libérer la place gratuite nécessaire à CELESTE OS. Cette pause ne constitue pas une autorisation de suppression, de réinitialisation ou de restauration automatique.
+
+OBS-007 vérifié : FrequenceGestion pncckdmpmrruhqzpfgdo devient INACTIVE. CELESTE OS est créé dans jmbijvhlwxgoirjffcic, région eu-west-3, référence vxdneuoglidyngzdfmjc. État ACTIVE_HEALTHY et requête SQL select 1 vérifiés ; aucune table public ni migration. L’ancien projet vnmlomqxhnjucrrhvkmk n’est plus la cible. VAL-001 est résolue pour identification et accès du backend. Auth et RLS restent à implémenter ; Q-006 reste ouverte uniquement pour les autres environnements, l’hébergement et Expo. Voir SUPABASE_READY.
+
+## Auth et organisations — 2 octobre 2026
+
+ADR-006 implémentée comme choix technique de l’incrément autorisé : identité Supabase, permissions en base privée, RLS, cookies SSR et RPC atomiques. Les comptes peuvent créer leur propre espace sans accès implicite à CELESTE. Aucun droit réel de fondateur n’a été attribué.
+
+OBS-008 vérifié : deux migrations appliquées sur vxdneuoglidyngzdfmjc, 26 assertions RLS passées, fixtures annulées ; quatre tables publiques et zéro donnée de test résiduelle. Connexion web écrite, build local passé et huit parcours navigateur CI réussis sans skip, captures inspectées. La confirmation email et les comptes réels restent à préparer. Voir ADR-006 et rapport AUTH.
+
+## Administration des membres — 3 octobre 2026
+
+OBS-009 : CE-003 reprend la PR #2 existante. UI des appartenances existantes via manage_membership, sans nouveau privilège ni migration. Chaque soumission relit l’acteur et transmet la version affichée ; RPC vérifie de nouveau les droits, sérialise les écritures et protège le dernier administrateur. Aucune attribution réelle de droits ni validation métier déduite. Choix technique : références de comptes visibles aux seuls administrateurs, sans élargir own_profile_read ; noms et invitations restent une suite nécessaire avant onboarding. Tests navigateur nouveaux en attente de CI au moment de cette écriture.
+
+OBS-010 vérifié le 3 octobre : CI 37108614505 réussie sur 0a23faf, dix tests navigateur sans skip et 26 assertions SQL. Captures membres desktop/mobile inspectées. Protection du dernier admin, conflit, champ falsifié, suspension, réactivation, audit et refus du membre prouvés sur pile locale jetable. Aucune donnée distante ni attribution réelle modifiée ; CE-003 reste partiel pour invitations, noms et scopes.

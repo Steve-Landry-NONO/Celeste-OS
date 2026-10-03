@@ -1,0 +1,53 @@
+name: Verification
+on:
+  pull_request:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: verification-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v7.0.1
+      - uses: actions/setup-node@v7.0.0
+        with:
+          node-version: "24.19.0"
+          cache: npm
+      - run: npm ci
+      - name: Isolate disposable stack
+        run: python scripts/ci-supabase-config.py
+      - name: Start disposable Supabase
+        run: |
+          if ! npx supabase start -x realtime,storage-api,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor > "$RUNNER_TEMP/supabase-start.log" 2>&1; then
+            tail -n 80 "$RUNNER_TEMP/supabase-start.log"
+            exit 1
+          fi
+      - name: Prepare local authentication environment
+        run: |
+          npx supabase status -o json > "$RUNNER_TEMP/supabase-status.json"
+          node scripts/ci-supabase-env.mjs "$RUNNER_TEMP/supabase-status.json"
+      - name: Apply migrations and verify RLS
+        run: |
+          npx supabase db reset --local --yes
+          psql "$CELESTE_E2E_LOCAL_DATABASE_URL" -X -v ON_ERROR_STOP=1 -f supabase/tests/auth_organizations.sql
+      - run: npm run check
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@v7.0.1
+        if: always()
+        with:
+          name: browser-evidence
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+      - name: Stop disposable Supabase
+        if: always()
+        run: npx supabase stop --no-backup

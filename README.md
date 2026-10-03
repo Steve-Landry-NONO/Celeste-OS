@@ -1,8 +1,8 @@
 # CELESTE OS
 
-Version 0.1.0 · 2 octobre 2026 · Statut proposé pour revue · Responsable de validation Steve
+Version 0.1.3 · 2 octobre 2026 · Statut proposé pour revue · Responsable de validation Steve
 
-CELESTE OS centralise le pilotage de CELESTE sur téléphone et sur ordinateur. Ce dépôt documentaire prépare un pilote utilisable par Steve, Maeva et Stéphane, puis l’ouverture contrôlée aux collaborateurs et prestataires. Il concerne l’outil interne de pilotage et reste distinct du développement de la marketplace CELESTE.
+CELESTE OS centralise le pilotage de CELESTE sur téléphone et sur ordinateur. Ce dépôt prépare un pilote utilisable par Steve, Maeva et Stéphane, puis l’ouverture contrôlée aux collaborateurs et prestataires. Il concerne l’outil interne de pilotage et reste distinct du développement de la marketplace CELESTE.
 
 La vision produit et les règles demandées par Steve sont acquises. Les choix techniques, les seuils financiers et les responsabilités opérationnelles proposés dans ce dossier restent identifiés comme tels. Aucun montant réel, dépense reconstituée, compte utilisateur ou avancement métier n’est inventé.
 
@@ -40,8 +40,32 @@ GitHub garde les spécifications techniques, décisions, code, migrations, tests
 
 ## Installation et vérification
 
-Ce lot ne contient pas de logiciel exécutable. Les commandes de démarrage, les versions des dépendances et la CI applicative seront renseignées lors de l’initialisation. Voir [BOOTSTRAP](docs/14_BOOTSTRAP.md). Ne pas afficher de badges de production ou de tests applicatifs réussis avant qu’ils soient réellement exécutés.
+Le premier incrément contient le client web responsive Next.js, un moteur financier TypeScript partagé et le contrat de sélection de l’écran « Aujourd’hui ». `/today` et `/lab` utilisent uniquement des scénarios fictifs isolés ; les routes Auth et espaces d’organisation apportent la première persistance réelle. Auth et organisations sont maintenant persistés via Supabase ; le client Expo reste à construire. La gestion des documents métier est spécifiée mais pas encore opérationnelle.
+
+Prérequis : Node 24.19.0 et npm 11. Les dépendances sont fixées dans `package-lock.json`.
+
+```bash
+npm ci
+npm run check
+npm run dev
+```
+
+Ouvrir http://127.0.0.1:3000. Les routes disponibles sont `/`, `/today`, `/documents`, `/lab`, `/login`, `/register`, `/auth/callback` et `/workspace`. Les démonstrations restent accessibles sans backend ; voir [configuration Auth](docs/16_AUTH_SETUP.md) pour les parcours persistés. `npm run check` lance les types, les 24 tests domaine, 2 tests configuration et le build web. CI GitHub configurée pour PR et main ; ses résultats doivent être vérifiés séparément des contrôles locaux.
+
+Voir [BOOTSTRAP](docs/14_BOOTSTRAP.md), les [limites du domaine](packages/domain/README.md), la [reprise](memory/HANDOFF.md) et le rapport du cycle courant.
 
 ## Sources et décisions
 
 Les échanges fournis le 2 octobre 2026 sont la source des exigences. Le document historique `CELESTE_Badges_Salon_Mariage.pdf` a été consulté pour l’univers graphique, sans le considérer comme une charte exhaustive. Les références officielles techniques sont listées dans [SOURCES](docs/SOURCES.md). Voir [DECISIONS](docs/DECISIONS.md) pour les choix proposés.
+
+## Recette navigateur
+
+Après `npm run build` : `npx playwright install --with-deps chromium`, puis `npm run test:e2e`. Quatre tests de démonstration répartis entre deux profils Chromium (desktop et mobile web) vérifient navigation, périmètre et compteurs de « Aujourd’hui », totaux, refus sans écriture, saisie décimale, précision des grands montants, remise à zéro et effacement au rechargement. Le navigateur Playwright requis est absent de cet environnement ; l’exécutable de secours est bloqué par ses sockets Unix. Consulter la CI pour les résultats interactifs réellement exécutés. Le contrôle HTTP SSR ne remplace pas ces interactions.
+
+La CI ajoute quatre parcours Auth (desktop/mobile) sur Supabase local jetable : refus de connexion, session, création et persistance d’organisation, isolation API, cookies protégés, déconnexion et callback invalide. Hors pile locale configurée, ces quatre tests sont skipped et ne constituent aucune preuve Auth. Voir [rapport AUTH](reports/2026-10-02_AUTH.md).
+
+Recette Auth et démonstrations vérifiée : [CI réussie du code ac0a15f](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37044433038) — huit tests navigateur sans skip, 26 assertions SQL, 26 tests unitaires et build. Captures d’espaces desktop/mobile inspectées ; la confirmation email distante et le déploiement restent à préparer.
+
+Administration des membres : `/workspace/members?organization=<id>` permet aux administrateurs actifs de modifier un rôle ou suspendre une appartenance existante. Accès serveur/base, protection du dernier administrateur et conflit de version ; invitations et noms des autres membres restent à construire. Voir [rapport CE-003](reports/2026-10-03_MEMBERS.md) pour la preuve de recette courante.
+
+Recette membres vérifiée le 3 octobre : [CI réussie](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37108614505), dix tests navigateur sans skip, 26 assertions SQL et 26 tests unitaires. Captures membres desktop/mobile inspectées. Code en PR #2, non fusionné et non déployé.

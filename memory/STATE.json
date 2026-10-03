@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-02",
+  "updated_at": "2026-10-03",
   "timezone": "Europe/Paris",
   "documentation_version": "0.1.1",
-  "product_status": "specification_ready_no_application",
+  "product_status": "auth_organizations_members_admin_tested_in_review_finance_and_tasks_demo",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -14,9 +14,9 @@
   "baseline_start": "2026-10-02",
   "baseline_end": "2026-10-15",
   "sprint": "S1",
-  "current_issue": "CE-002",
-  "last_verified_code_sha": null,
-  "application_tests_executed": false,
+  "current_issue": "CE-003-members-administration",
+  "last_verified_code_sha": "0a23faf027302e7443dd2da1b86867c209455e0f",
+  "application_tests_executed": true,
   "completed": [
     "requirements_capture",
     "documentary_structure",
@@ -24,18 +24,116 @@
     "finance_rules",
     "document_versioning_specs",
     "initial_backlog",
-    "repository_access_verified"
+    "repository_access_verified",
+    "web_foundation_written",
+    "finance_domain_14_tests_passed",
+    "clean_npm_ci_typecheck_build_passed",
+    "http_three_routes_checked",
+    "exact_euro_display_regression_18_tests_passed",
+    "exact_display_four_browser_tests_ci_passed",
+    "today_domain_contract_24_tests_local_passed",
+    "today_demo_four_routes_http_checked",
+    "today_four_browser_tests_ci_passed_and_visuals_inspected",
+    "dedicated_supabase_project_created_and_sql_connection_verified",
+    "supabase_auth_organization_migrations_applied",
+    "remote_rls_26_assertions_passed_fixtures_rolled_back",
+    "web_auth_organization_routes_written_local_check_passed",
+    "auth_registration_and_persistent_workspace_eight_browser_tests_ci_passed",
+    "workspace_desktop_mobile_visuals_inspected",
+    "existing_members_admin_ui_ten_browser_tests_ci_passed_visuals_inspected"
   ],
-  "blockers": [
-    {
-      "id": "Q-006",
-      "scope": "auth_and_persistence",
-      "detail": "Aucun projet backend CELESTE OS identifié parmi les projets visibles"
-    }
-  ],
-  "next_action": "Développer et tester les fondations web et domaine puis connecter le backend dédié après identification.",
+  "blockers": [],
+  "next_action": "Continuer CE-003 : invitations expirantes à usage unique, noms des membres autorisés et scopes projet/mission. Stockage privé puis finance persistée. Avant pilote : hébergement, Auth email distante et onboarding réel ; aucun déploiement effectué.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
   "active_branch": "feat/ce-002-foundations",
-  "validation_issue": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/1"
+  "validation_issue": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/1",
+  "last_verified_base_sha": "639ad59906985b690a832701061f99ab841d527d",
+  "verification": {
+    "domain_tests": {
+      "passed": 24,
+      "failed": 0
+    },
+    "typecheck": "passed",
+    "web_build": "passed",
+    "http_ssr": "passed_four_routes_including_today",
+    "browser_local": "blocked_missing_playwright_chromium_before_interaction",
+    "browser_ci": {
+      "status": "passed",
+      "tests": 10,
+      "skipped": 0,
+      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37108614505",
+      "verified_sha": "0a23faf027302e7443dd2da1b86867c209455e0f",
+      "artifact": "browser-evidence:11269081011"
+    },
+    "RLS": "26_passed_remote_and_fresh_ci_migrations_fixtures_rolled_back",
+    "mobile_native": "not_initialized",
+    "deployed": false,
+    "visual_review": "workspace_desktop_mobile_and_home_mobile_captures_inspected_no_blocking_defect",
+    "ci_chain": "passed_npm_ci_disposable_supabase_migrations_rls26_types_domain24_config2_build_browser10",
+    "browser_ci_previous": {
+      "status": "passed",
+      "tests": 2,
+      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/36997842066",
+      "verified_sha": "c6b01e7a21cd1f0853316610e2457ee53b352a32"
+    },
+    "web_configuration_tests": {
+      "passed": 2,
+      "failed": 0
+    },
+    "auth_browser_ci": {
+      "status": "passed",
+      "tests": 4,
+      "skipped": 0,
+      "stack": "disposable_local_supabase",
+      "remote_email_confirmation": "not_executed"
+    },
+    "advisors": "no_warn_or_error_expected_private_rls_and_unused_indexes_info",
+    "browser_ci_previous_today": {
+      "status": "passed",
+      "tests": 4,
+      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37033072290",
+      "verified_sha": "d78f81745060624c9bcbf6a5b39163cdb59647e5",
+      "artifact": "browser-evidence:11237758163"
+    },
+    "members_administration": {
+      "local_check": "passed",
+      "browser_ci": "passed",
+      "tests": 2,
+      "skipped": 0,
+      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37108614505",
+      "verified_sha": "0a23faf027302e7443dd2da1b86867c209455e0f",
+      "artifact": 11269081011,
+      "visual_review": "desktop_mobile_passed",
+      "schema_change": false
+    }
+  },
+  "active_pr": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2",
+  "last_session": {
+    "date": "2026-10-03",
+    "report": "reports/2026-10-03_MEMBERS.md",
+    "validation_check": "VAL-001 resolved; no new human response; outgoing message 1a0fc206ec1ced41 excluded",
+    "merged": false,
+    "deployed": false,
+    "local_check": "types_domain24_config2_build_passed",
+    "members_browser_ci": "passed",
+    "verified_code_sha": "0a23faf027302e7443dd2da1b86867c209455e0f",
+    "ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37108614505",
+    "visual_review": "desktop_mobile_passed"
+  },
+  "backend": {
+    "provider": "supabase",
+    "project_name": "CELESTE OS",
+    "project_ref": "vxdneuoglidyngzdfmjc",
+    "organization_ref": "jmbijvhlwxgoirjffcic",
+    "api_url": "https://vxdneuoglidyngzdfmjc.supabase.co",
+    "region": "eu-west-3",
+    "status_verified": "ACTIVE_HEALTHY",
+    "sql_connection_check": 1,
+    "public_tables": 4,
+    "applied_migrations": 2,
+    "auth_integration": "web_disposable_supabase_ci_passed_remote_schema_rls_passed",
+    "purpose": "development_pilot",
+    "announced_creation_cost_per_month": 0
+  }
 }

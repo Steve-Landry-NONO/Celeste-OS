@@ -1,0 +1,26 @@
+{
+  "name": "celeste-os",
+  "version": "0.1.1",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "packages/domain"
+  ],
+  "engines": {
+    "node": ">=24.12.0 <25",
+    "npm": ">=11 <12"
+  },
+  "scripts": {
+    "dev": "npm run dev --workspace=@celeste/web",
+    "build": "npm run build --workspace=@celeste/web",
+    "start": "npm run start --workspace=@celeste/web",
+    "typecheck": "npm run typecheck --workspaces",
+    "test": "npm run test --workspaces",
+    "check": "npm run typecheck && npm test && npm run build",
+    "test:e2e": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "supabase": "2.119.0"
+  }
+}

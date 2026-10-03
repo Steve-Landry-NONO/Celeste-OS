@@ -16,15 +16,33 @@
     },
     {
       "path": "CHANGELOG.md",
-      "version": "0.1.0",
+      "version": "0.1.3",
       "status": "proposed",
-      "sha256": "435cf29b5a578a992c38e5f156cff8b755288bc38f49f4c5b97e330cd87c7134"
+      "sha256": "43645b78ec886b2b0098d48e6abe1ec53a56ae536c4a41a4fcd1c43cd111b0ad"
     },
     {
       "path": "README.md",
+      "version": "0.1.3",
+      "status": "proposed",
+      "sha256": "344d67e27169ed172f86ccc81a6ae00e9ae0a6443d2f2d0040cbfdd4c9ec81c4"
+    },
+    {
+      "path": "apps/mobile/README.md",
       "version": "0.1.1",
       "status": "proposed",
-      "sha256": "09d325bc1b67fc4d06167c40bb5f4a85dcdc0e5b6982a7b1a99cd9b10c824688"
+      "sha256": "8244f5b6a4183cc3e371bc5bf498f87df3e5264875505011f52d69a1b647a299"
+    },
+    {
+      "path": "apps/web/AGENTS.md",
+      "version": "0.1.1",
+      "status": "proposed",
+      "sha256": "63f2c50380ed6303237cce215ce27af1d620d094c215e28d1b1538a3c070e3bb"
+    },
+    {
+      "path": "apps/web/CLAUDE.md",
+      "version": "0.1.1",
+      "status": "proposed",
+      "sha256": "336cc4fbf19beaada7ccf9986414fa91851a8d7a07dfb3ccbe800a69eed0ab49"
     },
     {
       "path": "automation/DAILY_BUILD.md",
@@ -112,9 +130,9 @@
     },
     {
       "path": "docs/14_BOOTSTRAP.md",
-      "version": "0.1.0",
+      "version": "0.1.3",
       "status": "proposed",
-      "sha256": "479e9d16e274f78052f5cc5dd04a19123c5931cda66a223cdd25964c63cd02b0"
+      "sha256": "d336a90b9ad708382f294057f802f2fca3ec7c9b820f01d23783feaa61f4332c"
     },
     {
       "path": "docs/15_MEMOIRE_ET_GOUVERNANCE.md",
@@ -124,15 +142,15 @@
     },
     {
       "path": "docs/DECISIONS.md",
-      "version": "0.1.1",
+      "version": "0.1.3",
       "status": "proposed",
-      "sha256": "b163e85a015bc985e0cf5021b32e344921a214e0b4f0a6fd030aa4161bf95f94"
+      "sha256": "f9899eaef24f6f6358b0bf947bd3bd3cc759b12d695a5b5d76812e0c5b2ed7ea"
     },
     {
       "path": "docs/SOURCES.md",
-      "version": "0.1.0",
+      "version": "0.1.3",
       "status": "proposed",
-      "sha256": "bbf594ad67de965c70bf35a28fdb902db92c80b7bda98af6c639707d0ae76cf2"
+      "sha256": "e60f868acb7a5084859c6d1f076088b46ce212627ca92d5417ce1ad10c019caa"
     },
     {
       "path": "docs/adr/001_STACK.md",
@@ -172,9 +190,15 @@
     },
     {
       "path": "memory/HANDOFF.md",
+      "version": "0.1.3",
+      "status": "proposed",
+      "sha256": "d512205408875cfdd4832dac79a64a513c4a5a5ed70dcfe9fd4b14a81ae2ab11"
+    },
+    {
+      "path": "packages/domain/README.md",
       "version": "0.1.1",
       "status": "proposed",
-      "sha256": "070950935377ac3bcf73d991052041d71fcdefbbe3eceea7dc02504e7fd22c1d"
+      "sha256": "84fd195c5f5d38bae3023025f8aaec75bd7b3fd5ff49c37c6bbfcfd3a0df3bd2"
     },
     {
       "path": "planning/SPRINTS.md",
@@ -185,32 +209,68 @@
     {
       "path": "reports/2026-10-02_CADRAGE.md",
       "version": "0.1.0",
-      "status": "proposed",
+      "status": "evidence",
       "sha256": "1004bcf4be1f696545442dd2f905956ea92abd65a815893afd2f16a8d907d712"
+    },
+    {
+      "path": "reports/2026-10-02_FONDATIONS.md",
+      "version": "0.1.1",
+      "status": "evidence",
+      "sha256": "6c58b6a10bbf61e5f40219c8af005d82fa7e3c4085b41f1ba1de6fbcf44bd26a"
     },
     {
       "path": "reports/2026-10-02_INITIALISATION.md",
       "version": "0.1.0",
-      "status": "proposed",
+      "status": "evidence",
       "sha256": "5be1e2e6a05f0291392451b1a263b07b1505af3fa4be2a8f3fa2a99501b14c8b"
+    },
+    {
+      "path": "reports/2026-10-02_PRECISION.md",
+      "version": "0.1.1",
+      "status": "evidence",
+      "sha256": "ab6a314da3dbddf0c034d99bd7e1bbed8533940bae5e255ac57dceb094ba66e2"
+    },
+    {
+      "path": "reports/2026-10-02_TODAY.md",
+      "version": "0.1.2",
+      "status": "evidence",
+      "sha256": "a7883e0c57113d246d515292415311e5de307df415a5a4af1faaf6551086d272"
     },
     {
       "path": "reports/2026-10-02_VERIFICATION.md",
       "version": "0.1.0",
-      "status": "proposed",
+      "status": "evidence",
       "sha256": "b7ce70f41019c5ac6030770b8de83c02a8107600ac871ce138ce4c00c9bdec04"
     },
     {
       "path": "reports/TEMPLATE.md",
       "version": "0.1.0",
-      "status": "proposed",
+      "status": "evidence",
       "sha256": "59c11c3c8d8dc9c6d56e12f9005666946cfe4774ef651371e5e469bd9c19aa12"
     },
     {
       "path": "validations/README.md",
       "version": "0.1.1",
       "status": "proposed",
-      "sha256": "843ff7817ca97d898aea51710019eee8c2dd9f8d72508d4d008982672d7cbe92"
+      "sha256": "fdf6545b5e1693ea53bfdc371aba2c3d557d3f5dd744b5a5a1bc6962e17d6c0d"
+    },
+    {
+      "path": "docs/adr/006_AUTH_ORGANIZATIONS.md",
+      "version": "0.1.3",
+      "status": "proposed",
+      "sha256": "bf5d5b5631f37f3741b88d63684d17fb8770aca4bffda470d4a9a2fb0b5ac450"
+    },
+    {
+      "path": "docs/16_AUTH_SETUP.md",
+      "version": "0.1.3",
+      "status": "proposed",
+      "sha256": "669c5675c5864a1c1f68e5db6889a937b54f2b3f2126a8d6cfd596b1e860219f"
+    },
+    {
+      "path": "reports/2026-10-02_AUTH.md",
+      "version": "0.1.3",
+      "status": "evidence",
+      "sha256": "3ce44984bcdab3e5a07173850c17cdf1bcfd5f8390713cdae4fd8c6953c94a5f"
     }
   ]
 }

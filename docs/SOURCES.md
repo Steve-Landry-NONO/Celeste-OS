@@ -22,3 +22,25 @@ GitHub get_user_login, search_installed_repositories_v2 avec celeste et search_r
 Consultation le 2 octobre 2026. Les docs Supabase établissent que grants et politiques contrôlent conjointement l’accès et que les fichiers privés nécessitent des règles de stockage. La doc Expo distingue les builds de développement de la diffusion en stores. Les choix de stack, dates et politiques CELESTE sont nos propositions de conception, pas des conclusions attribuées à ces fournisseurs.
 
 L’accès à l’index changelog Supabase par le navigateur de recherche n’a pas abouti. Il devra être consulté avec les docs pertinentes avant toute implémentation, comme les versions et tarifs actuels. Aucun SDK, migration ni ressource fournisseur n’a été installé ou modifié dans cette livraison.
+
+## Fondations exécutées le 2 octobre 2026
+
+- Documentation Next.js installation et TypeScript, également lue depuis `node_modules/next/dist/docs` de 16.3.8 : https://nextjs.org/docs/app/getting-started/installation et https://nextjs.org/docs/app/api-reference/config/typescript.
+- Node TypeScript natif : https://nodejs.org/api/typescript.html. Type stripping distinct du typecheck.
+- Versions interrogées dans le registre npm, peerDependencies Next vérifiées, install puis lockfile et build exécutés. Playwright 1.63.0.
+- Releases officielles GitHub vérifiées : actions/checkout v7.0.1, actions/setup-node v7.0.0.
+
+Actions/upload-artifact v7.0.1 vérifié sur la release officielle et exécuté avec succès pour la preuve navigateur.
+
+## Auth et organisations implémentées — 2 octobre 2026
+
+Changelog Supabase HTML consulté avant migrations (l’URL .md n’était pas servie) : https://supabase.com/changelog . PostgreSQL 17.11 observé ; les changements ltree, pgcrypto historiques, btree_gist et opérateurs personnalisés ne concernent pas le schéma de cet incrément.
+
+Références officielles consultées pour l’implémentation :
+- SSR et cookies : https://supabase.com/docs/guides/auth/server-side/nextjs
+- Validation des JWT : https://supabase.com/docs/reference/javascript/auth-getclaims
+- Fonctions SQL : https://supabase.com/docs/guides/database/functions
+- RLS : https://supabase.com/docs/guides/database/postgres/row-level-security
+- Proxy Next.js : https://nextjs.org/docs/app/api-reference/file-conventions/proxy (aussi documentation installée de Next 16.3.8).
+
+Versions interrogées puis installées et verrouillées : @supabase/ssr 0.12.7, @supabase/supabase-js 2.117.2 et CLI 2.119.0. Les tests de base et navigateur portent les preuves d’application, distinctes de ces références.
