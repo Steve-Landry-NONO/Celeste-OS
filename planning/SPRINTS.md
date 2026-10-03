@@ -43,3 +43,5 @@ Si une dépendance reste absente à J2, conserver le calendrier initial comme ba
 ## Prévision révisée — 3 octobre 2026
 
 Backend distant en pause, VAL-002 sans décision. Le code et les tests jetables continuent. Baseline 12 octobre (recette anticipée) et 15 (pilote) conservée. Prévision conditionnelle : recette utilisateurs le 13, ouverture pilote le 16, si backend réactivé au plus tard le 4; le 12 reste cible technique sur pile jetable. Marge pour revalidation distante et onboarding, sans garantie des lots restants. Après le 4 sans accès, recalculer les dates à partir du déblocage réel; ne pas ouvrir avant les vérifications complètes.
+
+Avance technique du 3 octobre : le socle des fichiers privés de J3 est en PR #7 et vérifié sur pile jetable. Cela réduit le risque des justificatifs, mais ne termine pas CE-004 : catégories, dépenses, règles d'écriture et lien justificatif restent à développer. L'avance ne compense pas l'absence de revalidation distante et d'onboarding.

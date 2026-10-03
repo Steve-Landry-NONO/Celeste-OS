@@ -37,3 +37,7 @@ Invitations fusionnées en PR #4, code 2582521f2d435e910a790ef0219e5ae78e357c33,
 ## CE-003 scopes — fusionné le 3 octobre 2026
 
 Création projets/missions et lecture explicite, accord/révocation avec version et audit du membre visé. Accords inactifs après suspension ou déclassement distingués à l’écran. PR #6 fusionnée après quatre suites SQL, security advisors, 26 tests unitaires, build et 14 parcours desktop/mobile sans skip; captures inspectées. Migration distante en attente, aucun déploiement. Fichiers et droits d’écriture métier restent à livrer.
+
+## CE-003 fichiers privés — 3 octobre 2026, en revue
+
+Bucket privé, métadonnées projet/mission, dépôt serveur contrôlé jusqu'aux octets, SHA-256 et lien signé court. Accord de dépôt distinct, prestataire limité aux missions, objets prêts immuables côté client. La revue a conduit à supprimer l'upload/finalize direct et à sérialiser la finalisation avec les révocations. Cinq suites SQL, trois tests configuration et seize parcours navigateur couvrent le lot sur pile jetable ; aucune migration distante ni publication web.

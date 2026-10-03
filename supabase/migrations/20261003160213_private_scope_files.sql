@@ -160,7 +160,10 @@ create function private_celeste.finalize_scope_file(p_file uuid,p_actor uuid) re
 language plpgsql security definer set search_path='' as $$
 declare v_org uuid; v_file public.scope_files%rowtype; v_object storage.objects%rowtype;
 begin
-  if coalesce((select auth.jwt())->>'role','')<>'service_role' then
+  -- Opaque sb_secret keys select the service_role database role without
+  -- necessarily exposing a JWT payload to auth.jwt(). Check the effective
+  -- PostgREST role so both current secret keys and legacy service JWTs work.
+  if coalesce(current_setting('role',true),'')<>'service_role' then
     raise exception 'Permission denied' using errcode='42501';
   end if;
   select organization_id into v_org from public.scope_files where id=p_file;

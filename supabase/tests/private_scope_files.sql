@@ -45,6 +45,23 @@ do $$begin
   begin insert into storage.objects(bucket_id,name,owner_id,metadata) values('celeste-private',current_setting('test.file_org')||'/'||current_setting('test.file_project')||'/'||current_setting('test.file_reservation'),auth.uid()::text,jsonb_build_object('size',12,'mimetype','application/pdf')); raise exception 'Authenticated client uploaded directly'; exception when insufficient_privilege then null; end;
 end $$;
 
+set local role service_role;
+select set_config('request.jwt.claims','{}',true);
+insert into storage.objects(bucket_id,name,metadata)
+values('celeste-private',current_setting('test.file_org')||'/'||current_setting('test.file_project')||'/'||current_setting('test.file_reservation'),jsonb_build_object('size',12,'mimetype','application/pdf'));
+select pg_temp.assert_ok(
+  public.finalize_scope_file(current_setting('test.file_reservation')::uuid,current_setting('test.file_member')::uuid)=current_setting('test.file_reservation')::uuid,
+  'Service role finalizes without relying on JWT claims'
+);
+select pg_temp.assert_ok(
+  (select status='ready' from public.scope_files where id=current_setting('test.file_reservation')::uuid),
+  'Finalized metadata is ready'
+);
+
+set local role authenticated;
+select set_config('request.jwt.claims',json_build_object('sub',current_setting('test.file_member'),'role','authenticated')::text,true);
+select set_config('test.file_reservation',(select id::text from public.reserve_scope_file(current_setting('test.file_org')::uuid,current_setting('test.file_project')::uuid,'annulation.pdf','application/pdf',12,repeat('b',64))),true);
+
 select set_config('request.jwt.claims',json_build_object('sub',current_setting('test.file_owner'),'role','authenticated')::text,true);
 select pg_temp.assert_ok(public.set_scope_file_write(current_setting('test.file_org')::uuid,current_setting('test.file_project')::uuid,current_setting('test.file_member')::uuid,false,2)=3,'File write revoked');
 select set_config('request.jwt.claims',json_build_object('sub',current_setting('test.file_member'),'role','authenticated')::text,true);

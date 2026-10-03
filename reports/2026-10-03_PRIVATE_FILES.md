@@ -1,0 +1,28 @@
+# CE-003 — Fichiers privés projet/mission
+
+3 octobre 2026 · Branche `feat/ce-003-private-files` · PR [#7](https://github.com/Steve-Landry-NONO/Celeste-OS/pull/7)
+
+## Résultat
+
+Un membre autorisé peut déposer depuis `/workspace/scopes` un PDF, document Office, texte/Markdown ou image de 20 Mio maximum dans un projet ou une mission. L'interface distingue lecture et dépôt ; un administrateur peut accorder ou retirer le dépôt avec contrôle de version. Les prestataires restent limités aux missions.
+
+Les octets passent par le serveur : contrôle de signature et MIME, empreinte SHA-256, stockage privé, finalisation après relecture verrouillée du droit. Une URL signée de téléchargement, en pièce jointe et valable 60 secondes, n'est délivrée qu'après une nouvelle vérification. Les objets prêts ne sont ni remplaçables ni supprimables par le client.
+
+La revue automatique a trouvé deux défauts sur la première version : un client pouvait contourner l'inspection par un upload/finalize direct, et une finalisation pouvait courir avec une révocation. Le commit corrigé `71eda9de4256746a887a359d87ecad041ac69be3` retire ces droits client, réserve l'upload réel au serveur et sérialise finalisation/révocation sur le même verrou d'organisation. Les tests de contournement direct ont été ajoutés.
+
+## Vérifications
+
+- `npm ci` puis `npm run check` localement : types, 24 tests domaine, 3 tests configuration et build Next.js réussis.
+- Navigateur et SQL locaux non exécutés : Docker et Chromium absents. `npx playwright test --list` découvre 16 tests.
+- CI [37136937459](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37136937459) sur la première correction : migrations, cinq suites SQL avec rollback, security advisors sans warn/error, types, tests et build réussis ; 14 parcours historiques passent mais les 2 uploads échouent à la finalisation. Cause identifiée : la clé opaque `sb_secret` sélectionne le rôle base `service_role` sans nécessairement fournir un JWT à `auth.jwt()`. La garde relit désormais le rôle PostgREST effectif et une régression SQL couvre explicitement la finalisation service_role avec claims JWT vides. Nouvelle CI requise.
+- La première CI complètement verte avant correction de revue, [37136460197](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37136460197), a exécuté les 16 parcours sans skip. Elle ne prouve pas seule les deux corrections ultérieures.
+
+## Limites et risques
+
+Le backend CELESTE OS reste `INACTIVE` et VAL-002 sans réponse explicite. Aucun bucket, migration ou déploiement distant n'a été effectué. Le parcours n'est donc pas présenté comme déployé. La clé serveur doit exister dans l'environnement d'hébergement et ne jamais être préfixée `NEXT_PUBLIC_`.
+
+Le socle protège les fichiers de travail ; il ne constitue pas encore la politique des justificatifs financiers ni la publication immuable des documents métier. Les contributions initiales, l'absence de double comptage caisse, les remboursements désactivés et l'immuabilité des publications restent inchangés.
+
+## Reprise
+
+Attendre la CI de la tête documentaire, répondre aux deux fils de revue avec la preuve exacte puis fusionner si tout reste vert. Ensuite, CE-004 peut lier catégories, dépenses et justificatifs à ce stockage privé. Après résolution de VAL-002, appliquer uniquement les migrations en attente, créer le bucket privé via migration, rejouer RLS/advisors et vérifier l'environnement email avant tout onboarding.

@@ -42,3 +42,7 @@ Refus entre deux organisations ; prestataire A refusé sur mission B ; membre re
 ## Premier contrat implémenté — ADR-009
 
 La lecture projet/mission explicite utilise `private_celeste.can_read_scope`. Aucun héritage; équipe/support par accord, prestataire par mission uniquement, administrateurs/Finance sur organisation. Seul un admin actif crée des périmètres et gère les accords, avec version et audit atomiques. Les droits de fichiers, tâches, écritures financières et publication restent à implémenter et tester séparément. Voir le rapport SCOPES pour la preuve effective.
+
+## Fichiers privés implémentés — ADR-010
+
+`file.write` est distinct de la lecture : administrateur actif implicitement habilité, autre membre seulement par accord actif portant `file_write`, prestataire sur mission uniquement. Le navigateur n'écrit pas directement dans Storage et ne peut pas finaliser une réservation. Le serveur vérifie octets, type, taille et empreinte, puis relit le droit sous le même verrou que la révocation. La lecture produit une URL signée de 60 secondes après contrôle du périmètre. Les objets prêts sont immuables côté client. Voir ADR-010 et le rapport PRIVATE_FILES.
