@@ -162,7 +162,7 @@ begin
   if not private_celeste.can_write_scope_file(p_scope) then
     raise exception 'Permission denied' using errcode='42501';
   end if;
-  if not exists(select 1 from public.resource_scopes where id=p_scope and organization_id=p_org)
+  if not exists(select 1 from public.resource_scopes s where s.id=p_scope and s.organization_id=p_org)
     or v_name is null or char_length(v_name) not between 1 and 160
     or v_name ~ '[[:cntrl:]]' or position('/' in v_name)>0 or position(E'\\' in v_name)>0
     or p_content_type is null or p_content_type<>all(array[
