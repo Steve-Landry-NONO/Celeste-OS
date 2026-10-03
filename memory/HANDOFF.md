@@ -1,3 +1,11 @@
+# Reprise annuaire — 3 octobre 2026
+
+PR #2 et branche feat/ce-002-foundations reprises initialement. PR observée fusionnée le 3 octobre à 08:18:37Z, merge bb7f3a11e6c64acdc2d3548d2c96481727be1bc6 ; aucune autre PR ouverte. Nouvel incrément isolé sur feat/ce-003-member-directory depuis ce merge, sans déduire de validation métier du seul merge. Tête de départ 7ed3ce9ecefdfc20d483f401f38a9d5a561b69bd, CI 37108935114 réussie. Les fichiers de reprise et fichiers modifiés correspondent aux blobs distants. Le workspace restauré n’a pas de métadonnées Git ; lecture et publication via connecteur GitHub, avec parent explicite et fast-forward sans force pour préserver tout l’arbre, y compris les fichiers absents localement.
+
+CE-003 : annuaire des membres pour les administrateurs actifs, noms issus des profils et références stables. RPC privée contrôlée, wrapper public invoker, droits own_profile_read inchangés. Pas d’email, de métadonnées Auth ni de compte extérieur dans les résultats. npm run check et types Playwright passent localement ; migrations et scénarios SQL/navigateur attendent la CI jetable. Docker et psql absents localement. Migration distante non appliquée à ce stade.
+
+Reprise exacte : vérifier la nouvelle CI et les captures, corriger si nécessaire puis appliquer et vérifier la migration sur vxdneuoglidyngzdfmjc. Ensuite invitations expirantes à usage unique et scopes projet/mission. Aucun compte réel créé ; pas de fusion ni déploiement. Recette du 12 octobre et pilote du 15 maintenus ; hébergement, transport email et onboarding restent à faire. Voir reports/2026-10-03_DIRECTORY.md.
+
 # Reprise CELESTE OS — 3 octobre 2026
 
 PR #2 conservée, branche feat/ce-002-foundations. Base distante 639ad59906985b690a832701061f99ab841d527d : CI finale réussie, huit tests navigateur sans skip. Aucun autre incrément actif observé. Aucune nouvelle réponse humaine GitHub ; Gmail VAL-001 ne retourne que le mail sortant déjà enregistré, exclu.

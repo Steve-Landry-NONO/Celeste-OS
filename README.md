@@ -66,6 +66,8 @@ La CI ajoute quatre parcours Auth (desktop/mobile) sur Supabase local jetable : 
 
 Recette Auth et démonstrations vérifiée : [CI réussie du code ac0a15f](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37044433038) — huit tests navigateur sans skip, 26 assertions SQL, 26 tests unitaires et build. Captures d’espaces desktop/mobile inspectées ; la confirmation email distante et le déploiement restent à préparer.
 
-Administration des membres : `/workspace/members?organization=<id>` permet aux administrateurs actifs de modifier un rôle ou suspendre une appartenance existante. Accès serveur/base, protection du dernier administrateur et conflit de version ; invitations et noms des autres membres restent à construire. Voir [rapport CE-003](reports/2026-10-03_MEMBERS.md) pour la preuve de recette courante.
+Administration des membres : `/workspace/members?organization=<id>` permet aux administrateurs actifs de modifier un rôle ou suspendre une appartenance existante. Accès serveur/base, protection du dernier administrateur et conflit de version ; les noms sont disponibles via un annuaire administratif limité à cet espace ; les invitations restent à construire. Voir [rapport CE-003](reports/2026-10-03_MEMBERS.md) pour la preuve de recette courante.
 
 Recette membres vérifiée le 3 octobre : [CI réussie](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37108614505), dix tests navigateur sans skip, 26 assertions SQL et 26 tests unitaires. Captures membres desktop/mobile inspectées. Code en PR #2, non fusionné et non déployé.
+
+Annuaire CE-003 : migration et refus d’accès SQL écrits, noms relus depuis les profils sans élargir leur RLS. Vérifications locales réussies ; recette CI et application distante à confirmer dans [rapport annuaire](reports/2026-10-03_DIRECTORY.md).

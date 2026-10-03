@@ -36,3 +36,6 @@ Aucun WARN/ERROR à la dernière inspection. INFO RLS sans policy sur private_ce
 Depuis Mes espaces, un administrateur actif ouvre Gérer les membres. Chaque carte permet de choisir un rôle et un accès actif/suspendu, puis Enregistrer l’accès. Le dernier administrateur doit rester actif ; un conflit de version demande de recharger. La page et les Server Actions relisent les droits, sans clé administrative. Les comptes sont identifiés par référence, sans accès étendu aux profils. Invitations et noms autorisés restent à construire.
 
 La CI de CE-003 (37108614505, code 0a23faf) passe dix tests sans skip : quatre démos, quatre Auth et deux administration desktop/mobile. Sans pile Auth locale, six parcours sont skipped et ne fournissent aucune preuve d’accès persisté. Aucune migration nouvelle pour cette UI.
+
+## Annuaire administratif
+La troisième migration ajoute list_organization_members : une RPC privée contrôlée par membership.manage et un wrapper public SECURITY INVOKER. Elle renvoie les appartenances et noms de cet espace uniquement ; profiles reste limité au profil propre et aucun email n’est renvoyé. La CI rejoue aussi supabase/tests/member_directory.sql. N’appliquer au projet dédié qu’après succès de la recette ; état dans reports/2026-10-03_DIRECTORY.md.
