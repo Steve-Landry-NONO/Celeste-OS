@@ -1,0 +1,62 @@
+import { test, expect } from "@playwright/test";
+import { createClient } from "@supabase/supabase-js";
+import { randomUUID } from "node:crypto";
+
+test("fichier privé, écriture distincte et révocation immédiate",async({page},testInfo)=>{
+  test.skip(process.env.CELESTE_E2E_REAL_AUTH!=="1","Requires a disposable local Supabase stack");
+  const url=process.env.NEXT_PUBLIC_SUPABASE_URL!;
+  if (!["localhost","127.0.0.1"].includes(new URL(url).hostname)) throw new Error("File fixtures must run only on local Supabase");
+  const key=process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY!;
+  const admin=createClient(url,process.env.CELESTE_E2E_LOCAL_ADMIN_KEY!,{auth:{persistSession:false,autoRefreshToken:false}});
+  const suffix=randomUUID();const password=randomUUID()+"Aa1!";
+  const emails=["file-owner-","file-member-","file-other-"].map(prefix=>prefix+suffix+"@celeste-test.invalid");
+  const created=await Promise.all(emails.map((email,index)=>admin.auth.admin.createUser({email,password,email_confirm:true,user_metadata:{display_name:["Admin fichier","Membre fichier","Compte étranger"][index]}})));
+  if (created.some(result=>result.error || !result.data.user)) throw new Error("Could not create file fixtures");
+  const ids=created.map(result=>result.data.user!.id);
+  const owner=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});
+  const member=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});
+  let organization="";let objectKey="";
+  try {
+    expect((await owner.auth.signInWithPassword({email:emails[0],password})).error).toBeNull();
+    expect((await member.auth.signInWithPassword({email:emails[1],password})).error).toBeNull();
+    organization=(await owner.rpc("create_organization",{p_name:"Fichiers "+suffix})).data as string;
+    expect((await owner.rpc("manage_membership",{p_org:organization,p_user:ids[1],p_role:"member",p_status:"active",p_expected_version:0})).error).toBeNull();
+    const scope=(await owner.rpc("create_resource_scope",{p_org:organization,p_kind:"project",p_name:"Projet documents",p_parent:null})).data as string;
+    expect((await owner.rpc("set_scope_access",{p_org:organization,p_scope:scope,p_user:ids[1],p_granted:true,p_expected_version:0})).error).toBeNull();
+    await page.goto("/login");await page.getByLabel("Adresse email").fill(emails[1]);await page.getByLabel("Mot de passe",{exact:true}).fill(password);
+    await page.getByRole("button",{name:"Se connecter",exact:true}).click();await expect(page).toHaveURL(/\/workspace$/);
+    await page.getByRole("link",{name:"Projets et missions",exact:true}).click();
+    const card=page.locator('[data-scope-id="'+scope+'"]');
+    await expect(card.getByText("Lecture seule : le dépôt nécessite une permission distincte.",{exact:true})).toBeVisible();
+    await expect(card.getByRole("form",{name:"Ajouter un fichier privé"})).toHaveCount(0);
+    expect((await member.from("scope_files").select("id")).data).toEqual([]);
+    expect((await owner.rpc("set_scope_file_write",{p_org:organization,p_scope:scope,p_user:ids[1],p_allowed:true,p_expected_version:1})).error).toBeNull();
+    await page.reload();
+    const upload=card.getByRole("form",{name:"Ajouter un fichier privé"});
+    await upload.getByLabel("Fichier privé").setInputFiles({name:"preuve-pilote.pdf",mimeType:"application/pdf",buffer:Buffer.from("%PDF-1.4\n1 0 obj\n<<>>\nendobj\n%%EOF\n")});
+    await upload.getByRole("button",{name:"Ajouter le fichier",exact:true}).click();
+    await expect(card.getByRole("status")).toContainText("Fichier privé ajouté");
+    const link=card.getByRole("link",{name:"preuve-pilote.pdf",exact:true});await expect(link).toBeVisible();
+    const metadata=await member.from("scope_files").select("id,object_key,checksum_sha256,status").single();
+    expect(metadata.error).toBeNull();expect(metadata.data?.status).toBe("ready");expect(metadata.data?.checksum_sha256).toHaveLength(64);objectKey=metadata.data!.object_key;
+    const [download]=await Promise.all([page.waitForEvent("download"),link.click()]);
+    expect(download.suggestedFilename()).toBe("preuve-pilote.pdf");
+    expect((await member.storage.from("celeste-private").download(objectKey)).error).toBeNull();
+    expect((await owner.rpc("set_scope_file_write",{p_org:organization,p_scope:scope,p_user:ids[1],p_allowed:false,p_expected_version:2})).error).toBeNull();
+    await page.reload();await expect(card.getByText("Lecture seule : le dépôt nécessite une permission distincte.",{exact:true})).toBeVisible();await expect(link).toBeVisible();
+    await page.screenshot({path:testInfo.outputPath("private-file-read-only.png"),fullPage:true});
+    expect((await owner.rpc("set_scope_access",{p_org:organization,p_scope:scope,p_user:ids[1],p_granted:false,p_expected_version:3})).error).toBeNull();
+    await page.reload();await expect(page.getByRole("heading",{name:"Accès réservé"})).toBeVisible();
+    expect((await member.from("scope_files").select("id")).data).toEqual([]);
+    expect((await member.storage.from("celeste-private").download(objectKey)).error).not.toBeNull();
+    const other=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});
+    expect((await other.auth.signInWithPassword({email:emails[2],password})).error).toBeNull();
+    expect((await other.from("scope_files").select("id")).data).toEqual([]);
+    expect((await other.storage.from("celeste-private").download(objectKey)).error).not.toBeNull();
+  } finally {
+    if (objectKey) await admin.storage.from("celeste-private").remove([objectKey]);
+    if (organization) await admin.from("organizations").delete().eq("id",organization);
+    const removed=await Promise.all(ids.map(id=>admin.auth.admin.deleteUser(id)));
+    if (removed.some(result=>result.error)) throw new Error("File fixture cleanup failed");
+  }
+});

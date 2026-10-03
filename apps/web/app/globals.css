@@ -19,6 +19,10 @@
 .invitation-code { padding: 16px; border: 1px solid var(--line); border-radius: 8px; }
 .invitation-list { list-style: none; padding: 0; }
 .invitation-list li { padding: 20px 0; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+.scope-file-list { list-style: none; padding: 0; display: grid; gap: 10px; }
+.scope-file-list li { display: grid; gap: 3px; overflow-wrap: anywhere; }
+.scope-file-list span { color: var(--muted); font-size: 11px; }
+.scope-file-permission { display: grid; gap: 8px; margin: 10px 0; }
 .auth-form button, .secondary-button { min-height: 48px; padding: 12px 18px; border: 1px solid var(--brand); border-radius: 8px; cursor: pointer; }
 .auth-form button { background: var(--brand); color: white; }
 .auth-form button:disabled { opacity: .55; cursor: not-allowed; }

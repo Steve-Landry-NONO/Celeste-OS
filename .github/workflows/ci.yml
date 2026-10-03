@@ -25,7 +25,7 @@ jobs:
         run: python scripts/ci-supabase-config.py
       - name: Start disposable Supabase
         run: |
-          if ! npx supabase start -x realtime,storage-api,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor > "$RUNNER_TEMP/supabase-start.log" 2>&1; then
+          if ! npx supabase start -x realtime,imgproxy,postgres-meta,studio,edge-runtime,logflare,vector,supavisor > "$RUNNER_TEMP/supabase-start.log" 2>&1; then
             tail -n 80 "$RUNNER_TEMP/supabase-start.log"
             exit 1
           fi
@@ -40,6 +40,7 @@ jobs:
           psql "$CELESTE_E2E_LOCAL_DATABASE_URL" -X -v ON_ERROR_STOP=1 -f supabase/tests/member_directory.sql
           psql "$CELESTE_E2E_LOCAL_DATABASE_URL" -X -v ON_ERROR_STOP=1 -f supabase/tests/invitations.sql
           psql "$CELESTE_E2E_LOCAL_DATABASE_URL" -X -v ON_ERROR_STOP=1 -f supabase/tests/scoped_access.sql
+          psql "$CELESTE_E2E_LOCAL_DATABASE_URL" -X -v ON_ERROR_STOP=1 -f supabase/tests/private_scope_files.sql
       - name: Verify Supabase security advisors
         run: npx supabase db advisors --local --type security --level warn --fail-on warn
       - run: npm run check
