@@ -6,6 +6,14 @@ function isPublicKey(key: string) {
     return JSON.parse(atob(payload.replaceAll("-", "+").replaceAll("_", "/"))).role === "anon";
   } catch { return false; }
 }
+function isSecretKey(key:string) {
+  if (key.startsWith("sb_secret_")) return true;
+  try {
+    const payload=key.split(".")[1];
+    if (!payload) return false;
+    return JSON.parse(atob(payload.replaceAll("-","+").replaceAll("_","/"))).role==="service_role";
+  } catch { return false; }
+}
 function safeUrl(value: string) {
   try {
     const url = new URL(value);
@@ -19,6 +27,12 @@ export function supabaseConfig() {
   const key = process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY;
   if (!url || !key || !isPublicKey(key) || !safeUrl(url)) return null;
   return { url, key };
+}
+export function supabaseAdminConfig() {
+  const url=process.env.NEXT_PUBLIC_SUPABASE_URL;
+  const key=process.env.SUPABASE_SECRET_KEY;
+  if (!url || !key || !isSecretKey(key) || !safeUrl(url)) return null;
+  return {url,key};
 }
 export function appOrigin() {
   const value = process.env.APP_URL;

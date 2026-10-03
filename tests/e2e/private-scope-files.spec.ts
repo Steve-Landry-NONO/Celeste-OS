@@ -31,6 +31,12 @@ test("fichier privé, écriture distincte et révocation immédiate",async({page
     await expect(card.getByRole("form",{name:"Ajouter un fichier privé"})).toHaveCount(0);
     expect((await member.from("scope_files").select("id")).data).toEqual([]);
     expect((await owner.rpc("set_scope_file_write",{p_org:organization,p_scope:scope,p_user:ids[1],p_allowed:true,p_expected_version:1})).error).toBeNull();
+    const directReservation=await member.rpc("reserve_scope_file",{p_org:organization,p_scope:scope,p_file_name:"contournement.pdf",p_content_type:"application/pdf",p_size_bytes:9,p_checksum_sha256:"a".repeat(64)});
+    expect(directReservation.error).toBeNull();
+    const directFile=Buffer.from("%PDF-x\n");
+    expect((await member.storage.from("celeste-private").upload(directReservation.data![0].object_key,directFile,{contentType:"application/pdf"})).error).not.toBeNull();
+    expect((await member.rpc("finalize_scope_file",{p_file:directReservation.data![0].id,p_actor:ids[1]})).error?.code).toBe("42501");
+    expect((await member.rpc("cancel_scope_file",{p_file:directReservation.data![0].id})).error).toBeNull();
     await page.reload();
     const upload=card.getByRole("form",{name:"Ajouter un fichier privé"});
     await upload.getByLabel("Fichier privé").setInputFiles({name:"preuve-pilote.pdf",mimeType:"application/pdf",buffer:Buffer.from("%PDF-1.4\n1 0 obj\n<<>>\nendobj\n%%EOF\n")});

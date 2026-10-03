@@ -1,7 +1,7 @@
 "use server";
 import { createHash } from "node:crypto";
 import { revalidatePath } from "next/cache";
-import { createServerSupabase } from "../../../lib/supabase/server";
+import { createAdminSupabase, createServerSupabase } from "../../../lib/supabase/server";
 import type { FormState } from "../../auth/actions";
 
 const uuid=/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
@@ -23,7 +23,11 @@ function signatureMatches(type:string,bytes:Uint8Array) {
   if (type==="image/png") return [0x89,0x50,0x4e,0x47,0x0d,0x0a,0x1a,0x0a].every((value,index)=>bytes[index]===value);
   if (type==="image/jpeg") return bytes[0]===0xff && bytes[1]===0xd8 && bytes[2]===0xff;
   if (officeTypes.has(type)) return bytes[0]===0x50 && bytes[1]===0x4b && bytes[2]===0x03 && bytes[3]===0x04;
-  return type==="text/markdown" || type==="text/plain";
+  if (type==="text/markdown" || type==="text/plain") {
+    const beginning=new TextDecoder().decode(bytes.subarray(0,4096));
+    return !/<\s*(?:!doctype\s+html|html|script|svg)(?:\s|>)/i.test(beginning);
+  }
+  return false;
 }
 
 export async function uploadScopeFile(_state:FormState,form:FormData):Promise<FormState> {
@@ -50,15 +54,16 @@ export async function uploadScopeFile(_state:FormState,form:FormData):Promise<Fo
     });
     reservation=reserved.data?.[0];
     if (reserved.error || !reservation) return {error:"Dépôt refusé. Vérifiez votre accès en écriture."};
-    const stored=await client.storage.from("celeste-private").upload(reservation.object_key,bytes,{contentType:file.type,upsert:false});
+    const admin=createAdminSupabase();
+    const stored=await admin.storage.from("celeste-private").upload(reservation.object_key,bytes,{contentType:file.type,upsert:false});
     if (stored.error) {
       await client.rpc("cancel_scope_file",{p_file:reservation.id});
       return {error:"Le transfert du fichier a échoué. Aucun fichier n’a été publié."};
     }
     uploaded=true;
-    const finalized=await client.rpc("finalize_scope_file",{p_file:reservation.id});
+    const finalized=await admin.rpc("finalize_scope_file",{p_file:reservation.id,p_actor:user.id});
     if (finalized.error) {
-      await client.storage.from("celeste-private").remove([reservation.object_key]);
+      await admin.storage.from("celeste-private").remove([reservation.object_key]);
       await client.rpc("cancel_scope_file",{p_file:reservation.id});
       return {error:"Le fichier n’a pas pu être finalisé. Aucun fichier n’a été publié."};
     }
@@ -66,7 +71,7 @@ export async function uploadScopeFile(_state:FormState,form:FormData):Promise<Fo
     if (reservation) {
       try {
         const client=await createServerSupabase(true);
-        if (uploaded) await client.storage.from("celeste-private").remove([reservation.object_key]);
+        if (uploaded) await createAdminSupabase().storage.from("celeste-private").remove([reservation.object_key]);
         await client.rpc("cancel_scope_file",{p_file:reservation.id});
       } catch { /* La réservation expirée sera nettoyée par l’exploitation future. */ }
     }

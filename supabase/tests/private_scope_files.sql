@@ -40,14 +40,15 @@ select set_config('request.jwt.claims',json_build_object('sub',current_setting('
 select pg_temp.assert_ok(public.can_write_scope_file(current_setting('test.file_project')::uuid),'Explicit file write effective');
 select set_config('test.file_reservation',(select id::text from public.reserve_scope_file(current_setting('test.file_org')::uuid,current_setting('test.file_project')::uuid,'preuve.pdf','application/pdf',12,repeat('a',64))),true);
 select pg_temp.assert_ok((select count(*)=0 from public.scope_files),'Reserved metadata is not published');
-select pg_temp.assert_ok(private_celeste.can_insert_storage_object(current_setting('test.file_org')||'/'||current_setting('test.file_project')||'/'||current_setting('test.file_reservation')),'Only reserved object path accepted');
-select pg_temp.assert_ok(not private_celeste.can_insert_storage_object('other/path'),'Unknown object path rejected');
+do $$begin
+  begin perform public.finalize_scope_file(current_setting('test.file_reservation')::uuid,auth.uid()); raise exception 'Authenticated client finalized upload'; exception when insufficient_privilege then null; end;
+  begin insert into storage.objects(bucket_id,name,owner_id,metadata) values('celeste-private',current_setting('test.file_org')||'/'||current_setting('test.file_project')||'/'||current_setting('test.file_reservation'),auth.uid()::text,jsonb_build_object('size',12,'mimetype','application/pdf')); raise exception 'Authenticated client uploaded directly'; exception when insufficient_privilege then null; end;
+end $$;
 
 select set_config('request.jwt.claims',json_build_object('sub',current_setting('test.file_owner'),'role','authenticated')::text,true);
 select pg_temp.assert_ok(public.set_scope_file_write(current_setting('test.file_org')::uuid,current_setting('test.file_project')::uuid,current_setting('test.file_member')::uuid,false,2)=3,'File write revoked');
 select set_config('request.jwt.claims',json_build_object('sub',current_setting('test.file_member'),'role','authenticated')::text,true);
 select pg_temp.assert_ok(not public.can_write_scope_file(current_setting('test.file_project')::uuid),'File write revocation immediate');
-select pg_temp.assert_ok(private_celeste.can_cancel_storage_object(current_setting('test.file_org')||'/'||current_setting('test.file_project')||'/'||current_setting('test.file_reservation')),'Uploader may still clean reserved object after revocation');
 select public.cancel_scope_file(current_setting('test.file_reservation')::uuid);
 
 select set_config('request.jwt.claims',json_build_object('sub',current_setting('test.file_vendor'),'role','authenticated')::text,true);

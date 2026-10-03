@@ -157,7 +157,7 @@ export type Database = {
       list_scope_access: { Args: { p_org: string }; Returns: { scope_id: string; user_id: string; granted: boolean; file_write: boolean; row_version: number }[] }
       can_write_scope_file: { Args: { p_scope: string }; Returns: boolean }
       reserve_scope_file: { Args: { p_org: string; p_scope: string; p_file_name: string; p_content_type: string; p_size_bytes: number; p_checksum_sha256: string }; Returns: { id: string; object_key: string }[] }
-      finalize_scope_file: { Args: { p_file: string }; Returns: string }
+      finalize_scope_file: { Args: { p_file: string; p_actor: string }; Returns: string }
       cancel_scope_file: { Args: { p_file: string }; Returns: undefined }
       set_scope_file_write: { Args: { p_org: string; p_scope: string; p_user: string; p_allowed: boolean; p_expected_version: number }; Returns: number }
       create_invitation: { Args: { p_org: string; p_email: string; p_role: string }; Returns: { id: string; token: string }[] }

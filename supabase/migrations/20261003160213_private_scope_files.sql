@@ -6,16 +6,14 @@ alter table private_celeste.scope_grants
 insert into private_celeste.role_permissions(role,capability)
 values ('founder_admin','file.write');
 
-create function private_celeste.can_write_scope_file(p_scope uuid) returns boolean
+create function private_celeste.can_write_scope_file_for(p_scope uuid,p_user uuid) returns boolean
 language sql stable security definer set search_path='' as $$
-  select (select auth.uid()) is not null
-    and not coalesce(((select auth.jwt())->>'is_anonymous')::boolean,false)
-    and exists (
+  select p_user is not null and exists (
       select 1
       from public.resource_scopes s
       join public.memberships m
         on m.organization_id=s.organization_id
-       and m.user_id=(select auth.uid())
+       and m.user_id=p_user
        and m.status='active'
       where s.id=p_scope
         and (
@@ -35,6 +33,14 @@ language sql stable security definer set search_path='' as $$
           )
         )
     );
+$$;
+revoke all on function private_celeste.can_write_scope_file_for(uuid,uuid) from public,anon,authenticated;
+
+create function private_celeste.can_write_scope_file(p_scope uuid) returns boolean
+language sql stable security definer set search_path='' as $$
+  select (select auth.uid()) is not null
+    and not coalesce(((select auth.jwt())->>'is_anonymous')::boolean,false)
+    and private_celeste.can_write_scope_file_for(p_scope,(select auth.uid()));
 $$;
 revoke all on function private_celeste.can_write_scope_file(uuid) from public,anon;
 grant execute on function private_celeste.can_write_scope_file(uuid) to authenticated;
@@ -71,16 +77,6 @@ grant all on public.scope_files to service_role;
 create policy scope_files_read on public.scope_files for select to authenticated
   using (status='ready' and private_celeste.can_read_scope(scope_id));
 
-create function private_celeste.can_insert_storage_object(p_name text) returns boolean
-language sql stable security definer set search_path='' as $$
-  select exists (
-    select 1 from public.scope_files f
-    where f.object_key=p_name
-      and f.status='reserved'
-      and f.created_by=(select auth.uid())
-      and private_celeste.can_write_scope_file(f.scope_id)
-  );
-$$;
 create function private_celeste.can_read_storage_object(p_name text) returns boolean
 language sql stable security definer set search_path='' as $$
   select exists (
@@ -90,25 +86,8 @@ language sql stable security definer set search_path='' as $$
       and private_celeste.can_read_scope(f.scope_id)
   );
 $$;
-create function private_celeste.can_cancel_storage_object(p_name text) returns boolean
-language sql stable security definer set search_path='' as $$
-  select exists (
-    select 1 from public.scope_files f
-    where f.object_key=p_name
-      and f.status='reserved'
-      and f.created_by=(select auth.uid())
-  );
-$$;
-revoke all on function
-  private_celeste.can_insert_storage_object(text),
-  private_celeste.can_read_storage_object(text),
-  private_celeste.can_cancel_storage_object(text)
-from public,anon;
-grant execute on function
-  private_celeste.can_insert_storage_object(text),
-  private_celeste.can_read_storage_object(text),
-  private_celeste.can_cancel_storage_object(text)
-to authenticated;
+revoke all on function private_celeste.can_read_storage_object(text) from public,anon;
+grant execute on function private_celeste.can_read_storage_object(text) to authenticated;
 
 insert into storage.buckets(id,name,public,file_size_limit,allowed_mime_types)
 values (
@@ -132,22 +111,11 @@ on conflict (id) do update set
   file_size_limit=excluded.file_size_limit,
   allowed_mime_types=excluded.allowed_mime_types;
 
-create policy celeste_private_insert on storage.objects for insert to authenticated
-  with check (
-    bucket_id='celeste-private'
-    and private_celeste.can_insert_storage_object(name)
-  );
 create policy celeste_private_read on storage.objects for select to authenticated
   using (
     bucket_id='celeste-private'
     and private_celeste.can_read_storage_object(name)
   );
-create policy celeste_private_cancel on storage.objects for delete to authenticated
-  using (
-    bucket_id='celeste-private'
-    and private_celeste.can_cancel_storage_object(name)
-  );
-
 create function private_celeste.reserve_scope_file(
   p_org uuid,
   p_scope uuid,
@@ -188,16 +156,21 @@ begin
 end;
 $$;
 
-create function private_celeste.finalize_scope_file(p_file uuid) returns uuid
+create function private_celeste.finalize_scope_file(p_file uuid,p_actor uuid) returns uuid
 language plpgsql security definer set search_path='' as $$
-declare v_file public.scope_files%rowtype; v_object storage.objects%rowtype;
+declare v_org uuid; v_file public.scope_files%rowtype; v_object storage.objects%rowtype;
 begin
+  if coalesce((select auth.jwt())->>'role','')<>'service_role' then
+    raise exception 'Permission denied' using errcode='42501';
+  end if;
+  select organization_id into v_org from public.scope_files where id=p_file;
+  perform 1 from public.organizations where id=v_org for update;
   select * into v_file from public.scope_files where id=p_file for update;
-  if v_file.id is null or v_file.created_by<>(select auth.uid()) then
+  if v_file.id is null or v_file.created_by<>p_actor then
     raise exception 'Permission denied' using errcode='42501';
   end if;
   if v_file.status='ready' then return v_file.id; end if;
-  if not private_celeste.can_write_scope_file(v_file.scope_id) then
+  if not private_celeste.can_write_scope_file_for(v_file.scope_id,p_actor) then
     raise exception 'Permission denied' using errcode='42501';
   end if;
   select * into v_object from storage.objects
@@ -209,7 +182,7 @@ begin
   end if;
   update public.scope_files set status='ready',finalized_at=now() where id=v_file.id;
   insert into public.activity_events(organization_id,actor_id,action,resource_id)
-  values(v_file.organization_id,(select auth.uid()),'scope_file.ready',v_file.id);
+  values(v_file.organization_id,p_actor,'scope_file.ready',v_file.id);
   return v_file.id;
 end;
 $$;
@@ -315,8 +288,8 @@ create function public.reserve_scope_file(
 language sql security invoker set search_path='' as $$
   select * from private_celeste.reserve_scope_file(p_org,p_scope,p_file_name,p_content_type,p_size_bytes,p_checksum_sha256);
 $$;
-create function public.finalize_scope_file(p_file uuid) returns uuid
-language sql security invoker set search_path='' as $$ select private_celeste.finalize_scope_file(p_file); $$;
+create function public.finalize_scope_file(p_file uuid,p_actor uuid) returns uuid
+language sql security invoker set search_path='' as $$ select private_celeste.finalize_scope_file(p_file,p_actor); $$;
 create function public.cancel_scope_file(p_file uuid) returns void
 language sql security invoker set search_path='' as $$ select private_celeste.cancel_scope_file(p_file); $$;
 create function public.set_scope_file_write(
@@ -337,27 +310,29 @@ $$;
 
 revoke all on function
   private_celeste.reserve_scope_file(uuid,uuid,text,text,bigint,text),
-  private_celeste.finalize_scope_file(uuid),
+  private_celeste.finalize_scope_file(uuid,uuid),
   private_celeste.cancel_scope_file(uuid),
   private_celeste.set_scope_file_write(uuid,uuid,uuid,boolean,integer),
   private_celeste.list_scope_access(uuid),
   public.reserve_scope_file(uuid,uuid,text,text,bigint,text),
-  public.finalize_scope_file(uuid),
+  public.finalize_scope_file(uuid,uuid),
   public.cancel_scope_file(uuid),
   public.set_scope_file_write(uuid,uuid,uuid,boolean,integer),
   public.can_write_scope_file(uuid),
   public.list_scope_access(uuid)
-from public,anon;
+from public,anon,authenticated;
 grant execute on function
   private_celeste.reserve_scope_file(uuid,uuid,text,text,bigint,text),
-  private_celeste.finalize_scope_file(uuid),
   private_celeste.cancel_scope_file(uuid),
   private_celeste.set_scope_file_write(uuid,uuid,uuid,boolean,integer),
   private_celeste.list_scope_access(uuid),
   public.reserve_scope_file(uuid,uuid,text,text,bigint,text),
-  public.finalize_scope_file(uuid),
   public.cancel_scope_file(uuid),
   public.set_scope_file_write(uuid,uuid,uuid,boolean,integer),
   public.can_write_scope_file(uuid),
   public.list_scope_access(uuid)
 to authenticated;
+grant execute on function
+  private_celeste.finalize_scope_file(uuid,uuid),
+  public.finalize_scope_file(uuid,uuid)
+to service_role;
