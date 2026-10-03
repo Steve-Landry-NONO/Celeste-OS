@@ -1,3 +1,17 @@
+# État prioritaire — lecture projet/mission fusionnée, 3 octobre 2026
+
+PR #6 fusionnée : merge d0bcae185eb02350d3364e36cb6e7f32a819e40b. Code vérifié 5d0c991fe6ee43da3c12ed0d015e436e78f096bf, CI 37122978688 : cinq migrations, quatre suites SQL (fixtures annulées), security advisors sans warn/error, types, 24 tests domaine + 2 configuration, build et 14 parcours desktop/mobile sans skip. Six captures administration/prestataire/accords inactifs inspectées; artifact 11273842937. Revue P2 corrigée, testée et résolue. Aucune PR active restante.
+
+Création projets/missions, lecture explicite, accord/révocation avec version, audit du membre visé. Aucun héritage entre projet et mission; prestataire limité aux missions. Accord conservé après suspension ou changement de rôle correctement marqué inactif et encore révocable. ADR-009 et rapport SCOPES. CE-003 reste partiel pour fichiers privés et capacités d’écriture métier; ne pas le considérer intégralement terminé. CE-007 n’a que ses périmètres persistés, pas phases/tâches.
+
+Prochaine tranche prête dans CE-003 : fichiers privés, contrôle d’accès aux objets et capacités distinctes, avant CE-004 dépenses persistées. Étendre la pile CI au stockage si nécessaire; aucune ressource publique ou droit d’écriture implicite à partir de la lecture.
+
+Backend CELESTE OS INACTIVE, VAL-002 toujours sans réponse explicite. Aucune pause FamilyRoot autorisée. Les quatre migrations précédentes existent à distance; seule 20261003115835_project_mission_scopes est en attente. Après déblocage, l’appliquer puis contrôler RLS/advisors et confirmation email avant onboarding/deploiement. Zéro donnée réelle, zéro déploiement. Prévision conditionnelle révisée recette utilisateurs 13 octobre et pilote 16 si backend réactivé au plus tard le 4; baseline 12/15 conservée, recette technique visée 12. Recalculer après déblocage sinon.
+
+Validations : commentaires Agent exclus, résolution du fil par l’agent ne vaut pas décision humaine. Email_sent VAL-001 1a0fc206ec1ced41 exclu; pas de nouveau mail ni de réponse pertinente. VAL-002 pending; développement indépendant continue.
+
+## Historique de préparation (statuts dépassés par le bloc ci-dessus)
+
 PR active #6 https://github.com/Steve-Landry-NONO/Celeste-OS/pull/6. Première CI 37122065223 verte sur bdfe7d3 (14 parcours, quatre suites SQL, build). Ajout audit bénéficiaire en cours; vérifier la nouvelle tête et inspecter ses captures avant merge. Ne pas traiter la première CI comme preuve de la modification ultérieure.
 
 # Reprise prioritaire — scopes, 3 octobre 2026

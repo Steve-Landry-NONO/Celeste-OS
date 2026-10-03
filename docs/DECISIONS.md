@@ -97,4 +97,4 @@ OBS-012 : invitations vérifiées par CI 37110737675, douze parcours sans skip e
 
 ## Périmètres de lecture — 3 octobre 2026
 
-ADR-009 : périmètres projet/mission, lecture explicite sans héritage, prestataires limités aux missions, liens organisation/parent contraints. Création et accords par admin actif, version obligatoire et verrou commun avec les appartenances. npm run check passe; preuve SQL/browser CI à compléter avant fusion. Aucun droit d’écriture métier ajouté. VAL-002 toujours sans réponse explicite.
+ADR-009 : périmètres projet/mission, lecture explicite sans héritage, prestataires limités aux missions, liens organisation/parent contraints. Création et accords par admin actif, version obligatoire et verrou commun avec les appartenances. CI finale 37122978688 passe sur 5d0c991 : quatre suites SQL, security advisors, types, 26 tests unitaires, build et 14 parcours sans skip. Six captures inspectées, retour P2 accords inactifs résolu, PR #6 fusionnée d0bcae1. Aucun droit d’écriture métier ajouté. VAL-002 toujours sans réponse explicite.

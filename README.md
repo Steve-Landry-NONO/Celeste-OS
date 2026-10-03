@@ -1,6 +1,6 @@
 # CELESTE OS
 
-Version 0.1.4 · 3 octobre 2026 · Statut proposé pour revue · Responsable de validation Steve
+Version 0.1.5 · 3 octobre 2026 · Statut proposé pour revue · Responsable de validation Steve
 
 CELESTE OS centralise le pilotage de CELESTE sur téléphone et sur ordinateur. Ce dépôt prépare un pilote utilisable par Steve, Maeva et Stéphane, puis l’ouverture contrôlée aux collaborateurs et prestataires. Il concerne l’outil interne de pilotage et reste distinct du développement de la marketplace CELESTE.
 
@@ -76,4 +76,4 @@ Invitations : création et révocation dans Gérer les membres, acceptation depu
 
 Backend distant actuellement en pause : restauration refusée par le quota de deux projets gratuits actifs, tous deux FamilyRoot. Décision [VAL-002](https://github.com/Steve-Landry-NONO/Celeste-OS/issues/5) attendue ; les tests CI utilisent leur propre base jetable.
 
-Projets et missions : nouvel incrément `feat/ce-003-scoped-access`, route `/workspace/scopes`, création et accords individuels de lecture. Contrôle local réussi; recette SQL/navigateur en attente de CI. Backend distant toujours en pause, aucun déploiement. Voir [rapport scopes](reports/2026-10-03_SCOPES.md) et [ADR-009](docs/adr/009_SCOPED_ACCESS.md).
+Projets et missions : [PR #6 fusionnée](https://github.com/Steve-Landry-NONO/Celeste-OS/pull/6), route `/workspace/scopes`, création et accords individuels de lecture. Révocation, version, audit du membre visé et distinction des accords conservés mais inactifs. [CI finale réussie](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37122978688) : quatre suites SQL, contrôle de sécurité sans avertissement/erreur, 26 tests unitaires, build et 14 parcours desktop/mobile sans skip. Six captures inspectées. Backend distant toujours en pause, nouvelle migration non appliquée, aucun déploiement. Les fichiers privés et capacités d’écriture restent à livrer. Voir [rapport scopes](reports/2026-10-03_SCOPES.md) et [ADR-009](docs/adr/009_SCOPED_ACCESS.md).
