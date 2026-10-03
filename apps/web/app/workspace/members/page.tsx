@@ -18,12 +18,12 @@ export default async function Members({ searchParams }: { searchParams: Promise<
   if (actor.data?.role !== "founder_admin" || actor.data.status !== "active") return <section className="panel"><h1>Accès réservé</h1><p>Seul un administrateur actif peut gérer les membres de cet espace.</p><Link href="/workspace">Retour à mes espaces</Link></section>;
   const [organization, members] = await Promise.all([
     client.from("organizations").select("name").eq("id", org).maybeSingle(),
-    client.from("memberships").select("*").eq("organization_id", org).order("created_at").order("id"),
+    client.rpc("list_organization_members", { p_org: org }),
   ]);
   if (organization.error || members.error || !organization.data) return <section className="notice" role="alert"><p>La liste des membres est indisponible. Rechargez la page.</p></section>;
-  return <><div className="page-heading"><Link href="/workspace">← Mes espaces</Link><p className="eyebrow">ADMINISTRATION</p><h1>Membres de<br/><em>{organization.data.name}</em></h1><p className="lead">Modifiez le rôle ou suspendez un accès. Une suspension retire les droits sur cet espace dès la prochaine opération.</p><p className="muted">Les invitations et les noms des autres membres seront ajoutés dans le prochain incrément. Les comptes existants sont identifiés par leur référence.</p></div>
-    <section className="cards" aria-label="Membres de l’organisation">{members.data.map(member => <article className="card" key={member.id} data-member-id={member.user_id}>
-      <h2>{member.user_id === user.id ? "Votre compte" : "Compte membre"}</h2><p className="member-reference">Référence : {member.user_id}</p>
+  return <><div className="page-heading"><Link href="/workspace">← Mes espaces</Link><p className="eyebrow">ADMINISTRATION</p><h1>Membres de<br/><em>{organization.data.name}</em></h1><p className="lead">Modifiez le rôle ou suspendez un accès. Une suspension retire les droits sur cet espace dès la prochaine opération.</p></div>
+    <section className="cards" aria-label="Membres de l’organisation">{members.data?.map(member => <article className="card" key={member.id} data-member-id={member.user_id}>
+      <h2 className="member-name">{member.display_name}</h2>{member.user_id === user.id && <p className="muted">Votre compte</p>}<p className="member-reference">Référence : {member.user_id}</p>
       <MemberForm key={member.row_version} membership={member}/>
     </article>)}</section></>;
 }

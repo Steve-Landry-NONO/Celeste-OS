@@ -1,6 +1,6 @@
 # CELESTE OS
 
-Version 0.1.3 · 2 octobre 2026 · Statut proposé pour revue · Responsable de validation Steve
+Version 0.1.4 · 3 octobre 2026 · Statut proposé pour revue · Responsable de validation Steve
 
 CELESTE OS centralise le pilotage de CELESTE sur téléphone et sur ordinateur. Ce dépôt prépare un pilote utilisable par Steve, Maeva et Stéphane, puis l’ouverture contrôlée aux collaborateurs et prestataires. Il concerne l’outil interne de pilotage et reste distinct du développement de la marketplace CELESTE.
 
@@ -66,6 +66,8 @@ La CI ajoute quatre parcours Auth (desktop/mobile) sur Supabase local jetable : 
 
 Recette Auth et démonstrations vérifiée : [CI réussie du code ac0a15f](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37044433038) — huit tests navigateur sans skip, 26 assertions SQL, 26 tests unitaires et build. Captures d’espaces desktop/mobile inspectées ; la confirmation email distante et le déploiement restent à préparer.
 
-Administration des membres : `/workspace/members?organization=<id>` permet aux administrateurs actifs de modifier un rôle ou suspendre une appartenance existante. Accès serveur/base, protection du dernier administrateur et conflit de version ; invitations et noms des autres membres restent à construire. Voir [rapport CE-003](reports/2026-10-03_MEMBERS.md) pour la preuve de recette courante.
+Administration des membres : `/workspace/members?organization=<id>` permet aux administrateurs actifs de modifier un rôle ou suspendre une appartenance existante. Accès serveur/base, protection du dernier administrateur et conflit de version ; les noms sont disponibles via un annuaire administratif limité à cet espace ; les invitations restent à construire. Voir [rapport CE-003](reports/2026-10-03_MEMBERS.md) pour la preuve de recette courante.
 
-Recette membres vérifiée le 3 octobre : [CI réussie](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37108614505), dix tests navigateur sans skip, 26 assertions SQL et 26 tests unitaires. Captures membres desktop/mobile inspectées. Code en PR #2, non fusionné et non déployé.
+Recette membres vérifiée le 3 octobre : [CI réussie](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37108614505), dix tests navigateur sans skip, 26 assertions SQL et 26 tests unitaires. Captures membres desktop/mobile inspectées. Socle fusionné en PR #2, sans preuve de déploiement ; l’annuaire suit en PR #3.
+
+Annuaire CE-003 en [PR #3](https://github.com/Steve-Landry-NONO/Celeste-OS/pull/3) : noms limités à l’espace administré, profils propres inchangés. [CI réussie](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37109445474) : dix parcours sans skip, contrôles SQL, types, 26 tests unitaires et build. Fonction distante et refus vérifiés, fixtures annulées, captures inspectées ; cet incrément n’est ni fusionné ni déployé. Voir [rapport annuaire](reports/2026-10-03_DIRECTORY.md).

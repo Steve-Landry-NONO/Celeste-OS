@@ -1,3 +1,13 @@
+# Reprise annuaire — 3 octobre 2026
+
+PR #2 observée fusionnée à 08:18:37Z, merge bb7f3a11e6c64acdc2d3548d2c96481727be1bc6. PR #3 ouverte, branche feat/ce-003-member-directory. Code annuaire 61da0272cf62ea8ef0b559f3d75a9fccb8f6cc1d : CI 37109445474 réussie, 26 assertions Auth SQL et scénarios annuaire, types, 24 tests domaine + 2 configuration, build, dix parcours navigateur sans skip. Artifact 11268929223 ; captures noms longs desktop/mobile et cartes finales mobile inspectées sans défaut bloquant.
+
+Annuaire réservé aux admins actifs de l’espace ; noms relus depuis profiles sans élargir own_profile_read, projection limitée sans contact. Migration déjà présente sur le projet dédié, version 20261003082224, définition identique vérifiée et EXECUTE anon refusé. Ne pas la réappliquer. Scénarios annuaire exécutés à distance avec ROLLBACK ; zéro organisation/membre/profil ensuite. Le fichier versionné est renommé pour correspondre à l’historique distant ; vérifier la CI de cette tête d’alignement avant fusion. Le code annuaire n’est ni fusionné ni déployé.
+
+Travail concurrent observé et préservé : migration organization_invitations appliquée à distance en 20261003082235 ; fichiers locaux d’invitations et modifications page/types apparus après le gel du commit annuaire. Ils ne sont pas inclus dans cette PR ni validés par sa CI. Ne pas les écraser, ne pas créer un deuxième parcours d’invitations ; reprendre et réconcilier les fichiers/migration sur la branche active après lecture des nouvelles PR et de main. Le workspace local courant ne correspond donc plus entièrement au commit annuaire testé. Les preuves concernent le SHA gelé, jamais ces éditions supplémentaires. Aucun reset distant.
+
+Prochaine action exacte : vérifier la tête de PR #3, puis reprendre les invitations en cours et leurs tests, scopes projet/mission, fichiers privés. Hébergement, confirmation email et onboarding réel restent à préparer. Recette 12 octobre et pilote 15 maintenus, sans nouveau blocage durable établi. VAL-001 résolue ; mail sortant enregistré exclu, pas de nouveau retour humain explicite ni email envoyé. Voir reports/2026-10-03_DIRECTORY.md. Les sections suivantes sont historiques et leurs statuts antérieurs ne remplacent pas ce bloc.
+
 # Reprise CELESTE OS — 3 octobre 2026
 
 PR #2 conservée, branche feat/ce-002-foundations. Base distante 639ad59906985b690a832701061f99ab841d527d : CI finale réussie, huit tests navigateur sans skip. Aucun autre incrément actif observé. Aucune nouvelle réponse humaine GitHub ; Gmail VAL-001 ne retourne que le mail sortant déjà enregistré, exclu.

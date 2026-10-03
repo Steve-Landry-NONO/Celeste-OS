@@ -138,6 +138,10 @@ export type Database = {
     }
     Functions: {
       create_organization: { Args: { p_name: string }; Returns: string }
+      list_organization_members: {
+        Args: { p_org: string }
+        Returns: (Database["public"]["Tables"]["memberships"]["Row"] & { display_name: string })[]
+      }
       manage_membership: {
         Args: {
           p_expected_version: number

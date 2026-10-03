@@ -37,6 +37,7 @@ jobs:
         run: |
           npx supabase db reset --local --yes
           psql "$CELESTE_E2E_LOCAL_DATABASE_URL" -X -v ON_ERROR_STOP=1 -f supabase/tests/auth_organizations.sql
+          psql "$CELESTE_E2E_LOCAL_DATABASE_URL" -X -v ON_ERROR_STOP=1 -f supabase/tests/member_directory.sql
       - run: npm run check
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
