@@ -2,8 +2,8 @@
   "schema_version": 1,
   "updated_at": "2026-10-03",
   "timezone": "Europe/Paris",
-  "documentation_version": "0.1.1",
-  "product_status": "scoped_read_merged_backend_paused",
+  "documentation_version": "0.1.6",
+  "product_status": "private_scope_files_review_backend_paused",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -15,7 +15,7 @@
   "baseline_end": "2026-10-15",
   "sprint": "S1",
   "current_issue": "CE-003-private-files",
-  "last_verified_code_sha": "5d0c991fe6ee43da3c12ed0d015e436e78f096bf",
+  "last_verified_code_sha": "71eda9de4256746a887a359d87ecad041ac69be3",
   "application_tests_executed": true,
   "completed": [
     "requirements_capture",
@@ -45,7 +45,8 @@
     "invitations_sql_and_twelve_browser_tests_passed",
     "PR2_PR3_PR4_merged_after_checks",
     "project_mission_scoped_read_four_sql_suites_security_advisors_browser14_passed",
-    "scoped_read_visuals_and_inactive_grants_review_verified_PR6_merged"
+    "scoped_read_visuals_and_inactive_grants_review_verified_PR6_merged",
+    "private_scope_files_server_trusted_review_fixes_local_check_passed"
   ],
   "blockers": [
     {
@@ -54,10 +55,10 @@
       "detail": "CELESTE OS INACTIVE ; restore refusé, quota occupé par familyroots-mvp et FamilyROOT Test. Décision nécessaire avant pause de ces projets."
     }
   ],
-  "next_action": "CE-003 : fichiers privés et permissions distinctes de lecture/écriture, avant CE-004 finance persistée; développer sur pile jetable. VAL-002 attend la décision de Steve pour réactiver CELESTE, puis appliquer seulement la migration scopes et vérifier Auth distante.",
+  "next_action": "Terminer la CI et la revue de PR #7 puis fusionner si la tête exacte reste verte; ensuite CE-004 catégories, dépenses et justificatifs privés. VAL-002 attend la décision de Steve avant migrations scopes/fichiers et revalidation distante.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
-  "active_branch": "main",
+  "active_branch": "feat/ce-003-private-files",
   "validation_issue": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/5",
   "last_verified_base_sha": "d0bcae185eb02350d3364e36cb6e7f32a819e40b",
   "verification": {
@@ -183,6 +184,22 @@
       "merge_sha": "d0bcae185eb02350d3364e36cb6e7f32a819e40b",
       "deployed": false
     },
+    "private_scope_files": {
+      "local_check": "passed_types_domain24_config3_build",
+      "sql_local": "not_executed_no_docker_or_psql",
+      "browser_local": "not_executed_missing_chromium",
+      "ci": "runs_37136937459_file_finalize_failed_37137556225_exposed_missing_schema_usage_fix_pending_new_CI",
+      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37136937459",
+      "verified_code_sha": "71eda9de4256746a887a359d87ecad041ac69be3",
+      "browser_total_expected": 16,
+      "sql_suites": 5,
+      "security_advisors": "no_warn_or_error",
+      "review": "P1_direct_bypass_and_P2_revoke_race_corrected_service_schema_usage_and_opaque_role_fix_awaiting_final_CI",
+      "remote_migration": "not_applied_backend_paused",
+      "migration_version": "20261003160213",
+      "merged": false,
+      "deployed": false
+    },
     "browser_ci_previous_invitations": {
       "status": "passed",
       "tests": 12,
@@ -192,16 +209,22 @@
       "artifact": 11269332942
     }
   },
-  "active_pr": null,
+  "active_pr": {
+    "number": 7,
+    "url": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/7",
+    "head": "feat/ce-003-private-files",
+    "head_sha": "71eda9de4256746a887a359d87ecad041ac69be3",
+    "status": "review_fixes_plus_opaque_secret_role_fix_pending_new_CI"
+  },
   "last_session": {
     "date": "2026-10-03",
-    "report": "reports/2026-10-03_SCOPES.md",
-    "merged": true,
-    "merge_sha": "d0bcae185eb02350d3364e36cb6e7f32a819e40b",
+    "report": "reports/2026-10-03_PRIVATE_FILES.md",
+    "merged": false,
+    "merge_sha": null,
     "deployed": false,
-    "verified_code_sha": "5d0c991fe6ee43da3c12ed0d015e436e78f096bf",
-    "ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37122978688",
-    "visual_review": "passed",
+    "verified_code_sha": "71eda9de4256746a887a359d87ecad041ac69be3",
+    "ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37136937459",
+    "visual_review": "pending_final_corrected_artifact",
     "backend": "INACTIVE_VAL002"
   },
   "backend": {
@@ -227,7 +250,8 @@
       "FamilyROOT Test"
     ],
     "pending_migrations": [
-      "20261003115835_project_mission_scopes"
+      "20261003115835_project_mission_scopes",
+      "20261003160213_private_scope_files"
     ]
   },
   "previous_pr": {

@@ -51,3 +51,12 @@ Supabase changelog.md consulté; avis PostgreSQL 15.19/17.11 relu : aucun ltree,
 - https://supabase.com/changelog/postgres-15-19-17-11-breaking-changes
 - https://supabase.com/docs/guides/database/postgres/row-level-security (grants distincts, RLS, tests de refus)
 - Documentation Next.js 16.3.8 installée : data-security et server-actions, identité et autorisation côté serveur avant chaque mutation.
+
+## Vérification fichiers privés du 3 octobre 2026
+
+- Supabase Storage Access Control : https://supabase.com/docs/guides/storage/security/access-control
+- Buckets privés et URL signées : https://supabase.com/docs/guides/storage/serving/downloads
+- Changelog Supabase consulté le 3 octobre 2026 : https://supabase.com/changelog ; l'entrée du 1er octobre n'introduit pas de rupture pertinente pour ce lot.
+- Documentation Next.js 16.3.8 installée : Server Actions, `serverActions.bodySizeLimit` et data security. La limite de transport complète les contrôles serveur de type, signature et taille ; elle ne les remplace pas.
+
+Ces sources justifient les mécanismes techniques, pas les droits métier CELESTE. La recette SQL/API vérifie aussi que l'absence de politique Storage interdit l'upload direct aux clients authentifiés.

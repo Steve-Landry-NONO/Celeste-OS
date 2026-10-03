@@ -13,6 +13,7 @@ const values = {
   APP_URL: "http://127.0.0.1:3100",
   CELESTE_E2E_REAL_AUTH: "1",
   CELESTE_E2E_LOCAL_ADMIN_KEY: admin,
+  SUPABASE_SECRET_KEY: admin,
   CELESTE_E2E_LOCAL_DATABASE_URL: databaseUrl,
 };
 if (!process.env.GITHUB_ENV) throw new Error("This helper is intended for GitHub Actions");

@@ -1,4 +1,16 @@
-# État prioritaire — lecture projet/mission fusionnée, 3 octobre 2026
+# État prioritaire — fichiers privés en revue, 3 octobre 2026
+
+PR #7 ouverte sur `feat/ce-003-private-files`, code corrigé `71eda9de4256746a887a359d87ecad041ac69be3`. Dépôt serveur de fichiers privés projet/mission, inspection des octets, SHA-256, capacité de dépôt distincte, objets prêts immuables et téléchargement signé 60 secondes. Aucun upload ou finalize direct depuis un client authentifié. Finalisation et révocation utilisent le même verrou d'organisation. ADR-010 et rapport PRIVATE_FILES.
+
+`npm ci` et `npm run check` passent localement : types, 24 domaine, 3 configuration, build. Docker/Chromium absents localement. CI 37136937459 : migrations, cinq suites SQL, security advisors et check passés, 14 anciens parcours passés mais 2 uploads refusés à la finalisation. CI 37137556225 : la nouvelle régression serveur a isolé EXECUTE sans USAGE du schéma privé pour `service_role`; grant minimal ajouté. Garde basée sur le rôle PostgREST effectif et test à claims JWT vides conservés pour les clés opaques. Attendre la nouvelle CI et son artifact avant de répondre/résoudre les deux fils de revue et fusionner. Ne jamais attribuer à la première CI verte la preuve des correctifs ultérieurs.
+
+Backend CELESTE OS toujours INACTIVE, VAL-002 sans réponse explicite. Aucune migration/bucket distant ni déploiement. Après déblocage, appliquer 20261003115835 puis 20261003160213, vérifier RLS/advisors/Storage et email. Aucun nouveau mail, aucune relance. La prochaine tranche, après fusion sûre, est CE-004 catégories/dépenses/justificatifs sur ce socle; les contributions/caisse/remboursements restent inchangés.
+
+Baseline 12 octobre recette anticipée et 15 pilote conservée; prévision conditionnelle utilisateurs 13/pilote 16 si backend réactivé au plus tard le 4. Recalculer ensuite sinon.
+
+## Historique immédiatement précédent
+
+# Lecture projet/mission fusionnée, 3 octobre 2026
 
 PR #6 fusionnée : merge d0bcae185eb02350d3364e36cb6e7f32a819e40b. Code vérifié 5d0c991fe6ee43da3c12ed0d015e436e78f096bf, CI 37122978688 : cinq migrations, quatre suites SQL (fixtures annulées), security advisors sans warn/error, types, 24 tests domaine + 2 configuration, build et 14 parcours desktop/mobile sans skip. Six captures administration/prestataire/accords inactifs inspectées; artifact 11273842937. Revue P2 corrigée, testée et résolue. Aucune PR active restante.
 
