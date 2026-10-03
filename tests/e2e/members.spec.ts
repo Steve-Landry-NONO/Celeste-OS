@@ -36,7 +36,7 @@ test("administration des membres, concurrence, suspension et refus serveur", asy
     await page.getByRole("link", {name:"Gérer les membres"}).click();
     await expect(page).toHaveURL(/\/workspace\/members\?organization=/);
     const ownCard = page.locator('[data-member-id="'+ids[0]+'"]');
-    await ownCard.getByLabel("Accès", {exact:true}).selectOption("suspended");
+    await ownCard.getByRole("combobox", {name:"Accès",exact:true}).selectOption("suspended");
     await ownCard.getByRole("button", {name:"Enregistrer l’accès"}).click();
     await expect(ownCard.getByRole("alert")).toContainText("dernier administrateur doit rester actif");
     expect((await owner.from("memberships").select("status,row_version").eq("user_id",ids[0]).eq("organization_id",org).single()).data)
@@ -45,13 +45,13 @@ test("administration des membres, concurrence, suspension et refus serveur", asy
     const stale = await context.newPage();
     await stale.goto(page.url());
     const card = page.locator('[data-member-id="'+ids[1]+'"]');
-    await card.getByLabel("Rôle", {exact:true}).selectOption("founder_finance");
+    await card.getByRole("combobox", {name:"Rôle",exact:true}).selectOption("founder_finance");
     await card.getByRole("button", {name:"Enregistrer l’accès"}).click();
     await expect(card.locator('input[name="row_version"]')).toHaveValue("2");
     await page.reload();
-    await expect(card.getByLabel("Rôle", {exact:true})).toHaveValue("founder_finance");
+    await expect(card.getByRole("combobox", {name:"Rôle",exact:true})).toHaveValue("founder_finance");
     const staleCard = stale.locator('[data-member-id="'+ids[1]+'"]');
-    await staleCard.getByLabel("Rôle", {exact:true}).selectOption("support");
+    await staleCard.getByRole("combobox", {name:"Rôle",exact:true}).selectOption("support");
     await staleCard.getByRole("button", {name:"Enregistrer l’accès"}).click();
     await expect(staleCard.getByRole("alert")).toContainText("autre session");
     expect((await owner.from("memberships").select("role,row_version").eq("user_id",ids[1]).eq("organization_id",org).single()).data)
@@ -66,18 +66,18 @@ test("administration des membres, concurrence, suspension et refus serveur", asy
     await expect(card.getByRole("alert")).toContainText("ne pouvez pas administrer");
     await page.reload();
 
-    await card.getByLabel("Accès", {exact:true}).selectOption("suspended");
+    await card.getByRole("combobox", {name:"Accès",exact:true}).selectOption("suspended");
     await card.getByRole("button",{name:"Enregistrer l’accès"}).click();
     await expect(card.locator('input[name="row_version"]')).toHaveValue("3");
-    await expect(card.getByLabel("Accès", {exact:true})).toHaveValue("suspended");
+    await expect(card.getByRole("combobox", {name:"Accès",exact:true})).toHaveValue("suspended");
     const denied = await member.from("organizations").select("id").eq("id",org);
     expect(denied.error).toBeNull(); expect(denied.data).toEqual([]);
     const escalation = await member.rpc("manage_membership",{p_org:org,p_user:ids[1],p_role:"founder_admin",p_status:"active",p_expected_version:3});
     expect(escalation.error?.code).toBe("42501");
-    await card.getByLabel("Accès",{exact:true}).selectOption("active");
+    await card.getByRole("combobox",{name:"Accès",exact:true}).selectOption("active");
     await card.getByRole("button",{name:"Enregistrer l’accès"}).click();
     await expect(card.locator('input[name="row_version"]')).toHaveValue("4");
-    await expect(card.getByLabel("Accès",{exact:true})).toHaveValue("active");
+    await expect(card.getByRole("combobox",{name:"Accès",exact:true})).toHaveValue("active");
     await page.reload();
     expect((await member.from("organizations").select("id").eq("id",org)).data).toHaveLength(1);
     expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
