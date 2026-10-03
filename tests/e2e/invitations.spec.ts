@@ -60,6 +60,7 @@ test("invitation privée, révocation, acceptation unique et noms persistants", 
     await recipientPage.getByLabel("Code d’invitation").fill(revokedToken);
     await recipientPage.getByRole("button",{name:"Accepter l’invitation",exact:true}).click();
     await expect(recipientPage.locator(".auth-form").getByRole("alert")).toContainText("ne peut pas être accepté");
+    await expect(recipientPage.getByLabel("Code d’invitation")).toHaveValue(revokedToken);
     expect((await target.from("memberships").select("id")).data).toEqual([]);
     // Hidden organization fields do not grant permission for another space.
     await invite.locator('input[name="organization_id"]').evaluate(el=>{(el as HTMLInputElement).value="00000000-0000-4000-8000-000000000000";});
