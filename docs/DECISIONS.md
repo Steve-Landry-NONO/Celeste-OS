@@ -92,3 +92,5 @@ OBS-011 vérifié : code annuaire 61da027 passe CI 37109445474 (dix tests naviga
 ## Invitations — 3 octobre 2026
 
 ADR-008 : invitation d’organisation à adresse Auth confirmée, code aléatoire affiché une fois, empreinte privée, expiration 7 jours, révocation et consommation atomique. Transmission manuelle pour ce lot. Pas de changement de rôle ou réactivation implicite pour les membres existants ; refus si le créateur a perdu son rôle admin actif. SQL distant et contrôle local passés ; recette navigateur en attente. Steve autorise les merges des chantiers clos dans son instruction actuelle, sans nouvelle demande générale.
+
+OBS-012 : invitations vérifiées par CI 37110737675, douze parcours sans skip et captures inspectées, puis PR #4 fusionnée sur autorisation explicite de Steve. Backend ultérieurement observé INACTIVE ; tentative de restore refusée pour quota, sans pause d’autre projet. VAL-002 attend une décision, code et persistance testée sur base jetable restent disponibles.

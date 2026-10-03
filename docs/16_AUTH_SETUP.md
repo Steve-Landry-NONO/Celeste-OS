@@ -34,7 +34,7 @@ Sans pile locale configurée, les quatre parcours Auth sont indiqués skipped ; 
 Aucun WARN/ERROR à la dernière inspection. INFO RLS sans policy sur private_celeste.role_permissions est volontaire : table privée, refus client par défaut, lecture par fonctions privées contrôlées. INFO index inutilisés est attendu sur activity_events vide. L’index de sa FK actor_id a été ajouté. Références : [RLS sans policy](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy) et [index inutilisé](https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index).
 
 ## Administration des membres — 3 octobre 2026
-Depuis Mes espaces, un administrateur actif ouvre Gérer les membres. Chaque carte permet de choisir un rôle et un accès actif/suspendu, puis Enregistrer l’accès. Le dernier administrateur doit rester actif ; un conflit de version demande de recharger. La page et les Server Actions relisent les droits, sans clé administrative. Les comptes sont identifiés par référence, sans accès étendu aux profils. La PR #3 ajoute les noms autorisés ; les invitations sont disponibles dans le nouvel incrément (recette en cours).
+Depuis Mes espaces, un administrateur actif ouvre Gérer les membres. Chaque carte permet de choisir un rôle et un accès actif/suspendu, puis Enregistrer l’accès. Le dernier administrateur doit rester actif ; un conflit de version demande de recharger. La page et les Server Actions relisent les droits, sans clé administrative. Les comptes sont identifiés par référence, sans accès étendu aux profils. La PR #3 ajoute les noms autorisés ; les invitations sont disponibles dans le lot fusionné et testé.
 
 La CI de CE-003 (37108614505, code 0a23faf) passe dix tests sans skip : quatre démos, quatre Auth et deux administration desktop/mobile. Sans pile Auth locale, six parcours sont skipped et ne fournissent aucune preuve d’accès persisté. Aucune migration nouvelle pour cette UI.
 
@@ -48,3 +48,9 @@ Un administrateur utilise Inviter un membre, précise son email et son rôle, pu
 Migration 20261003082235_organization_invitations déjà appliquée au backend dédié ; ne pas la rejouer. La table est privée, seule son empreinte stockée ; la liste et l’audit ne renvoient jamais de code. Un membre actif existant conserve son rôle ; un membre suspendu doit être réactivé par un administrateur. Voir ADR-008 et rapport INVITATIONS pour les preuves effectives.
 
 La CI rejoue aussi `supabase/tests/invitations.sql` et ajoute deux parcours desktop/mobile (douze tests au total). Sans pile jetable configurée, huit tests d’accès sont skipped et aucune recette persistée n’est prouvée.
+
+## État opérationnel du 3 octobre
+
+Le backend dédié est maintenant INACTIVE, malgré les migrations et premiers tests déjà passés. Sa restauration est refusée pour quota gratuit occupé par familyroots-mvp et FamilyROOT Test. Voir VAL-002 (#5) ; ne pas réappliquer de migration ni suspendre un projet FamilyRoot sans décision explicite. Le succès des parcours sur base jetable ne prouve pas la disponibilité distante.
+
+Recette invitations effective : PR #4 fusionnée, CI 37110737675 verte sur 2582521f2d435e910a790ef0219e5ae78e357c33 ; douze tests sans skip et trois suites SQL. Cette preuve ne valide pas l’onboarding distant tant que VAL-002 bloque la remise en service.

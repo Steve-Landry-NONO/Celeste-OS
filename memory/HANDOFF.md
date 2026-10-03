@@ -1,3 +1,13 @@
+# État final — invitations fusionnées, 3 octobre 2026
+
+PR #2, #3 et #4 fusionnées après leurs contrôles. Code invitations 2582521f2d435e910a790ef0219e5ae78e357c33, CI 37110737675 : douze parcours sans skip, trois suites SQL, types, 26 tests unitaires et build passés. Captures desktop/mobile inspectées. Merge #4 49b5f1ffb62b4ab37368704b980bb0087c0fc2eb. Aucune PR de code restante.
+
+Prochaine tranche : droits projet/mission refusés par défaut et gestion des accès, sur pile jetable tant que VAL-002 bloque le backend. Backend CELESTE OS INACTIVE, restore refusé pour quota occupé par deux projets FamilyRoot ; ne pas réappliquer les quatre migrations ou suspendre FamilyRoot sans accord. Aucun envoi automatique, compte réel ou déploiement web. Rapport INVITATIONS et ADR-008.
+
+## Blocage actuel à lire en premier
+
+CELESTE OS est INACTIVE. Restauration tentée et refusée pour quota gratuit : deux projets FamilyRoot actifs, FrequenceGestion déjà en pause. VAL-002 (#5) attend Steve. Ne pas suspendre FamilyRoot ou retenter en boucle. Les invitations ont passé les scénarios SQL avant la pause ; continuer les scopes et tests en CI jetable.
+
 # Reprise invitations — 3 octobre 2026
 
 Steve autorise explicitement la poursuite et la fusion des PR dont le chantier est clos. PR #2 fusionnée et annuaire PR #3 relu ; leur historique reste ci-dessous. Invitations isolées sur feat/ce-003-invitations : cycle complet serveur/base/web, code 256 bits affiché une fois, expiration 7 jours, adresse Auth confirmée, révocation, double acceptation sérialisée, rôle existant préservé et suspension non contournable.
