@@ -31,7 +31,13 @@ export default async function Scopes({searchParams}:{searchParams:Promise<{organ
       const access=grants.data?.filter(g=>g.scope_id===scope.id)??[];
       const eligible=members.data?.filter(m=>m.status==="active" && ["member","support","vendor"].includes(m.role) && (scope.kind==="mission" || m.role!=="vendor"))??[];
       return <article className="card" key={scope.id} data-scope-id={scope.id}><p className="eyebrow">{scope.kind==="project"?"Projet":"Mission"}</p><h2 className="member-name">{scope.name}</h2>
-        {isAdmin && <><h3>Lecture accordée</h3>{access.filter(g=>g.granted).length ? <ul className="invitation-list">{access.filter(g=>g.granted).map(g=><li key={g.user_id} data-scope-user={g.user_id}><p className="member-name">{members.data?.find(m=>m.user_id===g.user_id)?.display_name??"Membre"}</p><RevokeScopeForm key={g.row_version} organization={org} scope={scope.id} grant={g}/></li>)}</ul>:<p>Aucun accès explicite.</p>}<GrantScopeForm organization={org} scope={scope.id} members={eligible} grants={access}/></>}
+        {isAdmin && <><h3>Accords de lecture</h3>{access.filter(g=>g.granted).length ? <ul className="invitation-list">{access.filter(g=>g.granted).map(g=>{
+          const member=members.data?.find(m=>m.user_id===g.user_id);
+          const status=member?.status!=="active" ? "Accord inactif — membre suspendu ou absent."
+            : scope.kind==="project" && member.role==="vendor" ? "Accord inactif — rôle prestataire."
+            : "Lecture active.";
+          return <li key={g.user_id} data-scope-user={g.user_id}><p className="member-name">{member?.display_name??"Membre"}</p><p>{status}</p><RevokeScopeForm key={g.row_version} organization={org} scope={scope.id} grant={g}/></li>;
+        })}</ul>:<p>Aucun accès explicite.</p>}<GrantScopeForm organization={org} scope={scope.id} members={eligible} grants={access}/></>}
       </article>;
     })}</section>{!scopes.data?.length && <section className="notice"><p>Aucun projet ou mission accessible pour le moment.</p></section>}</>;
 }

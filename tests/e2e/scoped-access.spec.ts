@@ -48,6 +48,7 @@ test("projets et missions : accès explicites, révocation, concurrence et isole
     await expect(projectCard.getByLabel("Membre à autoriser").locator('option[value="'+ids[2]+'"]')).toHaveCount(0);
     await projectCard.getByLabel("Membre à autoriser").selectOption(ids[1]);await projectCard.getByRole("button",{name:"Accorder la lecture",exact:true}).click();
     await expect(projectCard.locator('[data-scope-user="'+ids[1]+'"]')).toBeVisible();
+    await expect(projectCard.getByText("Lecture active.",{exact:true})).toBeVisible();
     await missionCard.getByLabel("Membre à autoriser").selectOption(ids[2]);await missionCard.getByRole("button",{name:"Accorder la lecture",exact:true}).click();
     await expect(missionCard.locator('[data-scope-user="'+ids[2]+'"]')).toBeVisible();
     await expect(missionCard.getByRole("button",{name:"Accorder la lecture",exact:true})).toBeDisabled();
@@ -93,6 +94,20 @@ test("projets et missions : accès explicites, révocation, concurrence et isole
     expect((await owner.rpc("manage_membership",{p_org:org,p_user:ids[2],p_role:"vendor",p_status:"suspended",p_expected_version:1})).error).toBeNull();
     await page.reload();await expect(page.getByRole("heading",{name:"Accès réservé"})).toBeVisible();
     expect((await vendor.from("resource_scopes").select("id")).data).toEqual([]);
+    // A retained agreement must not be displayed as effective after status/role changes.
+    expect((await owner.rpc("set_scope_access",{p_org:org,p_scope:project,p_user:ids[1],p_granted:true,p_expected_version:3})).error).toBeNull();
+    expect((await owner.rpc("manage_membership",{p_org:org,p_user:ids[1],p_role:"vendor",p_status:"active",p_expected_version:1})).error).toBeNull();
+    expect((await member.from("resource_scopes").select("id").eq("organization_id",org)).data).toEqual([]);
+    await page.goto("/workspace");await page.getByRole("button",{name:"Se déconnecter",exact:true}).click();
+    await page.getByLabel("Adresse email").fill(emails[0]);await page.getByLabel("Mot de passe",{exact:true}).fill(password);
+    await page.getByRole("button",{name:"Se connecter",exact:true}).click();await expect(page).toHaveURL(/\/workspace$/);
+    await page.goto("/workspace/scopes?organization="+org);
+    await expect(missionCard.locator('[data-scope-user="'+ids[2]+'"]')).toContainText("Accord inactif — membre suspendu ou absent.");
+    await expect(projectCard.locator('[data-scope-user="'+ids[1]+'"]')).toContainText("Accord inactif — rôle prestataire.");
+    await page.screenshot({path:testInfo.outputPath("scope-inactive-grants.png"),fullPage:true});
+    // Inactive grants remain revocable, so suspension need not become permanent access.
+    await missionCard.getByRole("button",{name:"Révoquer la lecture",exact:true}).click();
+    await expect(missionCard.locator('[data-scope-user="'+ids[2]+'"]')).toHaveCount(0);
   } finally {
     const cleanup=await admin.from("organizations").delete().in("created_by",ids);
     const removed=await Promise.all(ids.map(id=>admin.auth.admin.deleteUser(id)));
