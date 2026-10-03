@@ -3,7 +3,7 @@
   "updated_at": "2026-10-03",
   "timezone": "Europe/Paris",
   "documentation_version": "0.1.1",
-  "product_status": "auth_members_merged_directory_tested_in_review_finance_tasks_demo",
+  "product_status": "invitations_remote_sql_local_check_passed_browser_ci_pending",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -14,7 +14,7 @@
   "baseline_start": "2026-10-02",
   "baseline_end": "2026-10-15",
   "sprint": "S1",
-  "current_issue": "CE-003-member-directory",
+  "current_issue": "CE-003-invitations",
   "last_verified_code_sha": "61da0272cf62ea8ef0b559f3d75a9fccb8f6cc1d",
   "application_tests_executed": true,
   "completed": [
@@ -44,12 +44,12 @@
     "organization_scoped_member_names_ci_and_remote_sql_verified"
   ],
   "blockers": [],
-  "next_action": "Reprendre les invitations déjà en cours sans écraser les fichiers locaux ; réconcilier leur migration distante 20261003082235 avec le dépôt et tester leur parcours. Ensuite scopes projet/mission et stockage privé. PR #3 annuaire testée, non fusionnée et non déployée.",
+  "next_action": "Vérifier CI invitations et captures puis fusionner le lot clos ; ensuite scopes projet/mission, stockage privé et finance persistée.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
-  "active_branch": "feat/ce-003-member-directory",
+  "active_branch": "feat/ce-003-invitations",
   "validation_issue": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/1",
-  "last_verified_base_sha": "bb7f3a11e6c64acdc2d3548d2c96481727be1bc6",
+  "last_verified_base_sha": "710c6d784d994dc3f304679a7fd0cc1e723870b2",
   "verification": {
     "domain_tests": {
       "passed": 24,
@@ -121,7 +121,9 @@
       "code_sha": "61da0272cf62ea8ef0b559f3d75a9fccb8f6cc1d",
       "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37109445474",
       "artifact": 11268929223,
-      "final_head_checks": "pending_migration_filename_alignment_and_docs"
+      "final_head_checks": "pending_migration_filename_alignment_and_docs",
+      "merged": true,
+      "final_ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37109944934"
     },
     "browser_ci_previous_members": {
       "status": "passed",
@@ -130,21 +132,26 @@
       "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37108614505",
       "verified_sha": "0a23faf027302e7443dd2da1b86867c209455e0f",
       "artifact": "browser-evidence:11269081011"
+    },
+    "invitations": {
+      "sql_remote": "passed_rolled_back",
+      "local_check": "passed",
+      "browser_ci": "pending",
+      "tests_expected": 2,
+      "schema_change": true,
+      "remote_migration": "20261003082235",
+      "advisors": "no_warn_error"
     }
   },
-  "active_pr": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/3",
+  "active_pr": null,
   "last_session": {
     "date": "2026-10-03",
-    "report": "reports/2026-10-03_DIRECTORY.md",
-    "validation_check": "VAL-001 resolved; no new explicit human response; sent message 1a0fc206ec1ced41 excluded",
+    "report": "reports/2026-10-03_INVITATIONS.md",
     "merged": false,
     "deployed": false,
-    "local_check": "types_domain24_config2_build_passed",
-    "directory_browser_ci": "passed",
-    "verified_code_sha": "61da0272cf62ea8ef0b559f3d75a9fccb8f6cc1d",
-    "ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37109445474",
-    "visual_review": "passed",
-    "remote_test": "directory_scenarios_passed_rolled_back_no_test_data"
+    "local_check": "passed",
+    "invitations_browser_ci": "pending",
+    "human_authorization": "Steve authorizes next step and merging closed PRs"
   },
   "backend": {
     "provider": "supabase",
@@ -161,7 +168,8 @@
     "purpose": "development_pilot",
     "announced_creation_cost_per_month": 0,
     "directory_migration": "20261003082224_admin_member_directory",
-    "concurrent_migration_observed": "20261003082235_organization_invitations_not_in_directory_pr"
+    "concurrent_migration_observed": "20261003082235_organization_invitations_not_in_directory_pr",
+    "invitations_migration": "20261003082235_organization_invitations"
   },
   "previous_pr": {
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2",
@@ -170,10 +178,14 @@
     "observed_at": "2026-10-03T08:18:37Z",
     "human_business_approval_inferred": false
   },
-  "concurrent_work": {
-    "local_invitation_files": "observed_preserved_not_tested_by_this_increment",
-    "remote_invitation_schema": "observed_not_reapplied",
-    "directory_tests_reference": "frozen_commit_61da027",
-    "next_action": "reconcile_and_verify_existing_invitation_work_before_starting_duplicate"
-  }
+  "merged_prs": [
+    {
+      "number": 2,
+      "sha": "bb7f3a11e6c64acdc2d3548d2c96481727be1bc6"
+    },
+    {
+      "number": 3,
+      "sha": "710c6d784d994dc3f304679a7fd0cc1e723870b2"
+    }
+  ]
 }

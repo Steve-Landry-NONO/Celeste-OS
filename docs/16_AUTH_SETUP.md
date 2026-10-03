@@ -1,5 +1,5 @@
 # Configurer et vérifier la connexion
-Version 0.1.4 · 3 octobre 2026 · Auth/membres fusionnés en PR #2 ; annuaire en PR #3
+Version 0.1.4 · 3 octobre 2026 · Auth/membres fusionnés en PR #2 ; annuaire fusionné en PR #3
 
 ## Environnement web
 Copier apps/web/.env.example vers apps/web/.env.local, puis renseigner la clé publiable du projet CELESTE OS (vxdneuoglidyngzdfmjc). Utiliser NEXT_PUBLIC_SUPABASE_URL et NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY, jamais une clé secret ou service_role. APP_URL doit être l’origine exacte du site (HTTPS en ligne, HTTP autorisé seulement sur localhost/127.0.0.1).
@@ -34,9 +34,17 @@ Sans pile locale configurée, les quatre parcours Auth sont indiqués skipped ; 
 Aucun WARN/ERROR à la dernière inspection. INFO RLS sans policy sur private_celeste.role_permissions est volontaire : table privée, refus client par défaut, lecture par fonctions privées contrôlées. INFO index inutilisés est attendu sur activity_events vide. L’index de sa FK actor_id a été ajouté. Références : [RLS sans policy](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy) et [index inutilisé](https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index).
 
 ## Administration des membres — 3 octobre 2026
-Depuis Mes espaces, un administrateur actif ouvre Gérer les membres. Chaque carte permet de choisir un rôle et un accès actif/suspendu, puis Enregistrer l’accès. Le dernier administrateur doit rester actif ; un conflit de version demande de recharger. La page et les Server Actions relisent les droits, sans clé administrative. Les comptes sont identifiés par référence, sans accès étendu aux profils. La PR #3 ajoute les noms autorisés ; les invitations restent à construire.
+Depuis Mes espaces, un administrateur actif ouvre Gérer les membres. Chaque carte permet de choisir un rôle et un accès actif/suspendu, puis Enregistrer l’accès. Le dernier administrateur doit rester actif ; un conflit de version demande de recharger. La page et les Server Actions relisent les droits, sans clé administrative. Les comptes sont identifiés par référence, sans accès étendu aux profils. La PR #3 ajoute les noms autorisés ; les invitations sont disponibles dans le nouvel incrément (recette en cours).
 
 La CI de CE-003 (37108614505, code 0a23faf) passe dix tests sans skip : quatre démos, quatre Auth et deux administration desktop/mobile. Sans pile Auth locale, six parcours sont skipped et ne fournissent aucune preuve d’accès persisté. Aucune migration nouvelle pour cette UI.
 
 ## Annuaire administratif
 La troisième migration ajoute list_organization_members : une RPC privée contrôlée par membership.manage et un wrapper public SECURITY INVOKER. Elle renvoie les appartenances et noms de cet espace uniquement ; profiles reste limité au profil propre et aucun email n’est renvoyé. La CI rejoue aussi supabase/tests/member_directory.sql. Déjà observée appliquée en version 20261003082224 : ne pas la réappliquer. CI 37109445474 passée, tests annuaire distants avec ROLLBACK passés, zéro fixture résiduelle ; preuves dans reports/2026-10-03_DIRECTORY.md.
+
+## Invitations
+
+Un administrateur utilise Inviter un membre, précise son email et son rôle, puis transmet le code affiché. Le destinataire se connecte avec cette adresse confirmée et ouvre Rejoindre un espace dans Mes espaces (`/join`). Une invitation expire en 7 jours, est révocable et à usage unique. Aucun email automatique n’est envoyé. Si le code est perdu, révoquer l’entrée en attente et créer une nouvelle invitation.
+
+Migration 20261003082235_organization_invitations déjà appliquée au backend dédié ; ne pas la rejouer. La table est privée, seule son empreinte stockée ; la liste et l’audit ne renvoient jamais de code. Un membre actif existant conserve son rôle ; un membre suspendu doit être réactivé par un administrateur. Voir ADR-008 et rapport INVITATIONS pour les preuves effectives.
+
+La CI rejoue aussi `supabase/tests/invitations.sql` et ajoute deux parcours desktop/mobile (douze tests au total). Sans pile jetable configurée, huit tests d’accès sont skipped et aucune recette persistée n’est prouvée.

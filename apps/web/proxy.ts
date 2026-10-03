@@ -37,4 +37,4 @@ export async function proxy(request: NextRequest) {
   response.headers.set("Expires", "0");
   return response;
 }
-export const config = { matcher: ["/workspace/:path*", "/login", "/register", "/auth/:path*"] };
+export const config = { matcher: ["/workspace/:path*", "/join", "/login", "/register", "/auth/:path*"] };
