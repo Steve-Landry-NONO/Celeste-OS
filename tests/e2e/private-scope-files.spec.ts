@@ -46,7 +46,8 @@ test("fichier privé, écriture distincte et révocation immédiate",async({page
     await page.reload();await expect(card.getByText("Lecture seule : le dépôt nécessite une permission distincte.",{exact:true})).toBeVisible();await expect(link).toBeVisible();
     await page.screenshot({path:testInfo.outputPath("private-file-read-only.png"),fullPage:true});
     expect((await owner.rpc("set_scope_access",{p_org:organization,p_scope:scope,p_user:ids[1],p_granted:false,p_expected_version:3})).error).toBeNull();
-    await page.reload();await expect(page.getByRole("heading",{name:"Accès réservé"})).toBeVisible();
+    await page.reload();await expect(page.locator("[data-scope-id]")).toHaveCount(0);
+    await expect(page.getByText("Aucun projet ou mission accessible pour le moment.",{exact:true})).toBeVisible();
     expect((await member.from("scope_files").select("id")).data).toEqual([]);
     expect((await member.storage.from("celeste-private").download(objectKey)).error).not.toBeNull();
     const other=createClient(url,key,{auth:{persistSession:false,autoRefreshToken:false}});
