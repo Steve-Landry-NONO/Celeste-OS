@@ -137,6 +137,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      create_invitation: { Args: { p_org: string; p_email: string; p_role: string }; Returns: { id: string; token: string }[] }
+      list_invitations: { Args: { p_org: string }; Returns: { id: string; email: string; role: string; created_at: string; expires_at: string; status: string }[] }
+      revoke_invitation: { Args: { p_org: string; p_id: string }; Returns: undefined }
+      accept_invitation: { Args: { p_token: string }; Returns: string }
       create_organization: { Args: { p_name: string }; Returns: string }
       list_organization_members: {
         Args: { p_org: string }

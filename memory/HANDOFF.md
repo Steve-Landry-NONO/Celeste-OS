@@ -1,3 +1,9 @@
+# Reprise invitations — 3 octobre 2026
+
+Steve autorise explicitement la poursuite et la fusion des PR dont le chantier est clos. PR #2 fusionnée et annuaire PR #3 relu ; leur historique reste ci-dessous. Invitations isolées sur feat/ce-003-invitations : cycle complet serveur/base/web, code 256 bits affiché une fois, expiration 7 jours, adresse Auth confirmée, révocation, double acceptation sérialisée, rôle existant préservé et suspension non contournable.
+
+Migration 20261003082235 appliquée au seul backend CELESTE OS ; tests SQL distants passés avec ROLLBACK. npm run check passe. Douze parcours desktop/mobile à vérifier en CI, puis captures sans code et merge si vert. Pas de mail automatique, compte réel ou déploiement. Les droits projet/mission restent la prochaine tranche avant fichiers/finance. Voir reports/2026-10-03_INVITATIONS.md et ADR-008.
+
 # Reprise annuaire — 3 octobre 2026
 
 PR #2 observée fusionnée à 08:18:37Z, merge bb7f3a11e6c64acdc2d3548d2c96481727be1bc6. PR #3 ouverte, branche feat/ce-003-member-directory. Code annuaire 61da0272cf62ea8ef0b559f3d75a9fccb8f6cc1d : CI 37109445474 réussie, 26 assertions Auth SQL et scénarios annuaire, types, 24 tests domaine + 2 configuration, build, dix parcours navigateur sans skip. Artifact 11268929223 ; captures noms longs desktop/mobile et cartes finales mobile inspectées sans défaut bloquant.

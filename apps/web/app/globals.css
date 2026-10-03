@@ -14,7 +14,11 @@
 .member-name { overflow-wrap: anywhere; }
 .auth-form { display: grid; gap: 18px; margin-top: 20px; }
 .auth-form label { display: grid; gap: 8px; font-size: 13px; }
-.auth-form input { width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.auth-form input, .auth-form textarea { width: 100%; min-height: 48px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.auth-form textarea { resize: vertical; font: inherit; overflow-wrap: anywhere; }
+.invitation-code { padding: 16px; border: 1px solid var(--line); border-radius: 8px; }
+.invitation-list { list-style: none; padding: 0; }
+.invitation-list li { padding: 20px 0; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
 .auth-form button, .secondary-button { min-height: 48px; padding: 12px 18px; border: 1px solid var(--brand); border-radius: 8px; cursor: pointer; }
 .auth-form button { background: var(--brand); color: white; }
 .auth-form button:disabled { opacity: .55; cursor: not-allowed; }

@@ -27,3 +27,7 @@ Administration web des appartenances existantes : rôle, suspension et réactiva
 ## Annuaire administratif — 3 octobre 2026, non publié
 
 Noms des membres affichés dans leur espace aux administrateurs actifs, sans élargir la lecture des profils et sans contact exposé. Refus SQL en base/CI, rendu texte des noms et retour à la ligne sur mobile vérifiés. Dix parcours navigateur sans skip, 26 tests unitaires et build passent sur 61da027 ; preuves dans le rapport DIRECTORY. Fonction distante déjà appliquée, migration versionnée alignée ; PR #3 non fusionnée et non déployée.
+
+## Invitations — 3 octobre 2026, non publié
+
+Invitations d’organisation persistées, expiration 7 jours, code unique à empreinte privée, révocation et acceptation atomiques. Administration/historique et parcours Rejoindre un espace. Adresse Auth confirmée, rôle existant préservé et refus des comptes suspendus. Tests SQL/API/web desktop/mobile ajoutés ; preuve courante dans rapport INVITATIONS.
