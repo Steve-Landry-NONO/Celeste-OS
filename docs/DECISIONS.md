@@ -80,3 +80,5 @@ OBS-008 vérifié : deux migrations appliquées sur vxdneuoglidyngzdfmjc, 26 ass
 ## Administration des membres — 3 octobre 2026
 
 OBS-009 : CE-003 reprend la PR #2 existante. UI des appartenances existantes via manage_membership, sans nouveau privilège ni migration. Chaque soumission relit l’acteur et transmet la version affichée ; RPC vérifie de nouveau les droits, sérialise les écritures et protège le dernier administrateur. Aucune attribution réelle de droits ni validation métier déduite. Choix technique : références de comptes visibles aux seuls administrateurs, sans élargir own_profile_read ; noms et invitations restent une suite nécessaire avant onboarding. Tests navigateur nouveaux en attente de CI au moment de cette écriture.
+
+OBS-010 vérifié le 3 octobre : CI 37108614505 réussie sur 0a23faf, dix tests navigateur sans skip et 26 assertions SQL. Captures membres desktop/mobile inspectées. Protection du dernier admin, conflit, champ falsifié, suspension, réactivation, audit et refus du membre prouvés sur pile locale jetable. Aucune donnée distante ni attribution réelle modifiée ; CE-003 reste partiel pour invitations, noms et scopes.

@@ -3,7 +3,7 @@
   "updated_at": "2026-10-03",
   "timezone": "Europe/Paris",
   "documentation_version": "0.1.1",
-  "product_status": "auth_organizations_tested_members_administration_ci_pending",
+  "product_status": "auth_organizations_members_admin_tested_in_review_finance_and_tasks_demo",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -15,7 +15,7 @@
   "baseline_end": "2026-10-15",
   "sprint": "S1",
   "current_issue": "CE-003-members-administration",
-  "last_verified_code_sha": "ac0a15f8c7e7170362580f66b091771195cd1d8a",
+  "last_verified_code_sha": "0a23faf027302e7443dd2da1b86867c209455e0f",
   "application_tests_executed": true,
   "completed": [
     "requirements_capture",
@@ -39,10 +39,11 @@
     "remote_rls_26_assertions_passed_fixtures_rolled_back",
     "web_auth_organization_routes_written_local_check_passed",
     "auth_registration_and_persistent_workspace_eight_browser_tests_ci_passed",
-    "workspace_desktop_mobile_visuals_inspected"
+    "workspace_desktop_mobile_visuals_inspected",
+    "existing_members_admin_ui_ten_browser_tests_ci_passed_visuals_inspected"
   ],
   "blockers": [],
-  "next_action": "Vérifier la CI de CE-003, inspecter les captures membres desktop/mobile, puis préparer invitations et scopes projet/mission. Finance persistée et fichiers privés suivent ; aucun déploiement effectué.",
+  "next_action": "Continuer CE-003 : invitations expirantes à usage unique, noms des membres autorisés et scopes projet/mission. Stockage privé puis finance persistée. Avant pilote : hébergement, Auth email distante et onboarding réel ; aucun déploiement effectué.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
   "active_branch": "feat/ce-002-foundations",
@@ -59,17 +60,17 @@
     "browser_local": "blocked_missing_playwright_chromium_before_interaction",
     "browser_ci": {
       "status": "passed",
-      "tests": 8,
+      "tests": 10,
       "skipped": 0,
-      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37044433038",
-      "verified_sha": "ac0a15f8c7e7170362580f66b091771195cd1d8a",
-      "artifact": "browser-evidence:11243318853"
+      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37108614505",
+      "verified_sha": "0a23faf027302e7443dd2da1b86867c209455e0f",
+      "artifact": "browser-evidence:11269081011"
     },
     "RLS": "26_passed_remote_and_fresh_ci_migrations_fixtures_rolled_back",
     "mobile_native": "not_initialized",
     "deployed": false,
     "visual_review": "workspace_desktop_mobile_and_home_mobile_captures_inspected_no_blocking_defect",
-    "ci_chain": "passed_npm_ci_disposable_supabase_migrations_rls26_types_domain24_config2_build_browser8",
+    "ci_chain": "passed_npm_ci_disposable_supabase_migrations_rls26_types_domain24_config2_build_browser10",
     "browser_ci_previous": {
       "status": "passed",
       "tests": 2,
@@ -97,7 +98,13 @@
     },
     "members_administration": {
       "local_check": "passed",
-      "browser_ci": "pending",
+      "browser_ci": "passed",
+      "tests": 2,
+      "skipped": 0,
+      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37108614505",
+      "verified_sha": "0a23faf027302e7443dd2da1b86867c209455e0f",
+      "artifact": 11269081011,
+      "visual_review": "desktop_mobile_passed",
       "schema_change": false
     }
   },
@@ -109,7 +116,10 @@
     "merged": false,
     "deployed": false,
     "local_check": "types_domain24_config2_build_passed",
-    "members_browser_ci": "pending"
+    "members_browser_ci": "passed",
+    "verified_code_sha": "0a23faf027302e7443dd2da1b86867c209455e0f",
+    "ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37108614505",
+    "visual_review": "desktop_mobile_passed"
   },
   "backend": {
     "provider": "supabase",

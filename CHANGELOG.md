@@ -19,3 +19,7 @@ Contrat « Aujourd’hui » ajouté dans le même incrément : tâche à respons
 ## Incrément Auth/organisations — non publié
 
 Connexion, inscription, confirmation et déconnexion web ; organisations persistées et espace personnel. Deux migrations Supabase appliquées, RLS et RPC atomiques, 26 assertions SQL passées. CI étendue à la pile Supabase locale jetable et aux parcours Auth desktop/mobile. Deux tests de garde des clés et URL portent les tests unitaires à 26. Invitations, scopes mission/projet, fichiers et finance persistée restent à livrer ; voir rapport AUTH.
+
+## Incrément membres — 3 octobre 2026, non publié
+
+Administration web des appartenances existantes : rôle, suspension et réactivation. Refus serveur/base, dernier administrateur, version attendue et audit atomique. Dix tests navigateur desktop/mobile sans skip, 26 assertions SQL et 26 tests unitaires passent. Invitations et scopes projet/mission restent à réaliser ; aucune release publiée.

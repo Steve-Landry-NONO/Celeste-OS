@@ -31,3 +31,8 @@ Sans pile locale configurée, les quatre parcours Auth sont indiqués skipped ; 
 
 ## Avis Supabase
 Aucun WARN/ERROR à la dernière inspection. INFO RLS sans policy sur private_celeste.role_permissions est volontaire : table privée, refus client par défaut, lecture par fonctions privées contrôlées. INFO index inutilisés est attendu sur activity_events vide. L’index de sa FK actor_id a été ajouté. Références : [RLS sans policy](https://supabase.com/docs/guides/database/database-linter?lint=0008_rls_enabled_no_policy) et [index inutilisé](https://supabase.com/docs/guides/database/database-linter?lint=0005_unused_index).
+
+## Administration des membres — 3 octobre 2026
+Depuis Mes espaces, un administrateur actif ouvre Gérer les membres. Chaque carte permet de choisir un rôle et un accès actif/suspendu, puis Enregistrer l’accès. Le dernier administrateur doit rester actif ; un conflit de version demande de recharger. La page et les Server Actions relisent les droits, sans clé administrative. Les comptes sont identifiés par référence, sans accès étendu aux profils. Invitations et noms autorisés restent à construire.
+
+La CI de CE-003 (37108614505, code 0a23faf) passe dix tests sans skip : quatre démos, quatre Auth et deux administration desktop/mobile. Sans pile Auth locale, six parcours sont skipped et ne fournissent aucune preuve d’accès persisté. Aucune migration nouvelle pour cette UI.
