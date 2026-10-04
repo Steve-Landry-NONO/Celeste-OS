@@ -172,7 +172,7 @@ export type Database = {
     Functions: {
       create_expense_category: { Args: { p_org: string; p_title: string; p_parent: string | null }; Returns: string }
       record_personal_expense: { Args: { p_org: string; p_scope: string; p_category: string; p_receipt: string; p_label: string; p_amount_minor: number; p_spent_on: string; p_payer: string; p_command_key: string }; Returns: string }
-      list_finance_contributions: { Args: { p_org: string }; Returns: { user_id: string; display_name: string; amount_minor: number }[] }
+      list_finance_contributions: { Args: { p_org: string }; Returns: { user_id: string; display_name: string; amount_minor: number; can_confirm: boolean }[] }
       create_resource_scope: { Args: { p_org: string; p_kind: string; p_name: string; p_parent: string | null }; Returns: string }
       set_scope_access: { Args: { p_org: string; p_scope: string; p_user: string; p_granted: boolean; p_expected_version: number }; Returns: number }
       list_scope_access: { Args: { p_org: string }; Returns: { scope_id: string; user_id: string; granted: boolean; file_write: boolean; row_version: number }[] }
