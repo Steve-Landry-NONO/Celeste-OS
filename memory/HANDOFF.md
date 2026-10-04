@@ -1,3 +1,13 @@
+# État prioritaire — dépenses personnelles en CI, 4 octobre 2026
+
+Branche `feat/ce-004-expenses` créée depuis main documentaire `2b4e8868`. Catégories, dépense personnelle EUR confirmée, justificatif privé obligatoire du même périmètre et contribution dérivée unique sont écrits. RLS, grants explicites, idempotence payload, immutabilité et refus caisse/remboursement sont dans la migration `20261004081254_personal_expenses`. Route `/workspace/finance`, scénario SQL et parcours navigateur ajoutés. `npm run check` passe localement : types, 24 domaine, 3 configuration et build. Docker/PostgreSQL/Chromium absents localement ; ne pas annoncer SQL ou navigateur avant la CI.
+
+Backend CELESTE OS vérifié INACTIVE le 4 octobre ; VAL-002 reste sans commentaire. Gmail ne contient que le message sortant VAL-001 `1a0fc206ec1ced41`, explicitement exclu. Aucun nouveau mail, aucune relance, aucune migration distante. Publier la branche, attendre les six suites SQL, advisors et 18 parcours attendus desktop/mobile, inspecter les captures, traiter toute revue puis actualiser PR, rapport et mémoire.
+
+Calendrier : baseline 12 recette/15 pilote conservée comme référence initiale mais plus comme prévision distante. Prévision conditionnelle 14 recette utilisateurs/17 pilote si réactivation au plus tard le 5 à midi ; au-delà, décaler d'au moins un jour par jour de blocage. Voir ADR-011 et rapport `reports/2026-10-04_EXPENSES.md`.
+
+## Historique immédiatement précédent
+
 # État prioritaire — fichiers privés fusionnés, 3 octobre 2026
 
 PR #7 fusionnée : tête vérifiée `3e9473d2de54602d590f9e0aabf7d14fdb21c8d9`, merge `45a701b919c77c5e434279a8f362c76cbc65943e`. Dépôt serveur de fichiers privés projet/mission, inspection des octets, SHA-256, capacité de dépôt distincte, objets prêts immuables et téléchargement signé 60 secondes. Aucun upload ou finalize direct depuis un client authentifié. Finalisation et révocation utilisent le même verrou d'organisation. ADR-010 et rapport PRIVATE_FILES.
