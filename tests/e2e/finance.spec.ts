@@ -33,6 +33,7 @@ test("dépense personnelle : catégorie, justificatif et contribution unique",as
   const projectForm=page.getByRole("form",{name:"Créer un projet",exact:true});
   await projectForm.getByLabel("Nom du projet").fill("Lancement pilote");
   await projectForm.getByRole("button",{name:"Créer le projet",exact:true}).click();
+  await expect(page.getByRole("heading",{name:"Lancement pilote",exact:true})).toBeVisible();
   const project=(await owner.from("resource_scopes").select("id").eq("organization_id",organization).single()).data!.id;
   const projectCard=page.locator('[data-scope-id="'+project+'"]');
   const upload=projectCard.getByRole("form",{name:"Ajouter un fichier privé"});
