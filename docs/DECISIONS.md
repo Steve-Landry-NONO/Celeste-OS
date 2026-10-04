@@ -104,3 +104,9 @@ ADR-009 : périmètres projet/mission, lecture explicite sans héritage, prestat
 ADR-010 : bucket privé, métadonnées par périmètre, dépôt serveur validé et téléchargement signé court. L'écriture de fichier est distincte de la lecture et ne s'hérite pas entre projet et mission. Les clients authentifiés ne peuvent ni injecter directement un objet, ni finaliser une réservation ; la finalisation serveur partage le verrou des révocations et relit les droits. Ce choix répond aux deux retours de revue de PR #7 sans modifier les règles financières ou documentaires. Backend distant inchangé tant que VAL-002 reste pending.
 
 OBS-013 : tête `3e9473d2` vérifiée par CI 37137848450 : six migrations, cinq suites SQL avec rollback, security advisors sans alerte, 24 tests domaine + 3 configuration, build et 16 parcours desktop/mobile sans skip. Captures lecture après révocation du dépôt inspectées. PR #7 fusionnée en `45a701b9`. Les réponses et résolutions de revue ont été écrites par l'agent et ne valent pas validation métier humaine.
+
+## Dépenses personnelles persistées — 4 octobre 2026
+
+ADR-011 implémentée comme choix technique de CE-004 : seule la dépense personnelle en EUR est confirmable dans ce lot. Elle produit dans la même transaction une contribution unique, exige une catégorie et un justificatif privé prêt du même périmètre, et ne touche jamais la caisse. La clé d'idempotence lie le payload complet ; les écritures confirmées sont immuables. Les dépenses de fonds, versements et remboursements restent non exposés jusqu'aux écritures dédiées. Ce découpage applique D-003 et FIN-R02 sans anticiper Q-002 ou inventer de montant réel.
+
+OBS-014 vérifié localement : types, 24 tests domaine, 3 configuration et build passent. SQL/RLS, security advisors et navigateur attendent la CI jetable ; aucune réussite n'est encore affirmée pour ces contrôles. Backend CELESTE OS observé INACTIVE et VAL-002 sans commentaire ni email humain distinct au 4 octobre.

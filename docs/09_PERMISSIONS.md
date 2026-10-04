@@ -43,6 +43,12 @@ Refus entre deux organisations ; prestataire A refusé sur mission B ; membre re
 
 La lecture projet/mission explicite utilise `private_celeste.can_read_scope`. Aucun héritage; équipe/support par accord, prestataire par mission uniquement, administrateurs/Finance sur organisation. Seul un admin actif crée des périmètres et gère les accords, avec version et audit atomiques. Les droits de fichiers, tâches, écritures financières et publication restent à implémenter et tester séparément. Voir le rapport SCOPES pour la preuve effective.
 
+## Écriture financière CE-004 — ADR-011
+
+Les profils administrateur et Finance actifs dotés de `finance.confirm` créent les catégories et confirment les dépenses personnelles. `finance.read` borne les listes, contributions et catégories à l'organisation. Un membre, support ou prestataire ne lit aucun total financier et ne peut pas obtenir ce droit via ses metadata Auth.
+
+La fonction de confirmation vérifie de nouveau l'acteur, le payeur fondateur actif, le périmètre, la catégorie et le justificatif prêt. Les relations composées imposent la même organisation et le même projet ou mission. Les tables refusent toute écriture directe authentifiée ; les dépenses et contributions confirmées refusent UPDATE et DELETE. Les dépenses du fonds et remboursements n'ont aucune commande exposée dans ce lot.
+
 ## Fichiers privés implémentés — ADR-010
 
 `file.write` est distinct de la lecture : administrateur actif implicitement habilité, autre membre seulement par accord actif portant `file_write`, prestataire sur mission uniquement. Le navigateur n'écrit pas directement dans Storage et ne peut pas finaliser une réservation. Le serveur vérifie octets, type, taille et empreinte, puis relit le droit sous le même verrou que la révocation. La lecture produit une URL signée de 60 secondes après contrôle du périmètre. Les objets prêts sont immuables côté client. Voir ADR-010 et le rapport PRIVATE_FILES.

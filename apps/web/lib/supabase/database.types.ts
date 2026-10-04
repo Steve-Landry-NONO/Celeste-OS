@@ -14,6 +14,24 @@ export type Database = {
   }
   public: {
     Tables: {
+      contribution_entries: {
+        Row: { id: string; organization_id: string; founder_id: string; expense_id: string; signed_amount_minor: number; currency: string; kind: string; created_at: string }
+        Insert: { id?: string; organization_id: string; founder_id: string; expense_id: string; signed_amount_minor: number; currency: string; kind: string; created_at?: string }
+        Update: { id?: string; organization_id?: string; founder_id?: string; expense_id?: string; signed_amount_minor?: number; currency?: string; kind?: string; created_at?: string }
+        Relationships: []
+      }
+      expense_categories: {
+        Row: { id: string; organization_id: string; parent_id: string | null; title: string; normalized_title: string; active: boolean; created_by: string; created_at: string }
+        Insert: { id?: string; organization_id: string; parent_id?: string | null; title: string; normalized_title: string; active?: boolean; created_by: string; created_at?: string }
+        Update: { id?: string; organization_id?: string; parent_id?: string | null; title?: string; normalized_title?: string; active?: boolean; created_by?: string; created_at?: string }
+        Relationships: []
+      }
+      expenses: {
+        Row: { id: string; organization_id: string; scope_id: string; category_id: string; receipt_file_id: string; label: string; amount_minor: number; currency: string; spent_on: string; source_type: string; treatment: string; payer_id: string; status: string; confirmed_by: string; confirmed_at: string; created_at: string }
+        Insert: { id?: string; organization_id: string; scope_id: string; category_id: string; receipt_file_id: string; label: string; amount_minor: number; currency: string; spent_on: string; source_type: string; treatment: string; payer_id: string; status: string; confirmed_by: string; confirmed_at?: string; created_at?: string }
+        Update: { id?: string; organization_id?: string; scope_id?: string; category_id?: string; receipt_file_id?: string; label?: string; amount_minor?: number; currency?: string; spent_on?: string; source_type?: string; treatment?: string; payer_id?: string; status?: string; confirmed_by?: string; confirmed_at?: string; created_at?: string }
+        Relationships: []
+      }
       scope_files: {
         Row: { id: string; organization_id: string; scope_id: string; object_key: string; file_name: string; content_type: string; size_bytes: number; checksum_sha256: string; status: string; created_by: string; created_at: string; finalized_at: string | null }
         Insert: { id?: string; organization_id: string; scope_id: string; object_key: string; file_name: string; content_type: string; size_bytes: number; checksum_sha256: string; status?: string; created_by: string; created_at?: string; finalized_at?: string | null }
@@ -152,6 +170,9 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      create_expense_category: { Args: { p_org: string; p_title: string; p_parent: string | null }; Returns: string }
+      record_personal_expense: { Args: { p_org: string; p_scope: string; p_category: string; p_receipt: string; p_label: string; p_amount_minor: number; p_spent_on: string; p_payer: string; p_command_key: string }; Returns: string }
+      list_finance_contributions: { Args: { p_org: string }; Returns: { user_id: string; display_name: string; amount_minor: number; can_confirm: boolean }[] }
       create_resource_scope: { Args: { p_org: string; p_kind: string; p_name: string; p_parent: string | null }; Returns: string }
       set_scope_access: { Args: { p_org: string; p_scope: string; p_user: string; p_granted: boolean; p_expected_version: number }; Returns: number }
       list_scope_access: { Args: { p_org: string }; Returns: { scope_id: string; user_id: string; granted: boolean; file_write: boolean; row_version: number }[] }

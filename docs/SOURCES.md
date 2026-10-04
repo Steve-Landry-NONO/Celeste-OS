@@ -60,3 +60,11 @@ Supabase changelog.md consulté; avis PostgreSQL 15.19/17.11 relu : aucun ltree,
 - Documentation Next.js 16.3.8 installée : Server Actions, `serverActions.bodySizeLimit` et data security. La limite de transport complète les contrôles serveur de type, signature et taille ; elle ne les remplace pas.
 
 Ces sources justifient les mécanismes techniques, pas les droits métier CELESTE. La recette SQL/API vérifie aussi que l'absence de politique Storage interdit l'upload direct aux clients authentifiés.
+
+## Vérification finance du 4 octobre 2026
+
+- Changement Data API Supabase publié le 28 avril et relu le 4 octobre : https://supabase.com/changelog/45329-breaking-change-tables-not-exposed-to-data-and-graphql-api-automatically. Les nouvelles tables publiques exigent des grants explicites, couche distincte de la RLS ; application généralisée annoncée au 30 octobre 2026. La migration CE-004 révoque les droits implicites puis accorde seulement SELECT aux authentifiés et les droits nécessaires au service.
+- PostgreSQL 15.19/17.11, avis du 25 septembre relu le 4 octobre : https://supabase.com/changelog/postgres-15-19-17-11-breaking-changes. CE-004 n'utilise ni ltree, ni PGP legacy, ni btree_gist float, ni opérateur personnalisé concerné.
+- Guides Next.js et React appliqués : lectures dans le Server Component, mutations par Server Actions réauthentifiées, données sérialisables et aucun composant client asynchrone.
+
+Ces vérifications portent sur la compatibilité technique. Les règles contribution/caisse et les habilitations viennent des décisions CELESTE et restent testées séparément.

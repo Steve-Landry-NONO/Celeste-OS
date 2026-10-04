@@ -1,6 +1,6 @@
 # CELESTE OS
 
-Version 0.1.6 · 3 octobre 2026 · Statut proposé pour revue · Responsable de validation Steve
+Version 0.1.7 · 4 octobre 2026 · Statut proposé pour revue · Responsable de validation Steve
 
 CELESTE OS centralise le pilotage de CELESTE sur téléphone et sur ordinateur. Ce dépôt prépare un pilote utilisable par Steve, Maeva et Stéphane, puis l’ouverture contrôlée aux collaborateurs et prestataires. Il concerne l’outil interne de pilotage et reste distinct du développement de la marketplace CELESTE.
 
@@ -79,3 +79,5 @@ Backend distant actuellement en pause : restauration refusée par le quota de de
 Projets et missions : [PR #6 fusionnée](https://github.com/Steve-Landry-NONO/Celeste-OS/pull/6), route `/workspace/scopes`, création et accords individuels de lecture. Révocation, version, audit du membre visé et distinction des accords conservés mais inactifs. [CI finale réussie](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37122978688) : quatre suites SQL, contrôle de sécurité sans avertissement/erreur, 26 tests unitaires, build et 14 parcours desktop/mobile sans skip. Six captures inspectées. Backend distant toujours en pause, nouvelle migration non appliquée, aucun déploiement. Les fichiers privés et capacités d’écriture restent à livrer. Voir [rapport scopes](reports/2026-10-03_SCOPES.md) et [ADR-009](docs/adr/009_SCOPED_ACCESS.md).
 
 Fichiers privés projet/mission : [PR #7 fusionnée](https://github.com/Steve-Landry-NONO/Celeste-OS/pull/7), dépôt serveur inspecté, empreinte SHA-256, bucket privé et téléchargement signé 60 secondes. La capacité de dépôt est distincte de la lecture ; aucun upload/finalize direct n'est accordé au client et la révocation est sérialisée avec la finalisation. [CI finale réussie](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37137848450) : cinq suites SQL, security advisors, 27 tests unitaires/configuration, build et 16 parcours sans skip. Voir [rapport fichiers](reports/2026-10-03_PRIVATE_FILES.md) et [ADR-010](docs/adr/010_PRIVATE_SCOPE_FILES.md). Le backend distant reste inchangé tant que VAL-002 bloque sa restauration.
+
+Finance CE-004 en revue : `/workspace/finance` crée une catégorie et confirme une dépense personnelle EUR avec justificatif privé du même projet ou de la même mission. La transaction ajoute exactement une contribution, sans mouvement de caisse ; idempotence, RLS, grants explicites et immutabilité sont dans [ADR-011](docs/adr/011_PERSONAL_EXPENSES.md). Le contrôle local passe, mais SQL et navigateur doivent encore passer en CI. Fonds, versements et remboursements restent désactivés. Voir le [rapport du 4 octobre](reports/2026-10-04_EXPENSES.md).

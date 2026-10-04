@@ -41,3 +41,7 @@ Création projets/missions et lecture explicite, accord/révocation avec version
 ## CE-003 fichiers privés — fusionné le 3 octobre 2026
 
 Bucket privé, métadonnées projet/mission, dépôt serveur contrôlé jusqu'aux octets, SHA-256 et lien signé court. Accord de dépôt distinct, prestataire limité aux missions, objets prêts immuables côté client. La revue a conduit à supprimer l'upload/finalize direct et à sérialiser la finalisation avec les révocations. PR #7 fusionnée après cinq suites SQL, security advisors, 27 tests unitaires/configuration, build et seize parcours navigateur sans skip sur pile jetable ; aucune migration distante ni publication web.
+
+## CE-004 dépenses personnelles — 4 octobre 2026, en revue
+
+Catégories dynamiques, dépense personnelle EUR confirmée, justificatif privé du même périmètre et contribution dérivée unique. RLS, grants explicites, idempotence, immutabilité et isolation organisation/projet/mission. Écran Finance responsive et scénario FIN-01 ajoutés. Contrôle local types, 24 tests domaine, 3 configuration et build passé ; SQL et navigateur en attente de CI. Caisse, versements et remboursements restent désactivés. Aucune migration distante.

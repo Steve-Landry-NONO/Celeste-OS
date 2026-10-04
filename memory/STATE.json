@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-03",
+  "updated_at": "2026-10-04",
   "timezone": "Europe/Paris",
-  "documentation_version": "0.1.6",
-  "product_status": "private_scope_files_merged_backend_paused",
+  "documentation_version": "0.1.7",
+  "product_status": "personal_expenses_local_check_passed_ci_pending_backend_paused",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -14,7 +14,7 @@
   "baseline_start": "2026-10-02",
   "baseline_end": "2026-10-15",
   "sprint": "S1",
-  "current_issue": "CE-003-private-files",
+  "current_issue": "CE-004-personal-expenses",
   "last_verified_code_sha": "3e9473d2de54602d590f9e0aabf7d14fdb21c8d9",
   "application_tests_executed": true,
   "completed": [
@@ -47,7 +47,8 @@
     "project_mission_scoped_read_four_sql_suites_security_advisors_browser14_passed",
     "scoped_read_visuals_and_inactive_grants_review_verified_PR6_merged",
     "private_scope_files_server_trusted_review_fixes_local_check_passed",
-    "private_scope_files_ci16_visuals_reviewed_PR7_merged"
+    "private_scope_files_ci16_visuals_reviewed_PR7_merged",
+    "personal_expenses_categories_receipt_contribution_written_local_check_passed"
   ],
   "blockers": [
     {
@@ -56,10 +57,10 @@
       "detail": "CELESTE OS INACTIVE ; restore refusé, quota occupé par familyroots-mvp et FamilyROOT Test. Décision nécessaire avant pause de ces projets."
     }
   ],
-  "next_action": "CE-004 : catégories, dépenses persistées et justificatifs privés sur le socle fusionné. VAL-002 attend la décision de Steve avant migrations scopes/fichiers et revalidation distante.",
+  "next_action": "Publier CE-004, exécuter SQL/RLS/advisors et navigateur dans la CI jetable, corriger les retours puis rendre la PR reviewable. VAL-002 attend toujours une décision avant toute migration distante.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
-  "active_branch": "main",
+  "active_branch": "feat/ce-004-expenses",
   "validation_issue": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/5",
   "last_verified_base_sha": "45a701b919c77c5e434279a8f362c76cbc65943e",
   "verification": {
@@ -216,14 +217,14 @@
   },
   "active_pr": null,
   "last_session": {
-    "date": "2026-10-03",
-    "report": "reports/2026-10-03_PRIVATE_FILES.md",
-    "merged": true,
-    "merge_sha": "45a701b919c77c5e434279a8f362c76cbc65943e",
+    "date": "2026-10-04",
+    "report": "reports/2026-10-04_EXPENSES.md",
+    "branch": "feat/ce-004-expenses",
+    "merged": false,
     "deployed": false,
-    "verified_code_sha": "3e9473d2de54602d590f9e0aabf7d14fdb21c8d9",
-    "ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37137848450",
-    "visual_review": "passed_desktop_mobile",
+    "local_check": "passed_types_domain24_config3_build",
+    "sql_ci": "pending",
+    "browser_ci": "pending",
     "backend": "INACTIVE_VAL002"
   },
   "backend": {
@@ -250,7 +251,8 @@
     ],
     "pending_migrations": [
       "20261003115835_project_mission_scopes",
-      "20261003160213_private_scope_files"
+      "20261003160213_private_scope_files",
+      "20261004081254_personal_expenses"
     ]
   },
   "previous_pr": {
@@ -283,11 +285,11 @@
     }
   ],
   "revised_calendar": {
-    "observed_on": "2026-10-03",
+    "observed_on": "2026-10-04",
     "technical_recipe_target": "2026-10-12",
-    "user_recipe_forecast": "2026-10-13",
-    "pilot_forecast": "2026-10-16",
-    "condition": "Backend réactivé au plus tard le 4 octobre; recalculer sinon",
+    "user_recipe_forecast": "2026-10-14",
+    "pilot_forecast": "2026-10-17",
+    "condition": "Backend réactivé au plus tard le 5 octobre à midi; ensuite décaler les deux dates d'au moins un jour par jour de blocage",
     "status": "conditional_forecast_not_release_commitment"
   }
 }
