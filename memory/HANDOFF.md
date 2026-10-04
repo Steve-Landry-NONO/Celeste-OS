@@ -1,3 +1,15 @@
+# État prioritaire — dépenses personnelles fusionnées, 4 octobre 2026
+
+PR #8 fusionnée : tête de code `446669a65feeee468f8cda3ca9680589b94357b3`, merge `0a046e3ce2a14c763e19fa8598a90d2ba724df41`. Catégories, dépense personnelle EUR, justificatif privé du même périmètre, contribution atomique unique et historique immuable sont livrés dans le dépôt. Une suspension ou un changement de rôle ne retire plus la contribution historique ; seuls les fondateurs actifs restent sélectionnables. La date civile suit le fuseau de l’organisation. Caisse, dépenses du fonds, versements et remboursements restent hors de ce lot.
+
+CI finale 37201096755 : sept migrations appliquées sur pile jetable, six suites SQL avec rollback, security advisors sans alerte, types, 24 tests domaine + 3 configuration, build et 18 parcours desktop/mobile sans skip. Artifact 11303056206 ; captures Finance desktop/mobile inspectées sans défaut bloquant. Les trois fils P1/P2 ont été corrigés et résolus par l’agent ; aucune validation humaine n’en est déduite.
+
+Backend CELESTE OS toujours INACTIVE le 4 octobre ; VAL-002 sans nouvelle réponse explicite. Le seul message Gmail retrouvé est l’email sortant VAL-001 `1a0fc206ec1ced41`, exclu avant interprétation. Aucune relance, migration distante ou publication. Prochaine tranche prête : CE-005, écritures de caisse et égalisation sans double comptage, sur CI jetable. Remboursements toujours désactivés.
+
+Calendrier : baseline 12 recette/15 pilote conservée comme référence initiale, mais prévision conditionnelle 14 recette utilisateurs/17 pilote si réactivation au plus tard le 5 à midi ; ensuite décaler d’au moins un jour par jour de blocage. Voir ADR-011 et `reports/2026-10-04_EXPENSES.md`.
+
+## Historique immédiatement précédent
+
 # État prioritaire — dépenses personnelles en CI, 4 octobre 2026
 
 Branche `feat/ce-004-expenses` créée depuis main documentaire `2b4e8868`. Catégories, dépense personnelle EUR confirmée, justificatif privé obligatoire du même périmètre et contribution dérivée unique sont écrits. RLS, grants explicites, idempotence payload, immutabilité et refus caisse/remboursement sont dans la migration `20261004081254_personal_expenses`. Route `/workspace/finance`, scénario SQL et parcours navigateur ajoutés. `npm run check` passe localement : types, 24 domaine, 3 configuration et build. Docker/PostgreSQL/Chromium absents localement ; ne pas annoncer SQL ou navigateur avant la CI.

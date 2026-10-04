@@ -3,7 +3,7 @@
   "updated_at": "2026-10-04",
   "timezone": "Europe/Paris",
   "documentation_version": "0.1.7",
-  "product_status": "personal_expenses_local_check_passed_ci_pending_backend_paused",
+  "product_status": "personal_expenses_ci_verified_merged_backend_paused",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -14,8 +14,8 @@
   "baseline_start": "2026-10-02",
   "baseline_end": "2026-10-15",
   "sprint": "S1",
-  "current_issue": "CE-004-personal-expenses",
-  "last_verified_code_sha": "3e9473d2de54602d590f9e0aabf7d14fdb21c8d9",
+  "current_issue": "CE-005-contributions-cash-ledgers",
+  "last_verified_code_sha": "446669a65feeee468f8cda3ca9680589b94357b3",
   "application_tests_executed": true,
   "completed": [
     "requirements_capture",
@@ -48,7 +48,8 @@
     "scoped_read_visuals_and_inactive_grants_review_verified_PR6_merged",
     "private_scope_files_server_trusted_review_fixes_local_check_passed",
     "private_scope_files_ci16_visuals_reviewed_PR7_merged",
-    "personal_expenses_categories_receipt_contribution_written_local_check_passed"
+    "personal_expenses_categories_receipt_contribution_written_local_check_passed",
+    "personal_expenses_sql6_browser18_visuals_reviewed_PR8_merged"
   ],
   "blockers": [
     {
@@ -57,12 +58,12 @@
       "detail": "CELESTE OS INACTIVE ; restore refusé, quota occupé par familyroots-mvp et FamilyROOT Test. Décision nécessaire avant pause de ces projets."
     }
   ],
-  "next_action": "Publier CE-004, exécuter SQL/RLS/advisors et navigateur dans la CI jetable, corriger les retours puis rendre la PR reviewable. VAL-002 attend toujours une décision avant toute migration distante.",
+  "next_action": "Démarrer CE-005 sur une branche dédiée : écritures de caisse et égalisation atomiques sans double comptage, en gardant les remboursements désactivés. VAL-002 reste requis avant toute migration distante.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
-  "active_branch": "feat/ce-004-expenses",
+  "active_branch": "main",
   "validation_issue": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/5",
-  "last_verified_base_sha": "45a701b919c77c5e434279a8f362c76cbc65943e",
+  "last_verified_base_sha": "0a046e3ce2a14c763e19fa8598a90d2ba724df41",
   "verification": {
     "domain_tests": {
       "passed": 24,
@@ -74,17 +75,17 @@
     "browser_local": "blocked_missing_playwright_chromium_before_interaction",
     "browser_ci": {
       "status": "passed",
-      "tests": 14,
+      "tests": 18,
       "skipped": 0,
-      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37122978688",
-      "verified_sha": "5d0c991fe6ee43da3c12ed0d015e436e78f096bf",
-      "artifact": 11273842937
+      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37201096755",
+      "verified_sha": "446669a65feeee468f8cda3ca9680589b94357b3",
+      "artifact": 11303056206
     },
-    "RLS": "four_SQL_suites_ci_passed_with_rollback",
+    "RLS": "six_SQL_suites_ci_passed_with_rollback",
     "mobile_native": "not_initialized",
     "deployed": false,
-    "visual_review": "scopes_admin_vendor_inactive_grants_desktop_mobile_six_captures_passed",
-    "ci_chain": "passed_five_migrations_four_sql_suites_security_advisors_types_domain24_config2_build_browser14",
+    "visual_review": "finance_personal_expense_desktop_mobile_passed",
+    "ci_chain": "passed_seven_migrations_six_sql_suites_security_advisors_types_domain24_config3_build_browser18",
     "browser_ci_previous": {
       "status": "passed",
       "tests": 2,
@@ -92,7 +93,7 @@
       "verified_sha": "c6b01e7a21cd1f0853316610e2457ee53b352a32"
     },
     "web_configuration_tests": {
-      "passed": 2,
+      "passed": 3,
       "failed": 0
     },
     "auth_browser_ci": {
@@ -213,6 +214,25 @@
       "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37110737675",
       "verified_sha": "2582521f2d435e910a790ef0219e5ae78e357c33",
       "artifact": 11269332942
+    },
+    "personal_expenses": {
+      "local_check": "passed_types_domain24_config3_build",
+      "sql_local": "not_executed_no_docker_or_psql",
+      "ci": "passed",
+      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37201096755",
+      "verified_code_sha": "446669a65feeee468f8cda3ca9680589b94357b3",
+      "browser_total": 18,
+      "skipped": 0,
+      "sql_suites": 6,
+      "security_advisors": "no_warn_or_error",
+      "review": "P1_patch_prefix_and_historical_contributors_P2_org_timezone_corrected_tested_threads_resolved_by_agent",
+      "remote_migration": "not_applied_backend_paused",
+      "migration_version": "20261004081254",
+      "artifact": 11303056206,
+      "visual_review": "desktop_mobile_finance_passed",
+      "merged": true,
+      "merge_sha": "0a046e3ce2a14c763e19fa8598a90d2ba724df41",
+      "deployed": false
     }
   },
   "active_pr": null,
@@ -220,11 +240,15 @@
     "date": "2026-10-04",
     "report": "reports/2026-10-04_EXPENSES.md",
     "branch": "feat/ce-004-expenses",
-    "merged": false,
+    "merged": true,
+    "merge_sha": "0a046e3ce2a14c763e19fa8598a90d2ba724df41",
     "deployed": false,
     "local_check": "passed_types_domain24_config3_build",
-    "sql_ci": "pending",
-    "browser_ci": "pending",
+    "sql_ci": "passed_six_suites_rollback",
+    "browser_ci": "passed_18_zero_skip",
+    "ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37201096755",
+    "verified_code_sha": "446669a65feeee468f8cda3ca9680589b94357b3",
+    "artifact": 11303056206,
     "backend": "INACTIVE_VAL002"
   },
   "backend": {
@@ -282,6 +306,10 @@
     {
       "number": 7,
       "sha": "45a701b919c77c5e434279a8f362c76cbc65943e"
+    },
+    {
+      "number": 8,
+      "sha": "0a046e3ce2a14c763e19fa8598a90d2ba724df41"
     }
   ],
   "revised_calendar": {
