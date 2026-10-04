@@ -42,6 +42,7 @@ jobs:
           psql "$CELESTE_E2E_LOCAL_DATABASE_URL" -X -v ON_ERROR_STOP=1 -f supabase/tests/scoped_access.sql
           psql "$CELESTE_E2E_LOCAL_DATABASE_URL" -X -v ON_ERROR_STOP=1 -f supabase/tests/private_scope_files.sql
           psql "$CELESTE_E2E_LOCAL_DATABASE_URL" -X -v ON_ERROR_STOP=1 -f supabase/tests/personal_expenses.sql
+          psql "$CELESTE_E2E_LOCAL_DATABASE_URL" -X -v ON_ERROR_STOP=1 -f supabase/tests/cash_equalization.sql
       - name: Verify Supabase security advisors
         run: npx supabase db advisors --local --type security --level warn --fail-on warn
       - run: npm run check
