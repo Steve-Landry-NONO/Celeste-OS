@@ -53,25 +53,7 @@ select pg_temp.assert_ok(public.record_personal_expense(
 select pg_temp.assert_ok((select count(*)=1 from public.expenses),'Retry did not duplicate expense');
 select pg_temp.assert_ok((select amount_minor=12345 from public.list_finance_contributions(current_setting('test.fin_org')::uuid)
   where user_id=current_setting('test.fin_owner')::uuid),'Finance summary uses derived contribution');
-select public.manage_membership(
-  current_setting('test.fin_org')::uuid,current_setting('test.fin_finance')::uuid,
-  'founder_admin','active',1
-);
-select public.manage_membership(
-  current_setting('test.fin_org')::uuid,current_setting('test.fin_owner')::uuid,
-  'member','suspended',1
-);
-select set_config('request.jwt.claims',json_build_object('sub',current_setting('test.fin_finance'),'role','authenticated')::text,true);
-select pg_temp.assert_ok((select amount_minor=12345 and not can_confirm
-  from public.list_finance_contributions(current_setting('test.fin_org')::uuid)
-  where user_id=current_setting('test.fin_owner')::uuid),
-  'Historical contribution remains visible after payer suspension');
-select pg_temp.assert_ok((select amount_minor=0 and can_confirm
-  from public.list_finance_contributions(current_setting('test.fin_org')::uuid)
-  where user_id=current_setting('test.fin_finance')::uuid),
-  'Only an active founder remains eligible as payer');
-
-do $begin
+do $$begin
   begin perform public.record_personal_expense(
     current_setting('test.fin_org')::uuid,current_setting('test.fin_project')::uuid,
     current_setting('test.fin_category')::uuid,current_setting('test.fin_receipt')::uuid,
@@ -103,6 +85,24 @@ do $begin
     current_setting('test.fin_owner')::uuid,'confirmed',current_setting('test.fin_owner')::uuid
   ); raise exception 'Direct expense insert accepted'; exception when insufficient_privilege then null; end;
 end $$;
+
+select public.manage_membership(
+  current_setting('test.fin_org')::uuid,current_setting('test.fin_finance')::uuid,
+  'founder_admin','active',1
+);
+select public.manage_membership(
+  current_setting('test.fin_org')::uuid,current_setting('test.fin_owner')::uuid,
+  'member','suspended',1
+);
+select set_config('request.jwt.claims',json_build_object('sub',current_setting('test.fin_finance'),'role','authenticated')::text,true);
+select pg_temp.assert_ok((select amount_minor=12345 and not can_confirm
+  from public.list_finance_contributions(current_setting('test.fin_org')::uuid)
+  where user_id=current_setting('test.fin_owner')::uuid),
+  'Historical contribution remains visible after payer suspension');
+select pg_temp.assert_ok((select amount_minor=0 and can_confirm
+  from public.list_finance_contributions(current_setting('test.fin_org')::uuid)
+  where user_id=current_setting('test.fin_finance')::uuid),
+  'Only an active founder remains eligible as payer');
 
 select set_config('request.jwt.claims',json_build_object('sub',current_setting('test.fin_member'),'role','authenticated','user_metadata',json_build_object('role','founder_finance'))::text,true);
 select pg_temp.assert_ok((select count(*)=0 from public.expenses),'Member cannot read finance through metadata');

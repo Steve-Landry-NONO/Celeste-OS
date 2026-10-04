@@ -199,7 +199,7 @@ $$;
 
 create function private_celeste.list_finance_contributions(p_org uuid)
 returns table(user_id uuid,display_name text,amount_minor bigint,can_confirm boolean)
-language plpgsql stable security definer set search_path='' as $
+language plpgsql stable security definer set search_path='' as $$
 begin
   if not private_celeste.can(p_org,'finance.read') then
     raise exception 'Permission denied' using errcode='42501';
@@ -225,7 +225,7 @@ begin
     group by people.user_id,p.display_name,eligible.user_id
     order by p.display_name,people.user_id;
 end;
-$;
+$$;
 
 create function public.create_expense_category(p_org uuid,p_title text,p_parent uuid default null)
 returns uuid language sql security invoker set search_path='' as $$
