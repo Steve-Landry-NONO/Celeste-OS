@@ -141,14 +141,18 @@ declare
   v_payload jsonb;
   v_previous private_celeste.finance_commands%rowtype;
   v_total numeric;
+  v_timezone text;
+  v_today date;
 begin
-  perform 1 from public.organizations where id=p_org for update;
+  select o.timezone into v_timezone
+    from public.organizations o where o.id=p_org for update;
   if not private_celeste.can(p_org,'finance.confirm') then
     raise exception 'Permission denied' using errcode='42501';
   end if;
+  v_today:=(statement_timestamp() at time zone v_timezone)::date;
   if p_command_key is null or p_label is null or char_length(btrim(p_label)) not between 2 and 160
     or p_amount_minor is null or p_amount_minor not between 1 and 9007199254740991
-    or p_spent_on is null or p_spent_on>current_date
+    or p_spent_on is null or p_spent_on>v_today
     or not exists(select 1 from public.resource_scopes where id=p_scope and organization_id=p_org)
     or not exists(select 1 from public.expense_categories where id=p_category and organization_id=p_org and active)
     or not exists(select 1 from public.scope_files where id=p_receipt and organization_id=p_org and scope_id=p_scope and status='ready')
@@ -194,24 +198,34 @@ end;
 $$;
 
 create function private_celeste.list_finance_contributions(p_org uuid)
-returns table(user_id uuid,display_name text,amount_minor bigint)
-language plpgsql stable security definer set search_path='' as $$
+returns table(user_id uuid,display_name text,amount_minor bigint,can_confirm boolean)
+language plpgsql stable security definer set search_path='' as $
 begin
   if not private_celeste.can(p_org,'finance.read') then
     raise exception 'Permission denied' using errcode='42501';
   end if;
   return query
-    select m.user_id,p.display_name,coalesce(sum(c.signed_amount_minor),0)::bigint
-    from public.memberships m
-    join public.profiles p on p.id=m.user_id
+    with eligible as (
+      select m.user_id
+      from public.memberships m
+      where m.organization_id=p_org and m.status='active'
+        and m.role in ('founder_admin','founder_finance')
+    ), people as (
+      select e.user_id from eligible e
+      union
+      select c.founder_id from public.contribution_entries c where c.organization_id=p_org
+    )
+    select people.user_id,p.display_name,coalesce(sum(c.signed_amount_minor),0)::bigint,
+      (eligible.user_id is not null) as can_confirm
+    from people
+    join public.profiles p on p.id=people.user_id
+    left join eligible on eligible.user_id=people.user_id
     left join public.contribution_entries c
-      on c.organization_id=m.organization_id and c.founder_id=m.user_id
-    where m.organization_id=p_org and m.status='active'
-      and m.role in ('founder_admin','founder_finance')
-    group by m.user_id,p.display_name
-    order by p.display_name,m.user_id;
+      on c.organization_id=p_org and c.founder_id=people.user_id
+    group by people.user_id,p.display_name,eligible.user_id
+    order by p.display_name,people.user_id;
 end;
-$$;
+$;
 
 create function public.create_expense_category(p_org uuid,p_title text,p_parent uuid default null)
 returns uuid language sql security invoker set search_path='' as $$
@@ -226,7 +240,7 @@ create function public.record_personal_expense(
   );
 $$;
 create function public.list_finance_contributions(p_org uuid)
-returns table(user_id uuid,display_name text,amount_minor bigint)
+returns table(user_id uuid,display_name text,amount_minor bigint,can_confirm boolean)
 language sql stable security invoker set search_path='' as $$
   select * from private_celeste.list_finance_contributions(p_org);
 $$;
