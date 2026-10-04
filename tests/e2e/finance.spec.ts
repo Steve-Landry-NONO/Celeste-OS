@@ -82,6 +82,7 @@ test("dépense personnelle : catégorie, justificatif et contribution unique",as
   await page.getByLabel("Adresse email").fill(emails[1]);
   await page.getByLabel("Mot de passe",{exact:true}).fill(password);
   await page.getByRole("button",{name:"Se connecter",exact:true}).click();
+  await expect(page).toHaveURL(/\/workspace$/);
   await expect(page.getByRole("link",{name:"Finance et contributions",exact:true})).toHaveCount(0);
   await page.goto("/workspace/finance?organization="+organization);
   await expect(page.getByRole("heading",{name:"Accès réservé"})).toBeVisible();
