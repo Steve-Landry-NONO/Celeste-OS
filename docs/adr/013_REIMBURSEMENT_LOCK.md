@@ -17,7 +17,7 @@ Chaque organisation possède une politique `reimbursement_policies` versionnée.
 - tolérance d’égalité de zéro centime ;
 - réserve, approbateur et référence de décision absents.
 
-La ligne est lisible uniquement avec `finance.read`, isolée par RLS, et immuable même pour le rôle de service. La base refuse toute valeur `enabled`, toute réserve ou approbation. Aucun RPC de demande, d’activation ou de paiement n’est exposé. La création de la politique ne produit ni coût, ni contribution, ni mouvement de caisse.
+La ligne est lisible uniquement avec `finance.read`, isolée par RLS, et immuable même pour le rôle de service. Une suppression directe et un `TRUNCATE` sont refusés ; seule la suppression contrôlée de l’organisation parente emporte sa politique. La base refuse toute valeur `enabled`, toute réserve ou approbation. Aucun RPC de demande, d’activation ou de paiement n’est exposé. La création de la politique ne produit ni coût, ni contribution, ni mouvement de caisse.
 
 L’activation future ne sera pas une mise à jour silencieuse. Elle exigera une décision explicite répondant à Q-002 et Q-003, puis une migration revue qui introduira une nouvelle version de politique et les commandes métier correspondantes. Les anciennes contributions ne seront jamais requalifiées automatiquement.
 
