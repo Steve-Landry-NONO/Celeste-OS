@@ -111,6 +111,11 @@ do $service_guards$begin
   exception when object_not_in_prerequisite_state then null;
   end;
   begin
+    truncate public.reimbursement_policies;
+    raise exception 'Disabled policies truncated';
+  exception when object_not_in_prerequisite_state then null;
+  end;
+  begin
     insert into public.reimbursement_policies(organization_id,version,status)
     values(current_setting('test.reimbursement_org')::uuid,2,'enabled');
     raise exception 'Enabled policy inserted';
