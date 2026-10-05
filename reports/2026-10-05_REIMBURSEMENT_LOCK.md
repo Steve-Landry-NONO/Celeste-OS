@@ -29,3 +29,8 @@ Le projet Supabase CELESTE OS `vxdneuoglidyngzdfmjc` reste INACTIVE. Les projets
 La limite conditionnelle du 5 octobre à midi est dépassée sans backend réactivé. La baseline reste recette anticipée le 12 octobre et pilote le 15 à titre de comparaison. Prévision distante révisée : recette utilisateurs le 15 octobre et pilote le 18 si le backend est réactivé au plus tard le 6 octobre à midi ; ajouter au moins un jour aux deux dates par jour de blocage supplémentaire. La recette technique sur pile jetable reste visée le 12.
 
 Le risque principal est l’absence de revalidation distante et d’onboarding avant recette. Le verrou ne préjuge pas de Q-002 ou Q-003 ; CE-017 reste interdit jusqu’à une décision explicite.
+
+
+## Fusion
+
+PR #10 fusionnée le 5 octobre en `8d803dfe6858ae05dfd3468edfb277ce0699e9c6` sous l’autorisation EV-0016, après CI finale 37311940124 verte sur la tête documentaire. Cette fusion ne constitue ni une validation de Q-002/Q-003, ni une activation, ni un déploiement.
