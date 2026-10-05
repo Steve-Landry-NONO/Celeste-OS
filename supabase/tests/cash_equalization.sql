@@ -90,7 +90,7 @@ select public.record_fund_deposit(
   current_setting('test.cash_steve')::uuid,'Versement proche limite',
   4503599627370495,current_date,gen_random_uuid()
 );
-do $begin
+do $overflow$begin
   begin perform public.record_fund_deposit(
     current_setting('test.cash_org')::uuid,current_setting('test.cash_overflow_account')::uuid,
     current_setting('test.cash_stephane')::uuid,'Dépassement total organisation',
@@ -98,13 +98,13 @@ do $begin
   ); raise exception 'Unsafe organization aggregate accepted';
   exception when numeric_value_out_of_range then null;
   end;
-end $;
+end $overflow$;
 select pg_temp.assert_ok(
   (select count(*)=3 from public.fund_deposits),
   'Organization aggregate overflow is rejected atomically across founders and accounts'
 );
 
-do $begin
+do $checks$begin
   begin perform public.record_fund_deposit(
     current_setting('test.cash_org')::uuid,current_setting('test.cash_account')::uuid,
     current_setting('test.cash_steve')::uuid,'Versement Steve',90001,current_date,
@@ -115,7 +115,7 @@ do $begin
     current_setting('test.cash_category')::uuid,current_setting('test.cash_receipt')::uuid,
     current_setting('test.cash_account')::uuid,'Solde insuffisant',150001,current_date,gen_random_uuid()
   ); raise exception 'Overdraft accepted'; exception when check_violation then null; end;
-end $$;
+end $checks$;
 
 select public.record_supplier_refund(
   current_setting('test.cash_org')::uuid,current_setting('test.cash_fund_expense')::uuid,
