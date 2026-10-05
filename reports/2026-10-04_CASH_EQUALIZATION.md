@@ -3,7 +3,7 @@
 Date : 4 octobre 2026  
 Branche : `feat/ce-005-cash-ledger`  
 PR : [#9](https://github.com/Steve-Landry-NONO/Celeste-OS/pull/9)  
-État : implémentation vérifiée en CI ; PR reviewable, non déployée
+État : implémentation vérifiée en CI et fusionnée par PR #9 ; non déployée
 
 ## Résultat
 
@@ -43,4 +43,4 @@ La cible initiale reste le 12 octobre pour la recette anticipée et le 15 pour l
 
 ## Prochaine action
 
-Mettre à jour la mémoire et rendre la PR reviewable. Fusionner uniquement sous l’autorisation permanente documentée et après le passage final incluant les documents. VAL-002 reste requise avant toute migration distante.
+Démarrer CE-006 : verrou persistant du régime de remboursement futur, sans endpoint d’activation ni remboursement. VAL-002 reste requise avant toute migration distante.
