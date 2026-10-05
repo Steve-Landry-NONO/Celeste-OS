@@ -1,8 +1,8 @@
 # État prioritaire — caisse et égalisation en PR #9, 5 octobre 2026
 
-CE-005 est implémenté sur `feat/ce-005-cash-ledger` ; tête de code vérifiée `566c79c64159060d58c97c4261d480f33b388881`. La CI 37216204521 passe : huit migrations jetables, sept suites SQL avec rollback, advisors, contrat TypeScript, 24 tests domaine, 3 configuration, build et 18 parcours desktop/mobile sans skip. Artifact 11308397059, captures Finance inspectées.
+CE-005 est implémenté sur `feat/ce-005-cash-ledger` ; tête de code vérifiée `7a024d1945ec346f1da4e7c36839d9310bf4fc98`. La CI 37286210732 passe : huit migrations jetables, sept suites SQL avec rollback, advisors, contrat TypeScript, 24 tests domaine, 3 configuration, build et 18 parcours desktop/mobile sans skip. Artifact 11334402484, captures Finance inspectées.
 
-Les effets financiers sont séparés : dépense personnelle = coût + contribution ; versement = contribution + caisse ; dépense du fonds = coût - caisse ; avoir fournisseur = baisse du coût net + retour sur la même caisse. Aucun double comptage et aucun remboursement de personne. Écritures immuables, idempotence et isolation organisation/périmètre sont testées.
+Les effets financiers sont séparés : dépense personnelle = coût + contribution ; versement = contribution + caisse ; dépense du fonds = coût - caisse ; avoir fournisseur = baisse du coût net + retour sur la même caisse. Aucun double comptage et aucun remboursement de personne. Écritures immuables, idempotence et isolation organisation/périmètre sont testées. La revue P2 sur les agrégats hors plage sûre est corrigée par une garde transactionnelle et une régression inter-fondateurs/inter-caisses ; fil répondu et résolu après CI verte.
 
 Le 5 octobre, PR #9, reviews et threads ne contiennent aucune réponse humaine. VAL-002 reste ouverte sans commentaire. Gmail `stevelandryk89@gmail.com` ne retourne que le message sortant `1a0fc206ec1ced41`, exclu via EV-0003 ; aucune relance. CELESTE OS demeure INACTIVE, les deux projets FamilyRoot ACTIVE_HEALTHY et inchangés. Aucune migration distante ni publication.
 
