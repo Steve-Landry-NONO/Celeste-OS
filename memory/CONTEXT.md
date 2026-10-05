@@ -21,3 +21,7 @@ Lire STATE et HANDOFF pour l’état mutable. Les décisions et specs priment su
 ## Actualisation après cadrage
 
 Le dépôt Celeste-OS est confirmé et accessible. Steve autorise plusieurs cycles quotidiens dès aujourd’hui, demandes de validation à lui seul par email et historique GitHub avec provenance. Le silence n’est pas un accord.
+
+## Actualisation CE-005 — 5 octobre 2026
+
+La caisse et l’égalisation sont implémentées dans PR #9 et vérifiées sur Supabase jetable par CI 37216204521. Les quatre effets financiers restent distincts et atomiques ; les remboursements de personnes demeurent désactivés. Aucun montant réel, solde d’ouverture, déploiement ou migration distante n’est déduit. VAL-002 est toujours sans réponse humaine ; le message Gmail sortant connu est exclu et aucune relance n’a été envoyée.
