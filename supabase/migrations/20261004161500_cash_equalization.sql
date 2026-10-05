@@ -131,7 +131,7 @@ create trigger cash_entries_immutable before update or delete on public.cash_ent
   for each row execute function private_celeste.reject_confirmed_finance_mutation();
 
 create function private_celeste.reject_unsafe_finance_aggregate()
-returns trigger language plpgsql security definer set search_path='' as $
+returns trigger language plpgsql security definer set search_path='' as $aggregate$
 declare v_total numeric;
 begin
   case tg_table_name
@@ -161,7 +161,7 @@ begin
   end if;
   return new;
 end;
-$;
+$aggregate$;
 revoke all on function private_celeste.reject_unsafe_finance_aggregate()
   from public,anon,authenticated;
 
