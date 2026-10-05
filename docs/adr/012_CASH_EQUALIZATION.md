@@ -1,7 +1,7 @@
 # ADR-012 — Caisse et égalisation par écritures distinctes
 
 Date : 4 octobre 2026  
-Statut : implémenté et vérifié en CI sur la branche CE-005
+Statut : implémenté, vérifié et fusionné par PR #9
 
 ## Décision
 
