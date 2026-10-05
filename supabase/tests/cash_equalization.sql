@@ -82,28 +82,6 @@ select pg_temp.assert_ok(public.record_fund_deposit(
 )=current_setting('test.cash_deposit_steve')::uuid,'Identical deposit retry returns the same result');
 select pg_temp.assert_ok((select count(*)=2 from public.fund_deposits),'Deposit retry did not duplicate any effect');
 
-select set_config('test.cash_overflow_account',public.create_cash_account(
-  current_setting('test.cash_org')::uuid,'Caisse secondaire'
-)::text,true);
-select public.record_fund_deposit(
-  current_setting('test.cash_org')::uuid,current_setting('test.cash_account')::uuid,
-  current_setting('test.cash_steve')::uuid,'Versement proche limite',
-  4503599627370495,current_date,gen_random_uuid()
-);
-do $overflow$begin
-  begin perform public.record_fund_deposit(
-    current_setting('test.cash_org')::uuid,current_setting('test.cash_overflow_account')::uuid,
-    current_setting('test.cash_stephane')::uuid,'Dépassement total organisation',
-    4503599627370495,current_date,gen_random_uuid()
-  ); raise exception 'Unsafe organization aggregate accepted';
-  exception when numeric_value_out_of_range then null;
-  end;
-end $overflow$;
-select pg_temp.assert_ok(
-  (select count(*)=3 from public.fund_deposits),
-  'Organization aggregate overflow is rejected atomically across founders and accounts'
-);
-
 do $checks$begin
   begin perform public.record_fund_deposit(
     current_setting('test.cash_org')::uuid,current_setting('test.cash_account')::uuid,
@@ -133,7 +111,29 @@ do $$begin
     current_setting('test.cash_org')::uuid,current_setting('test.cash_account')::uuid,
     current_setting('test.cash_steve')::uuid,'Date future',100,current_date+1,gen_random_uuid()
   ); raise exception 'Future deposit accepted'; exception when invalid_parameter_value then null; end;
-end $$;
+end $;
+
+select set_config('test.cash_overflow_account',public.create_cash_account(
+  current_setting('test.cash_org')::uuid,'Caisse secondaire'
+)::text,true);
+select public.record_fund_deposit(
+  current_setting('test.cash_org')::uuid,current_setting('test.cash_account')::uuid,
+  current_setting('test.cash_steve')::uuid,'Versement proche limite',
+  4503599627370495,current_date,gen_random_uuid()
+);
+do $overflow$begin
+  begin perform public.record_fund_deposit(
+    current_setting('test.cash_org')::uuid,current_setting('test.cash_overflow_account')::uuid,
+    current_setting('test.cash_stephane')::uuid,'Dépassement total organisation',
+    4503599627370495,current_date,gen_random_uuid()
+  ); raise exception 'Unsafe organization aggregate accepted';
+  exception when numeric_value_out_of_range then null;
+  end;
+end $overflow$;
+select pg_temp.assert_ok(
+  (select count(*)=3 from public.fund_deposits),
+  'Organization aggregate overflow is rejected atomically across founders and accounts'
+);
 
 select set_config('request.jwt.claims',json_build_object('sub',current_setting('test.cash_member'),'role','authenticated','user_metadata',json_build_object('role','founder_finance'))::text,true);
 select pg_temp.assert_ok((select count(*)=0 from public.cash_accounts),'Member cannot read cash accounts through metadata');
