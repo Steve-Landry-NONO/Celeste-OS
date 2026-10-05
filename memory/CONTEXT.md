@@ -25,3 +25,8 @@ Le dépôt Celeste-OS est confirmé et accessible. Steve autorise plusieurs cycl
 ## Actualisation CE-005 — 5 octobre 2026
 
 La caisse et l’égalisation sont implémentées dans PR #9 et vérifiées sur Supabase jetable par CI 37216204521. Les quatre effets financiers restent distincts et atomiques ; les remboursements de personnes demeurent désactivés. Aucun montant réel, solde d’ouverture, déploiement ou migration distante n’est déduit. VAL-002 est toujours sans réponse humaine ; le message Gmail sortant connu est exclu et aucune relance n’a été envoyée.
+
+
+## Actualisation CE-006 — 5 octobre 2026
+
+PR #10 persiste le verrou des remboursements : politique versionnée désactivée, immuable et isolée, visible en lecture Finance sans commande d’activation ou de paiement. Q-002 et Q-003 restent ouvertes ; aucune contribution n’est requalifiée. Le backend reste INACTIVE et la prévision distante passe au 15 octobre pour la recette utilisateurs et au 18 pour le pilote si réactivation avant le 6 à midi.
