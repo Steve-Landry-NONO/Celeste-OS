@@ -46,6 +46,8 @@ Après la troisième opération, Steve doit encore apporter 900 euros et Stépha
 
 ## Régime de remboursements futurs
 
+Pour le pilote, cet état est persisté par organisation dans une politique versionnée strictement `disabled`. La ligne est immuable et aucune commande de demande, activation ou paiement n’est exposée. Une activation future exige une nouvelle décision explicite et une migration revue ; elle ne peut pas être obtenue par un réglage client ou une mise à jour silencieuse.
+
 Le régime démarre désactivé pour les fondateurs. Son activation nécessite une décision datée des fondateurs habilités, une période d’équilibrage identifiée, l’égalité constatée et un seuil de réserve de caisse défini. La tolérance d’égalité proposée est zéro centime pour le pilote. Le seuil « assez dans la caisse » ne peut être inventé : il reste un paramètre à décider avant activation.
 
 L’activation établit la date d’effet, les bénéficiaires, les dépenses éligibles, les approbateurs et le seuil de réserve. Une nouvelle dépense personnelle éligible peut prendre le traitement « avance remboursable » : elle augmente les coûts et la dette envers le payeur, mais ne modifie pas sa contribution. Cette règle maintient l’égalité initiale.
