@@ -130,6 +130,50 @@ create trigger supplier_refunds_immutable before update or delete on public.supp
 create trigger cash_entries_immutable before update or delete on public.cash_entries
   for each row execute function private_celeste.reject_confirmed_finance_mutation();
 
+create function private_celeste.reject_unsafe_finance_aggregate()
+returns trigger language plpgsql security definer set search_path='' as $
+declare v_total numeric;
+begin
+  case tg_table_name
+    when 'contribution_entries' then
+      select coalesce(sum(c.signed_amount_minor),0)+new.signed_amount_minor into v_total
+        from public.contribution_entries c where c.organization_id=new.organization_id;
+    when 'cash_entries' then
+      select coalesce(sum(c.signed_amount_minor),0)+new.signed_amount_minor into v_total
+        from public.cash_entries c where c.organization_id=new.organization_id;
+    when 'expenses' then
+      select coalesce((select sum(e.amount_minor) from public.expenses e
+          where e.organization_id=new.organization_id),0)
+        -coalesce((select sum(r.amount_minor) from public.supplier_refunds r
+          where r.organization_id=new.organization_id),0)
+        +new.amount_minor into v_total;
+    when 'supplier_refunds' then
+      select coalesce((select sum(e.amount_minor) from public.expenses e
+          where e.organization_id=new.organization_id),0)
+        -coalesce((select sum(r.amount_minor) from public.supplier_refunds r
+          where r.organization_id=new.organization_id),0)
+        -new.amount_minor into v_total;
+    else
+      raise exception 'Unsupported finance aggregate' using errcode='55000';
+  end case;
+  if v_total not between -9007199254740991 and 9007199254740991 then
+    raise exception 'Finance aggregate exceeds safe integer range' using errcode='22003';
+  end if;
+  return new;
+end;
+$;
+revoke all on function private_celeste.reject_unsafe_finance_aggregate()
+  from public,anon,authenticated;
+
+create trigger contribution_entries_safe_aggregate before insert on public.contribution_entries
+  for each row execute function private_celeste.reject_unsafe_finance_aggregate();
+create trigger cash_entries_safe_aggregate before insert on public.cash_entries
+  for each row execute function private_celeste.reject_unsafe_finance_aggregate();
+create trigger expenses_safe_aggregate before insert on public.expenses
+  for each row execute function private_celeste.reject_unsafe_finance_aggregate();
+create trigger supplier_refunds_safe_aggregate before insert on public.supplier_refunds
+  for each row execute function private_celeste.reject_unsafe_finance_aggregate();
+
 create function private_celeste.create_cash_account(p_org uuid,p_name text)
 returns uuid language plpgsql security definer set search_path='' as $$
 declare v_id uuid;
