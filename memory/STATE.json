@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T12:44:00Z",
+  "updated_at": "2026-10-05T12:54:00Z",
   "timezone": "Europe/Paris",
   "documentation_version": "0.1.10",
-  "product_status": "reimbursement_lock_verified_reviewable_backend_paused",
+  "product_status": "reimbursement_lock_merged_backend_paused",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -14,7 +14,7 @@
   "baseline_start": "2026-10-02",
   "baseline_end": "2026-10-15",
   "sprint": "S1",
-  "current_issue": "CE-006-reimbursement-model-lock",
+  "current_issue": "CE-007-tasks-today-persistence",
   "last_verified_code_sha": "1c8ea1d9809a348301285866c25389c723c2bb4b",
   "application_tests_executed": "CI 37310891629: nine migrations, eight SQL rollback suites, security advisors, types, domain24, config3, Next build, Playwright18 zero skip",
   "completed": [
@@ -53,7 +53,8 @@
     "cash_equalization_sql7_browser18_visuals_reviewed_PR9",
     "cash_equalization_safe_aggregate_review_fixed",
     "cash_equalization_safe_aggregates_PR9_merged",
-    "reimbursement_lock_sql8_browser18_visuals_reviewed_PR10"
+    "reimbursement_lock_sql8_browser18_visuals_reviewed_PR10",
+    "reimbursement_lock_PR10_merged"
   ],
   "blockers": [
     {
@@ -62,12 +63,12 @@
       "detail": "CELESTE OS INACTIVE ; restore refusé, quota occupé par familyroots-mvp et FamilyROOT Test. Décision nécessaire avant pause de ces projets."
     }
   ],
-  "next_action": "Vérifier le check final de la tête documentaire et les reviews de PR #10, puis fusionner sous EV-0016 si aucun blocage. VAL-002 reste requis avant toute migration distante.",
-  "reimbursement_regime": "disabled_pending_explicit_policy",
+  "next_action": "Démarrer CE-007 depuis main : phases, tâches persistées et Aujourd’hui, sans modifier le régime de remboursement. VAL-002 reste requis avant toute migration distante.",
+  "reimbursement_regime": "disabled_persisted_pending_explicit_policy",
   "real_finance_data": "not_provided",
-  "active_branch": "feat/ce-006-reimbursement-lock",
+  "active_branch": "main",
   "validation_issue": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/5",
-  "last_verified_base_sha": "66aa33eca252a73c9df32a8dbf8dad49ccef98c0",
+  "last_verified_base_sha": "8d803dfe6858ae05dfd3468edfb277ce0699e9c6",
   "verification": {
     "domain_tests": {
       "passed": 24,
@@ -249,7 +250,7 @@
       "merge_sha": "5df68984b5675297bfabc0bc66c0722b9bdf5bc9"
     },
     "reimbursement_lock": {
-      "status": "ci_verified_reviewable",
+      "status": "ci_verified_merged",
       "pr": 10,
       "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37310891629",
       "verified_code_sha": "1c8ea1d9809a348301285866c25389c723c2bb4b",
@@ -262,20 +263,18 @@
       "visual_review": "desktop_mobile_finance_passed",
       "remote_migration": "not_applied_backend_paused",
       "deployed": false,
-      "first_ci": "37310020169_failed_cleanup_then_fixed"
+      "first_ci": "37310020169_failed_cleanup_then_fixed",
+      "merged": true,
+      "merge_sha": "8d803dfe6858ae05dfd3468edfb277ce0699e9c6",
+      "final_ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37311940124"
     }
   },
-  "active_pr": {
-    "number": 10,
-    "url": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/10",
-    "status": "reviewable_code_ci_passed_final_docs_check_pending",
-    "head_sha": "1c8ea1d9809a348301285866c25389c723c2bb4b"
-  },
+  "active_pr": null,
   "last_session": {
     "date": "2026-10-05",
     "report": "reports/2026-10-05_REIMBURSEMENT_LOCK.md",
     "branch": "feat/ce-006-reimbursement-lock",
-    "merged": false,
+    "merged": true,
     "deployed": false,
     "local_check": "covered_by_green_CI",
     "sql_ci": "passed_eight_suites_rollback",
@@ -285,7 +284,10 @@
     "artifact": 11345941729,
     "backend": "INACTIVE_VAL002",
     "review": "self_review_truncate_and_missing_policy_hardened",
-    "first_ci": "37310020169_cleanup_failure_fixed_by_controlled_parent_cascade"
+    "first_ci": "37310020169_cleanup_failure_fixed_by_controlled_parent_cascade",
+    "merge_sha": "8d803dfe6858ae05dfd3468edfb277ce0699e9c6",
+    "final_ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37311940124",
+    "final_head_sha": "778c9b1694be222f95e80874e1826d561f4f289e"
   },
   "backend": {
     "provider": "supabase",
@@ -318,10 +320,10 @@
     ]
   },
   "previous_pr": {
-    "url": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/2",
+    "url": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/10",
     "status": "merged",
-    "merge_commit": "bb7f3a11e6c64acdc2d3548d2c96481727be1bc6",
-    "observed_at": "2026-10-03T08:18:37Z",
+    "merge_commit": "8d803dfe6858ae05dfd3468edfb277ce0699e9c6",
+    "observed_at": "2026-10-05T12:53:03Z",
     "human_business_approval_inferred": false
   },
   "merged_prs": [
@@ -352,6 +354,10 @@
     {
       "number": 9,
       "sha": "5df68984b5675297bfabc0bc66c0722b9bdf5bc9"
+    },
+    {
+      "number": 10,
+      "sha": "8d803dfe6858ae05dfd3468edfb277ce0699e9c6"
     }
   ],
   "revised_calendar": {
