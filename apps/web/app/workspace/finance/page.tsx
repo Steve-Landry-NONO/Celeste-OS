@@ -24,7 +24,7 @@ export default async function Finance({searchParams}:{searchParams:Promise<{orga
   if (error || !user) redirect("/login");
   const {organization:org}=await searchParams;
   if (!org || !/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(org)) redirect("/workspace");
-  const [actor,organization,scopes,categories,receipts,expenses,contributions,accounts,deposits,cashEntries,refunds,totals]=await Promise.all([
+  const [actor,organization,scopes,categories,receipts,expenses,contributions,accounts,deposits,cashEntries,refunds,policy,totals]=await Promise.all([
     client.from("memberships").select("role,status").eq("organization_id",org).eq("user_id",user.id).maybeSingle(),
     client.from("organizations").select("name,timezone").eq("id",org).maybeSingle(),
     client.from("resource_scopes").select("id,kind,name").eq("organization_id",org).order("created_at"),
@@ -36,11 +36,12 @@ export default async function Finance({searchParams}:{searchParams:Promise<{orga
     client.from("fund_deposits").select("id,cash_account_id,founder_id,label,amount_minor,deposited_on").eq("organization_id",org).order("deposited_on",{ascending:false}),
     client.from("cash_entries").select("cash_account_id,signed_amount_minor").eq("organization_id",org),
     client.from("supplier_refunds").select("id,expense_id,label,amount_minor,received_on").eq("organization_id",org).order("received_on",{ascending:false}),
+    client.rpc("get_reimbursement_policy",{p_org:org}),
     client.rpc("get_finance_totals",{p_org:org}),
   ]);
   const allowed=actor.data?.status==="active" && ["founder_admin","founder_finance"].includes(actor.data.role);
   if (!organization.data || !allowed) return <section className="panel"><h1>Accès réservé</h1><p>La finance est réservée aux profils habilités.</p><Link href="/workspace">Retour à mes espaces</Link></section>;
-  if ([actor,organization,scopes,categories,receipts,expenses,contributions,accounts,deposits,cashEntries,refunds,totals].some(result=>result.error)) return <section className="notice" role="alert"><p>La finance est indisponible. Rechargez la page dans un instant.</p></section>;
+  if ([actor,organization,scopes,categories,receipts,expenses,contributions,accounts,deposits,cashEntries,refunds,policy,totals].some(result=>result.error)) return <section className="notice" role="alert"><p>La finance est indisponible. Rechargez la page dans un instant.</p></section>;
   const scopeById=new Map((scopes.data??[]).map(item=>[item.id,item]));
   const categoryById=new Map((categories.data??[]).map(item=>[item.id,item]));
   const receiptById=new Map((receipts.data??[]).map(item=>[item.id,item]));
@@ -50,6 +51,8 @@ export default async function Finance({searchParams}:{searchParams:Promise<{orga
   const accountBalances=new Map<string,number>();
   for (const entry of cashEntries.data??[]) accountBalances.set(entry.cash_account_id,(accountBalances.get(entry.cash_account_id)??0)+entry.signed_amount_minor);
   const organizationToday=civilDateInTimeZone(organization.data.timezone);
+  const reimbursementPolicy=policy.data?.[0];
+  if (!reimbursementPolicy) return <section className="notice" role="alert"><p>La politique de remboursement persistée est introuvable. Aucune opération financière n’est disponible.</p></section>;
   const summary=totals.data?.[0]??{cost_minor:0,cash_minor:0,contribution_minor:0,reference_minor:0,equalized:false};
   const fundExpenses=(expenses.data??[]).filter(expense=>expense.source_type==="fund" && expense.cash_account_id)
     .map(expense=>({id:expense.id,cash_account_id:expense.cash_account_id!,label:expense.label,amount_minor:expense.amount_minor}));
@@ -60,6 +63,7 @@ export default async function Finance({searchParams}:{searchParams:Promise<{orga
       <article className="card"><p className="eyebrow">CONTRIBUTIONS</p><p className="finance-amount">{formatEuros(summary.contribution_minor)}</p></article>
       <article className="card"><p className="eyebrow">RÉFÉRENCE</p><p className="finance-amount">{formatEuros(summary.reference_minor)}</p><span>{summary.equalized?"Fondateurs à égalité":"Égalisation en cours"}</span></article>
     </section>
+    <section className="panel" aria-label="Politique de remboursement"><p className="eyebrow">REMBOURSEMENTS · POLITIQUE V{reimbursementPolicy.version}</p><h2>Régime désactivé</h2><p>Les dépenses personnelles confirmées restent des contributions non remboursables. Aucune demande, activation ou paiement de remboursement n’est disponible.</p><ul><li>Réserve minimale : non décidée</li><li>Approbateurs : non décidés</li><li>Activation : nouvelle décision explicite et migration revue requises</li></ul></section>
     <section className="cards finance-summary" aria-label="Égalisation des fondateurs">{contributions.data?.map(item=><article className="card" key={item.user_id}><p className="eyebrow">{item.can_confirm?"FONDATEUR ACTIF":"HISTORIQUE"}</p><h2>{item.display_name}</h2><p className="finance-amount">{formatEuros(item.amount_minor)}</p>{item.remaining_minor===null?<span>Non éligible aux futurs apports</span>:<span>Reste à apporter : {formatEuros(item.remaining_minor)}</span>}</article>)}</section>
     <section className="bottom-grid"><article className="panel auth-panel"><h2>Référentiels</h2><p>Catégories et caisses ont des identifiants stables.</p><ExpenseCategoryForm organization={org}/><CashAccountForm organization={org}/></article><article className="panel"><h2>Soldes par caisse</h2>{accounts.data?.length?<ul className="finance-list">{accounts.data.map(account=><li key={account.id}><strong>{account.name}</strong><strong>{formatEuros(accountBalances.get(account.id)??0)}</strong></li>)}</ul>:<p>Créez une caisse avant le premier versement. Son solde initial restera nul.</p>}</article></section>
     <section className="bottom-grid"><article className="panel auth-panel"><h2>Dépense personnelle</h2><PersonalExpenseForm organization={org} commandKey={randomUUID()} today={organizationToday} scopes={scopes.data??[]} categories={categories.data??[]} receipts={receipts.data??[]} payers={eligibleFounders}/><Link className="text-link" href={"/workspace/scopes?organization="+org}>Gérer les justificatifs privés</Link></article><article className="panel auth-panel"><h2>Versement à la caisse</h2><FundDepositForm organization={org} commandKey={randomUUID()} today={organizationToday} accounts={accounts.data??[]} founders={eligibleFounders}/></article></section>

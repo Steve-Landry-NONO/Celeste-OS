@@ -49,3 +49,8 @@ Catégories dynamiques, dépense personnelle EUR confirmée, justificatif privé
 ## CE-005 caisse et égalisation — fusionné le 5 octobre 2026
 
 Caisses EUR à solde initial nul, versements, dépenses du fonds et avoirs fournisseur atomiques. Coût net, caisse, contributions, référence et reste à apporter sont dérivés sans double comptage. Les écritures confirmées sont immuables ; une garde transactionnelle refuse aussi tout agrégat d’organisation hors de la plage entière sûre. Les remboursements de personnes restent désactivés. PR #9 vérifiée sur pile jetable : sept suites SQL, security advisors, 27 tests domaine/configuration, build et 18 parcours navigateur sans skip ; captures desktop/mobile inspectées. Aucune migration distante ni publication.
+
+
+## CE-006 verrou des remboursements — 5 octobre 2026, en revue
+
+Politique versionnée provisionnée par organisation, strictement `disabled`, sans réserve ni approbateur, immuable et isolée par RLS. Lecture Finance persistée, sans bouton ni commande de demande, activation ou paiement. Suite SQL FIN-05 dédiée et contrôle navigateur ajoutés ; tête de code vérifiée par CI 37310891629 avec huit suites SQL, advisors, build et 18 parcours sans skip. PR #10 prête pour revue. Aucune migration distante ni publication.

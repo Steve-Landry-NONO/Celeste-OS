@@ -99,6 +99,11 @@ test("finance : dépense, versement et caisse sans double comptage",async({page}
   await expect(summary).toContainText("70,00 €");
   await expect(summary).toContainText("223,45 €");
   await expect(page.getByText(/remboursements aux fondateurs restent désactivés/i)).toBeVisible();
+  const reimbursementPolicy=page.getByRole("region",{name:"Politique de remboursement"});
+  await expect(reimbursementPolicy).toContainText("Régime désactivé");
+  await expect(reimbursementPolicy).toContainText("Réserve minimale : non décidée");
+  await expect(reimbursementPolicy).toContainText("Approbateurs : non décidés");
+  await expect(reimbursementPolicy.getByRole("button")).toHaveCount(0);
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
   await page.screenshot({path:testInfo.outputPath("finance-cash-ledger.png"),fullPage:true});
 

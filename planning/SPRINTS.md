@@ -51,3 +51,10 @@ Avance technique du 3 octobre : le socle des fichiers privés de J3 est en PR #7
 CE-004 est écrit sur le socle fusionné : catégorie, dépense personnelle, justificatif du même périmètre et contribution dérivée unique. Le contrôle local passe ; SQL et navigateur attendent la CI. CELESTE OS est toujours INACTIVE et VAL-002 reste sans réponse explicite. La condition de réactivation au plus tard le 4 octobre n'est donc pas satisfaite.
 
 La baseline initiale reste 12 octobre pour la recette anticipée et 15 pour le pilote, à titre de comparaison. Prévision distante révisée : recette utilisateurs le 14 octobre et pilote le 17 si le backend est réactivé au plus tard le 5 octobre à midi. Après cette limite, décaler les deux dates d'au moins un jour par jour de blocage supplémentaire. La cible technique sur pile jetable reste le 12 ; aucune ouverture réelle avant migrations distantes, onboarding et recette complète.
+
+
+## Prévision révisée — 5 octobre 2026
+
+CE-006 est en PR #10 avec verrou persistant du remboursement, sans activation ni politique inventée. La limite conditionnelle du 5 octobre à midi est dépassée : CELESTE OS reste INACTIVE et VAL-002 sans réponse humaine.
+
+La baseline du 12 octobre pour la recette anticipée et du 15 pour le pilote reste la référence initiale. Prévision distante : recette utilisateurs le 15 octobre et pilote le 18 si le backend est réactivé au plus tard le 6 octobre à midi. Après cette limite, ajouter au moins un jour aux deux dates par jour de blocage. La recette technique sur pile jetable reste visée le 12 ; aucune ouverture réelle sans migrations distantes, onboarding et recette complète.
