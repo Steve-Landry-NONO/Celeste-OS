@@ -14,7 +14,9 @@ L’écran Finance affiche la version de politique, l’état désactivé et les
 
 La suite SQL `reimbursement_lock.sql` couvre le provisionnement, les contraintes, l’immuabilité, l’absence de commandes de remboursement, le refus des metadata forgées, l’isolation entre deux organisations et l’absence d’effet financier. Le parcours Finance vérifie l’état affiché et l’absence de bouton d’action.
 
-La CI de la PR doit appliquer neuf migrations sur une pile Supabase jetable, exécuter huit suites SQL avec rollback, les security advisors, les contrôles TypeScript/domaine/configuration, le build et les parcours Playwright desktop/mobile. Aucun contrôle en attente n’est présenté comme réussi.
+La tête de code `1c8ea1d9809a348301285866c25389c723c2bb4b` passe la CI 37310891629 : neuf migrations sur Supabase jetable, huit suites SQL avec rollback, security advisors, contrôles TypeScript/domaine/configuration, build Next.js et 18 parcours Playwright desktop/mobile sans échec ni skip. Artifact navigateur 11345941729 ; captures Finance desktop/mobile inspectées, panneau de politique lisible et aucun débordement observé.
+
+La première CI 37310020169 a échoué au nettoyage de dix scénarios : le premier verrou interdisait aussi la suppression d’une organisation de test. La relation autorise désormais uniquement la cascade déclenchée par la suppression de l’organisation parente ; suppression directe et `TRUNCATE` restent refusés. Une régression SQL dédiée et les parcours complets valident la correction.
 
 ## Provenance et dépendances
 
