@@ -102,7 +102,7 @@ select public.record_supplier_refund(
 select pg_temp.assert_ok((select cost_minor=200000 and cash_minor=160000 and contribution_minor=360000
   from public.get_finance_totals(current_setting('test.cash_org')::uuid)),
   'Supplier refund reduces net cost and restores cash without changing contributions');
-do $$begin
+do $refund_checks$begin
   begin perform public.record_supplier_refund(
     current_setting('test.cash_org')::uuid,current_setting('test.cash_fund_expense')::uuid,
     current_setting('test.cash_account')::uuid,'Avoir excessif',40001,current_date,gen_random_uuid()
@@ -111,7 +111,7 @@ do $$begin
     current_setting('test.cash_org')::uuid,current_setting('test.cash_account')::uuid,
     current_setting('test.cash_steve')::uuid,'Date future',100,current_date+1,gen_random_uuid()
   ); raise exception 'Future deposit accepted'; exception when invalid_parameter_value then null; end;
-end $;
+end $refund_checks$;
 
 select set_config('test.cash_overflow_account',public.create_cash_account(
   current_setting('test.cash_org')::uuid,'Caisse secondaire'
