@@ -19,7 +19,7 @@ PR : [#9](https://github.com/Steve-Landry-NONO/Celeste-OS/pull/9)
 
 ## Contrôles
 
-La [CI 37216204521](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37216204521) passe sur la tête de code `566c79c64159060d58c97c4261d480f33b388881` :
+La [CI 37286210732](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37286210732) passe sur la tête de code `7a024d1945ec346f1da4e7c36839d9310bf4fc98` :
 
 - huit migrations appliquées sur une pile Supabase jetable ;
 - sept suites SQL avec rollback, dont l’exemple financier exact, l’idempotence, le solde insuffisant, l’avoir plafonné, l’immuabilité et l’isolation ;
@@ -27,9 +27,9 @@ La [CI 37216204521](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs
 - contrat TypeScript, 24 tests domaine et 3 tests de configuration ;
 - build Next.js ;
 - 18 parcours Playwright desktop/mobile, 0 échec et 0 skip ;
-- artifact `browser-evidence` 11308397059 ; captures Finance desktop/mobile inspectées sans défaut bloquant.
+- artifact `browser-evidence` 11334402484 ; captures Finance desktop/mobile inspectées sans défaut bloquant.
 
-Une première CI a utilement refusé le lot avant navigateur car le contrat TypeScript ne décrivait pas les nouvelles tables. Ce contrat et l’appel explicite de `cash_equalization.sql` par le workflow ont été corrigés avant le passage complet ci-dessus.
+Une première CI a utilement refusé le lot avant navigateur car le contrat TypeScript ne décrivait pas les nouvelles tables. Ce contrat et l’appel explicite de `cash_equalization.sql` par le workflow ont été corrigés. La revue P2 a ensuite relevé qu’un total d’organisation pouvait dépasser la plage entière sûre tout en restant valide par fondateur et par caisse. Une garde transactionnelle couvre désormais coût net, caisse et contributions ; une régression à deux fondateurs et deux caisses prouve le refus atomique. Le fil a été répondu et résolu après la CI complète ci-dessus.
 
 ## Risques et blocages
 
