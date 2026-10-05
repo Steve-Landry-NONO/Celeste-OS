@@ -1,4 +1,4 @@
-# État prioritaire — caisse et égalisation en PR #9, 5 octobre 2026
+# État prioritaire — caisse et égalisation fusionnées, 5 octobre 2026
 
 CE-005 est implémenté sur `feat/ce-005-cash-ledger` ; tête de code vérifiée `7a024d1945ec346f1da4e7c36839d9310bf4fc98`. La CI 37286210732 passe : huit migrations jetables, sept suites SQL avec rollback, advisors, contrat TypeScript, 24 tests domaine, 3 configuration, build et 18 parcours desktop/mobile sans skip. Artifact 11334402484, captures Finance inspectées.
 
@@ -6,7 +6,7 @@ Les effets financiers sont séparés : dépense personnelle = coût + contributi
 
 Le 5 octobre, PR #9, reviews et threads ne contiennent aucune réponse humaine. VAL-002 reste ouverte sans commentaire. Gmail `stevelandryk89@gmail.com` ne retourne que le message sortant `1a0fc206ec1ced41`, exclu via EV-0003 ; aucune relance. CELESTE OS demeure INACTIVE, les deux projets FamilyRoot ACTIVE_HEALTHY et inchangés. Aucune migration distante ni publication.
 
-Prochaine action : laisser passer la CI finale incluant cette traçabilité, rendre puis fusionner PR #9 sous EV-0016 si aucun retour bloquant, ensuite ouvrir CE-006. La prévision reste recette utilisateurs le 14 octobre et pilote le 17 si le backend est réactivé au plus tard le 5 à midi ; au-delà, décaler les deux d’au moins un jour par jour de blocage.
+PR #9 est fusionnée en `5df68984b5675297bfabc0bc66c0722b9bdf5bc9` après CI finale 37286826255. Prochaine action : démarrer CE-006, modèle persistant et verrou du remboursement futur, sans activer ni exposer de remboursement. La prévision reste recette utilisateurs le 14 octobre et pilote le 17 si le backend est réactivé au plus tard le 5 à midi ; au-delà, décaler les deux d’au moins un jour par jour de blocage.
 
 ## Historique immédiatement précédent
 
