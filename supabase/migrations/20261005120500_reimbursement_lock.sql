@@ -68,6 +68,10 @@ create trigger reimbursement_policy_immutable
 before update or delete on public.reimbursement_policies
 for each row execute function private_celeste.reject_reimbursement_policy_mutation();
 
+create trigger reimbursement_policy_no_truncate
+before truncate on public.reimbursement_policies
+for each statement execute function private_celeste.reject_reimbursement_policy_mutation();
+
 create function private_celeste.get_reimbursement_policy(p_org uuid)
 returns table(
   id uuid,version integer,status text,scope text,effective_from timestamptz,
