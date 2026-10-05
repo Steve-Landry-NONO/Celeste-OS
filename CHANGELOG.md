@@ -53,4 +53,4 @@ Caisses EUR à solde initial nul, versements, dépenses du fonds et avoirs fourn
 
 ## CE-006 verrou des remboursements — 5 octobre 2026, en revue
 
-Politique versionnée provisionnée par organisation, strictement `disabled`, sans réserve ni approbateur, immuable et isolée par RLS. Lecture Finance persistée, sans bouton ni commande de demande, activation ou paiement. Suite SQL FIN-05 dédiée et contrôle navigateur ajoutés ; PR #10 en CI sur pile jetable. Aucune migration distante ni publication.
+Politique versionnée provisionnée par organisation, strictement `disabled`, sans réserve ni approbateur, immuable et isolée par RLS. Lecture Finance persistée, sans bouton ni commande de demande, activation ou paiement. Suite SQL FIN-05 dédiée et contrôle navigateur ajoutés ; tête de code vérifiée par CI 37310891629 avec huit suites SQL, advisors, build et 18 parcours sans skip. PR #10 prête pour revue. Aucune migration distante ni publication.
