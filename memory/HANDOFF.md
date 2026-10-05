@@ -1,4 +1,14 @@
-# État prioritaire — caisse et égalisation fusionnées, 5 octobre 2026
+# État prioritaire — verrou des remboursements en CI, 5 octobre 2026
+
+Branche `feat/ce-006-reimbursement-lock`, PR #10 brouillon. Une politique versionnée `disabled` est provisionnée par organisation ; contraintes et trigger interdisent activation, réserve, approbateur, modification et suppression. RLS et RPC exposent uniquement la lecture `finance.read`. Finance affiche le verrou et aucune commande de remboursement n’existe.
+
+Migration `20261005120500_reimbursement_lock.sql`, suite `reimbursement_lock.sql`, contrat TypeScript et assertion navigateur sont écrits. La CI est en cours ; ne pas présenter SQL, advisors, build ou Playwright comme réussis avant son résultat. Aucun changement distant : CELESTE OS INACTIVE, VAL-002 sans réponse humaine, seul Gmail `1a0fc206ec1ced41` est un `email_sent` exclu.
+
+Prochaine action : analyser la CI et les reviews de PR #10, corriger si nécessaire, inspecter les preuves navigateur, finaliser le rapport puis rendre la PR reviewable. Calendrier : baseline 12/15 conservée, prévision distante 15 octobre recette utilisateurs et 18 pilote si réactivation au plus tard le 6 à midi, puis +1 jour minimum par jour de blocage.
+
+## Historique immédiatement précédent
+
+### État prioritaire — caisse et égalisation fusionnées, 5 octobre 2026
 
 CE-005 est implémenté sur `feat/ce-005-cash-ledger` ; tête de code vérifiée `7a024d1945ec346f1da4e7c36839d9310bf4fc98`. La CI 37286210732 passe : huit migrations jetables, sept suites SQL avec rollback, advisors, contrat TypeScript, 24 tests domaine, 3 configuration, build et 18 parcours desktop/mobile sans skip. Artifact 11334402484, captures Finance inspectées.
 
@@ -122,3 +132,4 @@ Les choix métier définitifs restent dans DECISIONS. La création d’un compte
 
 ## Historique
 Les rapports BACKEND, SUPABASE_QUOTA et SUPABASE_READY conservent la résolution des accès. Les preuves précédentes de Aujourd’hui sont dans la CI 37033072290 (quatre tests, captures inspectées). L’incrément actuel ajoute Auth à ces tests. Cadence existante : trois reprises par jour autour de 10 h, 14 h et 18 h Europe/Paris jusqu’au 15 octobre.
+
