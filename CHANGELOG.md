@@ -45,3 +45,7 @@ Bucket privé, métadonnées projet/mission, dépôt serveur contrôlé jusqu'au
 ## CE-004 dépenses personnelles — fusionné le 4 octobre 2026
 
 Catégories dynamiques, dépense personnelle EUR confirmée, justificatif privé du même périmètre et contribution dérivée unique sans caisse. Historique conservé après suspension du payeur et date civile de l’organisation. PR #8 fusionnée après six suites SQL, security advisors, 27 tests domaine/configuration, build et 18 parcours navigateur sans skip ; captures desktop/mobile inspectées. Caisse, versements et remboursements restent désactivés. Aucune migration distante ni publication.
+
+## CE-005 caisse et égalisation — 4 octobre 2026, en revue
+
+Caisses EUR à solde initial nul, versements, dépenses du fonds et avoirs fournisseur atomiques. Coût net, caisse, contributions, référence et reste à apporter sont dérivés sans double comptage. Les écritures confirmées sont immuables et les remboursements de personnes restent désactivés. PR #9 vérifiée sur pile jetable : sept suites SQL, security advisors, 27 tests domaine/configuration, build et 18 parcours navigateur sans skip ; captures desktop/mobile inspectées. Aucune migration distante ni publication.
