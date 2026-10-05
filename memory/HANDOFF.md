@@ -1,10 +1,10 @@
-# État prioritaire — verrou des remboursements en CI, 5 octobre 2026
+# État prioritaire — verrou des remboursements vérifié, 5 octobre 2026
 
 Branche `feat/ce-006-reimbursement-lock`, PR #10 brouillon. Une politique versionnée `disabled` est provisionnée par organisation ; contraintes et trigger interdisent activation, réserve, approbateur, modification et suppression. RLS et RPC exposent uniquement la lecture `finance.read`. Finance affiche le verrou et aucune commande de remboursement n’existe.
 
-Migration `20261005120500_reimbursement_lock.sql`, suite `reimbursement_lock.sql`, contrat TypeScript et assertion navigateur sont écrits. La CI est en cours ; ne pas présenter SQL, advisors, build ou Playwright comme réussis avant son résultat. Aucun changement distant : CELESTE OS INACTIVE, VAL-002 sans réponse humaine, seul Gmail `1a0fc206ec1ced41` est un `email_sent` exclu.
+Migration `20261005120500_reimbursement_lock.sql`, suite `reimbursement_lock.sql`, contrat TypeScript et assertion navigateur sont vérifiés sur `1c8ea1d9809a348301285866c25389c723c2bb4b`. CI 37310891629 : neuf migrations, huit suites SQL rollback, advisors, types, 24 tests domaine + 3 configuration, build et 18 parcours desktop/mobile sans skip. Artifact 11345941729 ; captures Finance inspectées. La première CI a révélé puis permis de corriger la cascade de suppression d’organisation ; suppression directe et `TRUNCATE` restent refusés. Aucun changement distant : CELESTE OS INACTIVE, VAL-002 sans réponse humaine, seul Gmail `1a0fc206ec1ced41` est un `email_sent` exclu.
 
-Prochaine action : analyser la CI et les reviews de PR #10, corriger si nécessaire, inspecter les preuves navigateur, finaliser le rapport puis rendre la PR reviewable. Calendrier : baseline 12/15 conservée, prévision distante 15 octobre recette utilisateurs et 18 pilote si réactivation au plus tard le 6 à midi, puis +1 jour minimum par jour de blocage.
+Prochaine action : vérifier le check final de la tête documentaire et les reviews de PR #10, puis fusionner sous EV-0016 si aucun blocage. Calendrier : baseline 12/15 conservée, prévision distante 15 octobre recette utilisateurs et 18 pilote si réactivation au plus tard le 6 à midi, puis +1 jour minimum par jour de blocage.
 
 ## Historique immédiatement précédent
 
