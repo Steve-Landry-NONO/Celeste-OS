@@ -15,9 +15,33 @@ export type Database = {
   public: {
     Tables: {
       contribution_entries: {
-        Row: { id: string; organization_id: string; founder_id: string; expense_id: string; signed_amount_minor: number; currency: string; kind: string; created_at: string }
-        Insert: { id?: string; organization_id: string; founder_id: string; expense_id: string; signed_amount_minor: number; currency: string; kind: string; created_at?: string }
-        Update: { id?: string; organization_id?: string; founder_id?: string; expense_id?: string; signed_amount_minor?: number; currency?: string; kind?: string; created_at?: string }
+        Row: { id: string; organization_id: string; founder_id: string; expense_id: string | null; deposit_id: string | null; signed_amount_minor: number; currency: string; kind: string; created_at: string }
+        Insert: { id?: string; organization_id: string; founder_id: string; expense_id?: string | null; deposit_id?: string | null; signed_amount_minor: number; currency: string; kind: string; created_at?: string }
+        Update: { id?: string; organization_id?: string; founder_id?: string; expense_id?: string | null; deposit_id?: string | null; signed_amount_minor?: number; currency?: string; kind?: string; created_at?: string }
+        Relationships: []
+      }
+      cash_accounts: {
+        Row: { id: string; organization_id: string; name: string; normalized_name: string; currency: string; active: boolean; created_by: string; created_at: string }
+        Insert: { id?: string; organization_id: string; name: string; normalized_name: string; currency: string; active?: boolean; created_by: string; created_at?: string }
+        Update: { id?: string; organization_id?: string; name?: string; normalized_name?: string; currency?: string; active?: boolean; created_by?: string; created_at?: string }
+        Relationships: []
+      }
+      fund_deposits: {
+        Row: { id: string; organization_id: string; cash_account_id: string; founder_id: string; label: string; amount_minor: number; currency: string; deposited_on: string; status: string; confirmed_by: string; confirmed_at: string; created_at: string }
+        Insert: { id?: string; organization_id: string; cash_account_id: string; founder_id: string; label: string; amount_minor: number; currency: string; deposited_on: string; status: string; confirmed_by: string; confirmed_at?: string; created_at?: string }
+        Update: { id?: string; organization_id?: string; cash_account_id?: string; founder_id?: string; label?: string; amount_minor?: number; currency?: string; deposited_on?: string; status?: string; confirmed_by?: string; confirmed_at?: string; created_at?: string }
+        Relationships: []
+      }
+      supplier_refunds: {
+        Row: { id: string; organization_id: string; expense_id: string; cash_account_id: string; label: string; amount_minor: number; currency: string; received_on: string; status: string; confirmed_by: string; confirmed_at: string; created_at: string }
+        Insert: { id?: string; organization_id: string; expense_id: string; cash_account_id: string; label: string; amount_minor: number; currency: string; received_on: string; status: string; confirmed_by: string; confirmed_at?: string; created_at?: string }
+        Update: { id?: string; organization_id?: string; expense_id?: string; cash_account_id?: string; label?: string; amount_minor?: number; currency?: string; received_on?: string; status?: string; confirmed_by?: string; confirmed_at?: string; created_at?: string }
+        Relationships: []
+      }
+      cash_entries: {
+        Row: { id: string; organization_id: string; cash_account_id: string; source_type: string; source_id: string; signed_amount_minor: number; currency: string; created_at: string }
+        Insert: { id?: string; organization_id: string; cash_account_id: string; source_type: string; source_id: string; signed_amount_minor: number; currency: string; created_at?: string }
+        Update: { id?: string; organization_id?: string; cash_account_id?: string; source_type?: string; source_id?: string; signed_amount_minor?: number; currency?: string; created_at?: string }
         Relationships: []
       }
       expense_categories: {
@@ -27,9 +51,9 @@ export type Database = {
         Relationships: []
       }
       expenses: {
-        Row: { id: string; organization_id: string; scope_id: string; category_id: string; receipt_file_id: string; label: string; amount_minor: number; currency: string; spent_on: string; source_type: string; treatment: string; payer_id: string; status: string; confirmed_by: string; confirmed_at: string; created_at: string }
-        Insert: { id?: string; organization_id: string; scope_id: string; category_id: string; receipt_file_id: string; label: string; amount_minor: number; currency: string; spent_on: string; source_type: string; treatment: string; payer_id: string; status: string; confirmed_by: string; confirmed_at?: string; created_at?: string }
-        Update: { id?: string; organization_id?: string; scope_id?: string; category_id?: string; receipt_file_id?: string; label?: string; amount_minor?: number; currency?: string; spent_on?: string; source_type?: string; treatment?: string; payer_id?: string; status?: string; confirmed_by?: string; confirmed_at?: string; created_at?: string }
+        Row: { id: string; organization_id: string; scope_id: string; category_id: string; receipt_file_id: string; cash_account_id: string | null; label: string; amount_minor: number; currency: string; spent_on: string; source_type: string; treatment: string; payer_id: string | null; status: string; confirmed_by: string; confirmed_at: string; created_at: string }
+        Insert: { id?: string; organization_id: string; scope_id: string; category_id: string; receipt_file_id: string; cash_account_id?: string | null; label: string; amount_minor: number; currency: string; spent_on: string; source_type: string; treatment: string; payer_id?: string | null; status: string; confirmed_by: string; confirmed_at?: string; created_at?: string }
+        Update: { id?: string; organization_id?: string; scope_id?: string; category_id?: string; receipt_file_id?: string; cash_account_id?: string | null; label?: string; amount_minor?: number; currency?: string; spent_on?: string; source_type?: string; treatment?: string; payer_id?: string | null; status?: string; confirmed_by?: string; confirmed_at?: string; created_at?: string }
         Relationships: []
       }
       scope_files: {
@@ -171,8 +195,13 @@ export type Database = {
     }
     Functions: {
       create_expense_category: { Args: { p_org: string; p_title: string; p_parent: string | null }; Returns: string }
+      create_cash_account: { Args: { p_org: string; p_name: string }; Returns: string }
       record_personal_expense: { Args: { p_org: string; p_scope: string; p_category: string; p_receipt: string; p_label: string; p_amount_minor: number; p_spent_on: string; p_payer: string; p_command_key: string }; Returns: string }
-      list_finance_contributions: { Args: { p_org: string }; Returns: { user_id: string; display_name: string; amount_minor: number; can_confirm: boolean }[] }
+      record_fund_deposit: { Args: { p_org: string; p_account: string; p_founder: string; p_label: string; p_amount_minor: number; p_deposited_on: string; p_command_key: string }; Returns: string }
+      record_fund_expense: { Args: { p_org: string; p_scope: string; p_category: string; p_receipt: string; p_account: string; p_label: string; p_amount_minor: number; p_spent_on: string; p_command_key: string }; Returns: string }
+      record_supplier_refund: { Args: { p_org: string; p_expense: string; p_account: string; p_label: string; p_amount_minor: number; p_received_on: string; p_command_key: string }; Returns: string }
+      list_finance_contributions: { Args: { p_org: string }; Returns: { user_id: string; display_name: string; amount_minor: number; can_confirm: boolean; reference_minor: number; remaining_minor: number | null }[] }
+      get_finance_totals: { Args: { p_org: string }; Returns: { cost_minor: number; cash_minor: number; contribution_minor: number; reference_minor: number; equalized: boolean }[] }
       create_resource_scope: { Args: { p_org: string; p_kind: string; p_name: string; p_parent: string | null }; Returns: string }
       set_scope_access: { Args: { p_org: string; p_scope: string; p_user: string; p_granted: boolean; p_expected_version: number }; Returns: number }
       list_scope_access: { Args: { p_org: string }; Returns: { scope_id: string; user_id: string; granted: boolean; file_write: boolean; row_version: number }[] }

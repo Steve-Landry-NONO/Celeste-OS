@@ -1,4 +1,16 @@
-# État prioritaire — dépenses personnelles fusionnées, 4 octobre 2026
+# État prioritaire — caisse et égalisation en PR #9, 5 octobre 2026
+
+CE-005 est implémenté sur `feat/ce-005-cash-ledger` ; tête de code vérifiée `7a024d1945ec346f1da4e7c36839d9310bf4fc98`. La CI 37286210732 passe : huit migrations jetables, sept suites SQL avec rollback, advisors, contrat TypeScript, 24 tests domaine, 3 configuration, build et 18 parcours desktop/mobile sans skip. Artifact 11334402484, captures Finance inspectées.
+
+Les effets financiers sont séparés : dépense personnelle = coût + contribution ; versement = contribution + caisse ; dépense du fonds = coût - caisse ; avoir fournisseur = baisse du coût net + retour sur la même caisse. Aucun double comptage et aucun remboursement de personne. Écritures immuables, idempotence et isolation organisation/périmètre sont testées. La revue P2 sur les agrégats hors plage sûre est corrigée par une garde transactionnelle et une régression inter-fondateurs/inter-caisses ; fil répondu et résolu après CI verte.
+
+Le 5 octobre, PR #9, reviews et threads ne contiennent aucune réponse humaine. VAL-002 reste ouverte sans commentaire. Gmail `stevelandryk89@gmail.com` ne retourne que le message sortant `1a0fc206ec1ced41`, exclu via EV-0003 ; aucune relance. CELESTE OS demeure INACTIVE, les deux projets FamilyRoot ACTIVE_HEALTHY et inchangés. Aucune migration distante ni publication.
+
+Prochaine action : laisser passer la CI finale incluant cette traçabilité, rendre puis fusionner PR #9 sous EV-0016 si aucun retour bloquant, ensuite ouvrir CE-006. La prévision reste recette utilisateurs le 14 octobre et pilote le 17 si le backend est réactivé au plus tard le 5 à midi ; au-delà, décaler les deux d’au moins un jour par jour de blocage.
+
+## Historique immédiatement précédent
+
+### dépenses personnelles fusionnées, 4 octobre 2026
 
 PR #8 fusionnée : tête de code `446669a65feeee468f8cda3ca9680589b94357b3`, merge `0a046e3ce2a14c763e19fa8598a90d2ba724df41`. Catégories, dépense personnelle EUR, justificatif privé du même périmètre, contribution atomique unique et historique immuable sont livrés dans le dépôt. Une suspension ou un changement de rôle ne retire plus la contribution historique ; seuls les fondateurs actifs restent sélectionnables. La date civile suit le fuseau de l’organisation. Caisse, dépenses du fonds, versements et remboursements restent hors de ce lot.
 

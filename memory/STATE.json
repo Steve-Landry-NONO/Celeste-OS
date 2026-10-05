@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04",
+  "updated_at": "2026-10-05T08:55:00Z",
   "timezone": "Europe/Paris",
-  "documentation_version": "0.1.7",
-  "product_status": "personal_expenses_ci_verified_merged_backend_paused",
+  "documentation_version": "0.1.8",
+  "product_status": "cash_equalization_safe_aggregates_ci_verified_pr_reviewable_backend_paused",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -15,8 +15,8 @@
   "baseline_end": "2026-10-15",
   "sprint": "S1",
   "current_issue": "CE-005-contributions-cash-ledgers",
-  "last_verified_code_sha": "446669a65feeee468f8cda3ca9680589b94357b3",
-  "application_tests_executed": true,
+  "last_verified_code_sha": "7a024d1945ec346f1da4e7c36839d9310bf4fc98",
+  "application_tests_executed": "CI 37286210732: eight migrations, seven SQL rollback suites including organization safe-aggregate regression, security advisors, types, domain24, config3, Next build, Playwright18 zero skip",
   "completed": [
     "requirements_capture",
     "documentary_structure",
@@ -49,7 +49,9 @@
     "private_scope_files_server_trusted_review_fixes_local_check_passed",
     "private_scope_files_ci16_visuals_reviewed_PR7_merged",
     "personal_expenses_categories_receipt_contribution_written_local_check_passed",
-    "personal_expenses_sql6_browser18_visuals_reviewed_PR8_merged"
+    "personal_expenses_sql6_browser18_visuals_reviewed_PR8_merged",
+    "cash_equalization_sql7_browser18_visuals_reviewed_PR9",
+    "cash_equalization_safe_aggregate_review_fixed"
   ],
   "blockers": [
     {
@@ -58,10 +60,10 @@
       "detail": "CELESTE OS INACTIVE ; restore refusé, quota occupé par familyroots-mvp et FamilyROOT Test. Décision nécessaire avant pause de ces projets."
     }
   ],
-  "next_action": "Démarrer CE-005 sur une branche dédiée : écritures de caisse et égalisation atomiques sans double comptage, en gardant les remboursements désactivés. VAL-002 reste requis avant toute migration distante.",
+  "next_action": "Exécuter la CI finale incluant la traçabilité, rendre PR #9 reviewable puis la fusionner sous EV-0016 si les checks et revues restent non bloquants. VAL-002 reste requis avant toute migration distante.",
   "reimbursement_regime": "disabled_pending_explicit_policy",
   "real_finance_data": "not_provided",
-  "active_branch": "main",
+  "active_branch": "feat/ce-005-cash-ledger",
   "validation_issue": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/5",
   "last_verified_base_sha": "0a046e3ce2a14c763e19fa8598a90d2ba724df41",
   "verification": {
@@ -73,19 +75,12 @@
     "web_build": "passed",
     "http_ssr": "passed_four_routes_including_today",
     "browser_local": "blocked_missing_playwright_chromium_before_interaction",
-    "browser_ci": {
-      "status": "passed",
-      "tests": 18,
-      "skipped": 0,
-      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37201096755",
-      "verified_sha": "446669a65feeee468f8cda3ca9680589b94357b3",
-      "artifact": 11303056206
-    },
-    "RLS": "six_SQL_suites_ci_passed_with_rollback",
+    "browser_ci": "passed_18_desktop_mobile_zero_skip_run_37286210732",
+    "RLS": "seven_sql_suites_rollback_passed_on_disposable_supabase",
     "mobile_native": "not_initialized",
     "deployed": false,
-    "visual_review": "finance_personal_expense_desktop_mobile_passed",
-    "ci_chain": "passed_seven_migrations_six_sql_suites_security_advisors_types_domain24_config3_build_browser18",
+    "visual_review": "finance_desktop_mobile_passed_artifact_11334402484",
+    "ci_chain": "eight_migrations_seven_sql_including_safe_aggregate_advisors_types_domain24_config3_build_browser18",
     "browser_ci_previous": {
       "status": "passed",
       "tests": 2,
@@ -233,23 +228,39 @@
       "merged": true,
       "merge_sha": "0a046e3ce2a14c763e19fa8598a90d2ba724df41",
       "deployed": false
+    },
+    "cash_equalization": {
+      "status": "ci_verified_pr_reviewable",
+      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37286210732",
+      "verified_code_sha": "7a024d1945ec346f1da4e7c36839d9310bf4fc98",
+      "browser_total": 18,
+      "skipped": 0,
+      "sql_suites": 7,
+      "security_advisors": "no_warn_or_error",
+      "migration_version": "20261004161500",
+      "artifact": 11334402484,
+      "visual_review": "desktop_mobile_finance_passed",
+      "remote_migration": "not_applied_backend_paused",
+      "merged": false,
+      "deployed": false,
+      "review": "P2_organization_aggregate_safe_range_fixed_sql_regression_thread_resolved_by_agent"
     }
   },
-  "active_pr": null,
+  "active_pr": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/9",
   "last_session": {
-    "date": "2026-10-04",
-    "report": "reports/2026-10-04_EXPENSES.md",
-    "branch": "feat/ce-004-expenses",
-    "merged": true,
-    "merge_sha": "0a046e3ce2a14c763e19fa8598a90d2ba724df41",
+    "date": "2026-10-05",
+    "report": "reports/2026-10-04_CASH_EQUALIZATION.md",
+    "branch": "feat/ce-005-cash-ledger",
+    "merged": false,
     "deployed": false,
-    "local_check": "passed_types_domain24_config3_build",
-    "sql_ci": "passed_six_suites_rollback",
+    "local_check": "covered_by_green_CI",
+    "sql_ci": "passed_seven_suites_rollback",
     "browser_ci": "passed_18_zero_skip",
-    "ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37201096755",
-    "verified_code_sha": "446669a65feeee468f8cda3ca9680589b94357b3",
-    "artifact": 11303056206,
-    "backend": "INACTIVE_VAL002"
+    "ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37286210732",
+    "verified_code_sha": "7a024d1945ec346f1da4e7c36839d9310bf4fc98",
+    "artifact": 11334402484,
+    "backend": "INACTIVE_VAL002",
+    "review": "P2_safe_aggregate_fixed_and_thread_resolved"
   },
   "backend": {
     "provider": "supabase",
@@ -276,7 +287,8 @@
     "pending_migrations": [
       "20261003115835_project_mission_scopes",
       "20261003160213_private_scope_files",
-      "20261004081254_personal_expenses"
+      "20261004081254_personal_expenses",
+      "20261004161500_cash_equalization"
     ]
   },
   "previous_pr": {
@@ -313,7 +325,7 @@
     }
   ],
   "revised_calendar": {
-    "observed_on": "2026-10-04",
+    "observed_on": "2026-10-05",
     "technical_recipe_target": "2026-10-12",
     "user_recipe_forecast": "2026-10-14",
     "pilot_forecast": "2026-10-17",

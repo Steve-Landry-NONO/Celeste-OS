@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { createClient } from "@supabase/supabase-js";
 import { randomUUID } from "node:crypto";
 
-test("dépense personnelle : catégorie, justificatif et contribution unique",async({page},testInfo)=>{
+test("finance : dépense, versement et caisse sans double comptage",async({page},testInfo)=>{
   test.skip(process.env.CELESTE_E2E_REAL_AUTH!=="1","Requires a disposable local Supabase stack");
   const url=process.env.NEXT_PUBLIC_SUPABASE_URL!;
   if (!["localhost","127.0.0.1"].includes(new URL(url).hostname)) throw new Error("Finance fixtures must run only on local Supabase");
@@ -46,36 +46,74 @@ test("dépense personnelle : catégorie, justificatif et contribution unique",as
 
   await page.goto("/workspace");
   await page.getByRole("link",{name:"Finance et contributions",exact:true}).click();
-  await expect(page.getByRole("heading",{name:/Dépenses suivies/})).toBeVisible();
+  await expect(page.getByRole("heading",{name:/Une lecture exacte/})).toBeVisible();
   const categoryForm=page.getByRole("form",{name:"Créer une catégorie de dépense"});
   await categoryForm.getByLabel("Nouvelle catégorie").fill("Communication");
   await categoryForm.getByRole("button",{name:"Créer la catégorie",exact:true}).click();
   await expect(categoryForm.getByRole("status")).toContainText("Catégorie créée");
+  const accountForm=page.getByRole("form",{name:"Créer une caisse"});
+  await accountForm.getByLabel("Nom de la caisse").fill("Caisse principale");
+  await accountForm.getByRole("button",{name:"Créer la caisse",exact:true}).click();
+  await expect(accountForm.getByRole("status")).toContainText("solde initial de 0,00 €");
 
+  const today=new Date().toISOString().slice(0,10);
   const expenseForm=page.getByRole("form",{name:"Confirmer une dépense personnelle"});
   await expenseForm.getByLabel("Libellé").fill("Impression des supports");
   await expenseForm.getByLabel("Montant en euros").fill("123,45");
-  await expenseForm.getByLabel("Date de dépense").fill(new Date().toISOString().slice(0,10));
+  await expenseForm.getByLabel("Date de dépense").fill(today);
   await expenseForm.getByLabel("Catégorie").selectOption({label:"Communication"});
   await expenseForm.getByLabel("Payeur").selectOption(ids[0]);
   await expenseForm.getByLabel("Justificatif privé").selectOption({label:"facture-impression.pdf"});
   await expenseForm.getByRole("button",{name:"Confirmer la dépense",exact:true}).click();
   await expect(expenseForm.getByRole("status")).toContainText("coût et contribution augmentés, caisse inchangée");
-  await expect(page.getByText("Impression des supports",{exact:true})).toBeVisible();
-  await expect(page.getByText(/123,45\s*€/)).toHaveCount(2);
-  await expect(page.getByText(/Les dépenses du fonds, versements et remboursements ne sont pas activés/)).toBeVisible();
-  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await page.screenshot({path:testInfo.outputPath("finance-personal-expense.png"),fullPage:true});
 
-  const expenses=await owner.from("expenses").select("id,source_type,treatment,amount_minor,payer_id");
-  expect(expenses.error).toBeNull();
-  expect(expenses.data).toEqual([expect.objectContaining({source_type:"personal",treatment:"contribution",amount_minor:12345,payer_id:ids[0]})]);
-  const effects=await owner.from("contribution_entries").select("expense_id,signed_amount_minor,founder_id");
+  const depositForm=page.getByRole("form",{name:"Confirmer un versement à la caisse"});
+  await depositForm.getByLabel("Libellé").fill("Apport au fonds");
+  await depositForm.getByLabel("Montant en euros").fill("100,00");
+  await depositForm.getByLabel("Date du versement").fill(today);
+  await depositForm.getByLabel("Caisse").selectOption({label:"Caisse principale"});
+  await depositForm.getByLabel("Fondateur").selectOption(ids[0]);
+  await depositForm.getByRole("button",{name:"Confirmer le versement",exact:true}).click();
+  await expect(depositForm.getByRole("status")).toContainText("contribution et caisse augmentées une seule fois");
+
+  const fundExpenseForm=page.getByRole("form",{name:"Confirmer une dépense payée par la caisse"});
+  await fundExpenseForm.getByLabel("Libellé").fill("Achat du fonds");
+  await fundExpenseForm.getByLabel("Montant en euros").fill("40,00");
+  await fundExpenseForm.getByLabel("Date de dépense").fill(today);
+  await fundExpenseForm.getByLabel("Catégorie").selectOption({label:"Communication"});
+  await fundExpenseForm.getByLabel("Justificatif privé").selectOption({label:"facture-impression.pdf"});
+  await fundExpenseForm.getByLabel("Caisse").selectOption({label:"Caisse principale"});
+  await fundExpenseForm.getByRole("button",{name:"Confirmer la dépense du fonds",exact:true}).click();
+  await expect(fundExpenseForm.getByRole("status")).toContainText("coût augmenté, caisse diminuée, contributions inchangées");
+
+  const refundForm=page.getByRole("form",{name:"Confirmer un avoir fournisseur"});
+  await refundForm.getByLabel("Dépense d’origine").selectOption({label:"Achat du fonds"});
+  await refundForm.getByLabel("Libellé").fill("Avoir partiel");
+  await refundForm.getByLabel("Montant en euros").fill("10,00");
+  await refundForm.getByLabel("Date de réception").fill(today);
+  await refundForm.getByRole("button",{name:"Confirmer l’avoir",exact:true}).click();
+  await expect(refundForm.getByRole("status")).toContainText("coût net réduit et caisse restaurée, contributions inchangées");
+
+  const summary=page.getByRole("region",{name:"Totaux financiers"});
+  await expect(summary).toContainText("153,45 €");
+  await expect(summary).toContainText("70,00 €");
+  await expect(summary).toContainText("223,45 €");
+  await expect(page.getByText(/remboursements aux fondateurs restent désactivés/i)).toBeVisible();
+  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
+  await page.screenshot({path:testInfo.outputPath("finance-cash-ledger.png"),fullPage:true});
+
+  const totals=await owner.rpc("get_finance_totals",{p_org:organization});
+  expect(totals.error).toBeNull();
+  expect(totals.data).toEqual([expect.objectContaining({cost_minor:15345,cash_minor:7000,contribution_minor:22345})]);
+  const effects=await owner.from("contribution_entries").select("expense_id,deposit_id,signed_amount_minor,founder_id").order("created_at");
   expect(effects.error).toBeNull();
-  expect(effects.data).toEqual([{expense_id:expenses.data![0].id,signed_amount_minor:12345,founder_id:ids[0]}]);
-  expect((await member.from("expenses").select("id")).data).toEqual([]);
-  expect((await member.from("contribution_entries").select("id")).data).toEqual([]);
-  expect((await member.rpc("list_finance_contributions",{p_org:organization})).error?.code).toBe("42501");
+  expect(effects.data).toHaveLength(2);
+  expect(effects.data).toEqual(expect.arrayContaining([
+    expect.objectContaining({expense_id:expect.any(String),deposit_id:null,signed_amount_minor:12345,founder_id:ids[0]}),
+    expect.objectContaining({expense_id:null,deposit_id:expect.any(String),signed_amount_minor:10000,founder_id:ids[0]}),
+  ]));
+  expect((await member.from("cash_entries").select("id")).data).toEqual([]);
+  expect((await member.rpc("get_finance_totals",{p_org:organization})).error?.code).toBe("42501");
 
   await page.goto("/workspace");
   await page.getByRole("button",{name:"Se déconnecter",exact:true}).click();
