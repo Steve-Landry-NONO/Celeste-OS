@@ -2,7 +2,7 @@
 -- Activation requires a later reviewed migration after Q-002 and Q-003 are decided.
 create table public.reimbursement_policies (
   id uuid primary key default gen_random_uuid(),
-  organization_id uuid not null references public.organizations(id) on delete restrict,
+  organization_id uuid not null references public.organizations(id) on delete cascade,
   version integer not null default 1 check (version>0),
   status text not null default 'disabled' check (status='disabled'),
   scope text not null default 'founders' check (scope='founders'),
@@ -58,6 +58,11 @@ for each row execute function private_celeste.provision_disabled_reimbursement_p
 create function private_celeste.reject_reimbursement_policy_mutation()
 returns trigger language plpgsql security definer set search_path='' as $policy$
 begin
+  if tg_op='DELETE' and not exists (
+    select 1 from public.organizations o where o.id=old.organization_id
+  ) then
+    return old;
+  end if;
   raise exception 'Reimbursement policy is immutable' using errcode='55000';
 end;
 $policy$;
