@@ -96,6 +96,8 @@ do $cross_org$begin
   end;
 end $cross_org$;
 
+select set_config('test.reimbursement_cleanup_org',public.create_organization('Remboursements supprimés')::text,true);
+
 set local role service_role;
 do $service_guards$begin
   begin
@@ -128,6 +130,14 @@ do $service_guards$begin
   exception when check_violation then null;
   end;
 end $service_guards$;
+
+delete from public.organizations
+where id=current_setting('test.reimbursement_cleanup_org')::uuid;
+select pg_temp.assert_ok(
+  (select count(*)=0 from public.reimbursement_policies
+    where organization_id=current_setting('test.reimbursement_cleanup_org')::uuid),
+  'Deleting an organization removes only its policy through the controlled cascade'
+);
 
 set local role anon;
 do $anon$begin
