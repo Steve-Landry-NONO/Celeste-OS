@@ -132,3 +132,6 @@ OBS-019 : la limite conditionnelle du 5 octobre à midi est dépassée. La basel
 
 
 OBS-020 vérifié : tête CE-006 `1c8ea1d9809a348301285866c25389c723c2bb4b`, CI 37310891629 réussie avec neuf migrations jetables, huit suites SQL avec rollback, security advisors, types, domaine/configuration, build et 18 parcours desktop/mobile sans échec ni skip. Artifact 11345941729 ; captures Finance inspectées. La CI 37310020169 avait exposé que le verrou bloquait le nettoyage d’une organisation ; correction par cascade parentale contrôlée, suppression directe et `TRUNCATE` toujours refusés. Aucun déploiement ni validation humaine déduite.
+
+
+OBS-021 vérifié : PR #10 fusionnée en `8d803dfe6858ae05dfd3468edfb277ce0699e9c6` sous l’autorisation EV-0016, après CI finale 37311940124 verte sur la tête `778c9b1694be222f95e80874e1826d561f4f289e`. Aucun review ni fil bloquant n’était présent. La fusion ne vaut pas validation de Q-002/Q-003 et aucune migration distante ou activation n’a eu lieu.
