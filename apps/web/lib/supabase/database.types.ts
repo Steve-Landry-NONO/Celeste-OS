@@ -69,9 +69,27 @@ export type Database = {
         Relationships: []
       }
       resource_scopes: {
-        Row: { id: string; organization_id: string; kind: string; name: string; parent_project_id: string | null; parent_kind: string | null; created_at: string }
-        Insert: { id?: string; organization_id: string; kind: string; name: string; parent_project_id?: string | null; parent_kind?: never; created_at?: string }
-        Update: { id?: string; organization_id?: string; kind?: string; name?: string; parent_project_id?: string | null; parent_kind?: never; created_at?: string }
+        Row: { id: string; organization_id: string; kind: string; name: string; parent_project_id: string | null; parent_kind: string | null; project_id: string; created_at: string }
+        Insert: { id?: string; organization_id: string; kind: string; name: string; parent_project_id?: string | null; parent_kind?: never; project_id?: never; created_at?: string }
+        Update: { id?: string; organization_id?: string; kind?: string; name?: string; parent_project_id?: string | null; parent_kind?: never; project_id?: never; created_at?: string }
+        Relationships: []
+      }
+      project_phases: {
+        Row: { id: string; organization_id: string; project_id: string; project_kind: "project"; name: string; start_on: string | null; due_on: string | null; status: "planned" | "active" | "done" | "cancelled"; row_version: number; created_by: string; updated_by: string; created_at: string; updated_at: string }
+        Insert: { id?: string; organization_id: string; project_id: string; project_kind?: "project"; name: string; start_on?: string | null; due_on?: string | null; status: "planned" | "active" | "done" | "cancelled"; row_version?: number; created_by: string; updated_by: string; created_at?: string; updated_at?: string }
+        Update: { id?: string; organization_id?: string; project_id?: string; project_kind?: "project"; name?: string; start_on?: string | null; due_on?: string | null; status?: "planned" | "active" | "done" | "cancelled"; row_version?: number; created_by?: string; updated_by?: string; created_at?: string; updated_at?: string }
+        Relationships: []
+      }
+      tasks: {
+        Row: { id: string; organization_id: string; scope_id: string; project_id: string; scope_kind: "project" | "mission"; phase_id: string | null; assignee_id: string; title: string; status: "todo" | "in_progress" | "blocked" | "in_review" | "done" | "cancelled"; priority: "urgent" | "high" | "normal" | "low"; due_on: string | null; blocked_reason: string | null; row_version: number; created_by: string; updated_by: string; created_at: string; updated_at: string }
+        Insert: { id?: string; organization_id: string; scope_id: string; project_id: string; scope_kind: "project" | "mission"; phase_id?: string | null; assignee_id: string; title: string; status: "todo" | "in_progress" | "blocked" | "in_review" | "done" | "cancelled"; priority: "urgent" | "high" | "normal" | "low"; due_on?: string | null; blocked_reason?: string | null; row_version?: number; created_by: string; updated_by: string; created_at?: string; updated_at?: string }
+        Update: { id?: string; organization_id?: string; scope_id?: string; project_id?: string; scope_kind?: "project" | "mission"; phase_id?: string | null; assignee_id?: string; title?: string; status?: "todo" | "in_progress" | "blocked" | "in_review" | "done" | "cancelled"; priority?: "urgent" | "high" | "normal" | "low"; due_on?: string | null; blocked_reason?: string | null; row_version?: number; created_by?: string; updated_by?: string; created_at?: string; updated_at?: string }
+        Relationships: []
+      }
+      task_history: {
+        Row: { id: string; organization_id: string; task_id: string; scope_id: string; previous_status: string | null; status: string; blocked_reason: string | null; row_version: number; actor_id: string; occurred_at: string }
+        Insert: { id?: string; organization_id: string; task_id: string; scope_id: string; previous_status?: string | null; status: string; blocked_reason?: string | null; row_version: number; actor_id: string; occurred_at?: string }
+        Update: { id?: string; organization_id?: string; task_id?: string; scope_id?: string; previous_status?: string | null; status?: string; blocked_reason?: string | null; row_version?: number; actor_id?: string; occurred_at?: string }
         Relationships: []
       }
       activity_events: {
@@ -211,12 +229,17 @@ export type Database = {
       get_reimbursement_policy: { Args: { p_org: string }; Returns: { id: string; version: number; status: "disabled"; scope: "founders"; effective_from: string; reserve_minor: null; equality_tolerance_minor: 0; approved_by: null; decision_reference: null }[] }
       create_resource_scope: { Args: { p_org: string; p_kind: string; p_name: string; p_parent: string | null }; Returns: string }
       set_scope_access: { Args: { p_org: string; p_scope: string; p_user: string; p_granted: boolean; p_expected_version: number }; Returns: number }
-      list_scope_access: { Args: { p_org: string }; Returns: { scope_id: string; user_id: string; granted: boolean; file_write: boolean; row_version: number }[] }
+      list_scope_access: { Args: { p_org: string }; Returns: { scope_id: string; user_id: string; granted: boolean; file_write: boolean; task_write: boolean; row_version: number }[] }
       can_write_scope_file: { Args: { p_scope: string }; Returns: boolean }
       reserve_scope_file: { Args: { p_org: string; p_scope: string; p_file_name: string; p_content_type: string; p_size_bytes: number; p_checksum_sha256: string }; Returns: { id: string; object_key: string }[] }
       finalize_scope_file: { Args: { p_file: string; p_actor: string }; Returns: string }
       cancel_scope_file: { Args: { p_file: string }; Returns: undefined }
       set_scope_file_write: { Args: { p_org: string; p_scope: string; p_user: string; p_allowed: boolean; p_expected_version: number }; Returns: number }
+      set_scope_task_write: { Args: { p_org: string; p_scope: string; p_user: string; p_allowed: boolean; p_expected_version: number }; Returns: number }
+      can_write_task_scope: { Args: { p_scope: string }; Returns: boolean }
+      create_project_phase: { Args: { p_org: string; p_project: string; p_name: string; p_start_on: string | null; p_due_on: string | null; p_status: string }; Returns: string }
+      create_task: { Args: { p_org: string; p_scope: string; p_phase: string | null; p_assignee: string; p_title: string; p_status: string; p_priority: string; p_due_on: string | null; p_blocked_reason: string | null }; Returns: string }
+      update_task: { Args: { p_task: string; p_expected_version: number; p_scope: string; p_phase: string | null; p_assignee: string; p_title: string; p_status: string; p_priority: string; p_due_on: string | null; p_blocked_reason: string | null }; Returns: number }
       create_invitation: { Args: { p_org: string; p_email: string; p_role: string }; Returns: { id: string; token: string }[] }
       list_invitations: { Args: { p_org: string }; Returns: { id: string; email: string; role: string; created_at: string; expires_at: string; status: string }[] }
       revoke_invitation: { Args: { p_org: string; p_id: string }; Returns: undefined }

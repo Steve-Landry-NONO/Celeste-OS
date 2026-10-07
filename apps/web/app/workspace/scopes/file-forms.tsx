@@ -1,7 +1,7 @@
 "use client";
 import { useActionState } from "react";
 import type { FormState } from "../../auth/actions";
-import { setScopeFileWrite, uploadScopeFile } from "./file-actions";
+import { setScopeFileWrite, setScopeTaskWrite, uploadScopeFile } from "./file-actions";
 
 function Status({state}:{state:FormState}) {
   return <>{state.error ? <p role="alert">{state.error}</p> : null}{state.message ? <p role="status">{state.message}</p> : null}</>;
@@ -22,5 +22,14 @@ export function ScopeFileWriteForm({organization,scope,grant}:{organization:stri
     <input type="hidden" name="user_id" value={grant.user_id}/><input type="hidden" name="allowed" value={String(!grant.file_write)}/>
     <input type="hidden" name="row_version" value={grant.row_version}/>
     <Status state={state}/><button className="secondary-button" disabled={pending}>{pending?"Enregistrement…":grant.file_write?"Retirer le dépôt":"Autoriser le dépôt"}</button>
+  </form>;
+}
+export function ScopeTaskWriteForm({organization,scope,grant}:{organization:string;scope:string;grant:{user_id:string;task_write:boolean;row_version:number}}) {
+  const [state,action,pending]=useActionState(setScopeTaskWrite,{});
+  return <form action={action} className="scope-file-permission">
+    <input type="hidden" name="organization_id" value={organization}/><input type="hidden" name="scope_id" value={scope}/>
+    <input type="hidden" name="user_id" value={grant.user_id}/><input type="hidden" name="allowed" value={String(!grant.task_write)}/>
+    <input type="hidden" name="row_version" value={grant.row_version}/>
+    <Status state={state}/><button className="secondary-button" disabled={pending}>{pending?"Enregistrement…":grant.task_write?"Retirer l’écriture des tâches":"Autoriser les tâches"}</button>
   </form>;
 }
