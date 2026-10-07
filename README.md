@@ -1,6 +1,6 @@
 # CELESTE OS
 
-Version 0.1.7 · 4 octobre 2026 · Statut proposé pour revue · Responsable de validation Steve
+Version 0.1.11 · 7 octobre 2026 · Statut proposé pour revue · Responsable de validation Steve
 
 CELESTE OS centralise le pilotage de CELESTE sur téléphone et sur ordinateur. Ce dépôt prépare un pilote utilisable par Steve, Maeva et Stéphane, puis l’ouverture contrôlée aux collaborateurs et prestataires. Il concerne l’outil interne de pilotage et reste distinct du développement de la marketplace CELESTE.
 
@@ -50,7 +50,7 @@ npm run check
 npm run dev
 ```
 
-Ouvrir http://127.0.0.1:3000. Les routes disponibles sont `/`, `/today`, `/documents`, `/lab`, `/login`, `/register`, `/auth/callback` et `/workspace`. Les démonstrations restent accessibles sans backend ; voir [configuration Auth](docs/16_AUTH_SETUP.md) pour les parcours persistés. `npm run check` lance les types, les 24 tests domaine, 3 tests configuration et le build web. CI GitHub configurée pour PR et main ; ses résultats doivent être vérifiés séparément des contrôles locaux.
+Ouvrir http://127.0.0.1:3000. Les routes disponibles sont `/`, `/today`, `/documents`, `/lab`, `/login`, `/register`, `/auth/callback`, `/workspace`, `/workspace/scopes`, `/workspace/finance` et `/workspace/tasks`. Les démonstrations restent accessibles sans backend ; voir [configuration Auth](docs/16_AUTH_SETUP.md) pour les parcours persistés. `npm run check` lance les types, les 24 tests domaine, 3 tests configuration et le build web. CI GitHub configurée pour PR et main ; ses résultats doivent être vérifiés séparément des contrôles locaux.
 
 Voir [BOOTSTRAP](docs/14_BOOTSTRAP.md), les [limites du domaine](packages/domain/README.md), la [reprise](memory/HANDOFF.md) et le rapport du cycle courant.
 
@@ -81,3 +81,5 @@ Projets et missions : [PR #6 fusionnée](https://github.com/Steve-Landry-NONO/Ce
 Fichiers privés projet/mission : [PR #7 fusionnée](https://github.com/Steve-Landry-NONO/Celeste-OS/pull/7), dépôt serveur inspecté, empreinte SHA-256, bucket privé et téléchargement signé 60 secondes. La capacité de dépôt est distincte de la lecture ; aucun upload/finalize direct n'est accordé au client et la révocation est sérialisée avec la finalisation. [CI finale réussie](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37137848450) : cinq suites SQL, security advisors, 27 tests unitaires/configuration, build et 16 parcours sans skip. Voir [rapport fichiers](reports/2026-10-03_PRIVATE_FILES.md) et [ADR-010](docs/adr/010_PRIVATE_SCOPE_FILES.md). Le backend distant reste inchangé tant que VAL-002 bloque sa restauration.
 
 Finance CE-004 fusionnée en [PR #8](https://github.com/Steve-Landry-NONO/Celeste-OS/pull/8) : `/workspace/finance` crée une catégorie et confirme une dépense personnelle EUR avec justificatif privé du même projet ou de la même mission. La transaction ajoute exactement une contribution, sans mouvement de caisse ; historique après suspension, date civile d’organisation, idempotence, RLS, grants explicites et immutabilité sont couverts. La [CI finale](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37201096755) passe six suites SQL, security advisors, 27 tests domaine/configuration, build et 18 parcours desktop/mobile sans skip ; captures inspectées. Fonds, versements et remboursements restent désactivés. Voir [ADR-011](docs/adr/011_PERSONAL_EXPENSES.md) et le [rapport du 4 octobre](reports/2026-10-04_EXPENSES.md).
+
+Travail CE-007 en [PR #11](https://github.com/Steve-Landry-NONO/Celeste-OS/pull/11) : `/workspace/tasks` persiste phases, tâches, historique, compteurs Aujourd’hui et progression projet. Le droit d’écriture est distinct de la lecture et des fichiers ; l’assignation à autrui reste réservée à `task.assign`, la révocation est immédiate et aucun accès projet ne s’hérite aux missions. Voir [ADR-014](docs/adr/014_TASKS_TODAY.md) et le [rapport du 7 octobre](reports/2026-10-07_TASKS_TODAY.md). Le backend distant reste inchangé tant que VAL-002 bloque sa restauration.
