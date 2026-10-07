@@ -84,6 +84,7 @@ test("phases, tâches et Aujourd’hui : persistance, historique et révocation"
     await page.getByLabel("Adresse email").fill(emails[1]);
     await page.getByLabel("Mot de passe", { exact: true }).fill(password);
     await page.getByRole("button", { name: "Se connecter", exact: true }).click();
+    await expect(page).toHaveURL(/\/workspace$/);
     await page.goto("/workspace/tasks?organization=" + org);
     await expect(page.getByRole("form", { name: "Créer une tâche", exact: true })).toBeVisible();
     await expect(page.getByRole("form", { name: "Créer une phase", exact: true })).toHaveCount(0);

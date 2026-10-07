@@ -166,6 +166,14 @@ begin
   begin
     perform public.create_task(
       current_setting('test.task_org')::uuid,current_setting('test.task_project')::uuid,
+      null,current_setting('test.task_owner')::uuid,'Assigner sans droit','todo','normal',null,null
+    );
+    raise exception 'Delegated writer assigned another member';
+  exception when invalid_parameter_value then null;
+  end;
+  begin
+    perform public.create_task(
+      current_setting('test.task_org')::uuid,current_setting('test.task_project')::uuid,
       null,current_setting('test.task_member')::uuid,'Tâche bloquée','blocked','normal',null,null
     );
     raise exception 'Blocked task without reason accepted';

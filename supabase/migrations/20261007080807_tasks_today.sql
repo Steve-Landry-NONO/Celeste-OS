@@ -221,6 +221,7 @@ begin
       select 1 from public.memberships m
       where m.organization_id=p_org and m.user_id=p_assignee and m.status='active'
     )
+    or (p_assignee<>v_actor and not private_celeste.can(p_org,'task.assign'))
     or (p_phase is not null and not exists (
       select 1 from public.project_phases ph
       where ph.id=p_phase and ph.organization_id=p_org and ph.project_id=v_scope.project_id
@@ -278,6 +279,10 @@ begin
     or not exists (
       select 1 from public.memberships m
       where m.organization_id=v_task.organization_id and m.user_id=p_assignee and m.status='active'
+    )
+    or (
+      p_assignee<>v_task.assignee_id
+      and not private_celeste.can(v_task.organization_id,'task.assign')
     )
     or (p_phase is not null and not exists (
       select 1 from public.project_phases ph
