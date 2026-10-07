@@ -398,13 +398,13 @@ $function$;
 
 create function public.create_project_phase(
   p_org uuid,p_project uuid,p_name text,p_start_on date,p_due_on date,p_status text
-) returns uuid language sql security invoker set search_path='' as $function$
+) returns uuid language sql security definer set search_path='' as $function$
   select private_celeste.create_project_phase(p_org,p_project,p_name,p_start_on,p_due_on,p_status);
 $function$;
 create function public.create_task(
   p_org uuid,p_scope uuid,p_phase uuid,p_assignee uuid,p_title text,
   p_status text,p_priority text,p_due_on date,p_blocked_reason text
-) returns uuid language sql security invoker set search_path='' as $function$
+) returns uuid language sql security definer set search_path='' as $function$
   select private_celeste.create_task(
     p_org,p_scope,p_phase,p_assignee,p_title,p_status,p_priority,p_due_on,p_blocked_reason
   );
@@ -412,24 +412,24 @@ $function$;
 create function public.update_task(
   p_task uuid,p_expected_version integer,p_scope uuid,p_phase uuid,p_assignee uuid,
   p_title text,p_status text,p_priority text,p_due_on date,p_blocked_reason text
-) returns integer language sql security invoker set search_path='' as $function$
+) returns integer language sql security definer set search_path='' as $function$
   select private_celeste.update_task(
     p_task,p_expected_version,p_scope,p_phase,p_assignee,p_title,p_status,p_priority,p_due_on,p_blocked_reason
   );
 $function$;
 create function public.set_scope_task_write(
   p_org uuid,p_scope uuid,p_user uuid,p_allowed boolean,p_expected_version integer
-) returns integer language sql security invoker set search_path='' as $function$
+) returns integer language sql security definer set search_path='' as $function$
   select private_celeste.set_scope_task_write(p_org,p_scope,p_user,p_allowed,p_expected_version);
 $function$;
 create function public.can_write_task_scope(p_scope uuid)
-returns boolean language sql stable security invoker set search_path='' as $function$
+returns boolean language sql stable security definer set search_path='' as $function$
   select private_celeste.can_write_task_scope(p_scope);
 $function$;
 create function public.list_scope_access(p_org uuid)
 returns table(
   scope_id uuid,user_id uuid,granted boolean,file_write boolean,task_write boolean,row_version integer
-) language sql stable security invoker set search_path='' as $function$
+) language sql stable security definer set search_path='' as $function$
   select * from private_celeste.list_scope_access(p_org);
 $function$;
 
