@@ -61,4 +61,4 @@ Phases liées aux projets, tâches à responsable unique, motif de blocage, hist
 
 ## CE-008 Auth et Finance mobile — en revue le 7 octobre 2026
 
-Application Expo SDK 57 avec connexion, session SecureStore native, sélection d’organisation et Finance en lecture via les RPC existantes. Les rôles non habilités ne voient pas l’action et le refus base reste couvert ; aucune écriture financière ni commande de remboursement. Cinq tests mobiles et les exports web/Android/iOS passent localement. Parcours Expo/Supabase de CI et recette sur appareil physique encore à confirmer ; aucune publication.
+Application Expo SDK 57 avec connexion, session SecureStore native, sélection d’organisation et Finance en lecture via les RPC existantes. Les rôles non habilités ne voient pas l’action et le refus base reste couvert ; aucune écriture financière ni commande de remboursement. Six tests mobiles et les exports web/Android/iOS passent localement. Parcours Expo/Supabase de CI et recette sur appareil physique encore à confirmer ; aucune publication.

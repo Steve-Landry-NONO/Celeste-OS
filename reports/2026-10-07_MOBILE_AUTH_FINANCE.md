@@ -12,9 +12,11 @@ La configuration refuse les clés serveur. La session utilise SecureStore sur iO
 
 ## Contrôles exécutés
 
-`npm ci` passe avec un graphe React 19.2.3 cohérent pour Next et Expo. `npm run typecheck --workspace=@celeste/mobile` et `npm test --workspace=@celeste/mobile` passent : 5 tests, 0 échec. `npm run export --workspace=@celeste/mobile` produit les bundles web, Android et iOS. `npx playwright test --list` découvre 22 entrées ; le scénario Expo est volontairement exécuté une seule fois sur le projet `mobile-web`, soit 21 parcours attendus en CI.
+`npm ci` passe avec un graphe React 19.2.3 cohérent pour Next et Expo. `npm run typecheck --workspace=@celeste/mobile` et `npm test --workspace=@celeste/mobile` passent : 6 tests, 0 échec. Un export avec URL et clé publishable fictives confirme leur intégration statique ; `npm run export --workspace=@celeste/mobile` produit les bundles web, Android et iOS. `npx playwright test --list` découvre 22 entrées ; le scénario Expo est volontairement exécuté une seule fois sur le projet `mobile-web`, soit 21 parcours attendus en CI.
 
-La tête poussée `13ca793a654b02843d0f6830454dd944fb0d511e` est en PR #12. Le parcours interactif Expo/Supabase, les security advisors et les suites SQL ne sont pas exécutables localement sans pile Docker ; ils attendent la CI. L’export natif n’est pas une recette sur appareil physique. Aucun résultat CI ou appareil non exécuté n’est présenté comme réussi.
+La première CI 37653392248 passe les migrations, neuf suites SQL/RLS, security advisors, types, 32 tests et builds, puis échoue sur le sélecteur strict du nom d’organisation après 20 parcours navigateur réussis. Le rendu exposait deux nœuds texte identiques ; la recette cible désormais le bouton Finance unique. Cette exécution n’est pas retenue comme preuve finale. L’export natif n’est pas une recette sur appareil physique.
+
+La revue a aussi révélé trois gardes à renforcer : accès statique aux variables publiques pour l’inlining Expo, rejet des anciens JWT `service_role`, et effacement des données Finance en cache avant chaque revalidation de droits. Ces corrections sont couvertes localement ; la nouvelle tête attend sa CI complète.
 
 ## Provenance et dépendances
 

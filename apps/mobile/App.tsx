@@ -44,7 +44,7 @@ function Finance({ organization, onBack }: { organization: Organization; onBack:
   const [busy, setBusy] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const refresh = useCallback(async () => {
-    setBusy(true); setError(null);
+    setBusy(true); setError(null); setSnapshot(null);
     try { setSnapshot(await loadFinance(getSupabase(), organization.id)); }
     catch (reason) { setError(reason instanceof Error && reason.name === "ForbiddenError" ? "Accès Finance réservé aux profils habilités." : "Finance indisponible. Vérifiez le réseau puis réessayez."); }
     finally { setBusy(false); }

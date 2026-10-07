@@ -16,7 +16,7 @@
   "sprint": "S1",
   "current_issue": "CE-008-expo-auth-finance-mobile",
   "last_verified_code_sha": "6c5896408933a30a233043dd40e633de7e69aa32",
-  "application_tests_executed": "CE-008 local: clean npm install, mobile typecheck, Jest5, Expo web Android iOS export, Playwright list22 with mobile Expo single-project filter; CI interaction pending",
+  "application_tests_executed": "CE-008 local: clean npm install, mobile typecheck, Jest6, Expo web Android iOS export with static env verified, Playwright list22; first CI 37653392248 passed SQL/advisors/build and 20 browsers then failed strict selector, corrected rerun pending",
   "completed": [
     "requirements_capture",
     "documentary_structure",
@@ -56,7 +56,7 @@
     "reimbursement_lock_sql8_browser18_visuals_reviewed_PR10",
     "reimbursement_lock_PR10_merged",
     "tasks_today_sql9_browser20_visuals_verified_PR11_merged",
-    "mobile_auth_finance_jest5_native_and_web_exports_local_passed"
+    "mobile_auth_finance_jest6_native_and_web_exports_local_passed"
   ],
   "blockers": [
     {
@@ -297,11 +297,11 @@
       "branch": "feat/ce-008-mobile-auth-finance",
       "base_sha": "4a35b1d8c547966be866d7c715b8193e140bdcbd",
       "mobile_typecheck": "passed",
-      "mobile_tests": 5,
+      "mobile_tests": 6,
       "expo_exports": ["web", "android", "ios"],
       "playwright_discovered": 22,
       "playwright_expected_after_filter": 21,
-      "ci": "pending",
+      "ci": "rerun_pending_after_strict_selector_fix",
       "physical_device": "not_executed",
       "remote_backend": "not_changed_inactive_VAL002",
       "deployed": false
@@ -319,9 +319,9 @@
     "branch": "feat/ce-008-mobile-auth-finance",
     "merged": false,
     "deployed": false,
-    "local_check": "passed_mobile_types_jest5_expo_web_android_ios_export_playwright_list22",
+    "local_check": "passed_mobile_types_jest6_expo_web_android_ios_export_static_env_playwright_list22",
     "sql_ci": "pending",
-    "browser_ci": "pending_expected_21_after_project_filter",
+    "browser_ci": "first_run_37653392248_20_passed_1_failed_selector_1_skip_rerun_pending",
     "ci_url": null,
     "verified_code_sha": null,
     "branch_head_sha": "13ca793a654b02843d0f6830454dd944fb0d511e",
