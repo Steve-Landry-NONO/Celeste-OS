@@ -61,6 +61,6 @@ La baseline du 12 octobre pour la recette anticipée et du 15 pour le pilote res
 
 ## Prévision révisée — 7 octobre 2026
 
-CE-007 persiste phases, tâches et vue Aujourd’hui dans la PR #11. La tête de code passe les dix migrations, neuf suites SQL/RLS, security advisors, build et 20 parcours desktop/mobile sans skip ; les captures ont été inspectées. CELESTE OS reste INACTIVE et VAL-002 sans réponse humaine.
+CE-007 est fusionné via la PR #11 en `3659f8df`. Phases, tâches et vue Aujourd’hui passent les dix migrations, neuf suites SQL/RLS, security advisors, build et 20 parcours desktop/mobile sans skip ; les captures ont été inspectées. CELESTE OS reste INACTIVE et VAL-002 sans réponse humaine. Prochaine tranche prête : CE-008 mobile.
 
 La baseline initiale reste le 12 octobre pour la recette anticipée et le 15 pour le pilote. Si le backend est réactivé au plus tard le 7 octobre à midi, la prévision distante devient recette utilisateurs le 16 octobre et pilote le 19. Après cette limite, ajouter au moins un jour aux deux dates par jour de blocage. La recette technique sur pile jetable reste visée le 12 ; aucune ouverture réelle sans migrations distantes, onboarding et recette complète.

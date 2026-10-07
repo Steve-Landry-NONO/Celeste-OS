@@ -29,3 +29,7 @@ Le projet Supabase CELESTE OS `vxdneuoglidyngzdfmjc` reste INACTIVE. `familyroot
 La baseline reste recette anticipée le 12 octobre et pilote le 15 à titre de référence. La condition du 6 octobre à midi est dépassée : si le backend est réactivé au plus tard le 7 octobre à midi, la prévision distante devient recette utilisateurs le 16 octobre et pilote le 19 ; au-delà, ajouter au moins un jour aux deux dates par jour de blocage. La recette technique sur pile jetable reste visée le 12.
 
 Le risque principal reste la revalidation distante des migrations, l’onboarding et la recette complète après restauration. CE-007 ne touche pas les contributions, la caisse, le verrou des remboursements ou l’immutabilité des documents publiés.
+
+## Fusion
+
+La PR #11 a été fusionnée sur `main` en `3659f8df28bafe4936d3a36e601dca75e13adf05` sous l’autorisation EV-0016. Sa tête documentaire finale `c65a6bd7fb3a394bb86db652676720727c76f1fe` passe la CI 37595146733 avec les mêmes dix migrations, neuf suites SQL, advisors, contrôles applicatifs et 20 parcours navigateur sans échec ni skip. Aucun review ou fil bloquant n’était présent ; cette fusion ne vaut pas validation métier humaine et n’a déclenché aucune migration distante.

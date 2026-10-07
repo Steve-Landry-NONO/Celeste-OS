@@ -1,12 +1,12 @@
-# État prioritaire — phases, tâches et Aujourd’hui vérifiés, 7 octobre 2026
+# État prioritaire — phases, tâches et Aujourd’hui fusionnés, 7 octobre 2026
 
-CE-007 est implémenté dans la PR #11, tête de code `6c5896408933a30a233043dd40e633de7e69aa32`. Phases de projet, tâches à responsable actif unique, blocage motivé, version optimiste, historique append-only et route `/workspace/tasks` sont persistés. `task_write` est distinct de la lecture et des fichiers ; `task.assign` reste requis pour attribuer à autrui. Aucun héritage projet vers mission.
+CE-007 est fusionné par la PR #11 en `3659f8df28bafe4936d3a36e601dca75e13adf05`. Phases de projet, tâches à responsable actif unique, blocage motivé, version optimiste, historique append-only et route `/workspace/tasks` sont persistés. `task_write` est distinct de la lecture et des fichiers ; `task.assign` reste requis pour attribuer à autrui. Aucun héritage projet vers mission.
 
-CI 37594346150 : dix migrations sur Supabase jetable, neuf suites SQL avec rollback, security advisors, types, 24 tests domaine + 3 configuration, build et 20 parcours desktop/mobile sans échec ni skip. Artifact 11470151562 ; captures Tâches admin/membre desktop/mobile inspectées. Les trois CI antérieures ont exposé puis permis de corriger le wrapper privé, la normalisation de l’horodatage et l’attente de session ; ne pas les citer comme preuve finale.
+CI finale 37595146733 sur `c65a6bd7fb3a394bb86db652676720727c76f1fe` : dix migrations sur Supabase jetable, neuf suites SQL avec rollback, security advisors, types, 24 tests domaine + 3 configuration, build et 20 parcours desktop/mobile sans échec ni skip. Artifact visuel 11470151562 de la CI code 37594346150 ; captures Tâches admin/membre desktop/mobile inspectées. Les trois CI antérieures ont exposé puis permis de corriger le wrapper privé, la normalisation de l’horodatage et l’attente de session ; ne pas les citer comme preuve finale.
 
 Le 7 octobre, aucune PR/branche CE-007 concurrente ni review bloquante. VAL-002 reste ouverte sans commentaire humain ; Gmail ne retourne que `1a0fc206ec1ced41`, événement `email_sent` exclu. CELESTE OS est INACTIVE, les deux projets FamilyRoot actifs sont inchangés. Aucune migration distante, publication ou relance.
 
-Prochaine action : intégrer la mémoire documentaire sur la même PR, vérifier la CI finale et les reviews, puis fusionner sous EV-0016 si tout reste vert. Ensuite démarrer CE-008 mobile sans inventer de déploiement. Baseline 12/15 conservée comme référence ; prévision distante 16 octobre recette utilisateurs et 19 pilote si réactivation au plus tard le 7 à midi, puis au moins +1 jour par jour de blocage.
+Prochaine action : démarrer CE-008 mobile depuis `main`, sans inventer de déploiement. VAL-002 reste requis avant toute migration distante. Baseline 12/15 conservée comme référence ; la condition de réactivation du 7 octobre à midi est dépassée, donc ajouter au moins un jour aux prévisions recette utilisateurs du 16 octobre et pilote du 19 par jour de blocage.
 
 ## Historique immédiatement précédent
 

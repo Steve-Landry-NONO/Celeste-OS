@@ -55,6 +55,6 @@ Caisses EUR à solde initial nul, versements, dépenses du fonds et avoirs fourn
 
 Politique versionnée provisionnée par organisation, strictement `disabled`, sans réserve ni approbateur, immuable et isolée par RLS. Lecture Finance persistée, sans bouton ni commande de demande, activation ou paiement. Suite SQL FIN-05 dédiée et contrôle navigateur ajoutés ; tête de code vérifiée par CI 37310891629 avec huit suites SQL, advisors, build et 18 parcours sans skip. PR #10 fusionnée en `8d803dfe6858ae05dfd3468edfb277ce0699e9c6`. Aucune migration distante ni publication.
 
-## CE-007 phases, tâches et Aujourd’hui — 7 octobre 2026, non publié
+## CE-007 phases, tâches et Aujourd’hui — fusionné le 7 octobre 2026
 
-Phases liées aux projets, tâches à responsable unique, motif de blocage, historique append-only et concurrence optimiste. La lecture suit strictement les périmètres projet/mission ; `task_write` est distinct de la lecture et des fichiers, et `task.assign` reste nécessaire pour attribuer à autrui. `/workspace/tasks` calcule Aujourd’hui et la progression depuis les mêmes tâches lisibles. PR #11 sur pile jetable ; aucune migration distante ni publication.
+Phases liées aux projets, tâches à responsable unique, motif de blocage, historique append-only et concurrence optimiste. La lecture suit strictement les périmètres projet/mission ; `task_write` est distinct de la lecture et des fichiers, et `task.assign` reste nécessaire pour attribuer à autrui. `/workspace/tasks` calcule Aujourd’hui et la progression depuis les mêmes tâches lisibles. PR #11 fusionnée en `3659f8df28bafe4936d3a36e601dca75e13adf05` après CI finale verte ; aucune migration distante ni publication.
