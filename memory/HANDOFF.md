@@ -6,7 +6,7 @@ CI finale 37595146733 sur `c65a6bd7fb3a394bb86db652676720727c76f1fe` : dix migra
 
 Le 7 octobre, aucune PR/branche CE-007 concurrente ni review bloquante. VAL-002 reste ouverte sans commentaire humain ; Gmail ne retourne que `1a0fc206ec1ced41`, événement `email_sent` exclu. CELESTE OS est INACTIVE, les deux projets FamilyRoot actifs sont inchangés. Aucune migration distante, publication ou relance.
 
-Prochaine action : démarrer CE-008 mobile depuis `main`, sans inventer de déploiement. VAL-002 reste requis avant toute migration distante. Baseline 12/15 conservée comme référence ; la condition de réactivation du 7 octobre à midi est dépassée, donc ajouter au moins un jour aux prévisions recette utilisateurs du 16 octobre et pilote du 19 par jour de blocage.
+Prochaine action : démarrer CE-008 mobile depuis `main`, sans inventer de déploiement. VAL-002 reste requis avant toute migration distante. Baseline 12/15 conservée comme référence ; si le backend est réactivé au plus tard le 7 octobre à midi, la prévision distante reste recette utilisateurs le 16 octobre et pilote le 19, puis ajouter au moins un jour aux deux dates par jour de blocage.
 
 ## Historique immédiatement précédent
 
