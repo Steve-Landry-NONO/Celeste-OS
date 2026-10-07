@@ -10,6 +10,8 @@ if (!url || !publishable || !admin || !databaseUrl || ![url,databaseUrl].every(v
 const values = {
   NEXT_PUBLIC_SUPABASE_URL: url,
   NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: publishable,
+  EXPO_PUBLIC_SUPABASE_URL: url,
+  EXPO_PUBLIC_SUPABASE_PUBLISHABLE_KEY: publishable,
   APP_URL: "http://127.0.0.1:3100",
   CELESTE_E2E_REAL_AUTH: "1",
   CELESTE_E2E_LOCAL_ADMIN_KEY: admin,

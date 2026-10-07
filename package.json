@@ -4,6 +4,7 @@
   "private": true,
   "workspaces": [
     "apps/web",
+    "apps/mobile",
     "packages/domain"
   ],
   "engines": {
@@ -13,14 +14,21 @@
   "scripts": {
     "dev": "npm run dev --workspace=@celeste/web",
     "build": "npm run build --workspace=@celeste/web",
+    "build:mobile": "npm run export --workspace=@celeste/mobile",
     "start": "npm run start --workspace=@celeste/web",
     "typecheck": "npm run typecheck --workspaces",
     "test": "npm run test --workspaces",
-    "check": "npm run typecheck && npm test && npm run build",
+    "check": "npm run typecheck && npm test && npm run build && npm run build:mobile",
     "test:e2e": "playwright test"
   },
   "devDependencies": {
     "@playwright/test": "1.63.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
     "supabase": "2.119.0"
+  },
+  "overrides": {
+    "react": "19.2.3",
+    "react-dom": "19.2.3"
   }
 }

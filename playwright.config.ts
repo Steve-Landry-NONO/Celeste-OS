@@ -20,10 +20,18 @@ export default defineConfig({
       },
     },
   ],
-  webServer: {
-    command: "npm run start --workspace=@celeste/web -- --port 3100",
-    url: "http://127.0.0.1:3100",
-    reuseExistingServer: false,
-    timeout: 30000,
-  },
+  webServer: [
+    {
+      command: "npm run start --workspace=@celeste/web -- --port 3100",
+      url: "http://127.0.0.1:3100",
+      reuseExistingServer: false,
+      timeout: 30000,
+    },
+    {
+      command: "npm run web --workspace=@celeste/mobile -- --non-interactive",
+      url: "http://127.0.0.1:8081",
+      reuseExistingServer: false,
+      timeout: 60000,
+    },
+  ],
 });

@@ -58,3 +58,7 @@ Politique versionnée provisionnée par organisation, strictement `disabled`, sa
 ## CE-007 phases, tâches et Aujourd’hui — fusionné le 7 octobre 2026
 
 Phases liées aux projets, tâches à responsable unique, motif de blocage, historique append-only et concurrence optimiste. La lecture suit strictement les périmètres projet/mission ; `task_write` est distinct de la lecture et des fichiers, et `task.assign` reste nécessaire pour attribuer à autrui. `/workspace/tasks` calcule Aujourd’hui et la progression depuis les mêmes tâches lisibles. PR #11 fusionnée en `3659f8df28bafe4936d3a36e601dca75e13adf05` après CI finale verte ; aucune migration distante ni publication.
+
+## CE-008 Auth et Finance mobile — en revue le 7 octobre 2026
+
+Application Expo SDK 57 avec connexion, session SecureStore native, sélection d’organisation et Finance en lecture via les RPC existantes. Les rôles non habilités ne voient pas l’action et le refus base reste couvert ; aucune écriture financière ni commande de remboursement. Cinq tests mobiles et les exports web/Android/iOS passent localement. Parcours Expo/Supabase de CI et recette sur appareil physique encore à confirmer ; aucune publication.

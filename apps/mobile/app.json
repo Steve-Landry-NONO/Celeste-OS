@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "name": "CELESTE OS",
+    "slug": "celeste-os",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "backgroundColor": "#f7f3ee",
+    "ios": { "supportsTablet": true, "bundleIdentifier": "com.celeste.os" },
+    "android": { "package": "com.celeste.os", "predictiveBackGestureEnabled": false },
+    "web": { "bundler": "metro" }
+  }
+}
