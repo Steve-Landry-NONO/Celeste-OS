@@ -1,3 +1,15 @@
+# État prioritaire — CE-008 mobile en préparation, 7 octobre 2026
+
+PR #12 ouverte depuis `feat/ce-008-mobile-auth-finance`, tête `13ca793a`, base main `4a35b1d8`. Application Expo SDK 57 écrite : Auth email/mot de passe, session SecureStore native, espaces actifs et Finance en lecture via les RPC existantes. Aucune écriture financière, aucun remboursement et aucune clé serveur embarquée. Les rôles sans Finance ne voient pas l’action ; le refus 42501 reste contrôlé par la base.
+
+Contrôles locaux passés : installation propre, typecheck mobile, 6 tests Jest, exports web/Android/iOS avec variables Expo effectivement intégrées et découverte de 22 entrées Playwright dont le scénario Expo exécuté une seule fois, soit 21 parcours attendus en CI. La première CI 37653392248 a passé toutes les étapes hors navigateur puis échoué sur un sélecteur ambigu après 20 parcours réussis ; ce test est corrigé et la nouvelle CI est en cours. Aucun appareil physique n’est disponible, donc MOB-01 n’est pas déclaré entièrement validé. ADR-015 et rapport `reports/2026-10-07_MOBILE_AUTH_FINANCE.md`.
+
+VAL-002 est toujours ouverte sans commentaire humain. Profil Gmail `stevelandryk89@gmail.com` vérifié ; la recherche exacte de VAL-002 ne retourne aucune réponse, après exclusion des événements `email_sent`, commentaires agent et citations. CELESTE OS reste INACTIVE ; les deux projets FamilyRoot actifs et FrequenceGestion inactive sont inchangés. Aucun email, relance, backend, migration ou publication.
+
+Prochaine action : pousser une PR unique, obtenir la CI jetable, inspecter ses captures et corriger toute revue. Ne fusionner que si la tête est verte et le chantier clos ; conserver comme limite explicite l’absence de preuve appareil physique. Baseline 12/15 historique ; si le backend est réactivé avant le 8 octobre midi, prévision distante recette utilisateurs le 17 et pilote le 20, puis +1 jour minimum par jour de blocage.
+
+## Historique immédiatement précédent
+
 # État prioritaire — phases, tâches et Aujourd’hui fusionnés, 7 octobre 2026
 
 CE-007 est fusionné par la PR #11 en `3659f8df28bafe4936d3a36e601dca75e13adf05`. Phases de projet, tâches à responsable actif unique, blocage motivé, version optimiste, historique append-only et route `/workspace/tasks` sont persistés. `task_write` est distinct de la lecture et des fichiers ; `task.assign` reste requis pour attribuer à autrui. Aucun héritage projet vers mission.

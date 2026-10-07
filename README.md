@@ -1,6 +1,6 @@
 # CELESTE OS
 
-Version 0.1.11 · 7 octobre 2026 · Statut proposé pour revue · Responsable de validation Steve
+Version 0.1.12 · 7 octobre 2026 · Statut proposé pour revue · Responsable de validation Steve
 
 CELESTE OS centralise le pilotage de CELESTE sur téléphone et sur ordinateur. Ce dépôt prépare un pilote utilisable par Steve, Maeva et Stéphane, puis l’ouverture contrôlée aux collaborateurs et prestataires. Il concerne l’outil interne de pilotage et reste distinct du développement de la marketplace CELESTE.
 
@@ -40,7 +40,7 @@ GitHub garde les spécifications techniques, décisions, code, migrations, tests
 
 ## Installation et vérification
 
-Le premier incrément contient le client web responsive Next.js, un moteur financier TypeScript partagé et le contrat de sélection de l’écran « Aujourd’hui ». `/today` et `/lab` utilisent uniquement des scénarios fictifs isolés ; les routes Auth et espaces d’organisation apportent la première persistance réelle. Auth et organisations sont maintenant persistés via Supabase ; le client Expo reste à construire. La gestion des documents métier est spécifiée mais pas encore opérationnelle.
+Le dépôt contient le client web responsive Next.js, le client Expo et un moteur financier TypeScript partagé. `/today` et `/lab` utilisent uniquement des scénarios fictifs isolés ; les routes Auth, organisations, Finance et tâches apportent la persistance réelle. Expo fournit maintenant Auth, sélection d’espace et Finance en lecture ; la gestion des documents métier reste spécifiée mais pas encore opérationnelle.
 
 Prérequis : Node 24.19.0 et npm 11. Les dépendances sont fixées dans `package-lock.json`.
 
@@ -50,9 +50,9 @@ npm run check
 npm run dev
 ```
 
-Ouvrir http://127.0.0.1:3000. Les routes disponibles sont `/`, `/today`, `/documents`, `/lab`, `/login`, `/register`, `/auth/callback`, `/workspace`, `/workspace/scopes`, `/workspace/finance` et `/workspace/tasks`. Les démonstrations restent accessibles sans backend ; voir [configuration Auth](docs/16_AUTH_SETUP.md) pour les parcours persistés. `npm run check` lance les types, les 24 tests domaine, 3 tests configuration et le build web. CI GitHub configurée pour PR et main ; ses résultats doivent être vérifiés séparément des contrôles locaux.
+Ouvrir http://127.0.0.1:3000. Les routes disponibles sont `/`, `/today`, `/documents`, `/lab`, `/login`, `/register`, `/auth/callback`, `/workspace`, `/workspace/scopes`, `/workspace/finance` et `/workspace/tasks`. Les démonstrations restent accessibles sans backend ; voir [configuration Auth](docs/16_AUTH_SETUP.md) pour les parcours persistés. `npm run check` lance les types, 24 tests domaine, 3 tests web, 6 tests mobiles, le build Next et les exports Expo web/Android/iOS. CI GitHub configurée pour PR et main ; ses résultats doivent être vérifiés séparément des contrôles locaux.
 
-Voir [BOOTSTRAP](docs/14_BOOTSTRAP.md), les [limites du domaine](packages/domain/README.md), la [reprise](memory/HANDOFF.md) et le rapport du cycle courant.
+Pour Expo, copier `apps/mobile/.env.example`, renseigner uniquement une URL Supabase et une clé publishable, puis lancer `npm run start --workspace=@celeste/mobile`. Voir [BOOTSTRAP](docs/14_BOOTSTRAP.md), les [limites du domaine](packages/domain/README.md), la [reprise](memory/HANDOFF.md) et le rapport du cycle courant.
 
 ## Sources et décisions
 
@@ -83,3 +83,5 @@ Fichiers privés projet/mission : [PR #7 fusionnée](https://github.com/Steve-La
 Finance CE-004 fusionnée en [PR #8](https://github.com/Steve-Landry-NONO/Celeste-OS/pull/8) : `/workspace/finance` crée une catégorie et confirme une dépense personnelle EUR avec justificatif privé du même projet ou de la même mission. La transaction ajoute exactement une contribution, sans mouvement de caisse ; historique après suspension, date civile d’organisation, idempotence, RLS, grants explicites et immutabilité sont couverts. La [CI finale](https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37201096755) passe six suites SQL, security advisors, 27 tests domaine/configuration, build et 18 parcours desktop/mobile sans skip ; captures inspectées. Fonds, versements et remboursements restent désactivés. Voir [ADR-011](docs/adr/011_PERSONAL_EXPENSES.md) et le [rapport du 4 octobre](reports/2026-10-04_EXPENSES.md).
 
 CE-007 est fusionné via la [PR #11](https://github.com/Steve-Landry-NONO/Celeste-OS/pull/11) : `/workspace/tasks` persiste phases, tâches, historique, compteurs Aujourd’hui et progression projet. Le droit d’écriture est distinct de la lecture et des fichiers ; l’assignation à autrui reste réservée à `task.assign`, la révocation est immédiate et aucun accès projet ne s’hérite aux missions. Voir [ADR-014](docs/adr/014_TASKS_TODAY.md) et le [rapport du 7 octobre](reports/2026-10-07_TASKS_TODAY.md). Le backend distant reste inchangé tant que VAL-002 bloque sa restauration.
+
+CE-008 est en [PR #12](https://github.com/Steve-Landry-NONO/Celeste-OS/pull/12) : Expo SDK 57, session sécurisée, espaces actifs et Finance en lecture seule via les mêmes RLS/RPC. Les exports web, Android et iOS et 6 tests mobiles passent localement ; le parcours Expo/Supabase jetable et la preuve appareil physique restent à compléter. Voir [ADR-015](docs/adr/015_MOBILE_AUTH_FINANCE.md) et le [rapport mobile](reports/2026-10-07_MOBILE_AUTH_FINANCE.md).
