@@ -5,7 +5,7 @@ CE-003,P0,S1,J2,Rôles et opérations sensibles,CE-002,REQ-01,Refus serveur API 
 CE-004,P0,S1,J3,Dépenses catégories et justificatifs,CE-003,REQ-04,Saisie persistée catégorie créée et fichier privé,FIN-01 DOC-03,sql_rls_browser18_visuals_passed_PR8_merged
 CE-005,P0,S1,J4,Contributions caisse et égalisation,CE-004,REQ-05,Exemple financier exact et atomicité,FIN-02 FIN-03 FIN-04,cash_ledger_safe_aggregates_sql7_browser18_PR9_merged
 CE-006,P0,S1,J4,Modèle et verrou du remboursement futur,CE-005,REQ-06,Contribution non remboursable et régime désactivé,FIN-05,persistent_disabled_policy_sql8_browser18_PR10_merged
-CE-007,P0,S1,J5,Projets phases tâches et Aujourd’hui,CE-003,REQ-02 REQ-03,Responsable unique et compteurs autorisés,TASK-01 TODAY-01,domain_contract_demo_project_mission_shell_merged_tasks_phases_planned
+CE-007,P0,S1,J5,Projets phases tâches et Aujourd’hui,CE-003,REQ-02 REQ-03,Responsable unique et compteurs autorisés,TASK-01 TODAY-01,persistent_tasks_today_sql9_browser20_visuals_passed_PR11_reviewable
 CE-008,P0,S1,J6,Expo Auth et finance mobile,CE-004 CE-005,REQ-11,Parcours persisté sur téléphone avec preuve,MOB-01,planned
 CE-009,P0,S1,J7,Recette du premier sprint,CE-006 CE-007 CE-008,REQ-14,Tests applicables et décision de revue,FIN-02 ACL-01 MEM-01,planned
 CE-010,P0,S2,J8,Documents catalogue et versions,CE-003,REQ-07,Deux versions figées consultables,DOC-01 DOC-03,planned

@@ -30,3 +30,7 @@ La caisse et l’égalisation sont implémentées dans PR #9 et vérifiées sur 
 ## Actualisation CE-006 — 5 octobre 2026
 
 PR #10, fusionnée en `8d803dfe`, persiste le verrou des remboursements : politique versionnée désactivée, immuable et isolée, visible en lecture Finance sans commande d’activation ou de paiement. La tête `1c8ea1d9` passe CI 37310891629, huit suites SQL et 18 parcours sans skip ; captures desktop/mobile inspectées. Q-002 et Q-003 restent ouvertes ; aucune contribution n’est requalifiée. Le backend reste INACTIVE et la prévision distante passe au 15 octobre pour la recette utilisateurs et au 18 pour le pilote si réactivation avant le 6 à midi.
+
+## Actualisation CE-007 — 7 octobre 2026
+
+PR #11 persiste phases, tâches et Aujourd’hui. Le droit `task_write` est explicite, révocable avec la lecture et séparé des fichiers ; seul `task.assign` permet l’attribution à autrui. Responsable actif unique, motif de blocage, version et historique sont imposés en base. Aucun héritage projet/mission. VAL-002 reste sans réponse humaine et le backend INACTIVE ; aucune migration distante. Baseline 12/15 conservée comme référence, prévision distante 16 octobre recette utilisateurs et 19 pilote si réactivation avant le 7 à midi, puis au moins +1 jour par jour de blocage.

@@ -103,3 +103,27 @@ export async function setScopeFileWrite(_state:FormState,form:FormData):Promise<
   revalidatePath("/workspace/scopes");
   return {message:allowed==="true"?"Dépôt autorisé.":"Dépôt révoqué."};
 }
+
+export async function setScopeTaskWrite(_state:FormState,form:FormData):Promise<FormState> {
+  const organization=String(form.get("organization_id")??"");
+  const scope=String(form.get("scope_id")??"");
+  const user=String(form.get("user_id")??"");
+  const allowed=String(form.get("allowed")??"");
+  const rawVersion=String(form.get("row_version")??"");
+  const version=Number(rawVersion);
+  if (![organization,scope,user].every(value=>uuid.test(value)) || !["true","false"].includes(allowed)
+    || !/^[1-9]\d*$/.test(rawVersion) || !Number.isSafeInteger(version)) return {error:"Permission invalide. Rechargez la page."};
+  try {
+    const client=await createServerSupabase(true);
+    const {data:{user:actor},error:authError}=await client.auth.getUser();
+    if (authError || !actor) return {error:"Votre session a expiré. Reconnectez-vous."};
+    const membership=await client.from("memberships").select("role,status").eq("organization_id",organization).eq("user_id",actor.id).maybeSingle();
+    if (membership.error || membership.data?.role!=="founder_admin" || membership.data.status!=="active") return {error:"Vous ne pouvez pas administrer cet espace."};
+    const result=await client.rpc("set_scope_task_write",{p_org:organization,p_scope:scope,p_user:user,p_allowed:allowed==="true",p_expected_version:version});
+    if (result.error?.code==="40001") return {error:"Cet accès a changé dans une autre session. Rechargez la page."};
+    if (result.error) return {error:"Permission refusée. Vérifiez le rôle, le statut et l’accès de lecture."};
+  } catch { return {error:"Le service est indisponible. Réessayez dans un moment."}; }
+  revalidatePath("/workspace/scopes");
+  revalidatePath("/workspace/tasks");
+  return {message:allowed==="true"?"Écriture des tâches autorisée.":"Écriture des tâches révoquée."};
+}

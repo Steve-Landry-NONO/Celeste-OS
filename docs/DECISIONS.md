@@ -135,3 +135,13 @@ OBS-020 vérifié : tête CE-006 `1c8ea1d9809a348301285866c25389c723c2bb4b`, CI 
 
 
 OBS-021 vérifié : PR #10 fusionnée en `8d803dfe6858ae05dfd3468edfb277ce0699e9c6` sous l’autorisation EV-0016, après CI finale 37311940124 verte sur la tête `778c9b1694be222f95e80874e1826d561f4f289e`. Aucun review ni fil bloquant n’était présent. La fusion ne vaut pas validation de Q-002/Q-003 et aucune migration distante ou activation n’a eu lieu.
+
+## Tâches persistées et Aujourd’hui — 7 octobre 2026
+
+ADR-014 implémentée comme choix technique de CE-007 : phase strictement rattachée à un projet, tâche rattachée à un périmètre et à un responsable actif unique, motif de blocage obligatoire, version attendue et historique append-only. `task_write` est distinct de la lecture et du dépôt de fichiers ; un délégataire peut travailler dans le périmètre mais `task.assign` reste requis pour attribuer à autrui. Lecture, Aujourd’hui et progression partagent le même périmètre RLS, sans héritage projet vers mission.
+
+OBS-022 : avant développement, aucune branche ou PR CE-007 concurrente n’était ouverte. VAL-002 n’a aucun commentaire humain et Gmail ne retourne que `1a0fc206ec1ced41`, message `email_sent` exclu. CELESTE OS reste INACTIVE ; aucun projet tiers, backend distant ou politique financière n’est modifié. PR #11 porte la migration, la route, les suites SQL et navigateur et la mémoire du lot.
+
+OBS-023 : les premières exécutions ont successivement exposé un wrapper public sans appel privé autorisé, le format d’horodatage PostgreSQL non normalisé, puis une course du scénario de reconnexion navigateur. Ces échecs ne sont pas des preuves de livraison. Les corrections conservent les helpers privés non exécutables par les clients, normalisent l’instant à la frontière web et attendent la session membre avant navigation.
+
+OBS-024 vérifié : tête CE-007 `6c5896408933a30a233043dd40e633de7e69aa32`, CI 37594346150 réussie avec dix migrations jetables, neuf suites SQL avec rollback, security advisors, types, 24 tests domaine + 3 configuration, build et 20 parcours desktop/mobile sans échec ni skip. Artifact 11470151562 ; quatre captures Tâches admin/membre desktop/mobile inspectées. Aucun review ou fil bloquant n’est présent et aucune migration distante, attribution réelle ou validation humaine n’est déduite.

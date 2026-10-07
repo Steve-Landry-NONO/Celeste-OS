@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { createServerSupabase } from "../../../lib/supabase/server";
 import { supabaseConfig } from "../../../lib/supabase/config";
 import { CreateScopeForm, GrantScopeForm, RevokeScopeForm } from "./forms";
-import { ScopeFileUpload, ScopeFileWriteForm } from "./file-forms";
+import { ScopeFileUpload, ScopeFileWriteForm, ScopeTaskWriteForm } from "./file-forms";
 export const dynamic="force-dynamic";
 
 export default async function Scopes({searchParams}:{searchParams:Promise<{organization?:string}>}) {
@@ -46,7 +46,7 @@ export default async function Scopes({searchParams}:{searchParams:Promise<{organ
           const status=member?.status!=="active" ? "Accord inactif — membre suspendu ou absent."
             : scope.kind==="project" && member.role==="vendor" ? "Accord inactif — rôle prestataire."
             : "Lecture active.";
-          return <li key={g.user_id} data-scope-user={g.user_id}><p className="member-name">{member?.display_name??"Membre"}</p><p>{status} {g.file_write && status==="Lecture active."?"Dépôt autorisé.":""}</p>{status==="Lecture active." ? <ScopeFileWriteForm key={"write-"+g.row_version} organization={org} scope={scope.id} grant={g}/> : null}<RevokeScopeForm key={"read-"+g.row_version} organization={org} scope={scope.id} grant={g}/></li>;
+          return <li key={g.user_id} data-scope-user={g.user_id}><p className="member-name">{member?.display_name??"Membre"}</p><p>{status} {g.file_write && status==="Lecture active."?"Dépôt autorisé. ":""}{g.task_write && status==="Lecture active."?"Tâches autorisées.":""}</p>{status==="Lecture active." ? <><ScopeFileWriteForm key={"file-"+g.row_version} organization={org} scope={scope.id} grant={g}/><ScopeTaskWriteForm key={"task-"+g.row_version} organization={org} scope={scope.id} grant={g}/></> : null}<RevokeScopeForm key={"read-"+g.row_version} organization={org} scope={scope.id} grant={g}/></li>;
         })}</ul>:<p>Aucun accès explicite.</p>}<GrantScopeForm organization={org} scope={scope.id} members={eligible} grants={access}/></>}
         <h3>Fichiers privés</h3>{scopeFiles.length ? <ul className="scope-file-list">{scopeFiles.map(file=><li key={file.id}><Link href={"/workspace/files/"+file.id}>{file.file_name}</Link><span>{Math.ceil(file.size_bytes/1024)} Ko · SHA-256 {file.checksum_sha256.slice(0,12)}…</span></li>)}</ul>:<p>Aucun fichier partagé.</p>}
         {writable.get(scope.id) ? <ScopeFileUpload organization={org} scope={scope.id}/> : <p className="form-hint">Lecture seule : le dépôt nécessite une permission distincte.</p>}

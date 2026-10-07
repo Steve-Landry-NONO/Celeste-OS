@@ -58,3 +58,9 @@ La baseline initiale reste 12 octobre pour la recette anticipée et 15 pour le p
 CE-006 est en PR #10 avec verrou persistant du remboursement, sans activation ni politique inventée. La limite conditionnelle du 5 octobre à midi est dépassée : CELESTE OS reste INACTIVE et VAL-002 sans réponse humaine.
 
 La baseline du 12 octobre pour la recette anticipée et du 15 pour le pilote reste la référence initiale. Prévision distante : recette utilisateurs le 15 octobre et pilote le 18 si le backend est réactivé au plus tard le 6 octobre à midi. Après cette limite, ajouter au moins un jour aux deux dates par jour de blocage. La recette technique sur pile jetable reste visée le 12 ; aucune ouverture réelle sans migrations distantes, onboarding et recette complète.
+
+## Prévision révisée — 7 octobre 2026
+
+CE-007 persiste phases, tâches et vue Aujourd’hui dans la PR #11. La tête de code passe les dix migrations, neuf suites SQL/RLS, security advisors, build et 20 parcours desktop/mobile sans skip ; les captures ont été inspectées. CELESTE OS reste INACTIVE et VAL-002 sans réponse humaine.
+
+La baseline initiale reste le 12 octobre pour la recette anticipée et le 15 pour le pilote. Si le backend est réactivé au plus tard le 7 octobre à midi, la prévision distante devient recette utilisateurs le 16 octobre et pilote le 19. Après cette limite, ajouter au moins un jour aux deux dates par jour de blocage. La recette technique sur pile jetable reste visée le 12 ; aucune ouverture réelle sans migrations distantes, onboarding et recette complète.

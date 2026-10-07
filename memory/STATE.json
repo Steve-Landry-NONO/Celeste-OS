@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T12:54:00Z",
+  "updated_at": "2026-10-07T08:36:00Z",
   "timezone": "Europe/Paris",
-  "documentation_version": "0.1.10",
-  "product_status": "reimbursement_lock_merged_backend_paused",
+  "documentation_version": "0.1.11",
+  "product_status": "tasks_today_ci_verified_reviewable_backend_paused",
   "repository": {
     "owner_verified": "Steve-Landry-NONO",
     "url": "https://github.com/Steve-Landry-NONO/Celeste-OS",
@@ -15,8 +15,8 @@
   "baseline_end": "2026-10-15",
   "sprint": "S1",
   "current_issue": "CE-007-tasks-today-persistence",
-  "last_verified_code_sha": "1c8ea1d9809a348301285866c25389c723c2bb4b",
-  "application_tests_executed": "CI 37310891629: nine migrations, eight SQL rollback suites, security advisors, types, domain24, config3, Next build, Playwright18 zero skip",
+  "last_verified_code_sha": "6c5896408933a30a233043dd40e633de7e69aa32",
+  "application_tests_executed": "CI 37594346150: ten migrations, nine SQL rollback suites, security advisors, types, domain24, config3, Next build, Playwright20 zero skip",
   "completed": [
     "requirements_capture",
     "documentary_structure",
@@ -54,7 +54,8 @@
     "cash_equalization_safe_aggregate_review_fixed",
     "cash_equalization_safe_aggregates_PR9_merged",
     "reimbursement_lock_sql8_browser18_visuals_reviewed_PR10",
-    "reimbursement_lock_PR10_merged"
+    "reimbursement_lock_PR10_merged",
+    "tasks_today_sql9_browser20_visuals_verified_PR11"
   ],
   "blockers": [
     {
@@ -63,10 +64,10 @@
       "detail": "CELESTE OS INACTIVE ; restore refusé, quota occupé par familyroots-mvp et FamilyROOT Test. Décision nécessaire avant pause de ces projets."
     }
   ],
-  "next_action": "Démarrer CE-007 depuis main : phases, tâches persistées et Aujourd’hui, sans modifier le régime de remboursement. VAL-002 reste requis avant toute migration distante.",
+  "next_action": "Intégrer la mémoire sur PR #11, vérifier sa CI finale et ses reviews puis fusionner sous EV-0016 si verte. Ensuite démarrer CE-008 mobile. VAL-002 reste requis avant toute migration distante.",
   "reimbursement_regime": "disabled_persisted_pending_explicit_policy",
   "real_finance_data": "not_provided",
-  "active_branch": "main",
+  "active_branch": "feat/ce-007-tasks-today",
   "validation_issue": "https://github.com/Steve-Landry-NONO/Celeste-OS/issues/5",
   "last_verified_base_sha": "8d803dfe6858ae05dfd3468edfb277ce0699e9c6",
   "verification": {
@@ -267,27 +268,52 @@
       "merged": true,
       "merge_sha": "8d803dfe6858ae05dfd3468edfb277ce0699e9c6",
       "final_ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37311940124"
+    },
+    "tasks_today": {
+      "status": "ci_verified_reviewable",
+      "pr": 11,
+      "run_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37594346150",
+      "verified_code_sha": "6c5896408933a30a233043dd40e633de7e69aa32",
+      "migration_version": "20261007080807",
+      "sql_suites": 9,
+      "browser_total": 20,
+      "skipped": 0,
+      "security_advisors": "no_warn_or_error",
+      "artifact": 11470151562,
+      "visual_review": "admin_member_desktop_mobile_passed",
+      "remote_migration": "not_applied_backend_paused",
+      "deployed": false,
+      "first_ci": "37592853104_wrapper_permission_failure_then_fixed",
+      "second_ci": "37593255200_timestamp_adapter_failure_then_fixed",
+      "third_ci": "37593767464_member_login_race_then_fixed",
+      "merged": false
     }
   },
-  "active_pr": null,
+  "active_pr": {
+    "number": 11,
+    "url": "https://github.com/Steve-Landry-NONO/Celeste-OS/pull/11",
+    "branch": "feat/ce-007-tasks-today",
+    "status": "draft_code_verified_documentation_pending_final_ci",
+    "head_sha": "6c5896408933a30a233043dd40e633de7e69aa32"
+  },
   "last_session": {
-    "date": "2026-10-05",
-    "report": "reports/2026-10-05_REIMBURSEMENT_LOCK.md",
-    "branch": "feat/ce-006-reimbursement-lock",
-    "merged": true,
+    "date": "2026-10-07",
+    "report": "reports/2026-10-07_TASKS_TODAY.md",
+    "branch": "feat/ce-007-tasks-today",
+    "merged": false,
     "deployed": false,
-    "local_check": "covered_by_green_CI",
-    "sql_ci": "passed_eight_suites_rollback",
-    "browser_ci": "passed_18_zero_skip",
-    "ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37310891629",
-    "verified_code_sha": "1c8ea1d9809a348301285866c25389c723c2bb4b",
-    "artifact": 11345941729,
+    "local_check": "passed_types_domain24_config3_build_playwright_list20_diff_check",
+    "sql_ci": "passed_nine_suites_rollback",
+    "browser_ci": "passed_20_zero_skip",
+    "ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37594346150",
+    "verified_code_sha": "6c5896408933a30a233043dd40e633de7e69aa32",
+    "artifact": 11470151562,
     "backend": "INACTIVE_VAL002",
-    "review": "self_review_truncate_and_missing_policy_hardened",
-    "first_ci": "37310020169_cleanup_failure_fixed_by_controlled_parent_cascade",
-    "merge_sha": "8d803dfe6858ae05dfd3468edfb277ce0699e9c6",
-    "final_ci_url": "https://github.com/Steve-Landry-NONO/Celeste-OS/actions/runs/37311940124",
-    "final_head_sha": "778c9b1694be222f95e80874e1826d561f4f289e"
+    "review": "self_review_task_assign_separated_no_human_review",
+    "first_ci": "37592853104_wrapper_permission_failure_fixed",
+    "second_ci": "37593255200_timestamp_normalization_fixed",
+    "third_ci": "37593767464_login_wait_fixed",
+    "final_head_sha": "6c5896408933a30a233043dd40e633de7e69aa32"
   },
   "backend": {
     "provider": "supabase",
@@ -316,7 +342,8 @@
       "20261003160213_private_scope_files",
       "20261004081254_personal_expenses",
       "20261004161500_cash_equalization",
-      "20261005120500_reimbursement_lock"
+      "20261005120500_reimbursement_lock",
+      "20261007080807_tasks_today"
     ]
   },
   "previous_pr": {
@@ -361,11 +388,11 @@
     }
   ],
   "revised_calendar": {
-    "observed_on": "2026-10-05",
+    "observed_on": "2026-10-07",
     "technical_recipe_target": "2026-10-12",
-    "user_recipe_forecast": "2026-10-15",
-    "pilot_forecast": "2026-10-18",
-    "condition": "Backend réactivé au plus tard le 6 octobre à midi; ensuite décaler les deux dates d'au moins un jour par jour de blocage",
+    "user_recipe_forecast": "2026-10-16",
+    "pilot_forecast": "2026-10-19",
+    "condition": "Backend réactivé au plus tard le 7 octobre à midi; ensuite décaler les deux dates d'au moins un jour par jour de blocage",
     "status": "conditional_forecast_not_release_commitment"
   }
 }
