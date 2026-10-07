@@ -55,7 +55,7 @@ export default async function TasksPage({ searchParams }: { searchParams: Promis
     ...(task.scope_kind === "mission" ? { missionId: task.scope_id } : {}),
     assigneeId: task.assignee_id, title: task.title, status: task.status,
     priority: task.priority, ...(task.due_on ? { dueDate: task.due_on } : {}),
-    createdAt: task.created_at, ...(task.blocked_reason ? { blockedReason: task.blocked_reason } : {}),
+    createdAt: new Date(task.created_at).toISOString(), ...(task.blocked_reason ? { blockedReason: task.blocked_reason } : {}),
   }));
   const todayScope: TodayScope = {
     organizationId: org, actorId: user.id,
