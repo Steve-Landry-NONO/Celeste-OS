@@ -2,7 +2,7 @@
 
 Date : 7 octobre 2026  
 Branche : `feat/ce-008-mobile-auth-finance`  
-PR : à ouvrir
+PR : https://github.com/Steve-Landry-NONO/Celeste-OS/pull/12
 
 ## Résultat
 
@@ -14,7 +14,7 @@ La configuration refuse les clés serveur. La session utilise SecureStore sur iO
 
 `npm ci` passe avec un graphe React 19.2.3 cohérent pour Next et Expo. `npm run typecheck --workspace=@celeste/mobile` et `npm test --workspace=@celeste/mobile` passent : 5 tests, 0 échec. `npm run export --workspace=@celeste/mobile` produit les bundles web, Android et iOS. `npx playwright test --list` découvre 22 entrées ; le scénario Expo est volontairement exécuté une seule fois sur le projet `mobile-web`, soit 21 parcours attendus en CI.
 
-Le parcours interactif Expo/Supabase, les security advisors et les suites SQL ne sont pas exécutables localement sans pile Docker ; ils attendent la CI. L’export natif n’est pas une recette sur appareil physique. Aucun résultat CI ou appareil non exécuté n’est présenté comme réussi.
+La tête poussée `13ca793a654b02843d0f6830454dd944fb0d511e` est en PR #12. Le parcours interactif Expo/Supabase, les security advisors et les suites SQL ne sont pas exécutables localement sans pile Docker ; ils attendent la CI. L’export natif n’est pas une recette sur appareil physique. Aucun résultat CI ou appareil non exécuté n’est présenté comme réussi.
 
 ## Provenance et dépendances
 

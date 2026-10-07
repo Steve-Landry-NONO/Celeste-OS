@@ -1,6 +1,6 @@
 # État prioritaire — CE-008 mobile en préparation, 7 octobre 2026
 
-Branche `feat/ce-008-mobile-auth-finance` depuis main `4a35b1d8`. Application Expo SDK 57 écrite : Auth email/mot de passe, session SecureStore native, espaces actifs et Finance en lecture via les RPC existantes. Aucune écriture financière, aucun remboursement et aucune clé serveur embarquée. Les rôles sans Finance ne voient pas l’action ; le refus 42501 reste contrôlé par la base.
+PR #12 ouverte depuis `feat/ce-008-mobile-auth-finance`, tête `13ca793a`, base main `4a35b1d8`. Application Expo SDK 57 écrite : Auth email/mot de passe, session SecureStore native, espaces actifs et Finance en lecture via les RPC existantes. Aucune écriture financière, aucun remboursement et aucune clé serveur embarquée. Les rôles sans Finance ne voient pas l’action ; le refus 42501 reste contrôlé par la base.
 
 Contrôles locaux passés : installation propre, typecheck mobile, 5 tests Jest, exports web/Android/iOS et découverte de 22 entrées Playwright dont le scénario Expo exécuté une seule fois, soit 21 parcours attendus en CI. La recette Supabase interactive attend la CI ; aucun appareil physique n’est disponible, donc MOB-01 n’est pas déclaré entièrement validé. ADR-015 et rapport `reports/2026-10-07_MOBILE_AUTH_FINANCE.md`.
 
