@@ -33,15 +33,16 @@ test("Expo conserve la session et applique l’habilitation Finance", async ({ p
     await page.getByLabel("Adresse email").fill(ownerEmail);
     await page.getByLabel("Mot de passe").fill(password);
     await page.getByRole("button", { name: "Se connecter", exact: true }).click();
-    await expect(page.getByText(`Mobile ${suffix}`, { exact: true })).toBeVisible();
-    await page.getByRole("button", { name: `Ouvrir la finance de Mobile ${suffix}` }).click();
+    const financeButton = page.getByRole("button", { name: `Ouvrir la finance de Mobile ${suffix}` });
+    await expect(financeButton).toBeVisible();
+    await financeButton.click();
     await expect(page.getByText("Régime désactivé", { exact: true })).toBeVisible();
     await expect(page.getByText("Lecture calculée depuis les écritures autorisées.", { exact: false })).toBeVisible();
     await expect(page.getByLabel("Totaux financiers mobiles")).toContainText(/0,00\s?€/);
     await page.screenshot({ path: testInfo.outputPath("mobile-finance-owner.png"), fullPage: true });
 
     await page.reload();
-    await expect(page.getByText(`Mobile ${suffix}`, { exact: true })).toBeVisible();
+    await expect(page.getByRole("button", { name: `Ouvrir la finance de Mobile ${suffix}` })).toBeVisible();
     await expect(page.getByLabel("Mot de passe")).toHaveCount(0);
     await page.getByRole("button", { name: "Se déconnecter", exact: true }).click();
     await expect(page.getByLabel("Mot de passe")).toBeVisible();
